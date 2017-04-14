@@ -1,0 +1,114 @@
+PODS:
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.2.0):
+    - CocoaLumberjack/Default
+  - CTAssetsPickerController (3.3.3-alpha):
+    - PureLayout (~> 3.0.0)
+  - DJRefresh (1.0.5)
+  - FMDB (2.6):
+    - FMDB/standard (= 2.6)
+  - FMDB/standard (2.6)
+  - KVOController (1.0.3)
+  - Mantle (2.0.6):
+    - Mantle/extobjc (= 2.0.6)
+  - Mantle/extobjc (2.0.6)
+  - Masonry (0.6.4)
+  - MBProgressHUD (0.9.2)
+  - MMDrawerController (0.6.0):
+    - MMDrawerController/Core (= 0.6.0)
+    - MMDrawerController/MMDrawerBarButtonItem (= 0.6.0)
+    - MMDrawerController/MMDrawerVisualStates (= 0.6.0)
+    - MMDrawerController/Subclass (= 0.6.0)
+  - MMDrawerController/Core (0.6.0)
+  - MMDrawerController/MMDrawerBarButtonItem (0.6.0):
+    - MMDrawerController/Core
+  - MMDrawerController/MMDrawerVisualStates (0.6.0):
+    - MMDrawerController/Core
+  - MMDrawerController/Subclass (0.6.0):
+    - MMDrawerController/Core
+  - PKYStepper (0.0.1)
+  - PureLayout (3.0.2)
+  - ReactiveCocoa (5.0.0):
+    - ReactiveSwift (~> 1.0.0)
+  - ReactiveObjC (2.1.2)
+  - ReactiveSwift (1.0.0):
+    - Result (~> 3.1)
+  - Result (3.1.0)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.6)
+  - CocoaLumberjack
+  - CTAssetsPickerController (from `git@github.com:asivura/CTAssetsPickerController.git`, branch `master`)
+  - DJRefresh (~> 1.0.5)
+  - FMDB
+  - KVOController
+  - Mantle
+  - Masonry
+  - MBProgressHUD (~> 0.9)
+  - MMDrawerController
+  - PKYStepper
+  - ReactiveCocoa (~> 5.0.0)
+  - ReactiveObjC (~> 2.1.0)
+  - SDWebImage
+
+EXTERNAL SOURCES:
+  CTAssetsPickerController:
+    :branch: master
+    :git: git@github.com:asivura/CTAssetsPickerController.git
+
+CHECKOUT OPTIONS:
+  CTAssetsPickerController:
+    :commit: 3ea553edf94e359219e5539fb71fd8819532baea
+    :git: git@github.com:asivura/CTAssetsPickerController.git
+
+SPEC CHECKSUMS:
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  CTAssetsPickerController: bcca19170b3f7f5241cceb25a0b421435f71ce87
+  DJRefresh: 32b3776546004faddddc28035442ba15e07c5f1b
+  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
+  Mantle: 299966b00759634931699f69cb6a30b9239b944d
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
+  PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+  ReactiveCocoa: 60ef0da915b4f70c34ebecc3f4fb8f96af0e53d6
+  ReactiveObjC: 7b6782ae39f9ac0f57205c3b0c0b69b9dd7048c0
+  ReactiveSwift: f391724ee318a2cfd3e37dfb041cd49ecf4e7869
+  Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+
+PODFILE CHECKSUM: 6f962e596b37c75c48678ef7c1fade153414f81e
+
+COCOAPODS: 1.2.0

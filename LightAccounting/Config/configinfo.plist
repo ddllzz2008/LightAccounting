@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PaytypeIcons</key>
+	<dict>
+		<key>1</key>
+		<string>paytype_money</string>
+		<key>2</key>
+		<string>paytype_card</string>
+		<key>3</key>
+		<string>paytype_visa</string>
+		<key>4</key>
+		<string>paytype_alipay</string>
+		<key>5</key>
+		<string>paytype_visa</string>
+		<key>6</key>
+		<string>paytype_wechat</string>
+		<key>7</key>
+		<string>paytype_other</string>
+	</dict>
+</dict>
+</plist>
