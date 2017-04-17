@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 #import "BillDateChooseView.h"
 #import "BillChartView.h"
+#import "BillTableCell.h"
 
 @interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
 

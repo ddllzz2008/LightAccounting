@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		690E8D151E9CC9EB004DC684 /* BillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 690E8D141E9CC9EB004DC684 /* BillViewController.m */; };
-		690E8D1B1E9CD5D6004DC684 /* BillCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 690E8D1A1E9CD5D6004DC684 /* BillCollectionView.m */; };
 		690E8D1E1E9CD5ED004DC684 /* BillChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 690E8D1D1E9CD5ED004DC684 /* BillChartView.m */; };
 		690E8D211E9CD627004DC684 /* BillDateChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 690E8D201E9CD627004DC684 /* BillDateChooseView.m */; };
 		6923985E1E6FA94C00A86BAD /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6923985D1E6FA94C00A86BAD /* CategoryViewController.m */; };
@@ -96,6 +95,7 @@
 		6944B7271E7E73A700474964 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6944B7261E7E73A700474964 /* mapapi.bundle */; };
 		6944B72A1E7E76F900474964 /* MainPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944B7291E7E76F900474964 /* MainPageView.m */; };
 		694E728A1E80D343007AC23F /* WaterWareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694E72891E80D343007AC23F /* WaterWareView.m */; };
+		6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6974FC591EA51C63008F4495 /* BillTableCell.m */; };
 		699B2F901E87B0F400CE3FAD /* NewStep1View.m in Sources */ = {isa = PBXBuildFile; fileRef = 699B2F8F1E87B0F400CE3FAD /* NewStep1View.m */; };
 		699B2F931E87B33C00CE3FAD /* NewExpenditureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699B2F921E87B33C00CE3FAD /* NewExpenditureViewController.m */; };
 		69AD79271E81353400379835 /* ExpenditureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD79261E81353400379835 /* ExpenditureView.m */; };
@@ -118,8 +118,6 @@
 		5F085A264F6B0E44809150BE /* Pods_LightAccounting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LightAccounting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		690E8D131E9CC9EB004DC684 /* BillViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillViewController.h; sourceTree = "<group>"; };
 		690E8D141E9CC9EB004DC684 /* BillViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillViewController.m; sourceTree = "<group>"; };
-		690E8D191E9CD5D6004DC684 /* BillCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillCollectionView.h; sourceTree = "<group>"; };
-		690E8D1A1E9CD5D6004DC684 /* BillCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillCollectionView.m; sourceTree = "<group>"; };
 		690E8D1C1E9CD5ED004DC684 /* BillChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillChartView.h; sourceTree = "<group>"; };
 		690E8D1D1E9CD5ED004DC684 /* BillChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillChartView.m; sourceTree = "<group>"; };
 		690E8D1F1E9CD627004DC684 /* BillDateChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDateChooseView.h; sourceTree = "<group>"; };
@@ -278,6 +276,8 @@
 		6944B7291E7E76F900474964 /* MainPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageView.m; sourceTree = "<group>"; };
 		694E72881E80D343007AC23F /* WaterWareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterWareView.h; sourceTree = "<group>"; };
 		694E72891E80D343007AC23F /* WaterWareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterWareView.m; sourceTree = "<group>"; };
+		6974FC581EA51C63008F4495 /* BillTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableCell.h; sourceTree = "<group>"; };
+		6974FC591EA51C63008F4495 /* BillTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableCell.m; sourceTree = "<group>"; };
 		699B2F8E1E87B0F400CE3FAD /* NewStep1View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStep1View.h; sourceTree = "<group>"; };
 		699B2F8F1E87B0F400CE3FAD /* NewStep1View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStep1View.m; sourceTree = "<group>"; };
 		699B2F911E87B33C00CE3FAD /* NewExpenditureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewExpenditureViewController.h; sourceTree = "<group>"; };
@@ -376,12 +376,12 @@
 		690E8D121E9CC97C004DC684 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				690E8D191E9CD5D6004DC684 /* BillCollectionView.h */,
-				690E8D1A1E9CD5D6004DC684 /* BillCollectionView.m */,
 				690E8D1C1E9CD5ED004DC684 /* BillChartView.h */,
 				690E8D1D1E9CD5ED004DC684 /* BillChartView.m */,
 				690E8D1F1E9CD627004DC684 /* BillDateChooseView.h */,
 				690E8D201E9CD627004DC684 /* BillDateChooseView.m */,
+				6974FC581EA51C63008F4495 /* BillTableCell.h */,
+				6974FC591EA51C63008F4495 /* BillTableCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1216,6 +1216,7 @@
 				69D5B8FF1E7FDECC00B2EC8B /* PackageCompare.m in Sources */,
 				69D5B9011E7FDECC00B2EC8B /* SpendCategory.m in Sources */,
 				69425FE91E94CE3C00345AC9 /* CategoryViewCell.m in Sources */,
+				6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */,
 				69EEAE5C1E8BABD00025695D /* CategoryChooseView.m in Sources */,
 				69AD79271E81353400379835 /* ExpenditureView.m in Sources */,
 				690E8D211E9CD627004DC684 /* BillDateChooseView.m in Sources */,
@@ -1235,7 +1236,6 @@
 				6933BFE31E822F0000701ECB /* CategoryDAL.m in Sources */,
 				6944B6CC1E7E30E500474964 /* LoginViewModel.m in Sources */,
 				694E728A1E80D343007AC23F /* WaterWareView.m in Sources */,
-				690E8D1B1E9CD5D6004DC684 /* BillCollectionView.m in Sources */,
 				69D5B8FD1E7FDECC00B2EC8B /* CategoryModel.m in Sources */,
 				6923985E1E6FA94C00A86BAD /* CategoryViewController.m in Sources */,
 				6933BFE41E822F0000701ECB /* ExpenditureDAL.m in Sources */,

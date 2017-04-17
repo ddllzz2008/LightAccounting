@@ -68,6 +68,11 @@
     UITableView *tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
     [tableview setBackgroundColor:UIColorFromRGB(color_theme_green)];
     tableview.delegate=self;
+    tableview.dataSource = self;
+    tableview.layer.cornerRadius = 10;
+    tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableview.allowsSelection = NO;
+    [tableview registerClass:[BillTableCell class] forCellReuseIdentifier:@"billtablecell"];
     [self.view addSubview:tableview];
     
     [tableview mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -75,7 +80,7 @@
         make.left.equalTo(self.view).with.offset(15);
         make.width.mas_equalTo(ScreenSize.width - 30);
         make.centerX.equalTo(self.view);
-        make.bottom.equalTo(self.view.mas_bottom).with.offset(10);
+        make.bottom.equalTo(self.view.mas_bottom).with.offset(-60);
         make.top.equalTo(chartview.mas_bottom).with.offset(10);
     }];
 }
@@ -83,6 +88,30 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 8;
+}
+
+// 设置cell
+- (UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    static NSString *idetifier = @"billtablecell";
+    BillTableCell *cell = (BillTableCell *)[tableView dequeueReusableCellWithIdentifier:idetifier forIndexPath:indexPath];
+    if (cell) {
+        [cell setTypeName:@"运动"];
+        [cell setSpendMoney:100.0f];
+        [cell setSpendPercent:0.83f];
+    }
+    return cell;
+}
+
+- (CGFloat)tableView:(nonnull UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    return 50;
 }
 
 /*
