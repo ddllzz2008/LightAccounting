@@ -12,8 +12,8 @@ pod ‘FMDB’
 pod ‘SDWebImage’
 pod ‘MMDrawerController’
 pod ‘PKYStepper’
-#pod 'ReactiveObjC', '~> 2.1.0'
-#pod 'ReactiveCocoa', ‘~>5.0.0'
+pod 'ReactiveObjC', '~> 2.1.0'
+pod 'ReactiveCocoa', ‘~>5.0.0'
 #pod 'CTAssetsPickerController'
 pod 'CTAssetsPickerController', :git => 'git@github.com:asivura/CTAssetsPickerController.git', :branch => 'master'
 end
