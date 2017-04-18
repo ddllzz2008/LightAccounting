@@ -91,24 +91,28 @@
     
     [self addSubview:labelMessage];
     
-    @weakify(self);
+//    @weakify(self);
+    __weak typeof(self) weakSelf = self;
     
     [imgIncome mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.left.equalTo(self.mas_left).with.offset(40);
-        make.top.equalTo(self.mas_top).with.offset(15);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf.mas_left).with.offset(40);
+        make.top.equalTo(strongSelf.mas_top).with.offset(15);
     }];
     
     [imgExpend mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.right.equalTo(self.mas_right).with.offset(-30);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.right.equalTo(strongSelf.mas_right).with.offset(-30);
         make.centerY.equalTo(imgIncome);
     }];
     
     [imgVoice mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.centerX.equalTo(self);
-        make.bottom.equalTo(self.mas_bottom).with.offset(-80);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.centerX.equalTo(strongSelf);
+        make.bottom.equalTo(strongSelf.mas_bottom).with.offset(-80);
     }];
     
     [labelincome mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -122,14 +126,16 @@
     }];
     
     [voiceAlert mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.centerX.equalTo(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.centerX.equalTo(strongSelf);
         make.top.equalTo(imgVoice.mas_bottom).with.offset(15);
     }];
     
     [labelMessage mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.centerX.equalTo(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.centerX.equalTo(strongSelf);
         make.bottom.equalTo(imgVoice.mas_top).with.offset(-20);
     }];
     

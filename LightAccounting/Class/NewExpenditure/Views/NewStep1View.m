@@ -37,11 +37,13 @@
     [currentTitle setText:@"￥"];
     [self addSubview:currentTitle];
     
-    @weakify(self);
+//    @weakify(self);
+    __weak typeof(self) weakSelf = self;
     [currentTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.left.equalTo(self).with.offset(15);
-        make.top.equalTo(self).with.offset(50);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf).with.offset(15);
+        make.top.equalTo(strongSelf).with.offset(50);
         make.width.equalTo(@30);
     }];
     
@@ -53,10 +55,11 @@
     self.inputmoney.returnKeyType=UIReturnKeyDone;
     [self addSubview:self.inputmoney];
     [self.inputmoney mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.left.equalTo(currentTitle.mas_right).with.offset(10);
         make.centerY.equalTo(currentTitle);
-        make.width.mas_equalTo(self.bounds.size.width-50);
+        make.width.mas_equalTo(strongSelf.bounds.size.width-50);
     }];
     
     UIImageView *imgremark= [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 30, 30)];
@@ -64,9 +67,10 @@
     [self addSubview:imgremark];
     
     [imgremark mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.left.equalTo(self).with.offset(15);
-        make.top.equalTo(self).with.offset(110);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf).with.offset(15);
+        make.top.equalTo(strongSelf).with.offset(110);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
     
@@ -81,10 +85,11 @@
     [self addSubview:self.labelremark];
     
     [self.labelremark mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.centerY.equalTo(imgremark);
         make.left.equalTo(imgremark.mas_right).with.offset(12);
-        make.right.equalTo(self).with.offset(-15);
+        make.right.equalTo(strongSelf).with.offset(-15);
         make.height.equalTo(@30);
     }];
     
@@ -98,8 +103,9 @@
     [imgdate addGestureRecognizer:dateTap];
     
     [imgdate mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.left.equalTo(self).with.offset(15);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf).with.offset(15);
         make.top.equalTo(imgremark.mas_bottom).with.offset(25);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
@@ -114,10 +120,11 @@
     [self addSubview:labeldate];
     
     [labeldate mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.centerY.equalTo(imgdate);
         make.left.equalTo(imgdate.mas_right).with.offset(12);
-        make.right.equalTo(self).with.offset(-15);
+        make.right.equalTo(strongSelf).with.offset(-15);
         make.height.equalTo(@30);
     }];
     
@@ -126,8 +133,9 @@
     [self addSubview:imgmap];
     
     [imgmap mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.left.equalTo(self).with.offset(15);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf).with.offset(15);
         make.top.equalTo(imgdate.mas_bottom).with.offset(25);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
@@ -141,10 +149,11 @@
     
     [self addSubview:labelmap];
     [labelmap mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.centerY.equalTo(imgmap);
         make.left.equalTo(imgmap.mas_right).with.offset(12);
-        make.right.equalTo(self).with.offset(-15);
+        make.right.equalTo(strongSelf).with.offset(-15);
         make.height.equalTo(@30);
     }];
     
@@ -158,8 +167,9 @@
     [self addSubview:imgcategory];
     
     [imgcategory mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.left.equalTo(self).with.offset(15);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf).with.offset(15);
         make.top.equalTo(imgmap.mas_bottom).with.offset(25);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
@@ -173,10 +183,11 @@
     
     [self addSubview:labelcategory];
     [labelcategory mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.centerY.equalTo(imgcategory);
         make.left.equalTo(imgcategory.mas_right).with.offset(12);
-        make.right.equalTo(self).with.offset(-15);
+        make.right.equalTo(strongSelf).with.offset(-15);
         make.height.equalTo(@30);
     }];
 }

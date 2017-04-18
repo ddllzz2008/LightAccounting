@@ -63,15 +63,18 @@
 }
 
 -(void)initWithViewModel{
-    @weakify(self);
+//    @weakify(self);
+    __weak typeof(self) weakSelf = self;
     mainview.updatePhotoBlock=^(NSString *eid,NSString *photopath){
-        @strongify(self);
-        [self.viewmodel updateExpendPhoto:eid photo:photopath];
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.viewmodel updateExpendPhoto:eid photo:photopath];
     };
     mainview.addnewAccount=^(){
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         NewExpenditureViewController *newexpendController = [[NewExpenditureViewController alloc] init];
-        [self.navigationController pushViewController:newexpendController animated:YES];
+        [strongSelf.navigationController pushViewController:newexpendController animated:YES];
     };
 }
 

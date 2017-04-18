@@ -46,11 +46,13 @@
     voiceview = [[ExpendVoiceView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, ScreenSize.height - StatusSize.height -self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height)];
     [self.view addSubview:voiceview];
     
-    @weakify(self);
+//    @weakify(self);
+    __weak typeof(self) weakSelf = self;
     voiceview.addnewAccount=^(){
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         NewExpenditureViewController *newexpendController = [[NewExpenditureViewController alloc] init];
-        [self.navigationController pushViewController:newexpendController animated:YES];
+        [strongSelf.navigationController pushViewController:newexpendController animated:YES];
     };
 }
 

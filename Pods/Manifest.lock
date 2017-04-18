@@ -54,12 +54,12 @@ PODS:
     - MMDrawerController/Core
   - PKYStepper (0.0.1)
   - PureLayout (3.0.2)
-  - ReactiveCocoa (5.0.0):
-    - ReactiveSwift (~> 1.0.0)
+  - ReactiveCocoa (5.0.1):
+    - ReactiveSwift (~> 1.1)
   - ReactiveObjC (2.1.2)
-  - ReactiveSwift (1.0.0):
+  - ReactiveSwift (1.1.0):
     - Result (~> 3.1)
-  - Result (3.1.0)
+  - Result (3.2.1)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -103,12 +103,12 @@ SPEC CHECKSUMS:
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
   PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  ReactiveCocoa: 60ef0da915b4f70c34ebecc3f4fb8f96af0e53d6
+  ReactiveCocoa: f577006aa6c7b0b08020109ebaae3b77ada00adc
   ReactiveObjC: 7b6782ae39f9ac0f57205c3b0c0b69b9dd7048c0
-  ReactiveSwift: f391724ee318a2cfd3e37dfb041cd49ecf4e7869
-  Result: 4e3ed5995ed94d0cd6a09be9a431fce3f3624bbf
+  ReactiveSwift: 2f4e4a02e5a5c87ea63f5fe667163ce2a67cbb57
+  Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
 
 PODFILE CHECKSUM: 6f962e596b37c75c48678ef7c1fade153414f81e
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

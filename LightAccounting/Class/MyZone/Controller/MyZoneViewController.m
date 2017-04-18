@@ -28,7 +28,8 @@
 
 -(void)initControls{
     
-    @weakify(self);
+//    @weakify(self);
+    __weak typeof(self) weakSelf = self;
     
     agelabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 20)];
     agelabel.textAlignment=NSTextAlignmentRight;
@@ -38,9 +39,10 @@
     [self.view addSubview:agelabel];
     
     [agelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.top.equalTo(self.view.mas_top).with.offset(5);
-        make.right.equalTo(self.view.mas_right).with.offset(-5);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.top.equalTo(strongSelf.view.mas_top).with.offset(5);
+        make.right.equalTo(strongSelf.view.mas_right).with.offset(-5);
     }];
     
     photoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
@@ -48,10 +50,11 @@
     [self.view addSubview:photoImgView];
     
     [photoImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.top.equalTo(self.view.mas_top).with.offset(20);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.top.equalTo(strongSelf.view.mas_top).with.offset(20);
         make.size.mas_equalTo(CGSizeMake(70, 70));
-        make.centerX.equalTo(self.view);
+        make.centerX.equalTo(strongSelf.view);
     }];
     
     namelabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 20)];
@@ -82,9 +85,10 @@
     [self.view addSubview:viewline1];
     
     [viewline1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.size.mas_equalTo(CGSizeMake(ScreenSize.width, 100));
-        make.left.equalTo(self.view);
+        make.left.equalTo(strongSelf.view);
         make.top.equalTo(lasttimelabel.mas_bottom).with.offset(30);
     }];
     
@@ -166,9 +170,10 @@
     [self.view addSubview:viewline2];
     
     [viewline2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.size.mas_equalTo(CGSizeMake(ScreenSize.width, 100));
-        make.left.equalTo(self.view);
+        make.left.equalTo(strongSelf.view);
         make.top.equalTo(viewline1.mas_bottom).with.offset(0);
     }];
     
@@ -246,9 +251,10 @@
     [self.view addSubview:viewline3];
     
     [viewline3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.size.mas_equalTo(CGSizeMake(ScreenSize.width, 100));
-        make.left.equalTo(self.view);
+        make.left.equalTo(strongSelf.view);
         make.top.equalTo(viewline2.mas_bottom).with.offset(0);
     }];
     

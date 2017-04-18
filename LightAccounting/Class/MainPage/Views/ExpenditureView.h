@@ -19,7 +19,7 @@
     
     UIView *backgroundview;
     
-    MKMapView* mapView;
+//    MKMapView* mapView;
     
     UILabel *ulmark;
     

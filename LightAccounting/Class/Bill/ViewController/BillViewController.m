@@ -34,12 +34,13 @@
     [segmentControl setTitleTextAttributes:dic forState:UIControlStateNormal];
     [self.view addSubview:segmentControl];
     
-    @weakify(self);
+    __weak typeof(self) weakSelf = self;
     
     [segmentControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.size.mas_equalTo(CGSizeMake(ScreenSize.width/2, 30));
-        make.centerX.equalTo(self.view);
+        make.centerX.equalTo(strongSelf.view);
         make.top.equalTo(choosedateview.mas_bottom).with.offset(5);
     }];
     
@@ -59,9 +60,10 @@
     [self.view addSubview:chartview];
     
     [chartview mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.size.mas_equalTo(CGSizeMake(ScreenSize.width-30, 150));
-        make.left.equalTo(self.view.mas_left).with.offset(15);
+        make.left.equalTo(strongSelf.view.mas_left).with.offset(15);
         make.top.equalTo(totalmoney.mas_bottom).with.offset(5);
     }];
     
@@ -76,11 +78,12 @@
     [self.view addSubview:tableview];
     
     [tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(self);
-        make.left.equalTo(self.view).with.offset(15);
+//        @strongify(self);
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf.view).with.offset(15);
         make.width.mas_equalTo(ScreenSize.width - 30);
-        make.centerX.equalTo(self.view);
-        make.bottom.equalTo(self.view.mas_bottom).with.offset(-60);
+        make.centerX.equalTo(strongSelf.view);
+        make.bottom.equalTo(strongSelf.view.mas_bottom).with.offset(-60);
         make.top.equalTo(chartview.mas_bottom).with.offset(10);
     }];
 }
