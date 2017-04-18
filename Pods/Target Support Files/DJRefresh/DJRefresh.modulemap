@@ -1,6 +1,0 @@
-framework module DJRefresh {
-  umbrella header "DJRefresh-umbrella.h"
-
-  export *
-  module * { export * }
-}

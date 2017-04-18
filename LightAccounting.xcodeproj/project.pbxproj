@@ -1069,7 +1069,7 @@
 				TargetAttributes = {
 					6944B6231E7E2CF200474964 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ZQR3KNAVVU;
+						DevelopmentTeam = 3MNRXW5B2B;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -1369,7 +1369,7 @@
 			baseConfigurationReference = C184D483B9358075E016B2B7 /* Pods-LightAccounting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZQR3KNAVVU;
+				DEVELOPMENT_TEAM = 3MNRXW5B2B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libs",
@@ -1419,6 +1419,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ddllzz.LightAccounting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1427,7 +1428,7 @@
 			baseConfigurationReference = 7566DBA92425B4A85BAE98A0 /* Pods-LightAccounting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZQR3KNAVVU;
+				DEVELOPMENT_TEAM = 3MNRXW5B2B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libs",
@@ -1477,6 +1478,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ddllzz.LightAccounting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
