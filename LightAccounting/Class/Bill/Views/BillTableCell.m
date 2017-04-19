@@ -72,6 +72,8 @@
         progressView.progressViewStyle = UIProgressViewStyleDefault;
         progressView.trackTintColor = UIColorFromRGB(0xcccccc);
         progressView.progressTintColor = UIColorFromRGB(0xffffff);
+        progressView.layer.cornerRadius = 5;
+        progressView.layer.masksToBounds = YES;
         [self.contentView addSubview:progressView];
         
         [progressView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_chart"] style:UIBarButtonItemStyleDone target:self action:@selector(navigateDetail)];
+    self.navigationItem.rightBarButtonItem = rightitem;
+    self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0xffffff);
 }
 
 -(void)initControls{
@@ -74,6 +77,7 @@
     tableview.layer.cornerRadius = 10;
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableview.allowsSelection = NO;
+    tableview.showsVerticalScrollIndicator = NO;
     [tableview registerClass:[BillTableCell class] forCellReuseIdentifier:@"billtablecell"];
     [self.view addSubview:tableview];
     
@@ -126,5 +130,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark---跳转事件
+-(void)navigateDetail{
+    [self.navigationController pushViewController:[[BillDetailViewController alloc] init] animated:YES];
+}
 
 @end

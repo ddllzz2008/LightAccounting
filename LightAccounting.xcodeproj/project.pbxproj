@@ -111,6 +111,8 @@
 		69DC03ED1E70387F000C72AE /* MyZoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DC03EC1E70387F000C72AE /* MyZoneViewController.m */; };
 		69DC03F01E705576000C72AE /* TopLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DC03EF1E705576000C72AE /* TopLineView.m */; };
 		69EEAE5C1E8BABD00025695D /* CategoryChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EEAE5B1E8BABD00025695D /* CategoryChooseView.m */; };
+		69FDB38A1EA7558400636547 /* BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FDB3891EA7558400636547 /* BillDetailViewController.m */; };
+		69FDB38D1EA7652200636547 /* BillDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FDB38C1EA7652200636547 /* BillDetailTableCell.m */; };
 		73F31E87C5531E6856486A74 /* Pods_LightAccounting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F085A264F6B0E44809150BE /* Pods_LightAccounting.framework */; };
 /* End PBXBuildFile section */
 
@@ -308,6 +310,10 @@
 		69DC03EF1E705576000C72AE /* TopLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopLineView.m; sourceTree = "<group>"; };
 		69EEAE5A1E8BABD00025695D /* CategoryChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryChooseView.h; sourceTree = "<group>"; };
 		69EEAE5B1E8BABD00025695D /* CategoryChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryChooseView.m; sourceTree = "<group>"; };
+		69FDB3881EA7558400636547 /* BillDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailViewController.h; sourceTree = "<group>"; };
+		69FDB3891EA7558400636547 /* BillDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailViewController.m; sourceTree = "<group>"; };
+		69FDB38B1EA7652200636547 /* BillDetailTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailTableCell.h; sourceTree = "<group>"; };
+		69FDB38C1EA7652200636547 /* BillDetailTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailTableCell.m; sourceTree = "<group>"; };
 		7566DBA92425B4A85BAE98A0 /* Pods-LightAccounting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightAccounting.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightAccounting/Pods-LightAccounting.release.xcconfig"; sourceTree = "<group>"; };
 		C184D483B9358075E016B2B7 /* Pods-LightAccounting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightAccounting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LightAccounting/Pods-LightAccounting.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -362,6 +368,8 @@
 			children = (
 				690E8D131E9CC9EB004DC684 /* BillViewController.h */,
 				690E8D141E9CC9EB004DC684 /* BillViewController.m */,
+				69FDB3881EA7558400636547 /* BillDetailViewController.h */,
+				69FDB3891EA7558400636547 /* BillDetailViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -382,6 +390,8 @@
 				690E8D201E9CD627004DC684 /* BillDateChooseView.m */,
 				6974FC581EA51C63008F4495 /* BillTableCell.h */,
 				6974FC591EA51C63008F4495 /* BillTableCell.m */,
+				69FDB38B1EA7652200636547 /* BillDetailTableCell.h */,
+				69FDB38C1EA7652200636547 /* BillDetailTableCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1193,6 +1203,7 @@
 				6933BFE91E822F0000701ECB /* RemindDAL.m in Sources */,
 				6933BFD11E822BF100701ECB /* MainPageViewModel.m in Sources */,
 				69D5B8FE1E7FDECC00B2EC8B /* FamilyPerson.m in Sources */,
+				69FDB38A1EA7558400636547 /* BillDetailViewController.m in Sources */,
 				6944B6E01E7E30E500474964 /* DLDatePickerView.m in Sources */,
 				6944B6E91E7E30E500474964 /* CommonFunc.m in Sources */,
 				690E8D1E1E9CD5ED004DC684 /* BillChartView.m in Sources */,
@@ -1237,6 +1248,7 @@
 				6944B6CC1E7E30E500474964 /* LoginViewModel.m in Sources */,
 				694E728A1E80D343007AC23F /* WaterWareView.m in Sources */,
 				69D5B8FD1E7FDECC00B2EC8B /* CategoryModel.m in Sources */,
+				69FDB38D1EA7652200636547 /* BillDetailTableCell.m in Sources */,
 				6923985E1E6FA94C00A86BAD /* CategoryViewController.m in Sources */,
 				6933BFE41E822F0000701ECB /* ExpenditureDAL.m in Sources */,
 				6944B6E61E7E30E500474964 /* ArchiverCache.m in Sources */,
