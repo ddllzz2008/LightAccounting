@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "TopLineView.h"
+#import "PasswordViewController.h"
 
 @interface MyZoneViewController : BaseViewController
 

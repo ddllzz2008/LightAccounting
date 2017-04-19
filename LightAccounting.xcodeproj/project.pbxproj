@@ -94,6 +94,9 @@
 		6944B7251E7E738A00474964 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6944B7211E7E738A00474964 /* BaiduMapAPI_Search.framework */; };
 		6944B7271E7E73A700474964 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6944B7261E7E73A700474964 /* mapapi.bundle */; };
 		6944B72A1E7E76F900474964 /* MainPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944B7291E7E76F900474964 /* MainPageView.m */; };
+		694DAC961EA7AFAF00B5FFD6 /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC951EA7AFAF00B5FFD6 /* PasswordViewController.m */; };
+		694DAC991EA7B2BA00B5FFD6 /* TapPassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC981EA7B2BA00B5FFD6 /* TapPassView.m */; };
+		694DAC9C1EA7B4C400B5FFD6 /* PassCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC9B1EA7B4C400B5FFD6 /* PassCircleView.m */; };
 		694E728A1E80D343007AC23F /* WaterWareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694E72891E80D343007AC23F /* WaterWareView.m */; };
 		6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6974FC591EA51C63008F4495 /* BillTableCell.m */; };
 		699B2F901E87B0F400CE3FAD /* NewStep1View.m in Sources */ = {isa = PBXBuildFile; fileRef = 699B2F8F1E87B0F400CE3FAD /* NewStep1View.m */; };
@@ -274,6 +277,12 @@
 		6944B7261E7E73A700474964 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		6944B7281E7E76F900474964 /* MainPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageView.h; sourceTree = "<group>"; };
 		6944B7291E7E76F900474964 /* MainPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageView.m; sourceTree = "<group>"; };
+		694DAC941EA7AFAF00B5FFD6 /* PasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
+		694DAC951EA7AFAF00B5FFD6 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
+		694DAC971EA7B2BA00B5FFD6 /* TapPassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapPassView.h; sourceTree = "<group>"; };
+		694DAC981EA7B2BA00B5FFD6 /* TapPassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapPassView.m; sourceTree = "<group>"; };
+		694DAC9A1EA7B4C400B5FFD6 /* PassCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassCircleView.h; sourceTree = "<group>"; };
+		694DAC9B1EA7B4C400B5FFD6 /* PassCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassCircleView.m; sourceTree = "<group>"; };
 		694E72881E80D343007AC23F /* WaterWareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterWareView.h; sourceTree = "<group>"; };
 		694E72891E80D343007AC23F /* WaterWareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterWareView.m; sourceTree = "<group>"; };
 		6974FC581EA51C63008F4495 /* BillTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableCell.h; sourceTree = "<group>"; };
@@ -538,6 +547,7 @@
 		6944B6541E7E30E500474964 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				694DAC8F1EA7AF8400B5FFD6 /* Settings */,
 				690E8D0E1E9CC97C004DC684 /* Bill */,
 				69DC03E61E703866000C72AE /* MyZone */,
 				692398571E6FA39500A86BAD /* Category */,
@@ -884,6 +894,51 @@
 			name = Deletegate;
 			sourceTree = "<group>";
 		};
+		694DAC8F1EA7AF8400B5FFD6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				694DAC901EA7AF8400B5FFD6 /* Controller */,
+				694DAC911EA7AF8400B5FFD6 /* Model */,
+				694DAC921EA7AF8400B5FFD6 /* ViewModel */,
+				694DAC931EA7AF8400B5FFD6 /* Views */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		694DAC901EA7AF8400B5FFD6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				694DAC941EA7AFAF00B5FFD6 /* PasswordViewController.h */,
+				694DAC951EA7AFAF00B5FFD6 /* PasswordViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		694DAC911EA7AF8400B5FFD6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		694DAC921EA7AF8400B5FFD6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		694DAC931EA7AF8400B5FFD6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				694DAC971EA7B2BA00B5FFD6 /* TapPassView.h */,
+				694DAC981EA7B2BA00B5FFD6 /* TapPassView.m */,
+				694DAC9A1EA7B4C400B5FFD6 /* PassCircleView.h */,
+				694DAC9B1EA7B4C400B5FFD6 /* PassCircleView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		699B2F891E87B06E00CE3FAD /* NewExpenditure */ = {
 			isa = PBXGroup;
 			children = (
@@ -1186,6 +1241,7 @@
 				69D5B8FB1E7FDECC00B2EC8B /* BusExpenditure.m in Sources */,
 				69DC03F01E705576000C72AE /* TopLineView.m in Sources */,
 				6944B6521E7E30D500474964 /* AppDelegate+AppLifeCircle.m in Sources */,
+				694DAC991EA7B2BA00B5FFD6 /* TapPassView.m in Sources */,
 				6944B6F41E7E30E500474964 /* ServiceModel.m in Sources */,
 				6944B6CD1E7E30E500474964 /* LoginModel.m in Sources */,
 				6944B6EB1E7E30E500474964 /* FmdbHelper.m in Sources */,
@@ -1193,6 +1249,7 @@
 				6933BFE91E822F0000701ECB /* RemindDAL.m in Sources */,
 				6933BFD11E822BF100701ECB /* MainPageViewModel.m in Sources */,
 				69D5B8FE1E7FDECC00B2EC8B /* FamilyPerson.m in Sources */,
+				694DAC9C1EA7B4C400B5FFD6 /* PassCircleView.m in Sources */,
 				6944B6E01E7E30E500474964 /* DLDatePickerView.m in Sources */,
 				6944B6E91E7E30E500474964 /* CommonFunc.m in Sources */,
 				690E8D1E1E9CD5ED004DC684 /* BillChartView.m in Sources */,
@@ -1236,6 +1293,7 @@
 				6933BFE31E822F0000701ECB /* CategoryDAL.m in Sources */,
 				6944B6CC1E7E30E500474964 /* LoginViewModel.m in Sources */,
 				694E728A1E80D343007AC23F /* WaterWareView.m in Sources */,
+				694DAC961EA7AFAF00B5FFD6 /* PasswordViewController.m in Sources */,
 				69D5B8FD1E7FDECC00B2EC8B /* CategoryModel.m in Sources */,
 				6923985E1E6FA94C00A86BAD /* CategoryViewController.m in Sources */,
 				6933BFE41E822F0000701ECB /* ExpenditureDAL.m in Sources */,
