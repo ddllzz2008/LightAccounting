@@ -260,6 +260,12 @@
     
     UIImageView *icon3_1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imgwidth, imgwidth)];
     [icon3_1 setImage:[UIImage imageNamed:@"icon_password"]];
+    
+    icon3_1.userInteractionEnabled=YES;
+    
+    UITapGestureRecognizer *tapicon3_1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateTapPassController)];
+    [icon3_1 addGestureRecognizer:tapicon3_1];
+    
     [viewline3 addSubview:icon3_1];
     
     [icon3_1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -331,6 +337,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark---跳转
+-(void)navigateTapPassController{
+    [self.navigationController pushViewController:[[PasswordViewController alloc] init] animated:YES];
 }
 
 /*
