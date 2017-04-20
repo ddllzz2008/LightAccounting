@@ -24,5 +24,7 @@
 -(void)styleForNormalBlack;
 
 -(void)styleForSmallBlack;
+    
+-(void)setStyle:(UIFont *)font color:(UIColor *)color;
 
 @end

@@ -29,7 +29,7 @@
         
         __weak __typeof(self) weakself = self;
         
-        imagetype = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+        imagetype = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [self.contentView addSubview:imagetype];
         
         [imagetype mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -38,6 +38,40 @@
             make.centerY.equalTo(strongself.contentView);
         }];
         
+        typenameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+        typenameLabel.textAlignment=NSTextAlignmentLeft;
+        [typenameLabel setStyle:fontsize_16 color:UIColorFromRGB(0xbbbbbb)];
+        [self.contentView addSubview:typenameLabel];
+        
+        [typenameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            __strong __typeof(weakself) strongself = weakself;
+            make.left.equalTo(imagetype.mas_right).with.offset(5);
+            make.centerY.equalTo(imagetype);
+            make.size.mas_equalTo(CGSizeMake(50, 20));
+        }];
+        
+        typesectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        typesectionLabel.textAlignment=NSTextAlignmentLeft;
+        [typesectionLabel setStyle:fontsize_13 color:UIColorFromRGB(0xbbbbbb)];
+        [self.contentView addSubview:typesectionLabel];
+        
+        [typesectionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(typenameLabel.mas_right).with.offset(15);
+            make.centerY.equalTo(imagetype);
+            make.size.mas_equalTo(CGSizeMake(20, 20));
+        }];
+        
+        detailnumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 20)];
+        detailnumberLabel.textAlignment=NSTextAlignmentRight;
+        [detailnumberLabel setStyle:fontsize_16 color:UIColorFromRGB(color_theme_green)];
+        [self.contentView addSubview:detailnumberLabel];
+        
+        [detailnumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakself) strongself = weakself;
+            make.right.equalTo(strongself.mas_right).with.offset(-15);
+            make.centerY.equalTo(imagetype);
+            make.width.equalTo(strongself.mas_width).multipliedBy(0.4);
+        }];
     }
     
     return self;
@@ -48,6 +82,12 @@
     [imagetype setImage:typeImage];
     
 }
+
+-(void)setTypeName:(NSString *)typeName{
+    _typeName = typeName;
+    
+}
+
 
 -(void)drawRect:(CGRect)rect{
     

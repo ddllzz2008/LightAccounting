@@ -24,6 +24,8 @@
     
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     keyboardIsShow = NO;
     
     fbkvo = [FBKVOController controllerWithObserver:self];

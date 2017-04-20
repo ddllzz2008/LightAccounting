@@ -69,11 +69,32 @@
 
 #pragma mark---UITableView协议
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
+    NSInteger secnumber = 0;
+    switch (section) {
+        case 0:
+            secnumber = 2;
+        break;
+        case 1:
+            secnumber = 3;
+        break;
+        case 2:
+            secnumber = 2;
+        break;
+        case 3:
+            secnumber = 1;
+        break;
+        default:
+        break;
+    }
+    return secnumber;
+}
+    
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
 }
 
 // 设置cell
@@ -82,6 +103,9 @@
     BillDetailTableCell *cell = (BillDetailTableCell *)[tableView dequeueReusableCellWithIdentifier:idetifier forIndexPath:indexPath];
     if (cell) {
         [cell setTypeImage:[UIImage imageNamed:@"category_10"]];
+        [cell setTypeName:@"晚餐"];
+        [cell setTypeSection:@"收入"];
+        [cell setDetailNumber:@"-38.0"];
     }
     return cell;
 }

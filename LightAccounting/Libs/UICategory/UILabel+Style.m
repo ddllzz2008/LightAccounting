@@ -53,4 +53,9 @@
 //    self.font = [UIFont fontWithName:@"Arial" size:14];
 }
 
+-(void)setStyle:(UIFont *)font color:(UIColor *)color{
+    [self setTextColor:color];
+    [self setFont:font];
+}
+
 @end
