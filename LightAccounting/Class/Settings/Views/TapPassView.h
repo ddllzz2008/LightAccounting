@@ -16,8 +16,17 @@
 
 @end
 
-@interface TapPassView : UIView
+@interface TapPassView : UIView{
+    
+    NSMutableArray *arrayCircleList;
+    CGPoint movestartpoint;
+    CGPoint moveendpoint;
+    NSMutableArray *arrayPassword;
+    NSMutableArray *arrayImageView;
+}
 
 @property (nonatomic,weak) id<TapPassViewDelegate> delegate;
+
+-(void)showError;
 
 @end

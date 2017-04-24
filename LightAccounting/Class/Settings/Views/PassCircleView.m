@@ -12,14 +12,14 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self==[super initWithFrame:frame]) {
-        self.backgroundColor=[UIColor whiteColor];
+        self.backgroundColor=[UIColor clearColor];
     }
     return self;
 }
 
 -(id)init{
     if (self==[super init]) {
-        self.backgroundColor=[UIColor whiteColor];
+        self.backgroundColor=[UIColor clearColor];
     }
     return self;
 }
@@ -51,7 +51,46 @@
             CGContextStrokePath(ctx);
             
             break;
+        case PassCircleViewStatusSelected:
             
+            bigrect = CGRectMake(2, 2, rect.size.width-4, rect.size.height-4);
+            
+            //设置空心圆的线条宽度
+            CGContextSetLineWidth(ctx, 2);
+            //以矩形bigRect为依据画一个圆
+            CGContextAddEllipseInRect(ctx, bigrect);
+            //填充当前绘画区域的颜色
+            [UIColorFromRGB(color_theme_green) set];
+            //(如果是画圆会沿着矩形外围描画出指定宽度的（圆线）空心圆)/（根据上下文的内容渲染图层）
+            CGContextStrokePath(ctx);
+            
+            CGRect frame = CGRectMake(rect.size.width/4, rect.size.height/4, rect.size.width/2, rect.size.height/2);
+            
+            CGContextAddEllipseInRect(ctx, frame);
+            [UIColorFromRGB(color_theme_green) set];
+            CGContextFillPath(ctx);
+            
+            break;
+        case PassCircleViewStatusError:
+            
+            bigrect = CGRectMake(2, 2, rect.size.width-4, rect.size.height-4);
+            
+            //设置空心圆的线条宽度
+            CGContextSetLineWidth(ctx, 2);
+            //以矩形bigRect为依据画一个圆
+            CGContextAddEllipseInRect(ctx, bigrect);
+            //填充当前绘画区域的颜色
+            [UIColorFromRGB(color_theme_green) set];
+            //(如果是画圆会沿着矩形外围描画出指定宽度的（圆线）空心圆)/（根据上下文的内容渲染图层）
+            CGContextStrokePath(ctx);
+            
+            CGRect frameerror = CGRectMake(rect.size.width/4, rect.size.height/4, rect.size.width/2, rect.size.height/2);
+            
+            CGContextAddEllipseInRect(ctx, frameerror);
+            [UIColorFromRGB(0xff0000) set];
+            CGContextFillPath(ctx);
+            
+            break;
         default:
             break;
     }

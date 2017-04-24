@@ -26,6 +26,11 @@
     [self.navigationItem setTitle:@"个人中心"];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self showTabbar];
+}
+
 -(void)initControls{
     
 //    @weakify(self);

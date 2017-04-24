@@ -8,7 +8,18 @@
 
 #import "BaseViewController.h"
 #import "TapPassView.h"
+#import "UILabel+Style.h"
+#import "NSString+ExtMethod.h"
 
-@interface PasswordViewController : BaseViewController
+@interface PasswordViewController : BaseViewController<TapPassViewDelegate>{
+    
+    TapPassView *tappassview;
+    UILabel *alertLabel;
+    
+    BOOL ifresetPassword;
+    NSString *firstPassword;
+    NSString *secondPassword;
+    NSString *oldPassword;
+}
 
 @end

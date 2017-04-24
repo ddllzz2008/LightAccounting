@@ -20,7 +20,10 @@
     UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_chart"] style:UIBarButtonItemStyleDone target:self action:@selector(navigateDetail)];
     self.navigationItem.rightBarButtonItem = rightitem;
     self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0xffffff);
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self showTabbar];
 }
 
