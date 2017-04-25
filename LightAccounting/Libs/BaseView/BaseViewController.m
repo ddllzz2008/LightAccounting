@@ -67,6 +67,8 @@
     
     [super viewWillDisappear:animated];
     
+    [self hiddenKeyBoard];
+    
 }
 
 -(void)dealloc{
@@ -171,6 +173,30 @@
     }
     va_end(arg_list);
 }
+
+-(void)KeyBoardShowEvent:(CGRect)rect{
+    
+}
+
+/**
+ 增加要自动管理的输入控件
+
+ @param textfield 响应键盘的输入控件
+ */
+-(void)addTextFieldResponser:(UIView *)textfield{
+    if (textfieldArray==nil) {
+        textfieldArray = [[NSMutableArray alloc] init];
+    }
+    ((UITextField *)textfield).delegate=self;
+    [textfieldArray addObject:textfield];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (textfieldArray.count>0) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
+    }
+}
 /*!
  *  @brief 按下返回键
  *
@@ -273,40 +299,36 @@
         if (ishow) {
             
             UIWindow *currentWindow = [[UIApplication sharedApplication] keyWindow];
-//            UIView *superView = [view superview];
+
             CGPoint originSuper = [currentWindow convertPoint:CGPointZero fromView:view];
             
             double restHeight = currentWindow.frame.size.height - originSuper.y - view.bounds.size.height;
             
             if (rect.size.height > restHeight) {
                 
-//                double navbarheight = 0;
-//                
-//                if(self.navigationController!=nil && self.navigationController.navigationBar!=nil){
-//                    navbarheight = self.navigationController.navigationBar.frame.size.height;
-//                }
-//                self.view.frame=CGRectMake(0,0 - rect.size.height + navbarheight, self.view.frame.size.width, self.view.frame.size.height);
-                
-                currentWindow.frame=CGRectMake(0, 0 - rect.size.height + restHeight, currentWindow.frame.size.width, currentWindow.frame.size.height);
-                
-                
+                currentKeyboardRect = rect;
+                if (self.viewcontrollerKeyboardDelegate) {
+                    [self.viewcontrollerKeyboardDelegate viewcontrollerKeyboardChanged:rect ifshow:YES];
+                }else{
+                    currentWindow.frame=CGRectMake(0, 0 - rect.size.height + restHeight, currentWindow.frame.size.width, currentWindow.frame.size.height);
+                }
             }
             
             keyboardIsShow = YES;
             
         }else{
+
+            if (self.viewcontrollerKeyboardDelegate) {
+                [self.viewcontrollerKeyboardDelegate viewcontrollerKeyboardChanged:currentKeyboardRect ifshow:NO];
+            }else{
+                UIWindow *currentWindow = [[UIApplication sharedApplication] keyWindow];
+                currentWindow.frame=[[UIScreen mainScreen] bounds];
+            }
             
-//            double navbarheight = 0;
-//            
-//            if(self.navigationController!=nil && self.navigationController.navigationBar!=nil){
-//                navbarheight = self.navigationController.navigationBar.frame.size.height;
-//            }
-            
-            UIWindow *currentWindow = [[UIApplication sharedApplication] keyWindow];
-            currentWindow.frame=[[UIScreen mainScreen] bounds];
+            currentKeyboardRect = CGRectZero;
             
             keyboardIsShow =NO;
-//            self.view.frame=CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height + navbarheight);
+
         }
     }
 }

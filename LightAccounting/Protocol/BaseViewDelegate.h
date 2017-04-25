@@ -23,3 +23,10 @@
 -(void)receiveDataFromViewController:(UIViewController *)controller argument:(id)argument;
 
 @end
+
+@protocol UIViewControllerKeyboardDelegate
+
+@optional
+-(void)viewcontrollerKeyboardChanged:(CGRect)rect ifshow:(BOOL)ifshow;
+
+@end

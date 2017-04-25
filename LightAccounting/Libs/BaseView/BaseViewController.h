@@ -19,9 +19,12 @@
     @private UITextField *currentResponser;
     @private NSMutableArray *textfieldArray;
     @private FBKVOController *fbkvo;
+@private CGRect currentKeyboardRect;
 }
 
 @property (nonatomic,weak,readwrite) id<UIViewcontrollerArgument> argumentDelegate;
+
+@property (nonatomic,weak,readwrite) id<UIViewControllerKeyboardDelegate> viewcontrollerKeyboardDelegate;
 
 #pragma mark---UI模式
 /*!
@@ -93,6 +96,12 @@
  @param views 可以弹出键盘的uiview
  */
 -(void)initTextFieldArray:(UIView*)views,...;
+/**
+ 增加要自动管理的输入控件
+ 
+ @param textfield 响应键盘的输入控件
+ */
+-(void)addTextFieldResponser:(UIView *)textfield;
 /**
  关闭弹出键盘
  */
