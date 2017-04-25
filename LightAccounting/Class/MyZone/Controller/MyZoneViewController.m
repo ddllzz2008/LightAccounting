@@ -26,6 +26,11 @@
     [self.navigationItem setTitle:@"个人中心"];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self showTabbar];
+}
+
 -(void)initControls{
     
 //    @weakify(self);
@@ -144,6 +149,9 @@
     
     UIImageView *icon1_3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imgwidth, imgwidth)];
     [icon1_3 setImage:[UIImage imageNamed:@"icon_budget"]];
+    icon1_3.userInteractionEnabled=YES;
+    UITapGestureRecognizer *tapicon1_3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateTapBudgetController)];
+    [icon1_3 addGestureRecognizer:tapicon1_3];
     [viewline1 addSubview:icon1_3];
     
     [icon1_3 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -340,18 +348,19 @@
 }
 
 #pragma mark---跳转
+
+/**
+ 跳转到预算管理
+ */
+-(void)navigateTapBudgetController{
+    [self.navigationController pushViewController:[[BudgetViewController alloc] init] animated:YES];
+}
+
+/**
+ 跳转到手势密码
+ */
 -(void)navigateTapPassController{
     [self.navigationController pushViewController:[[PasswordViewController alloc] init] animated:YES];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
