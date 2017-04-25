@@ -26,6 +26,11 @@
     self.navigationItem.rightBarButtonItem = rightitem;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self showTabbar];
+}
+
 -(void)initControls{
     
     TapPassView *tappassview = [[TapPassView alloc] initWithFrame:CGRectMake(20, 0, ScreenSize.width-40, ScreenSize.height-self.navigationController.navigationBar.frame.size.height)];

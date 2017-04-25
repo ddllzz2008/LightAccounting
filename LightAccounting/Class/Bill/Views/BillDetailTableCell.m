@@ -34,7 +34,7 @@
         
         [imagetype mas_makeConstraints:^(MASConstraintMaker *make) {
             __strong __typeof(weakself) strongself = weakself;
-            make.left.equalTo(strongself.contentView.mas_left).with.offset(30);
+            make.left.equalTo(strongself.contentView.mas_left).with.offset(40);
             make.centerY.equalTo(strongself.contentView);
         }];
         
@@ -50,7 +50,7 @@
             make.size.mas_equalTo(CGSizeMake(50, 20));
         }];
         
-        typesectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        typesectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
         typesectionLabel.textAlignment=NSTextAlignmentLeft;
         [typesectionLabel setStyle:fontsize_13 color:UIColorFromRGB(0xbbbbbb)];
         [self.contentView addSubview:typesectionLabel];
@@ -58,7 +58,7 @@
         [typesectionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(typenameLabel.mas_right).with.offset(15);
             make.centerY.equalTo(imagetype);
-            make.size.mas_equalTo(CGSizeMake(20, 20));
+            make.size.mas_equalTo(CGSizeMake(40, 20));
         }];
         
         detailnumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 20)];
@@ -85,7 +85,17 @@
 
 -(void)setTypeName:(NSString *)typeName{
     _typeName = typeName;
-    
+    [typenameLabel setText:typeName];
+}
+
+-(void)setTypeSection:(NSString *)typeSection{
+    _typeSection = typeSection;
+    [typesectionLabel setText:typeSection];
+}
+
+-(void)setDetailNumber:(NSString *)detailNumber{
+    _detailNumber = detailNumber;
+    [detailnumberLabel setText:detailNumber];
 }
 
 
@@ -103,8 +113,8 @@
     //        CGContextStrokePath(ctx);
     
     CGPoint aPoints[2];//坐标点
-    aPoints[0] =CGPointMake(10, 0);//坐标1
-    aPoints[1] =CGPointMake(10, self.contentView.frame.size.height);//坐标2
+    aPoints[0] =CGPointMake(20, 0);//坐标1
+    aPoints[1] =CGPointMake(20, self.contentView.frame.size.height);//坐标2
     //CGContextAddLines(CGContextRef c, const CGPoint points[],size_t count)
     //points[]坐标数组，和count大小
     CGContextAddLines(ctx, aPoints, 2);//添加线
