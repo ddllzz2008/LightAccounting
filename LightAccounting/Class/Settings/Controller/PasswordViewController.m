@@ -19,7 +19,6 @@
     // Do any additional setup after loading the view.
     // Do any additional setup after loading the view.
     [self.navigationItem setTitle:@"设置手势密码"];
-    [self hiddenTabbar];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
 //    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"item_ok"] style:UIBarButtonItemStyleDone target:self action:@selector(saveData:)];
@@ -28,7 +27,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self showTabbar];
+    [self hiddenTabbar];
 }
 
 -(void)initControls{
