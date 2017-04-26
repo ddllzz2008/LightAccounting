@@ -20,7 +20,7 @@
         
         //设置tabbar的背景图片
         UITabBar *tabBar = self.tabBar;
-        [tabBar setTintColor:[UIColor colorWithRed:166.0/255.0 green:209.0/255.0 blue:87.0/255.0 alpha:1.0]];
+        [tabBar setTintColor:UIColorFromRGB(color_theme_green)];
 //        tabBar.selectedImageTintColor = [UIColor clearColor];
         
         self.viewControllers = [NSArray arrayWithObjects:[self addViewController:@"支出" image:[UIImage imageNamed:@"tabbaritem1"] viewcontroller:[[MainPageViewController alloc] init]],

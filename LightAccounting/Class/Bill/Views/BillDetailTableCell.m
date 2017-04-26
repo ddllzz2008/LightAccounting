@@ -27,15 +27,15 @@
     self.contentView.backgroundColor = [UIColor clearColor];
     if (self) {
         
-        __weak __typeof(self) weakself = self;
+        __weak __typeof(self.contentView) weakself = self.contentView;
         
         imagetype = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
         [self.contentView addSubview:imagetype];
         
         [imagetype mas_makeConstraints:^(MASConstraintMaker *make) {
             __strong __typeof(weakself) strongself = weakself;
-            make.left.equalTo(strongself.contentView.mas_left).with.offset(40);
-            make.centerY.equalTo(strongself.contentView);
+            make.left.equalTo(strongself.mas_left).with.offset(40);
+            make.centerY.equalTo(strongself);
         }];
         
         typenameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];

@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Color-Picker-for-iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -97,7 +102,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>090A6AD96CE0FF301D0D3899DB90ADFA</key>
+		<key>1614C80C55F5779823712F6AF4CD2D3C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,12 +117,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>27A43A1DC02281BAE8D43C9F65B48FCE</key>
+		<key>3B25E1601C445A6A75E55543DB48D091</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>367A918F636BD63A5041A3B8BCECF5CC</key>
+		<key>3C3EB78F7991CAB68832A5C5AD34D74D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>58050CD3A5395479C6A5BFE4248E6C2E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>694F2F9679B53A1664EF733B26A7BE1F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,22 +152,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6ED859AB812190E254754C325C75076B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>A8FAB4675B15F8258B6C19B71077B859</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>B0D2BC4789FBEF0D9C6C1391CEEFF838</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C133EC16D6CBE0CB0820EEE0DFE425D7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,17 +172,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CF5C0353BF0ACADD2922B8E1C5C9FB93</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D259FBC8C51C3CA4DD0A90B11CCAB506</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>D4044CFE3F4A68C7D6DFCEF4E1C30CA9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D52144DE9D7255DE912490FF5A806573</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1D44BE21014CAFC8D75DE56E21D2986</key>
 		<dict>
 			<key>primary</key>
 			<true/>

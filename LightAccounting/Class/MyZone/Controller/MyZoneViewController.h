@@ -10,6 +10,7 @@
 #import "TopLineView.h"
 #import "PasswordViewController.h"
 #import "BudgetViewController.h"
+#import "CategoryViewController.h"
 
 @interface MyZoneViewController : BaseViewController
 

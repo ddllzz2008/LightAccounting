@@ -11,7 +11,6 @@
 		690E8D1E1E9CD5ED004DC684 /* BillChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 690E8D1D1E9CD5ED004DC684 /* BillChartView.m */; };
 		690E8D211E9CD627004DC684 /* BillDateChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 690E8D201E9CD627004DC684 /* BillDateChooseView.m */; };
 		6923985E1E6FA94C00A86BAD /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6923985D1E6FA94C00A86BAD /* CategoryViewController.m */; };
-		692398611E6FB7AA00A86BAD /* CategoryListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 692398601E6FB7AA00A86BAD /* CategoryListView.m */; };
 		692398641E6FB7BE00A86BAD /* CategoryEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 692398631E6FB7BE00A86BAD /* CategoryEditView.m */; };
 		692398671E6FEFCD00A86BAD /* ExpendVoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692398661E6FEFCD00A86BAD /* ExpendVoiceViewController.m */; };
 		6923986A1E6FF84F00A86BAD /* ExpendVoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 692398691E6FF84F00A86BAD /* ExpendVoiceView.m */; };
@@ -101,6 +100,8 @@
 		694DAC991EA7B2BA00B5FFD6 /* TapPassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC981EA7B2BA00B5FFD6 /* TapPassView.m */; };
 		694DAC9C1EA7B4C400B5FFD6 /* PassCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC9B1EA7B4C400B5FFD6 /* PassCircleView.m */; };
 		694E728A1E80D343007AC23F /* WaterWareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694E72891E80D343007AC23F /* WaterWareView.m */; };
+		69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB51EB0454100973E7F /* CategoryTableCell.m */; };
+		69596CB91EB0A11D00973E7F /* ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB81EB0A11D00973E7F /* ThemeViewController.m */; };
 		6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6974FC591EA51C63008F4495 /* BillTableCell.m */; };
 		699B2F901E87B0F400CE3FAD /* NewStep1View.m in Sources */ = {isa = PBXBuildFile; fileRef = 699B2F8F1E87B0F400CE3FAD /* NewStep1View.m */; };
 		699B2F931E87B33C00CE3FAD /* NewExpenditureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699B2F921E87B33C00CE3FAD /* NewExpenditureViewController.m */; };
@@ -133,8 +134,6 @@
 		690E8D201E9CD627004DC684 /* BillDateChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDateChooseView.m; sourceTree = "<group>"; };
 		6923985C1E6FA94C00A86BAD /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
 		6923985D1E6FA94C00A86BAD /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
-		6923985F1E6FB7AA00A86BAD /* CategoryListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListView.h; sourceTree = "<group>"; };
-		692398601E6FB7AA00A86BAD /* CategoryListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListView.m; sourceTree = "<group>"; };
 		692398621E6FB7BE00A86BAD /* CategoryEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryEditView.h; sourceTree = "<group>"; };
 		692398631E6FB7BE00A86BAD /* CategoryEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryEditView.m; sourceTree = "<group>"; };
 		692398651E6FEFCD00A86BAD /* ExpendVoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpendVoiceViewController.h; sourceTree = "<group>"; };
@@ -297,6 +296,10 @@
 		694DAC9B1EA7B4C400B5FFD6 /* PassCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassCircleView.m; sourceTree = "<group>"; };
 		694E72881E80D343007AC23F /* WaterWareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterWareView.h; sourceTree = "<group>"; };
 		694E72891E80D343007AC23F /* WaterWareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterWareView.m; sourceTree = "<group>"; };
+		69596CB41EB0454100973E7F /* CategoryTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableCell.h; sourceTree = "<group>"; };
+		69596CB51EB0454100973E7F /* CategoryTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableCell.m; sourceTree = "<group>"; };
+		69596CB71EB0A11D00973E7F /* ThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeViewController.h; sourceTree = "<group>"; };
+		69596CB81EB0A11D00973E7F /* ThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeViewController.m; sourceTree = "<group>"; };
 		6974FC581EA51C63008F4495 /* BillTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableCell.h; sourceTree = "<group>"; };
 		6974FC591EA51C63008F4495 /* BillTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableCell.m; sourceTree = "<group>"; };
 		699B2F8E1E87B0F400CE3FAD /* NewStep1View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStep1View.h; sourceTree = "<group>"; };
@@ -456,10 +459,10 @@
 		6923985B1E6FA39500A86BAD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6923985F1E6FB7AA00A86BAD /* CategoryListView.h */,
-				692398601E6FB7AA00A86BAD /* CategoryListView.m */,
 				692398621E6FB7BE00A86BAD /* CategoryEditView.h */,
 				692398631E6FB7BE00A86BAD /* CategoryEditView.m */,
+				69596CB41EB0454100973E7F /* CategoryTableCell.h */,
+				69596CB51EB0454100973E7F /* CategoryTableCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -946,6 +949,8 @@
 				694DAC951EA7AFAF00B5FFD6 /* PasswordViewController.m */,
 				693106691EAEDBDB006C607A /* BudgetViewController.h */,
 				6931066A1EAEDBDB006C607A /* BudgetViewController.m */,
+				69596CB71EB0A11D00973E7F /* ThemeViewController.h */,
+				69596CB81EB0A11D00973E7F /* ThemeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1220,7 +1225,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		07577E69E0E97B6367879300 /* [CP] Embed Pods Frameworks */ = {
@@ -1271,6 +1276,7 @@
 				6944B6E71E7E30E500474964 /* StoreUserDefault.m in Sources */,
 				69D5B9021E7FDECC00B2EC8B /* SpendDetail.m in Sources */,
 				6933BFEE1E82509700701ECB /* MainExpendModel.m in Sources */,
+				69596CB91EB0A11D00973E7F /* ThemeViewController.m in Sources */,
 				6944B6D81E7E30E500474964 /* BaseViewController.m in Sources */,
 				6944B72A1E7E76F900474964 /* MainPageView.m in Sources */,
 				6944B6D51E7E30E500474964 /* LeftSubMenuController.m in Sources */,
@@ -1296,6 +1302,7 @@
 				6944B6F11E7E30E500474964 /* UIScrollView+UITouch.m in Sources */,
 				69F277E51EA8AA510016FF6E /* BillDetailSectionCell.m in Sources */,
 				6944B6D61E7E30E500474964 /* MainTabController.m in Sources */,
+				69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */,
 				6944B6D91E7E30E500474964 /* BaseViewModel.m in Sources */,
 				69D5B9001E7FDECC00B2EC8B /* RemindModel.m in Sources */,
 				6933BFE51E822F0000701ECB /* FamilyPersonDAL.m in Sources */,
@@ -1320,7 +1327,6 @@
 				69F277E21EA8A96F0016FF6E /* BillDetailViewController.m in Sources */,
 				690E8D211E9CD627004DC684 /* BillDateChooseView.m in Sources */,
 				6944B6531E7E30D500474964 /* AppDelegate+AppService.m in Sources */,
-				692398611E6FB7AA00A86BAD /* CategoryListView.m in Sources */,
 				6933BFE81E822F0000701ECB /* PackageDAL.m in Sources */,
 				69D5B8FC1E7FDECC00B2EC8B /* BusIncome.m in Sources */,
 				6944B6DF1E7E30E500474964 /* DLTabView.m in Sources */,

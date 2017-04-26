@@ -7,7 +7,17 @@
 //
 
 #import "BaseViewController.h"
+#import "CategoryTableCell.h"
+#import "CategoryViewCell.h"
 
-@interface CategoryViewController : BaseViewController
+@interface CategoryViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>{
+    
+    BOOL ifIncome;
+    
+    
+    UITextField *textfield;
+}
+
+-(id)initWithType:(BOOL)ifIncome;
 
 @end
