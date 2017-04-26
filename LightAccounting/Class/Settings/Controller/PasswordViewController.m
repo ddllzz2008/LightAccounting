@@ -28,7 +28,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self showTabbar];
+    [self hiddenTabbar];
 }
 
 -(void)initControls{

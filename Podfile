@@ -12,6 +12,7 @@ pod ‘FMDB’
 pod ‘SDWebImage’
 pod ‘MMDrawerController’
 pod ‘PKYStepper’
+pod 'Color-Picker-for-iOS'
 pod 'ReactiveObjC', '~> 2.1.0'
 pod 'ReactiveCocoa', ‘~>5.0.0'
 #pod 'CTAssetsPickerController'

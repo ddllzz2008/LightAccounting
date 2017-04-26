@@ -28,6 +28,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
+  - Color-Picker-for-iOS (2.0.2)
   - CTAssetsPickerController (3.3.3-alpha):
     - PureLayout (~> 3.0.0)
   - DJRefresh (1.0.5)
@@ -67,6 +68,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.6)
   - CocoaLumberjack
+  - Color-Picker-for-iOS
   - CTAssetsPickerController (from `git@github.com:asivura/CTAssetsPickerController.git`, branch `master`)
   - DJRefresh (~> 1.0.5)
   - FMDB
@@ -93,6 +95,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  Color-Picker-for-iOS: 4980589b3e3cfe7198f227dd50be9adb02d8bc0b
   CTAssetsPickerController: bcca19170b3f7f5241cceb25a0b421435f71ce87
   DJRefresh: 32b3776546004faddddc28035442ba15e07c5f1b
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
@@ -109,6 +112,6 @@ SPEC CHECKSUMS:
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
 
-PODFILE CHECKSUM: 6f962e596b37c75c48678ef7c1fade153414f81e
+PODFILE CHECKSUM: 643cf25dabef75e51d53fe589905a104415d9117
 
 COCOAPODS: 1.2.1

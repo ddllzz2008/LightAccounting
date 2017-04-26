@@ -103,6 +103,10 @@
     
     UIImageView *icon1_1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imgwidth, imgwidth)];
     [icon1_1 setImage:[UIImage imageNamed:@"icon_income"]];
+    icon1_1.userInteractionEnabled=YES;
+    
+    UITapGestureRecognizer *tapicon1_1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateTapCategoryIncomeController)];
+    [icon1_1 addGestureRecognizer:tapicon1_1];
     [viewline1 addSubview:icon1_1];
     
     [icon1_1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -126,6 +130,10 @@
     
     UIImageView *icon1_2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imgwidth, imgwidth)];
     [icon1_2 setImage:[UIImage imageNamed:@"icon_expend"]];
+    icon1_2.userInteractionEnabled=YES;
+    
+    UITapGestureRecognizer *tapicon1_2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateTapCategoryExpendController)];
+    [icon1_2 addGestureRecognizer:tapicon1_2];
     [viewline1 addSubview:icon1_2];
     
     [icon1_2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -361,6 +369,18 @@
  */
 -(void)navigateTapPassController{
     [self.navigationController pushViewController:[[PasswordViewController alloc] init] animated:YES];
+}
+/**
+ 跳转到收入分类
+ */
+-(void)navigateTapCategoryIncomeController{
+    [self.navigationController pushViewController:[[CategoryViewController alloc] initWithType:YES] animated:YES];
+}
+/**
+ 跳转到支出分类
+ */
+-(void)navigateTapCategoryExpendController{
+    [self.navigationController pushViewController:[[CategoryViewController alloc] initWithType:NO] animated:YES];
 }
 
 @end
