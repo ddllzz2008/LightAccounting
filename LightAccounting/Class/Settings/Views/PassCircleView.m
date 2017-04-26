@@ -46,7 +46,7 @@
             //以矩形bigRect为依据画一个圆
             CGContextAddEllipseInRect(ctx, bigrect);
             //填充当前绘画区域的颜色
-            [UIColorFromRGB(color_theme_green) set];
+            [get_theme_color set];
             //(如果是画圆会沿着矩形外围描画出指定宽度的（圆线）空心圆)/（根据上下文的内容渲染图层）
             CGContextStrokePath(ctx);
             
@@ -60,14 +60,14 @@
             //以矩形bigRect为依据画一个圆
             CGContextAddEllipseInRect(ctx, bigrect);
             //填充当前绘画区域的颜色
-            [UIColorFromRGB(color_theme_green) set];
+            [get_theme_color set];
             //(如果是画圆会沿着矩形外围描画出指定宽度的（圆线）空心圆)/（根据上下文的内容渲染图层）
             CGContextStrokePath(ctx);
             
             CGRect frame = CGRectMake(rect.size.width/4, rect.size.height/4, rect.size.width/2, rect.size.height/2);
             
             CGContextAddEllipseInRect(ctx, frame);
-            [UIColorFromRGB(color_theme_green) set];
+            [get_theme_color set];
             CGContextFillPath(ctx);
             
             break;
@@ -80,7 +80,7 @@
             //以矩形bigRect为依据画一个圆
             CGContextAddEllipseInRect(ctx, bigrect);
             //填充当前绘画区域的颜色
-            [UIColorFromRGB(color_theme_green) set];
+            [get_theme_color set];
             //(如果是画圆会沿着矩形外围描画出指定宽度的（圆线）空心圆)/（根据上下文的内容渲染图层）
             CGContextStrokePath(ctx);
             

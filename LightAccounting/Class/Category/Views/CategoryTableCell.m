@@ -19,7 +19,7 @@
     [super setSelected:selected animated:animated];
     
     if (selected) {
-        [typenameLabel setStyle:fontsize_16 color:UIColorFromRGB(color_theme_green)];
+        [typenameLabel setStyle:fontsize_16 color:get_theme_color];
     }else{
         [typenameLabel setStyle:fontsize_16 color:UIColorFromRGB(0xbbbbbb)];
     }

@@ -24,6 +24,8 @@ typedef void(^DLZAlertViewCallback)(id sender);
     UIButton *rightButton;
 }
 
+-(void)close;
+
 +(void)showAlertMessage:(UIViewController*)controller title:(NSString*)title content:(NSString*)content leftButton:(NSString*)leftButton leftaction:(void (^)(id sender))leftaction rightButton:(NSString*)rightButton rightaction:(void (^)(id sender))rightaction;
 
 +(void)showAlertMessage:(UIViewController*)controller title:(NSString*)title content:(NSString*)content;

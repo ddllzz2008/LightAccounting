@@ -44,6 +44,8 @@
     [self initTextFieldArray:textfield,nil];
     
     [super viewWillAppear:animated];
+    
+    [self hiddenTabbar];
 }
 
 -(void)initControls{
@@ -219,7 +221,7 @@
     
     UIView* selectedBGView = [[UIView alloc] initWithFrame:cell.bounds];
     UIView *bottomview = [[UIView alloc] initWithFrame:CGRectMake(0, cell.bounds.size.height-4, cell.bounds.size.width, 4)];
-    bottomview.backgroundColor = UIColorFromRGB(color_theme_green);
+    bottomview.backgroundColor = get_theme_color;
     [selectedBGView addSubview:bottomview];
     selectedBGView.backgroundColor = [UIColor clearColor];
     cell.selectedBackgroundView = selectedBGView;
@@ -245,15 +247,7 @@
 #pragma mark---保存数据
 -(void)saveData:(id)sender{
 //    UINavigationBar *navBar = [UINavigationBar appearance];
-    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
-//    [navBar setTranslucent:NO];
     
-    for (UITabBarItem *item in self.tabBarController.tabBar.items) {
-            [item setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(0x333333),NSFontAttributeName:fontsize_14} forState:UIControlStateNormal];
-            [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor redColor],NSFontAttributeName:fontsize_13} forState:UIControlStateSelected];
-    }
-    
-    [self.tabBarController.tabBar setTintColor:UIColorFromRGB(0xff0000)];
     
 //    [[UITabBar appearance]setTintColor:[UIColor redColor]];
     

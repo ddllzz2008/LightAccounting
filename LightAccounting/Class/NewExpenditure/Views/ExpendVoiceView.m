@@ -86,7 +86,7 @@
     labelMessage.lineBreakMode =NSLineBreakByWordWrapping;
     labelMessage.numberOfLines = 0;
     [labelMessage setFont:fontsize_16];
-    [labelMessage setTextColor:UIColorFromRGB(color_theme_green)];
+    [labelMessage setTextColor:get_theme_color];
     [labelMessage setText:@"可以说\n\n早餐20\n\n打车22\n\n购物180\n\n......"];
     
     [self addSubview:labelMessage];

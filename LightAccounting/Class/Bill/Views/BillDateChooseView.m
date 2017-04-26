@@ -31,7 +31,7 @@
 -(void)initlayout{
     
     UILabel *chooseDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width/3, 60)];
-    [chooseDate setTextColor:UIColorFromRGB(color_theme_green)];
+    [chooseDate setTextColor:get_theme_color];
     [chooseDate setTextAlignment:NSTextAlignmentCenter];
     [chooseDate setFont:fontsize_22];
     [chooseDate setText:@"10月 | 2016"];
@@ -46,7 +46,7 @@
     UIView *viewleft = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     viewleft.layer.cornerRadius=15;
     viewleft.layer.masksToBounds=YES;
-    viewleft.backgroundColor=UIColorFromRGB(color_theme_green);
+    viewleft.backgroundColor=get_theme_color;
     [self addSubview:viewleft];
     
     [viewleft mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -71,7 +71,7 @@
     UIView *viewright = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     viewright.layer.cornerRadius=15;
     viewright.layer.masksToBounds=YES;
-    viewright.backgroundColor=UIColorFromRGB(color_theme_green);
+    viewright.backgroundColor=get_theme_color;
     [self addSubview:viewright];
     
     [viewright mas_makeConstraints:^(MASConstraintMaker *make) {

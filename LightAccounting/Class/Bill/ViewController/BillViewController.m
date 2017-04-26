@@ -37,7 +37,7 @@
     segmentControl.frame = CGRectMake(0, 0, ScreenSize.width/2, 30);
     segmentControl.segmentedControlStyle=UISegmentedControlStylePlain;
     segmentControl.selectedSegmentIndex=0;
-    [segmentControl setTintColor:UIColorFromRGB(color_theme_green)];
+    [segmentControl setTintColor:get_theme_color];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:fontsize_14,UITextAttributeFont ,nil];
     [segmentControl setTitleTextAttributes:dic forState:UIControlStateNormal];
     [self.view addSubview:segmentControl];
@@ -53,7 +53,7 @@
     }];
     
     UILabel *totalmoney = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 20)];
-    [totalmoney setTextColor:UIColorFromRGB(color_theme_green)];
+    [totalmoney setTextColor:get_theme_color];
     [totalmoney setTextAlignment:NSTextAlignmentCenter];
     [totalmoney setFont:fontsize_26];
     [totalmoney setText:@"1,5000.0"];
@@ -76,7 +76,7 @@
     }];
     
     UITableView *tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
-    [tableview setBackgroundColor:UIColorFromRGB(color_theme_green)];
+    [tableview setBackgroundColor:get_theme_color];
     tableview.delegate=self;
     tableview.dataSource = self;
     tableview.layer.cornerRadius = 10;

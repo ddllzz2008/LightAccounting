@@ -63,7 +63,7 @@
         
         detailnumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 20)];
         detailnumberLabel.textAlignment=NSTextAlignmentRight;
-        [detailnumberLabel setStyle:fontsize_16 color:UIColorFromRGB(color_theme_green)];
+        [detailnumberLabel setStyle:fontsize_16 color:get_theme_color];
         [self.contentView addSubview:detailnumberLabel];
         
         [detailnumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,7 +108,7 @@
     //        CGContextMoveToPoint(ctx, 10, 0);//设置Path的起点
     //        CGContextAddLineToPoint(ctx, 10, self.contentView.frame.size.height);
     //
-    [UIColorFromRGB(color_theme_green) setStroke];
+    [get_theme_color setStroke];
     
     //        CGContextStrokePath(ctx);
     

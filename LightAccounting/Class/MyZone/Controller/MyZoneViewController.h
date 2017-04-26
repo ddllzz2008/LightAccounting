@@ -11,6 +11,7 @@
 #import "PasswordViewController.h"
 #import "BudgetViewController.h"
 #import "CategoryViewController.h"
+#import "ThemeViewController.h"
 
 @interface MyZoneViewController : BaseViewController
 

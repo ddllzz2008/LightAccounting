@@ -39,12 +39,12 @@ CGFloat margin_left;
         
         viewTitle = [[UILabel alloc] init];
         viewTitle.textAlignment = NSTextAlignmentCenter;
-        [viewTitle styleForTitleBlack];
+        [viewTitle setStyle:fontsize_14 color:UIColorFromRGB(0xbbbbbb)];
         [contentView addSubview:viewTitle];
         
         viewContent = [[UILabel alloc] init];
         viewContent.textAlignment = NSTextAlignmentCenter;
-        [viewContent styleForNormalBlack];
+        [viewContent setStyle:fontsize_14 color:UIColorFromRGB(0x333333)];
         viewContent.lineBreakMode=NSLineBreakByWordWrapping;
         viewContent.numberOfLines = 0;
         [contentView addSubview:viewContent];
@@ -66,33 +66,32 @@ CGFloat margin_left;
     
     CGSize size = CGSizeMake(view_width-40, MAXFLOAT);
     CGSize actualSize = [viewTitle getLabelSize:size];
-    viewTitle.frame=CGRectMake(10, 20, view_width-40, actualSize.height);
+    viewTitle.frame=CGRectMake(10, 20, view_width-40, actualSize.height+10);
     
     CGRect rect = viewTitle.frame;
     
     size = CGSizeMake(view_width-20, MAXFLOAT);
     actualSize = [viewContent getmutliLineSize:size];
-    viewContent.frame =CGRectMake(10, rect.origin.y+rect.size.height+5, view_width-20, actualSize.height);
+    viewContent.frame =CGRectMake(10, rect.origin.y+rect.size.height+5, view_width-20, actualSize.height+20);
     
     if (leftButton==nil && rightButton==nil) {
-        contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-20, view_width, viewContent.frame.origin.y+viewContent.frame.size.height+10);
+        contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-20, view_width, viewContent.frame.origin.y+viewContent.frame.size.height+10+20);
+        
     }
     else{
         if (leftButton!=nil) {
             rect = viewContent.frame;
-            leftButton.frame=CGRectMake(15, rect.origin.y+rect.size.height+10, view_width-30, 30);
-            
-            contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-10, view_width, leftButton.frame.origin.y+leftButton.frame.size.height+10);
+            leftButton.frame=CGRectMake(25, rect.origin.y+rect.size.height+10, view_width-30, 30);
+            contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-10, view_width, leftButton.frame.origin.y+leftButton.frame.size.height+10+20);
         }
         
         if (rightButton!=nil) {
             rect = viewContent.frame;
             if (leftButton!=nil) {
-                leftButton.frame=CGRectMake(15, rect.origin.y+rect.size.height+10, (view_width-15*2-10)/2, 30);
+                leftButton.frame=CGRectMake(25, rect.origin.y+rect.size.height+10, (view_width-25*2-10)/2, 30);
             }
-            rightButton.frame=CGRectMake(15+leftButton.frame.size.width+10, leftButton.frame.origin.y, (view_width-15*2-10)/2, 30);
-            
-            contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-30, view_width, rightButton.frame.origin.y+rightButton.frame.size.height+10);
+            rightButton.frame=CGRectMake(25+leftButton.frame.size.width+10, leftButton.frame.origin.y, (view_width-25*2-10)/2, 30);
+            contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-30, view_width, rightButton.frame.origin.y+rightButton.frame.size.height+10+20);
         }
     }
     
@@ -140,8 +139,8 @@ CGFloat margin_left;
         leftButton.layer.cornerRadius = 5;
         
         [leftButton setTitle:content forState:UIControlStateNormal];
-        [leftButton.titleLabel styleForNormal];
-        [leftButton setBackgroundColor:UIColorFromRGB(color_blue_01)];
+        [leftButton.titleLabel setStyle:fontsize_14 color:UIColorFromRGB(0xffffff)];
+        [leftButton setBackgroundColor:get_theme_color];
         [contentView addSubview:leftButton];
         
         [leftButton addTarget:self action:@selector(leftBtnTap) forControlEvents:UIControlEventTouchUpInside];
@@ -153,13 +152,15 @@ CGFloat margin_left;
 -(void)setRightButton:(NSString*)content{
     
     if (rightButton==nil) {
+        
+//        UIColor *savecolor = get_theme_color;
 
         rightButton = [[UIButton alloc] init];
         rightButton.layer.cornerRadius = 5;
         
         [rightButton setTitle:content forState:UIControlStateNormal];
-        [rightButton.titleLabel styleForNormal];
-        [rightButton setBackgroundColor:UIColorFromRGB(color_blue_01)];
+        [rightButton.titleLabel setStyle:fontsize_14 color:UIColorFromRGB(0xffffff)];
+        [rightButton setBackgroundColor:get_theme_color];
         [contentView addSubview:rightButton];
         
         [rightButton addTarget:self action:@selector(rightBtnTap) forControlEvents:UIControlEventTouchUpInside];
@@ -167,6 +168,10 @@ CGFloat margin_left;
 }
 
 #pragma mark---交互事件
+-(void)close{
+    [self removeFromSuperview];
+}
+
 -(void)closePanel:(UITapGestureRecognizer*)sender{
     [self removeFromSuperview];
 }

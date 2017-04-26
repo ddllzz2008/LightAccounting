@@ -106,7 +106,7 @@
     UIGraphicsBeginImageContext(self.frame.size);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(ctx, 2);
-    CGContextSetStrokeColorWithColor(ctx, UIColorFromRGB(color_theme_green).CGColor);
+    CGContextSetStrokeColorWithColor(ctx, [get_theme_color CGColor]);
     CGPoint aPoints[2];//坐标点
     aPoints[0] =startpoint;//坐标1
     aPoints[1] =endpoint;//坐标2
@@ -195,7 +195,7 @@
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(ctx, 2);
-    CGContextSetStrokeColorWithColor(ctx, UIColorFromRGB(color_theme_green).CGColor);
+    CGContextSetStrokeColorWithColor(ctx, [get_theme_color CGColor]);
     CGPoint aPoints[2];//坐标点
     aPoints[0] =movestartpoint;//坐标1
     aPoints[1] =moveendpoint;//坐标2

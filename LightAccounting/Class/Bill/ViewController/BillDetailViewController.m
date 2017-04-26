@@ -27,7 +27,7 @@
     [self.view addSubview:choosedateview];
     
     UILabel *totalmoney = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 20)];
-    [totalmoney setTextColor:UIColorFromRGB(color_theme_green)];
+    [totalmoney setTextColor:get_theme_color];
     [totalmoney setTextAlignment:NSTextAlignmentCenter];
     [totalmoney setFont:fontsize_16];
     [totalmoney setText:@"收入：2万 ／ 支出：1,854.0"];

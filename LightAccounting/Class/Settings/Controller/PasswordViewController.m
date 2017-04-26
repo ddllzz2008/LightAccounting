@@ -49,7 +49,7 @@
 //
     UISwitch *sw = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
     sw.on=NO;
-    sw.onTintColor = UIColorFromRGB(color_theme_green);
+    sw.onTintColor = get_theme_color;
     [sw addTarget:self action:@selector(passwordStatusChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:sw];
     
@@ -95,7 +95,7 @@
     
     UIButton *resetPassword = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 40)];
     [resetPassword setTitle:@"更改密码" forState:UIControlStateNormal];
-    [resetPassword setBackgroundColor:UIColorFromRGB(color_theme_green)];
+    [resetPassword setBackgroundColor:get_theme_color];
     [resetPassword addTarget:self action:@selector(resetAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:resetPassword];
     

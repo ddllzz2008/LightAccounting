@@ -7,8 +7,17 @@
 //
 
 #import "BaseViewController.h"
+#import "DLZAlertView.h"
+#import "AlertController.h"
 #import "HRColorPickerView.h"
+#import "UIViewController+BackButtonHandler.h"
 
-@interface ThemeViewController : BaseViewController
+@interface ThemeViewController : BaseViewController{
+    
+    UIColor *currentColor;
+    
+    BOOL ifcolorChanged;
+    
+}
 
 @end

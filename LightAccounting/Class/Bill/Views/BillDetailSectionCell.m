@@ -80,14 +80,14 @@
     CGRect frame = CGRectMake(20-radius, (rect.size.height - radius*2)/2, radius*2, radius*2);
 
     CGContextAddEllipseInRect(ctx, frame);
-    [UIColorFromRGB(color_theme_green) set];
+    [get_theme_color set];
     CGContextFillPath(ctx);
     
     CGContextSetLineWidth(ctx,2);
     //        CGContextMoveToPoint(ctx, 10, 0);//设置Path的起点
     //        CGContextAddLineToPoint(ctx, 10, self.contentView.frame.size.height);
     //
-    [UIColorFromRGB(color_theme_green) setStroke];
+    [get_theme_color setStroke];
     
     //        CGContextStrokePath(ctx);
     
@@ -100,8 +100,8 @@
     CGContextDrawPath(ctx, kCGPathStroke); //根据坐标绘制路径
     
     if (self.ifFirstLine) {
-        [currentLabel setStyle:fontsize_16 color:UIColorFromRGB(color_theme_green)];
-        [numberLabel setStyle:fontsize_20 color:UIColorFromRGB(color_theme_green)];
+        [currentLabel setStyle:fontsize_16 color:get_theme_color];
+        [numberLabel setStyle:fontsize_20 color:get_theme_color];
     }else{
         CGPoint aPoints[2];//坐标点
         aPoints[0] =CGPointMake(20, 0);//坐标1

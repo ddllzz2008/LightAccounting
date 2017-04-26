@@ -197,7 +197,7 @@
     [super drawRect:rect];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, UIColorFromRGB(color_theme_green).CGColor);
+    CGContextSetFillColorWithColor(context, [get_theme_color CGColor]);
     CGContextFillRect(context,CGRectMake(0, 0, rect.size.width, 90));//填充框
 }
 

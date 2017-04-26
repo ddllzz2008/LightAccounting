@@ -65,7 +65,7 @@
     namelabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 20)];
     namelabel.textAlignment=NSTextAlignmentCenter;
     [namelabel setFont:fontsize_16];
-    [namelabel setTextColor:UIColorFromRGB(color_theme_green)];
+    [namelabel setTextColor:get_theme_color];
     [namelabel setText:@"李方超"];
     [self.view addSubview:namelabel];
     
@@ -241,6 +241,9 @@
     
     UIImageView *icon2_3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imgwidth, imgwidth)];
     [icon2_3 setImage:[UIImage imageNamed:@"icon_theme"]];
+    icon2_3.userInteractionEnabled=YES;
+    UITapGestureRecognizer *tapicon2_3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateTapThemeController)];
+    [icon2_3 addGestureRecognizer:tapicon2_3];
     [viewline2 addSubview:icon2_3];
     
     [icon2_3 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -381,6 +384,13 @@
  */
 -(void)navigateTapCategoryExpendController{
     [self.navigationController pushViewController:[[CategoryViewController alloc] initWithType:NO] animated:YES];
+}
+
+/**
+ 跳转到主题管理
+ */
+-(void)navigateTapThemeController{
+    [self.navigationController pushViewController:[[ThemeViewController alloc] init] animated:YES];
 }
 
 @end

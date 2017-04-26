@@ -45,12 +45,12 @@ static const float kContentHeight = 180.0f;
         UIButton *cancelbutton = [[UIButton alloc] initWithFrame:CGRectMake(12, 7.5, 70, 25)];
         UIButton *confirmbutton = [[UIButton alloc] initWithFrame:CGRectMake(contentFrame.size.width-70-12, 7.5, 70, 25)];
         [cancelbutton setTitle:@"取消" forState:UIControlStateNormal];
-        [cancelbutton setBackgroundColor:UIColorFromRGB(color_theme_green)];
+        [cancelbutton setBackgroundColor:get_theme_color];
         [cancelbutton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
         [headerview addSubview:cancelbutton];
         
         [confirmbutton setTitle:@"确定" forState:UIControlStateNormal];
-        [confirmbutton setBackgroundColor:UIColorFromRGB(color_theme_green)];
+        [confirmbutton setBackgroundColor:get_theme_color];
         [confirmbutton addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
         [headerview addSubview:confirmbutton];
         [backgroundView addSubview:headerview];

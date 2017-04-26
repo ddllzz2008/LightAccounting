@@ -11,6 +11,7 @@
 
 //define style
 #define color_theme_green 0xA6D157
+#define get_theme_color [[StoreUserDefault instance] getDataWithString:appcache_themecolor]==nil?UIColorFromRGB(0xA6D157):[UIColor colorWithHexString:[[StoreUserDefault instance] getDataWithString:appcache_themecolor]]
 //define color
 #define color_blue_01 0x347aea
 #define color_blue_02 0x3667b7
@@ -54,6 +55,7 @@
 
 /*----------------全局文件存储key----------------------*/
 #define datastore_familyArray @"datastore_familyArray"
+#define appcache_themecolor @"appcache_themecolor"
 
 /*-------------------date format-----------------------*/
 #define dateformat_01 @"yyyy年MM月"

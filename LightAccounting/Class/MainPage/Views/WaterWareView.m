@@ -29,7 +29,7 @@
     self = [super initWithFrame:frame];
     if (self) {
 //        self.backgroundColor = [UIColor clearColor];
-        self.backgroundColor = [UIColor colorWithRed:166/255.0 green:209/255.0 blue:87/255.0 alpha:1];
+        self.backgroundColor = get_theme_color;
         self.layer.masksToBounds  = YES;
         [self setUp];
     }

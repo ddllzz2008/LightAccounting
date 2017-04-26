@@ -20,7 +20,7 @@
         
         //设置tabbar的背景图片
         UITabBar *tabBar = self.tabBar;
-        [tabBar setTintColor:UIColorFromRGB(color_theme_green)];
+        [tabBar setTintColor:get_theme_color];
 //        tabBar.selectedImageTintColor = [UIColor clearColor];
         
         self.viewControllers = [NSArray arrayWithObjects:[self addViewController:@"支出" image:[UIImage imageNamed:@"tabbaritem1"] viewcontroller:[[MainPageViewController alloc] init]],
@@ -55,14 +55,14 @@
     [super viewDidLoad];
     
     UINavigationBar *navBar = [UINavigationBar appearance];
-    navBar.barTintColor = UIColorFromRGB(color_theme_green);
+    navBar.barTintColor = get_theme_color;
     [navBar setTranslucent:NO];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
     
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(0x333333),NSFontAttributeName:fontsize_14} forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(color_theme_green),NSFontAttributeName:fontsize_13} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : get_theme_color,NSFontAttributeName:fontsize_13} forState:UIControlStateSelected];
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 38, 38)];
     button.center = CGPointMake(ScreenSize.width/2, 22);
