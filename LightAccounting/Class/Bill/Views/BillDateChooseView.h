@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BillDateChooseView : UIView
+@interface BillDateChooseView : UIView{
+    
+    UIView *viewleft;
+    
+    UIView *viewright;
+    
+    UILabel *chooseDate;
+    
+}
+
+-(void)refreshTheme;
 
 @end

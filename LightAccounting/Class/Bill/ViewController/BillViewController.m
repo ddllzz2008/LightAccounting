@@ -25,15 +25,22 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self showTabbar];
+    
+    /*----------刷新主题颜色----------------*/
+    UIColor *themecolor = get_theme_color;
+    [choosedateview refreshTheme];
+    [segmentControl setTintColor:themecolor];
+    [totalmoney setTextColor:themecolor];
+    [tableview setBackgroundColor:themecolor];
 }
 
 -(void)initControls{
     
-    BillDateChooseView *choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 80)];
+    choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 80)];
     [self.view addSubview:choosedateview];
     
     NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"支出",@"收入",nil];
-    UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:segmentedArray];
+    segmentControl = [[UISegmentedControl alloc] initWithItems:segmentedArray];
     segmentControl.frame = CGRectMake(0, 0, ScreenSize.width/2, 30);
     segmentControl.segmentedControlStyle=UISegmentedControlStylePlain;
     segmentControl.selectedSegmentIndex=0;
@@ -52,7 +59,7 @@
         make.top.equalTo(choosedateview.mas_bottom).with.offset(5);
     }];
     
-    UILabel *totalmoney = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 20)];
+    totalmoney = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 20)];
     [totalmoney setTextColor:get_theme_color];
     [totalmoney setTextAlignment:NSTextAlignmentCenter];
     [totalmoney setFont:fontsize_26];
@@ -75,7 +82,7 @@
         make.top.equalTo(totalmoney.mas_bottom).with.offset(5);
     }];
     
-    UITableView *tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
+    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
     [tableview setBackgroundColor:get_theme_color];
     tableview.delegate=self;
     tableview.dataSource = self;

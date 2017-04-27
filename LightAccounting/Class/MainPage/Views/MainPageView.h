@@ -16,6 +16,7 @@
     //支付类型图标列表
     NSDictionary *paytypeDictionry;
     //私有变量
+    WaterWareView *waterview;
     UIView *mapviewleft;
     UIView *mapviewfront;
     UIView *mapviewright;
@@ -51,5 +52,7 @@
 @property(nonatomic,copy) void(^updatePhotoBlock)(NSString *eid,NSString *photopath);
 
 @property (nonatomic,copy) void(^addnewAccount)();
+
+-(void)refreshTheme;
 
 @end

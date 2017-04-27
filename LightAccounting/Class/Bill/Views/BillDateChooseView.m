@@ -28,9 +28,18 @@
     return self;
 }
 
+-(void)refreshTheme{
+    
+    UIColor *themecolor = get_theme_color;
+    [viewleft setBackgroundColor:themecolor];
+    [viewright setBackgroundColor:themecolor];
+    [chooseDate setTextColor:themecolor];
+    
+}
+
 -(void)initlayout{
     
-    UILabel *chooseDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width/3, 60)];
+    chooseDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width/3, 60)];
     [chooseDate setTextColor:get_theme_color];
     [chooseDate setTextAlignment:NSTextAlignmentCenter];
     [chooseDate setFont:fontsize_22];
@@ -43,7 +52,7 @@
         make.centerY.equalTo(self);
     }];
     
-    UIView *viewleft = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    viewleft = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     viewleft.layer.cornerRadius=15;
     viewleft.layer.masksToBounds=YES;
     viewleft.backgroundColor=get_theme_color;
@@ -68,7 +77,7 @@
         make.centerY.equalTo(viewleft);
     }];
     
-    UIView *viewright = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    viewright = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     viewright.layer.cornerRadius=15;
     viewright.layer.masksToBounds=YES;
     viewright.backgroundColor=get_theme_color;

@@ -150,7 +150,7 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     /*写文字*/
-    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:166/255.0 green:209/255.0 blue:87/255.0 alpha:1].CGColor);
+    CGContextSetFillColorWithColor(context, [get_theme_color CGColor]);
     //    CGContextSetRGBFillColor (context,  166, 209, 87, 1.0);//设置填充颜色
     CGContextFillRect(context,CGRectMake(0, 0, rect.size.width, 150));//填充框
 }

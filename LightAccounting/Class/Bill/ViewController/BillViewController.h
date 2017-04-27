@@ -12,6 +12,16 @@
 #import "BillTableCell.h"
 #import "BillDetailViewController.h"
 
-@interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
+@interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>{
+    
+    BillDateChooseView *choosedateview;
+    
+    UISegmentedControl *segmentControl;
+    
+    UILabel *totalmoney;
+    
+    UITableView *tableview;
+    
+}
 
 @end

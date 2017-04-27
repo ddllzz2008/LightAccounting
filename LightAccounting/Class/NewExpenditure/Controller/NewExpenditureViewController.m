@@ -35,6 +35,8 @@
     [self initTextFieldArray:step1view.inputmoney,step1view.labelremark,nil];
     
     [super viewWillAppear:animated];
+    
+    [step1view setNeedsDisplay];
 }
 
 - (void)didReceiveMemoryWarning {

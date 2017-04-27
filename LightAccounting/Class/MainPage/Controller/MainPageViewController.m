@@ -34,6 +34,8 @@
     [self showTabbar];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    
+    [mainview refreshTheme];
 }
 
 -(void)initViewStyle{

@@ -28,13 +28,18 @@
     return self;
 }
 
-
+/**
+ 刷新主题
+ */
+-(void)refreshTheme{
+    waterview.backgroundColor = get_theme_color;
+}
 /**
  开始布局
  */
 -(void)startlayout{
     
-    WaterWareView *waterview = [[WaterWareView alloc] initWithFrame:self.bounds];
+    waterview = [[WaterWareView alloc] initWithFrame:self.bounds];
     [self addSubview:waterview];
     
     UILabel *currentSpendtitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, self.bounds.size.width/2, 20)];

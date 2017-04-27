@@ -68,11 +68,19 @@
 
 -(void)saveData:(id)sender{
     
-    [[StoreUserDefault instance] setData:appcache_themecolor data:[UIColor hexFromUIColor:currentColor]];
+    NSString *savecolorString = [UIColor hexFromUIColor:currentColor];
+    
+    [[StoreUserDefault instance] setData:appcache_themecolor data:savecolorString];
+    
+    DDLogDebug(@"save color is %@",savecolorString);
     
     [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
     
     ifcolorChanged = NO;
+    
+    for (UINavigationController *navcontroller in self.tabBarController.viewControllers) {
+        navcontroller.navigationBar.barTintColor=currentColor;
+    }
     
     [self.navigationController popViewControllerAnimated:YES];
     
