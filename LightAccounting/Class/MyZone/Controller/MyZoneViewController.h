@@ -12,6 +12,7 @@
 #import "BudgetViewController.h"
 #import "CategoryViewController.h"
 #import "ThemeViewController.h"
+#import "PlanViewController.h"
 
 @interface MyZoneViewController : BaseViewController
 

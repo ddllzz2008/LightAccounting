@@ -218,6 +218,10 @@
     
     UIImageView *icon2_2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imgwidth, imgwidth)];
     [icon2_2 setImage:[UIImage imageNamed:@"icon_calender"]];
+    icon2_2.userInteractionEnabled=YES;
+    
+    UITapGestureRecognizer *tapicon2_2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateTapPlanController)];
+    [icon2_2 addGestureRecognizer:tapicon2_2];
     [viewline2 addSubview:icon2_2];
     
     [icon2_2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -384,6 +388,13 @@
  */
 -(void)navigateTapCategoryExpendController{
     [self.navigationController pushViewController:[[CategoryViewController alloc] initWithType:NO] animated:YES];
+}
+
+/**
+ 跳转到主题管理
+ */
+-(void)navigateTapPlanController{
+    [self.navigationController pushViewController:[[PlanViewController alloc] init] animated:YES];
 }
 
 /**

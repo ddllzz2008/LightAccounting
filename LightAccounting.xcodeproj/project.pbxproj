@@ -100,6 +100,8 @@
 		694DAC991EA7B2BA00B5FFD6 /* TapPassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC981EA7B2BA00B5FFD6 /* TapPassView.m */; };
 		694DAC9C1EA7B4C400B5FFD6 /* PassCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC9B1EA7B4C400B5FFD6 /* PassCircleView.m */; };
 		694E728A1E80D343007AC23F /* WaterWareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694E72891E80D343007AC23F /* WaterWareView.m */; };
+		6950825E1EB31C190037E547 /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6950825D1EB31C190037E547 /* PlanViewController.m */; };
+		695082611EB31D880037E547 /* PlanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 695082601EB31D880037E547 /* PlanView.m */; };
 		69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB51EB0454100973E7F /* CategoryTableCell.m */; };
 		69596CB91EB0A11D00973E7F /* ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB81EB0A11D00973E7F /* ThemeViewController.m */; };
 		6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6974FC591EA51C63008F4495 /* BillTableCell.m */; };
@@ -298,6 +300,10 @@
 		694DAC9B1EA7B4C400B5FFD6 /* PassCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassCircleView.m; sourceTree = "<group>"; };
 		694E72881E80D343007AC23F /* WaterWareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterWareView.h; sourceTree = "<group>"; };
 		694E72891E80D343007AC23F /* WaterWareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterWareView.m; sourceTree = "<group>"; };
+		6950825C1EB31C190037E547 /* PlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanViewController.h; sourceTree = "<group>"; };
+		6950825D1EB31C190037E547 /* PlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanViewController.m; sourceTree = "<group>"; };
+		6950825F1EB31D880037E547 /* PlanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanView.h; sourceTree = "<group>"; };
+		695082601EB31D880037E547 /* PlanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanView.m; sourceTree = "<group>"; };
 		69596CB41EB0454100973E7F /* CategoryTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableCell.h; sourceTree = "<group>"; };
 		69596CB51EB0454100973E7F /* CategoryTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableCell.m; sourceTree = "<group>"; };
 		69596CB71EB0A11D00973E7F /* ThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeViewController.h; sourceTree = "<group>"; };
@@ -961,6 +967,8 @@
 				6931066A1EAEDBDB006C607A /* BudgetViewController.m */,
 				69596CB71EB0A11D00973E7F /* ThemeViewController.h */,
 				69596CB81EB0A11D00973E7F /* ThemeViewController.m */,
+				6950825C1EB31C190037E547 /* PlanViewController.h */,
+				6950825D1EB31C190037E547 /* PlanViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -988,6 +996,8 @@
 				694DAC9B1EA7B4C400B5FFD6 /* PassCircleView.m */,
 				6931066C1EAEE0DF006C607A /* BudgetTableViewCell.h */,
 				6931066D1EAEE0DF006C607A /* BudgetTableViewCell.m */,
+				6950825F1EB31D880037E547 /* PlanView.h */,
+				695082601EB31D880037E547 /* PlanView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1330,6 +1340,7 @@
 				6944B6EE1E7E30E500474964 /* UIButton+Style.m in Sources */,
 				6944B6D71E7E30E500474964 /* BaseTableViewController.m in Sources */,
 				69D5B8FF1E7FDECC00B2EC8B /* PackageCompare.m in Sources */,
+				695082611EB31D880037E547 /* PlanView.m in Sources */,
 				69D5B9011E7FDECC00B2EC8B /* SpendCategory.m in Sources */,
 				69425FE91E94CE3C00345AC9 /* CategoryViewCell.m in Sources */,
 				6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */,
@@ -1348,6 +1359,7 @@
 				6933BFEA1E822F0000701ECB /* TransferDAL.m in Sources */,
 				6933BFE61E822F0000701ECB /* IncomeDAL.m in Sources */,
 				6944B6F21E7E30E500474964 /* UITextField+Style.m in Sources */,
+				6950825E1EB31C190037E547 /* PlanViewController.m in Sources */,
 				699B2F931E87B33C00CE3FAD /* NewExpenditureViewController.m in Sources */,
 				6944B6EC1E7E30E500474964 /* HttpService.m in Sources */,
 				6933BFE31E822F0000701ECB /* CategoryDAL.m in Sources */,
