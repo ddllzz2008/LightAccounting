@@ -153,8 +153,8 @@
     //    CGContextSetRGBFillColor (context,  166, 209, 87, 1.0);//设置填充颜色
     CGContextFillRect(context,CGRectMake(0, 0, rect.size.width, 40));//填充框
     
-    CGContextSetFillColorWithColor(context, [UIColorFromRGB(0xEEEEEE) CGColor]);
-    CGContextFillRect(context,CGRectMake(0, 40, rect.size.width, 20));//填充框
+//    CGContextSetFillColorWithColor(context, [UIColorFromRGB(0xEEEEEE) CGColor]);
+//    CGContextFillRect(context,CGRectMake(0, 40, rect.size.width, 20));//填充框
 }
 
 @end
