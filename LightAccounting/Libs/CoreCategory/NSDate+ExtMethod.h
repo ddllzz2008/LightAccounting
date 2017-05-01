@@ -30,6 +30,14 @@
 
 -(NSDate *)dateForDays:(NSInteger)days;
 
+-(NSInteger)weekday;
+
+-(NSInteger)day;
+
+-(NSInteger)year;
+
 +(NSDate *)dateForDays:(NSInteger)days;
+
++(NSDate *)dateWithZone;
 
 @end

@@ -81,6 +81,8 @@
         DDLogError(@"百度地图服务启动失败");
     }
     
+    [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"CMT"]];
+    
     return YES;
 }
 

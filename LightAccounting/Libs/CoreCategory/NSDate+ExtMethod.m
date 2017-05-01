@@ -73,7 +73,7 @@
     NSDate *endDate = nil;
     double interval = 0;
     
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [NSCalendar currentCalendar];
     
     BOOL ok = [gregorian rangeOfUnit:NSMonthCalendarUnit startDate:&beginDate interval:&interval forDate:self];
     if (ok) {
@@ -98,11 +98,13 @@
     NSDate *endDate = nil;
     double interval = 0;
     
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [NSCalendar currentCalendar];
     
     NSDateComponents *components = [gregorian components:NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
     
     [components setMonth:([components month] - 1)];
+    
+    [components setDay:5];
     
     NSDate *lastMonth = [gregorian dateFromComponents:components];
     
@@ -129,11 +131,13 @@
     NSDate *endDate = nil;
     double interval = 0;
     
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorian = [NSCalendar currentCalendar];
     
     NSDateComponents *components = [gregorian components:NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:self];
     
     [components setMonth:([components month] + 1)];
+    
+    [components setDay:5];
     
     NSDate *lastMonth = [gregorian dateFromComponents:components];
     
@@ -254,18 +258,60 @@
  * @return 固定的日期
  */
 -(NSDate *)dateForDays:(NSInteger)days{
-    NSDate *resultDay = [self initWithTimeIntervalSinceNow:(days * 24 * 60 * 60)];
+    NSDate *resultDay = [self initWithTimeInterval:(days * 24 * 60 * 60) sinceDate:self];
     return resultDay;
 }
 
 /**
- * 获取对应天数间隔的日期
- * @days 相隔天数
- * @return 固定的日期
+ 获取当前日期对应的星期几
+
+ @return 星期几
  */
-+(NSDate *)dateForDays:(NSInteger)days{
-    NSDate *resultDay = [NSDate dateWithTimeIntervalSinceNow:(days * 24 * 60 * 60)];
-    return resultDay;
+-(NSInteger)weekday{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    comps = [calendar components:unitFlags fromDate:self];
+    return [comps weekday];
+}
+
+/**
+ 返回天数
+
+ @return 返回day
+ */
+-(NSInteger)day{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    comps = [calendar components:unitFlags fromDate:self];
+    return [comps day];
+}
+
+/**
+ 返回天数
+ 
+ @return 返回day
+ */
+-(NSInteger)year{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    comps = [calendar components:unitFlags fromDate:self];
+    return [comps year];
+}
+
+/**
+ 获取没有时差的当前日期
+
+ @return 没有时差的日期
+ */
++(NSDate *)dateWithZone{
+    NSDate *currentDate = [[NSDate date] dateByAddingTimeInterval:[[NSTimeZone systemTimeZone] secondsFromGMTForDate:[NSDate date]]];
+    return currentDate;
 }
 
 @end
