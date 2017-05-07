@@ -291,9 +291,23 @@
 }
 
 /**
- 返回天数
+ 返回月
  
- @return 返回day
+ @return 返回月
+ */
+-(NSInteger)month{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    comps = [calendar components:unitFlags fromDate:self];
+    return [comps month];
+}
+
+/**
+ 返回年
+ 
+ @return 返回年
  */
 -(NSInteger)year{
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];

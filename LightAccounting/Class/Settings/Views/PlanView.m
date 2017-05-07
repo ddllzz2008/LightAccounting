@@ -194,17 +194,11 @@
         [calanerView removeFromSuperview];
     }
     
-    calanerView = [[UIView alloc] initWithFrame:CGRectMake(0, 70, self.frame.size.width, 180)];
-    calanerView.backgroundColor = [UIColor whiteColor];
+    calanerView = [[UIView alloc] initWithFrame:CGRectMake(0, 70, self.frame.size.width, 210)];
+    calanerView.backgroundColor = UIColorFromRGB(0xefefef);
     [self addSubview:calanerView];
     
-//    __weak typeof(self) weakSelf = self;
-//    [calanerView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        __strong __typeof(weakSelf) strongSelf = weakSelf;
-//        make.left.equalTo(strongSelf);
-//        make.top.equalTo(labelsaturday.mas_bottom);
-//        
-//    }]
+    int maxrow = 6;
     
     float unitwidth = self.frame.size.width / 7;
     
@@ -221,6 +215,8 @@
     
     NSArray *monthrange = [_currentDate dateForCurrentMonth];
     NSInteger today = [[NSDate dateWithZone] day];
+    NSInteger month = [[NSDate dateWithZone] month];
+    NSInteger year = [[NSDate dateWithZone] year];
     NSInteger maxday = [[monthrange objectAtIndex:1] day];
     NSInteger weekday = [[monthrange objectAtIndex:0] weekday];
     weekday = weekday -1;
@@ -228,12 +224,18 @@
         for(int col = 0;col<7;col++){
             if (row==0) {
                 if (col>=weekday) {
-                    UIButton *btnday = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                    DateButton *btnday = [[DateButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
                     btnday.layer.cornerRadius = 15;
                     btnday.layer.masksToBounds=YES;
-                    NSString *daystring = today==col?@"今":[NSString stringWithFormat:@"%ld",col - weekday + 1];
+                    NSString *daystring = (today==col&&year == [_currentDate year]&&month==[_currentDate month])?@"今":[NSString stringWithFormat:@"%ld",col - weekday + 1];
+                    if ([daystring isEqualToString:@"今"]) {
+                        btnday.isSelected=YES;
+                        selectedButton = btnday;
+                    }
                     [btnday setTitle:daystring forState:UIControlStateNormal];
-                    [btnday setBackgroundColor:selectedColor];
+                    [btnday setBackgroundColor:normalColor];
+                    
+                    [btnday addTarget:self action:@selector(selectedDateChanged:) forControlEvents:UIControlEventTouchUpInside];
                     
                     [calanerView addSubview:btnday];
                     
@@ -249,15 +251,33 @@
                 }
             }else{
                 if((row*7+(col)-weekday+1)>maxday){
+                    if (col==0) {
+                        maxrow = row-1;
+                    }else{
+                        maxrow = row;
+                    }
                     row++;
                     break;
                 }else{
-                    UIButton *btnday = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                    DateButton *btnday = [[DateButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
                     btnday.layer.cornerRadius = 15;
                     btnday.layer.masksToBounds=YES;
-                    NSString *daystring = today==(row*7+(col)-weekday+1)?@"今":[NSString stringWithFormat:@"%ld",row*7+(col)-weekday+1];
+                    NSString *daystring = (today==(row*7+(col)-weekday+1)&&year == [_currentDate year]&&month==[_currentDate month])?@"今":[NSString stringWithFormat:@"%ld",row*7+(col)-weekday+1];
+                    if ([daystring isEqualToString:@"今"]) {
+                        btnday.isSelected=YES;
+                        selectedButton = btnday;
+                    }
                     [btnday setTitle:daystring forState:UIControlStateNormal];
-                    [btnday setBackgroundColor:selectedColor];
+                    
+                    if (col%2==0) {
+                        [btnday setBackgroundColor:selectedColor];
+                    }
+                    else{
+                        [btnday setBackgroundColor:normalColor];
+                    }
+                    
+                    
+                    [btnday addTarget:self action:@selector(selectedDateChanged:) forControlEvents:UIControlEventTouchUpInside];
                     
                     [calanerView addSubview:btnday];
                     
@@ -270,6 +290,12 @@
                 }
             }
         }
+    }
+    
+    if (maxrow==4) {
+        calanerView.frame = CGRectMake(0, 70, self.frame.size.width, 210);
+    }else{
+        calanerView.frame = CGRectMake(0, 70, self.frame.size.width, 250);
     }
     
 }
@@ -286,6 +312,17 @@
     
     NSArray *lastarray = [_currentDate dateForNextMonth];
     [self setCurrentDate:[lastarray objectAtIndex:1]];
+    
+}
+
+#pragma mark---选中事件
+-(void)selectedDateChanged:(DateButton *)sender{
+    
+    if (selectedButton!=nil && selectedButton!=sender) {
+        selectedButton.isSelected=NO;
+        sender.isSelected=YES;
+        selectedButton=sender;
+    }
     
 }
 

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "question_32px_1094872_easyicon.net.png",
+      "filename" : "add_32px_1200960_easyicon.net.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "question_48px_1094872_easyicon.net.png",
+      "filename" : "add_48px_1200960_easyicon.net.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "question_72px_1094872_easyicon.net.png",
+      "filename" : "add_64px_1200960_easyicon.net.png",
       "scale" : "3x"
     }
   ],

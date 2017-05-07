@@ -121,6 +121,9 @@
 		69D5B9031E7FDECC00B2EC8B /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D5B8FA1E7FDECC00B2EC8B /* TestModel.m */; };
 		69DC03ED1E70387F000C72AE /* MyZoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DC03EC1E70387F000C72AE /* MyZoneViewController.m */; };
 		69DC03F01E705576000C72AE /* TopLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DC03EF1E705576000C72AE /* TopLineView.m */; };
+		69EA38861EBEC09C000A7035 /* DateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EA38851EBEC09C000A7035 /* DateButton.m */; };
+		69EA38891EBED4FE000A7035 /* NewPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EA38881EBED4FE000A7035 /* NewPlanViewController.m */; };
+		69EA388C1EBED5CD000A7035 /* NewPlanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EA388B1EBED5CD000A7035 /* NewPlanView.m */; };
 		69EEAE5C1E8BABD00025695D /* CategoryChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EEAE5B1E8BABD00025695D /* CategoryChooseView.m */; };
 		69F277DF1EA8A93E0016FF6E /* BillDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F277DE1EA8A93E0016FF6E /* BillDetailTableCell.m */; };
 		69F277E21EA8A96F0016FF6E /* BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F277E11EA8A96F0016FF6E /* BillDetailViewController.m */; };
@@ -342,6 +345,12 @@
 		69DC03EC1E70387F000C72AE /* MyZoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyZoneViewController.m; sourceTree = "<group>"; };
 		69DC03EE1E705576000C72AE /* TopLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopLineView.h; sourceTree = "<group>"; };
 		69DC03EF1E705576000C72AE /* TopLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopLineView.m; sourceTree = "<group>"; };
+		69EA38841EBEC09C000A7035 /* DateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateButton.h; sourceTree = "<group>"; };
+		69EA38851EBEC09C000A7035 /* DateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateButton.m; sourceTree = "<group>"; };
+		69EA38871EBED4FE000A7035 /* NewPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPlanViewController.h; sourceTree = "<group>"; };
+		69EA38881EBED4FE000A7035 /* NewPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPlanViewController.m; sourceTree = "<group>"; };
+		69EA388A1EBED5CD000A7035 /* NewPlanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPlanView.h; sourceTree = "<group>"; };
+		69EA388B1EBED5CD000A7035 /* NewPlanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPlanView.m; sourceTree = "<group>"; };
 		69EEAE5A1E8BABD00025695D /* CategoryChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryChooseView.h; sourceTree = "<group>"; };
 		69EEAE5B1E8BABD00025695D /* CategoryChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryChooseView.m; sourceTree = "<group>"; };
 		69F277DD1EA8A93E0016FF6E /* BillDetailTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailTableCell.h; sourceTree = "<group>"; };
@@ -969,6 +978,8 @@
 				69596CB81EB0A11D00973E7F /* ThemeViewController.m */,
 				6950825C1EB31C190037E547 /* PlanViewController.h */,
 				6950825D1EB31C190037E547 /* PlanViewController.m */,
+				69EA38871EBED4FE000A7035 /* NewPlanViewController.h */,
+				69EA38881EBED4FE000A7035 /* NewPlanViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -998,6 +1009,10 @@
 				6931066D1EAEE0DF006C607A /* BudgetTableViewCell.m */,
 				6950825F1EB31D880037E547 /* PlanView.h */,
 				695082601EB31D880037E547 /* PlanView.m */,
+				69EA38841EBEC09C000A7035 /* DateButton.h */,
+				69EA38851EBEC09C000A7035 /* DateButton.m */,
+				69EA388A1EBED5CD000A7035 /* NewPlanView.h */,
+				69EA388B1EBED5CD000A7035 /* NewPlanView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1296,6 +1311,7 @@
 				6944B6E71E7E30E500474964 /* StoreUserDefault.m in Sources */,
 				69D5B9021E7FDECC00B2EC8B /* SpendDetail.m in Sources */,
 				6933BFEE1E82509700701ECB /* MainExpendModel.m in Sources */,
+				69EA38861EBEC09C000A7035 /* DateButton.m in Sources */,
 				69596CB91EB0A11D00973E7F /* ThemeViewController.m in Sources */,
 				6944B6D81E7E30E500474964 /* BaseViewController.m in Sources */,
 				6944B72A1E7E76F900474964 /* MainPageView.m in Sources */,
@@ -1308,6 +1324,7 @@
 				69DC03F01E705576000C72AE /* TopLineView.m in Sources */,
 				6944B6521E7E30D500474964 /* AppDelegate+AppLifeCircle.m in Sources */,
 				698F642E1EB0D595001BEB18 /* UIColor+ExtMethod.m in Sources */,
+				69EA388C1EBED5CD000A7035 /* NewPlanView.m in Sources */,
 				694DAC991EA7B2BA00B5FFD6 /* TapPassView.m in Sources */,
 				6944B6F41E7E30E500474964 /* ServiceModel.m in Sources */,
 				6944B6CD1E7E30E500474964 /* LoginModel.m in Sources */,
@@ -1378,6 +1395,7 @@
 				6944B6EA1E7E30E500474964 /* ConvertHelper.m in Sources */,
 				6933BFE71E822F0000701ECB /* MainDAL.m in Sources */,
 				6944B6291E7E2CF200474964 /* main.m in Sources */,
+				69EA38891EBED4FE000A7035 /* NewPlanViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

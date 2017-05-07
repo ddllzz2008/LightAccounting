@@ -34,6 +34,8 @@
 
 -(NSInteger)day;
 
+-(NSInteger)month;
+
 -(NSInteger)year;
 
 +(NSDate *)dateForDays:(NSInteger)days;

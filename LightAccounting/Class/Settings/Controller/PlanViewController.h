@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 #import "PlanView.h"
 #import "NSDate+ExtMethod.h"
+#import "NewPlanViewController.h"
 
 @interface PlanViewController : BaseViewController{
     

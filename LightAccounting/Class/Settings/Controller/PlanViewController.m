@@ -20,6 +20,9 @@
     [self.navigationItem setTitle:@"计划任务"];
     [self hiddenTabbar];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_add"] style:UIBarButtonItemStyleDone target:self action:@selector(addNotification:)];
+    self.navigationItem.rightBarButtonItem = rightitem;
 }
 
 -(void)initControls{
@@ -42,14 +45,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark---事件
+-(void)addNotification:(id)sender{
+    
+    NewPlanViewController *newplanController = [[NewPlanViewController alloc] init];
+    [self.navigationController pushViewController:newplanController animated:YES];
+    
 }
-*/
 
 @end

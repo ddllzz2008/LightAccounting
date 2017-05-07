@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UILabel+Style.h"
 #import "NSDate+ExtMethod.h"
+#import "DateButton.h"
 
 @interface PlanView : UIView{
     
@@ -29,6 +30,8 @@
     UILabel *labelsaturday;
     
     UIView *calanerView;
+    
+    DateButton *selectedButton;
 }
 
 @property (nonatomic,strong,readwrite) NSDate *currentDate;
