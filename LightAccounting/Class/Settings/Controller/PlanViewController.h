@@ -10,8 +10,11 @@
 #import "PlanView.h"
 #import "NSDate+ExtMethod.h"
 #import "NewPlanViewController.h"
+#import "PlanTableViewCell.h"
 
-@interface PlanViewController : BaseViewController{
+@interface PlanViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>{
+    
+    UITableView *tableview;
     
     PlanView *planview;
     

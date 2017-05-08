@@ -8,10 +8,13 @@
 
 #import "BaseViewController.h"
 #import "NewPlanView.h"
+#import "PlanTableViewCell.h"
 
 @interface NewPlanViewController : BaseViewController{
     
     @private NewPlanView *step1view;
+    
+    UITableView *tableview;
     
 }
 

@@ -65,14 +65,14 @@
     }];
     
     
-    UIImageView *imgleft = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 18, 18)];
+    UIImageView *imgleft = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 12, 12)];
     [imgleft setImage:[UIImage imageNamed:@"icon_left"]];
     [viewleft addSubview:imgleft];
     
     @weakify(viewleft);
     [imgleft mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(viewleft);
-        make.size.mas_equalTo(CGSizeMake(18, 18));
+        make.size.mas_equalTo(CGSizeMake(12, 12));
         make.centerX.equalTo(viewleft);
         make.centerY.equalTo(viewleft);
     }];
@@ -90,14 +90,14 @@
     }];
     
     
-    UIImageView *imgright = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 18, 18)];
+    UIImageView *imgright = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 12, 12)];
     [imgright setImage:[UIImage imageNamed:@"icon_right"]];
     [viewright addSubview:imgright];
     
     @weakify(viewright);
     [imgright mas_makeConstraints:^(MASConstraintMaker *make) {
         @strongify(viewright);
-        make.size.mas_equalTo(CGSizeMake(18, 18));
+        make.size.mas_equalTo(CGSizeMake(12, 12));
         make.centerX.equalTo(viewright);
         make.centerY.equalTo(viewright);
     }];

@@ -89,18 +89,29 @@
         make.centerX.equalTo(namelabel);
     }];
     
-    TopLineView *viewline1 = [[TopLineView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 100)];
+    //判断iphone5以下设备和iphone6以上设备的不同尺寸布局
+    double lineheight = 100;
+    double imageheight = 50;
+    if(ScreenSize.height>640){//iphone6以上产品
+        lineheight = 100;
+        imageheight = 50;
+    }else{
+        lineheight = 80;
+        imageheight = 35;
+    }
+    
+    TopLineView *viewline1 = [[TopLineView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, lineheight)];
     [self.view addSubview:viewline1];
     
     [viewline1 mas_makeConstraints:^(MASConstraintMaker *make) {
 //        @strongify(self);
         __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.size.mas_equalTo(CGSizeMake(ScreenSize.width, 100));
+        make.size.mas_equalTo(CGSizeMake(ScreenSize.width, lineheight));
         make.left.equalTo(strongSelf.view);
         make.top.equalTo(lasttimelabel.mas_bottom).with.offset(30);
     }];
     
-    float imgwidth = 50;
+    float imgwidth = imageheight;
     float singelwidth = ScreenSize.width/3;
     float margin = (singelwidth - imgwidth)/2;
     
@@ -185,13 +196,13 @@
     }];
     
     //第二行
-    TopLineView *viewline2 = [[TopLineView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 100)];
+    TopLineView *viewline2 = [[TopLineView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, lineheight)];
     [self.view addSubview:viewline2];
     
     [viewline2 mas_makeConstraints:^(MASConstraintMaker *make) {
 //        @strongify(self);
         __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.size.mas_equalTo(CGSizeMake(ScreenSize.width, 100));
+        make.size.mas_equalTo(CGSizeMake(ScreenSize.width, lineheight));
         make.left.equalTo(strongSelf.view);
         make.top.equalTo(viewline1.mas_bottom).with.offset(0);
     }];
@@ -273,13 +284,13 @@
     }];
     
     //第三行
-    TopLineView *viewline3 = [[TopLineView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 100)];
+    TopLineView *viewline3 = [[TopLineView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, lineheight)];
     [self.view addSubview:viewline3];
     
     [viewline3 mas_makeConstraints:^(MASConstraintMaker *make) {
 //        @strongify(self);
         __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.size.mas_equalTo(CGSizeMake(ScreenSize.width, 100));
+        make.size.mas_equalTo(CGSizeMake(ScreenSize.width, lineheight));
         make.left.equalTo(strongSelf.view);
         make.top.equalTo(viewline2.mas_bottom).with.offset(0);
     }];

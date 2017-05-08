@@ -74,10 +74,10 @@
     static NSString *idetifier = @"budgettableviewcell";
     BudgetTableViewCell *cell = (BudgetTableViewCell *)[tableView dequeueReusableCellWithIdentifier:idetifier forIndexPath:indexPath];
     if (cell) {
-        [cell setTitle:[NSString stringWithFormat:@"%ld月",indexPath.item+1]];
+        [cell setTitle:[NSString stringWithFormat:@"%d月",indexPath.item+1]];
         [cell setActualValue:90.0f];
         [cell setBudgetValue:100.0f];
-        NSNumber *colorvalue = [colorDictionary objectForKey:[NSString stringWithFormat:@"%ld",indexPath.item+1]];
+        NSNumber *colorvalue = [colorDictionary objectForKey:[NSString stringWithFormat:@"%d",indexPath.item+1]];
         [cell setHeaderColor:UIColorFromRGB([colorvalue longValue])];
         //加入键盘自动管理
         [self addTextFieldResponser:cell.inputmoney];
