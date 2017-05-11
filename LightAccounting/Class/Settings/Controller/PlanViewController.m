@@ -27,8 +27,18 @@
 
 -(void)initControls{
     
-    planview = [[PlanView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, ScreenSize.height -self.navigationController.navigationBar.frame.size.height)];
+    planview = [[PlanView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 280)];
+    planview.layer.masksToBounds=YES;
     [self.view addSubview:planview];
+    
+    __weak __typeof(self.view) weakSelf = self.view;
+//    [planview mas_makeConstraints:^(MASConstraintMaker *make) {
+//       __strong __typeof(weakSelf) strongSelf = weakSelf;
+//        make.top.equalTo(strongSelf);
+//        make.width.equalTo(strongSelf);
+//        make.left.equalTo(strongSelf);
+//        make.height.equalTo(@280);
+//    }];
     
     tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
     [tableview setBackgroundColor:[UIColor clearColor]];
@@ -41,14 +51,12 @@
     [tableview registerClass:[PlanTableViewCell class] forCellReuseIdentifier:@"PlanTableViewCell"];
     [self.view addSubview:tableview];
     
-    __weak __typeof(self) weakSelf = self;
     [tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.left.equalTo(strongSelf.view).with.offset(15);
-        make.width.mas_equalTo(ScreenSize.width - 30);
-        make.centerX.equalTo(strongSelf.view);
-        make.bottom.equalTo(strongSelf.view.mas_bottom).with.offset(-20);
-        make.top.equalTo(planview.mas_bottom).with.offset(5);
+        make.left.equalTo(strongSelf.mas_left).with.offset(15);
+        make.top.equalTo(strongSelf.mas_top).with.offset(280);
+        make.bottom.equalTo(strongSelf.mas_bottom).with.offset(-10);
+        make.right.equalTo(strongSelf.mas_right).with.offset(-15);
     }];
     
 }
@@ -76,12 +84,12 @@
 }
 
 // 设置cell
-- (UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *idetifier = @"PlanTableViewCell";
     PlanTableViewCell *cell = (PlanTableViewCell *)[tableView dequeueReusableCellWithIdentifier:idetifier forIndexPath:indexPath];
     if (cell) {
         
-        [cell setIfAlert:NO];
+        [cell setIfAlert:YES];
         [cell setCategoryImage:[UIImage imageNamed:@"category_5"]];
         [cell setCategoryTtile:@"生活"];
         [cell setAccountString:@"150.0"];
@@ -92,12 +100,45 @@
 }
 
 - (CGFloat)tableView:(nonnull UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    return 120;
+    return 100;
 }
 
 //-(void)tableView:(UITableView *)tableView touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 //    [self touchesEnded:touches withEvent:event];
 //}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    CGFloat y = scrollView.contentOffset.y;
+    if (y<=0) {
+        lasty = 0;
+        if (planview.bounds.size.height!=planviewHeight) {
+            [planview showDate];
+            [tableview mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.view).with.offset(planview.initHeight);
+            }];
+        }
+    }else{
+        if (lasty - y > 60) {
+            if (planview.bounds.size.height!=planviewHeight) {
+                //向下滚动超过10，显示planview
+                [planview showDate];
+                [tableview mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(self.view).with.offset(planview.initHeight);
+                }];
+                lasty = y;
+            }
+        }else if(lasty - y < -10){
+            //向上滚动超过10，隐藏planview
+                [planview hiddenDate];
+            [tableview mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.view).with.offset(70);
+            }];
+                lasty = y;
+        }
+    }
+    
+}
 
 #pragma mark---事件
 -(void)addNotification:(id)sender{

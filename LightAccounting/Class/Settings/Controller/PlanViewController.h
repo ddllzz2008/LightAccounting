@@ -18,6 +18,11 @@
     
     PlanView *planview;
     
+    //滚动监听
+    CGFloat lasty;
+    
+    CGFloat planviewHeight;
+    
 }
 
 @end

@@ -294,8 +294,18 @@
     
     if (maxrow==4) {
         calanerView.frame = CGRectMake(0, 70, self.frame.size.width, 210);
+//        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.height.mas_equalTo(@280);
+//        }];
+        self.frame = CGRectMake(0, 0, ScreenSize.width, 280);
+        self.initHeight = 280;
     }else{
         calanerView.frame = CGRectMake(0, 70, self.frame.size.width, 250);
+//        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.height.mas_equalTo(@320);
+//        }];
+        self.frame = CGRectMake(0, 0, ScreenSize.width, 320);
+        self.initHeight = 320;
     }
     
 }
@@ -322,6 +332,22 @@
         selectedButton.isSelected=NO;
         sender.isSelected=YES;
         selectedButton=sender;
+    }
+    
+}
+
+-(void)hiddenDate{
+    
+    if (!calanerView.hidden) {
+        calanerView.hidden=YES;
+    }
+    
+}
+
+-(void)showDate{
+    
+    if(calanerView.hidden){
+        calanerView.hidden=NO;
     }
     
 }

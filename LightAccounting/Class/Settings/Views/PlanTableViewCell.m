@@ -29,7 +29,7 @@
         
         __weak __typeof(self) weakself = self;
         
-        double frameheight = 120;
+        double frameheight = 100;
         
         budget = [[BudgetView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, frameheight-10)];
         budget.layer.cornerRadius = 10;
@@ -48,7 +48,7 @@
         __weak __typeof(budget) budgetweakself = budget;
         
         double middleheight = ((frameheight - 10)/5) *3;
-        double firstlineheight = 40;
+        double firstlineheight = 30;
         
         categoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, firstlineheight, firstlineheight)];
         [budget addSubview:categoryView];
@@ -84,14 +84,14 @@
         planRemark = [[UILabel alloc] init];
         planRemark.lineBreakMode = UILineBreakModeWordWrap;
         planRemark.numberOfLines = 0;//上面两行设置多行显示
-        planRemark.textAlignment=NSTextAlignmentRight;
+        planRemark.textAlignment=NSTextAlignmentLeft;
         [planRemark setStyle:fontsize_16 color:UIColorFromRGB(0xbbbbbb)];
         [budget addSubview:planRemark];
         [planRemark mas_makeConstraints:^(MASConstraintMaker *make) {
             __strong __typeof(budgetweakself) strongself = budgetweakself;
             make.left.equalTo(strongself).with.offset(15);
             make.right.equalTo(strongself).with.offset(-50);
-            make.top.equalTo(strongself.mas_height).multipliedBy(3.0f/5.0f).with.offset(5);
+            make.top.equalTo(strongself.mas_bottom).with.offset(-45);
             make.bottom.equalTo(strongself.mas_bottom).with.offset(-5);
         }];
         
@@ -99,9 +99,9 @@
         [budget addSubview:alertView];
         [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
             __strong __typeof(budgetweakself) strongself = budgetweakself;
-            make.size.mas_equalTo(CGSizeMake(30, 30));
+            make.size.mas_equalTo(CGSizeMake(20, 20));
             make.right.equalTo(strongself.mas_right).with.offset(-12);
-            make.bottom.equalTo(strongself.mas_bottom).with.offset(-5);
+            make.bottom.equalTo(strongself.mas_bottom).with.offset(-10);
         }];
     }
     

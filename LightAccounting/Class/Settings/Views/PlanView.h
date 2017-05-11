@@ -36,4 +36,9 @@
 
 @property (nonatomic,strong,readwrite) NSDate *currentDate;
 
+@property (nonatomic,assign) CGFloat initHeight;
+
+-(void)hiddenDate;
+-(void)showDate;
+
 @end
