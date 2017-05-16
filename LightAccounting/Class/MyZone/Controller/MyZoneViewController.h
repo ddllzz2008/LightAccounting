@@ -13,6 +13,7 @@
 #import "CategoryViewController.h"
 #import "ThemeViewController.h"
 #import "PlanViewController.h"
+#import "FamilyViewController.h"
 
 @interface MyZoneViewController : BaseViewController
 

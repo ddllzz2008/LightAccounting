@@ -208,7 +208,10 @@
     }];
     
     UIImageView *icon2_1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imgwidth, imgwidth)];
-    [icon2_1 setImage:[UIImage imageNamed:@"icon_notification"]];
+    [icon2_1 setImage:[UIImage imageNamed:@"icon_family"]];
+    icon2_1.userInteractionEnabled=YES;
+    UITapGestureRecognizer *tapicon2_1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateTapFamilyController)];
+    [icon2_1 addGestureRecognizer:tapicon2_1];
     [viewline2 addSubview:icon2_1];
     
     [icon2_1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -221,7 +224,7 @@
     label2_1.textAlignment=NSTextAlignmentCenter;
     [label2_1 setFont:fontsize_13];
     [label2_1 setTextColor:UIColorFromRGB(0x333333)];
-    [label2_1 setText:@"提醒"];
+    [label2_1 setText:@"家庭账本"];
     [viewline2 addSubview:label2_1];
     
     [label2_1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -403,7 +406,12 @@
 -(void)navigateTapCategoryExpendController{
     [self.navigationController pushViewController:[[CategoryViewController alloc] initWithType:NO] animated:YES];
 }
-
+/**
+ 跳转到家庭成员
+ */
+-(void)navigateTapFamilyController{
+    [self.navigationController pushViewController:[[FamilyViewController alloc] init] animated:YES];
+}
 /**
  跳转到主题管理
  */

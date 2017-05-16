@@ -42,7 +42,7 @@
         /*写文字*/
         CGContextSetFillColorWithColor(context,[UIColor whiteColor].CGColor);
         //    CGContextSetRGBFillColor (context,  166, 209, 87, 1.0);//设置填充颜色
-        CGContextFillRect(context,CGRectMake(0, rect.size.height-6, rect.size.width, 6));//填充框
+        CGContextFillRect(context,CGRectMake(0, rect.size.height-10, rect.size.width, 10));//填充框
     }
     
 }

@@ -47,6 +47,7 @@
     tableview.layer.cornerRadius = 10;
     tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableview.allowsSelection = NO;
+    tableview.bounces = NO;
     tableview.showsVerticalScrollIndicator = NO;
     [tableview registerClass:[PlanTableViewCell class] forCellReuseIdentifier:@"PlanTableViewCell"];
     [self.view addSubview:tableview];
@@ -54,10 +55,21 @@
     [tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.left.equalTo(strongSelf.mas_left).with.offset(15);
-        make.top.equalTo(strongSelf.mas_top).with.offset(280);
+        make.top.equalTo(strongSelf.mas_top).with.offset(290);
         make.bottom.equalTo(strongSelf.mas_bottom).with.offset(-10);
         make.right.equalTo(strongSelf.mas_right).with.offset(-15);
     }];
+    
+    __weak __typeof(tableview) weaktableview =  tableview;
+    planview.layoutchanged = ^(int rowheight) {
+        
+        __strong __typeof(weaktableview) strongtableview = weaktableview;
+        
+        [strongtableview mas_updateConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.top.equalTo(strongSelf).with.offset(rowheight+10);
+        }];
+    };
     
 }
 
@@ -115,7 +127,7 @@
         if (planview.bounds.size.height!=planviewHeight) {
             [planview showDate];
             [tableview mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.view).with.offset(planview.initHeight);
+                make.top.equalTo(self.view).with.offset(planview.initHeight+10);
             }];
         }
     }else{
@@ -124,7 +136,7 @@
                 //向下滚动超过10，显示planview
                 [planview showDate];
                 [tableview mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(self.view).with.offset(planview.initHeight);
+                    make.top.equalTo(self.view).with.offset(planview.initHeight+10);
                 }];
                 lasty = y;
             }

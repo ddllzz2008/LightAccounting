@@ -210,7 +210,7 @@
     
     __weak __typeof(calanerView) weakself = calanerView;
     
-    UIColor *normalColor = UIColorFromRGB(0xeeeeee);
+    UIColor *normalColor = UIColorFromRGB(0xDEDEDE);
     UIColor *selectedColor = get_theme_color;
     
     NSArray *monthrange = [_currentDate dateForCurrentMonth];
@@ -299,6 +299,9 @@
 //        }];
         self.frame = CGRectMake(0, 0, ScreenSize.width, 280);
         self.initHeight = 280;
+        if (self.layoutchanged) {
+            self.layoutchanged(280);
+        }
     }else{
         calanerView.frame = CGRectMake(0, 70, self.frame.size.width, 250);
 //        [self mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -306,6 +309,9 @@
 //        }];
         self.frame = CGRectMake(0, 0, ScreenSize.width, 320);
         self.initHeight = 320;
+        if (self.layoutchanged) {
+            self.layoutchanged(320);
+        }
     }
     
 }

@@ -11,6 +11,8 @@
 #import "NSDate+ExtMethod.h"
 #import "DateButton.h"
 
+typedef void(^layoutChanged)(int rowheight);
+
 @interface PlanView : UIView{
     
     UILabel *labelMonth;
@@ -33,6 +35,8 @@
     
     DateButton *selectedButton;
 }
+
+@property (nonatomic,copy) layoutChanged layoutchanged;
 
 @property (nonatomic,strong,readwrite) NSDate *currentDate;
 
