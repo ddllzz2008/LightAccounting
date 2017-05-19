@@ -45,4 +45,40 @@
     [title setTextColor:color];
 }
 
+-(void)setShowDelete:(BOOL)showDelete{
+    
+    _showDelete = showDelete;
+    
+    if (showDelete) {
+        deleteview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+        deleteview.image = [UIImage imageNamed:@"icon_delete"];
+        deleteview.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *deleteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteAccount)];
+        [deleteview addGestureRecognizer:deleteTap];
+        
+        [self addSubview:deleteview];
+    }else{
+        
+        if (deleteview!=nil) {
+            [deleteview removeFromSuperview];
+        }
+        
+    }
+}
+
+/**
+ 删除账本
+ */
+-(void)deleteAccount{
+    [DLZAlertView showAlertMessage:[self viewController] title:@"提示" content:@"删除账本将无法看见该账本下的账单记录，继续删除吗？" leftButton:@"取消" leftaction:^(id sender) {
+        
+        [(DLZAlertView*)sender close];
+    } rightButton:@"删除" rightaction:^(id sender) {
+        
+        [(DLZAlertView*)sender close];
+        
+    }];
+}
+
 @end

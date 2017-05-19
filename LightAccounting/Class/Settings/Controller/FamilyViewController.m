@@ -16,9 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem setTitle:@"家庭成员"];
+    [self.navigationItem setTitle:@"家庭账本"];
     [self hiddenTabbar];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_edit"] style:UIBarButtonItemStyleDone target:self action:@selector(deleteAction:)];
+    self.navigationItem.rightBarButtonItem = rightitem;
+    
+    deleteMode = NO;
 }
 
 -(void)initControls{
@@ -60,7 +65,12 @@
     static NSString *indentifier = @"CategoryViewCell";
     CategoryViewCell *cell = (CategoryViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:indentifier forIndexPath:indexPath];
     [cell setAnchorImage:[UIImage imageNamed:@"icon_capture"]];
-    [cell setLabelText:@"我"];
+    [cell setLabelText:@"我的账本"];
+    if (deleteMode) {
+        cell.showDelete=YES;
+    }else{
+        cell.showDelete=NO;
+    }
     return cell;
     
 }
@@ -76,6 +86,32 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark---交互事件
+-(void)deleteAction:(id)sender{
+    
+    deleteMode = YES;
+    
+    [collectionview reloadData];
+    
+    UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
+    right.frame = CGRectMake(0, 0, 40, 40);
+    [right addTarget:self action:@selector(comfirmBackEvent) forControlEvents:UIControlEventTouchUpInside];
+    [right setTitle:@"确定" forState:UIControlStateNormal];
+    [right setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    UIBarButtonItem *rightBut = [[UIBarButtonItem alloc]initWithCustomView:right];
+    self.navigationItem.rightBarButtonItem = rightBut;
+    
+}
+
+-(void)comfirmBackEvent{
+    
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_edit"] style:UIBarButtonItemStyleDone target:self action:@selector(deleteAction:)];
+    self.navigationItem.rightBarButtonItem = rightitem;
+    
+    deleteMode = NO;
+    
 }
 
 @end

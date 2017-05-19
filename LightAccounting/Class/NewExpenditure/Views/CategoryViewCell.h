@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DLZAlertView.h"
+#import "UIView+ExtMethod.h"
 
 @interface CategoryViewCell : UICollectionViewCell{
+    
+    UIImageView *deleteview;
     
     UIImageView *imageview;
     
@@ -18,6 +22,8 @@
 @property (nonatomic,strong) UIImage *anchorImage;
 
 @property (nonatomic,strong) NSString *labelText;
+
+@property (nonatomic,assign) BOOL showDelete;
 
 -(void)setLabelColor:(UIColor *)color;
 

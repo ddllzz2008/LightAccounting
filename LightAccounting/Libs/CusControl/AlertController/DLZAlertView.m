@@ -75,14 +75,14 @@ CGFloat margin_left;
     viewContent.frame =CGRectMake(10, rect.origin.y+rect.size.height+5, view_width-20, actualSize.height+20);
     
     if (leftButton==nil && rightButton==nil) {
-        contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-20, view_width, viewContent.frame.origin.y+viewContent.frame.size.height+10+20);
+        contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-150, view_width, viewContent.frame.origin.y+viewContent.frame.size.height+10+20);
         
     }
     else{
         if (leftButton!=nil) {
             rect = viewContent.frame;
             leftButton.frame=CGRectMake(25, rect.origin.y+rect.size.height+10, view_width-30, 30);
-            contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-10, view_width, leftButton.frame.origin.y+leftButton.frame.size.height+10+20);
+            contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-150, view_width, leftButton.frame.origin.y+leftButton.frame.size.height+10+20);
         }
         
         if (rightButton!=nil) {
@@ -91,7 +91,7 @@ CGFloat margin_left;
                 leftButton.frame=CGRectMake(25, rect.origin.y+rect.size.height+10, (view_width-25*2-10)/2, 30);
             }
             rightButton.frame=CGRectMake(25+leftButton.frame.size.width+10, leftButton.frame.origin.y, (view_width-25*2-10)/2, 30);
-            contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-30, view_width, rightButton.frame.origin.y+rightButton.frame.size.height+10+20);
+            contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-150, view_width, rightButton.frame.origin.y+rightButton.frame.size.height+10+20);
         }
     }
     

@@ -13,6 +13,9 @@
     
     UICollectionView *collectionview;
     
+    //业务变量
+    BOOL deleteMode;
+    
 }
 
 @end
