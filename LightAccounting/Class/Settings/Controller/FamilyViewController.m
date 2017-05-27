@@ -47,10 +47,25 @@
         __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.top.equalTo(strongSelf).with.offset(20);
         make.left.equalTo(strongSelf).with.offset(20);
-        make.bottom.equalTo(strongSelf).with.offset(-20);
+        make.bottom.equalTo(strongSelf).with.offset(-60);
         make.right.equalTo(strongSelf).with.offset(-20);
     }];
     
+    RadarSearchButton *radarbutton = [[RadarSearchButton alloc] initWithFrame:CGRectMake(0, 0, 140, 100)];
+    radarbutton.delegate=self;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapNewFamily:)];
+    [radarbutton addGestureRecognizer:tap];
+    UILongPressGestureRecognizer *longpress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(holdSyncFamily:)];
+    longpress.cancelsTouchesInView = NO;
+    [radarbutton addGestureRecognizer:longpress];
+    
+    [self.view addSubview:radarbutton];
+    [radarbutton mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.size.mas_equalTo(CGSizeMake(140, 100));
+        make.bottom.equalTo(strongSelf.mas_bottom);
+        make.centerX.equalTo(strongSelf);
+    }];
 }
 
 #pragma mark--uicollectionview视图
@@ -112,6 +127,96 @@
     
     deleteMode = NO;
     
+    [collectionview reloadData];
+    
+}
+
+-(void)tapNewFamily:(UITapGestureRecognizer *)sender{
+    
+    if (accountView==nil) {
+        accountView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-40, 200)];
+        accountView.layer.cornerRadius=5.0f;
+        accountView.layer.masksToBounds=YES;
+        accountView.backgroundColor = get_theme_color;
+        [self.view addSubview:accountView];
+        
+        __weak __typeof(self.view) weakSelf = self.view;
+        
+        [accountView mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.left.equalTo(strongSelf).with.offset(20);
+            make.right.equalTo(strongSelf.mas_right).with.offset(-20);
+            make.top.equalTo(strongSelf).with.offset(40);
+            make.height.equalTo(@200);
+        }];
+        
+        __weak __typeof(self.view) weakaccountView = accountView;
+        UIImageView *photoview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        photoview.image=[UIImage imageNamed:@"icon_capture"];
+        [accountView addSubview:photoview];
+        [photoview mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakaccountView) strongweakaccountView = weakaccountView;
+            make.size.mas_equalTo(CGSizeMake(60, 60));
+            make.top.equalTo(strongweakaccountView).with.offset(15);
+            make.centerX.equalTo(strongweakaccountView);
+        }];
+        
+        UITextField *photoName = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+        photoName.backgroundColor=[UIColor whiteColor];
+        photoName.placeholder=@"输入账本名称";
+        photoName.textColor=UIColorFromRGB(0x888888);
+        photoName.textAlignment=NSTextAlignmentCenter;
+        [accountView addSubview:photoName];
+        
+        [photoName mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakaccountView) strongweakaccountView = weakaccountView;
+            make.left.equalTo(strongweakaccountView).with.offset(20);
+            make.right.equalTo(strongweakaccountView).with.offset(-20);
+            make.height.equalTo(@40);
+            make.top.equalTo(photoview.mas_bottom).with.offset(15);
+        }];
+        
+        UIButton *photosave = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+        [photosave setTitle:@"保存" forState:UIControlStateNormal];
+        photosave.backgroundColor=UIColorFromRGB(0xcccccc);
+        [accountView addSubview:photosave];
+        
+        [photosave mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakaccountView) strongweakaccountView = weakaccountView;
+            make.left.equalTo(strongweakaccountView).with.offset(20);
+            make.right.equalTo(strongweakaccountView).with.offset(-20);
+            make.height.equalTo(@40);
+            make.top.equalTo(photoName.mas_bottom).with.offset(15);
+        }];
+    }
+    
+}
+
+-(void)holdSyncFamily:(UILongPressGestureRecognizer *)sender{
+    if (rader==nil) {
+        rader = [[RadarUIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        [rader setAlertMessage:@"正在查找附近设备"];
+        [self.view addSubview:rader];
+        
+        __weak __typeof(self.view) weakSelf = self.view;
+        [rader mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.left.equalTo(strongSelf);
+            make.top.equalTo(strongSelf);
+            make.bottom.equalTo(strongSelf.mas_bottom).with.offset(-100);
+            make.width.equalTo(strongSelf);
+        }];
+    }
+}
+
+/**
+ 按钮弹起
+ */
+-(void)RadarSearchButtonTouchEnd{
+    if (rader!=nil&&[rader superview]!=nil) {
+        [rader removeFromSuperview];
+        rader = nil;
+    }
 }
 
 @end
