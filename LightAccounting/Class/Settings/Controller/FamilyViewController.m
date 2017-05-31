@@ -134,25 +134,42 @@
 -(void)tapNewFamily:(UITapGestureRecognizer *)sender{
     
     if (accountView==nil) {
+        
+        chooseWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [chooseWindow setBackgroundColor:[UIColor clearColor]];
+        chooseWindow.alpha=1.0f;
+        chooseWindow.windowLevel = UIWindowLevelAlert;
+        chooseWindow.hidden=NO;
+        
+        UIView *rootview = [[UIView alloc] initWithFrame:chooseWindow.frame];
+        rootview.backgroundColor=[UIColor grayColor];
+        rootview.alpha=0.4f;
+        UITapGestureRecognizer *hiddenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenAction:)];
+        [rootview addGestureRecognizer:hiddenTap];
+        [chooseWindow addSubview:rootview];
+        
         accountView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-40, 200)];
         accountView.layer.cornerRadius=5.0f;
         accountView.layer.masksToBounds=YES;
         accountView.backgroundColor = get_theme_color;
-        [self.view addSubview:accountView];
+        [chooseWindow addSubview:accountView];
         
-        __weak __typeof(self.view) weakSelf = self.view;
+        __weak __typeof(self.view) weakSelf = chooseWindow;
         
         [accountView mas_makeConstraints:^(MASConstraintMaker *make) {
             __strong __typeof(weakSelf) strongSelf = weakSelf;
             make.left.equalTo(strongSelf).with.offset(20);
             make.right.equalTo(strongSelf.mas_right).with.offset(-20);
-            make.top.equalTo(strongSelf).with.offset(40);
+            make.top.equalTo(strongSelf).with.offset(80);
             make.height.equalTo(@200);
         }];
         
         __weak __typeof(self.view) weakaccountView = accountView;
         UIImageView *photoview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
         photoview.image=[UIImage imageNamed:@"icon_capture"];
+        UITapGestureRecognizer *choosephotoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePhoto:)];
+        photoview.userInteractionEnabled = YES;
+        [photoview addGestureRecognizer:choosephotoTap];
         [accountView addSubview:photoview];
         [photoview mas_makeConstraints:^(MASConstraintMaker *make) {
             __strong __typeof(weakaccountView) strongweakaccountView = weakaccountView;
@@ -192,6 +209,20 @@
     
 }
 
+-(void)hiddenAction:(UITapGestureRecognizer*)sender{
+    if (accountView!=nil) {
+        [accountView removeFromSuperview];
+        accountView = nil;
+    }
+    
+    if(chooseWindow!=nil){
+        
+        chooseWindow.hidden=YES;
+        chooseWindow=nil;
+    }
+}
+
+
 -(void)holdSyncFamily:(UILongPressGestureRecognizer *)sender{
     if (rader==nil) {
         rader = [[RadarUIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
@@ -207,6 +238,16 @@
             make.width.equalTo(strongSelf);
         }];
     }
+}
+
+
+/**
+ 选择照片
+
+ @param sender 手势对象
+ */
+-(void)choosePhoto:(UITapGestureRecognizer*)sender{
+    
 }
 
 /**

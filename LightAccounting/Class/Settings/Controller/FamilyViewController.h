@@ -21,6 +21,7 @@
     RadarUIView *rader;
     
     //添加账本视图
+    UIWindow *chooseWindow;
     UIView *accountView;
     
 }
