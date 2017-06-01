@@ -102,6 +102,7 @@
 		694DAC991EA7B2BA00B5FFD6 /* TapPassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC981EA7B2BA00B5FFD6 /* TapPassView.m */; };
 		694DAC9C1EA7B4C400B5FFD6 /* PassCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC9B1EA7B4C400B5FFD6 /* PassCircleView.m */; };
 		694E728A1E80D343007AC23F /* WaterWareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694E72891E80D343007AC23F /* WaterWareView.m */; };
+		694EB56C1EDFB7ED007311DC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694EB56B1EDFB7ED007311DC /* MobileCoreServices.framework */; };
 		6950825E1EB31C190037E547 /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6950825D1EB31C190037E547 /* PlanViewController.m */; };
 		695082611EB31D880037E547 /* PlanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 695082601EB31D880037E547 /* PlanView.m */; };
 		69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB51EB0454100973E7F /* CategoryTableCell.m */; };
@@ -311,6 +312,7 @@
 		694DAC9B1EA7B4C400B5FFD6 /* PassCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PassCircleView.m; sourceTree = "<group>"; };
 		694E72881E80D343007AC23F /* WaterWareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterWareView.h; sourceTree = "<group>"; };
 		694E72891E80D343007AC23F /* WaterWareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterWareView.m; sourceTree = "<group>"; };
+		694EB56B1EDFB7ED007311DC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		6950825C1EB31C190037E547 /* PlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanViewController.h; sourceTree = "<group>"; };
 		6950825D1EB31C190037E547 /* PlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanViewController.m; sourceTree = "<group>"; };
 		6950825F1EB31D880037E547 /* PlanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanView.h; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				694EB56C1EDFB7ED007311DC /* MobileCoreServices.framework in Frameworks */,
 				6944B7221E7E738A00474964 /* BaiduMapAPI_Base.framework in Frameworks */,
 				6944B7231E7E738A00474964 /* BaiduMapAPI_Location.framework in Frameworks */,
 				6944B7241E7E738A00474964 /* BaiduMapAPI_Map.framework in Frameworks */,
@@ -1159,6 +1162,7 @@
 		CCB2B2D6691EDFE066917BA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				694EB56B1EDFB7ED007311DC /* MobileCoreServices.framework */,
 				6944B71E1E7E738A00474964 /* BaiduMapAPI_Base.framework */,
 				6944B71F1E7E738A00474964 /* BaiduMapAPI_Location.framework */,
 				6944B7201E7E738A00474964 /* BaiduMapAPI_Map.framework */,

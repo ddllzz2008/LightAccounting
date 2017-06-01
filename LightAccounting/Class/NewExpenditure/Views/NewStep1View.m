@@ -190,6 +190,58 @@
         make.right.equalTo(strongSelf).with.offset(-15);
         make.height.equalTo(@30);
     }];
+    
+    UILabel *labelAlert = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+    [labelAlert setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
+    labelAlert.textAlignment=NSTextAlignmentLeft;
+    [labelAlert setText:@"账单外记账"];
+    [self addSubview:labelAlert];
+    
+    [labelAlert mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf).with.offset(15);
+        make.top.equalTo(labelcategory.mas_bottom).with.offset(25);
+        make.size.mas_equalTo(CGSizeMake(80, 30));
+    }];
+    
+    
+    UISwitch *switchAlert = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+    switchAlert.on=NO;
+    switchAlert.tintColor=UIColorFromRGB(0xcccccc);
+    switchAlert.onTintColor=get_theme_color;
+    [self addSubview:switchAlert];
+    [switchAlert mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.size.mas_equalTo(CGSizeMake(60, 30));
+        make.right.equalTo(strongSelf.mas_right).with.offset(-15);
+        make.centerY.equalTo(labelAlert);
+    }];
+    
+    UILabel *labelAlert1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+    [labelAlert1 setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
+    labelAlert1.textAlignment=NSTextAlignmentLeft;
+    [labelAlert1 setText:@"隐私记账"];
+    [self addSubview:labelAlert1];
+    
+    [labelAlert1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf).with.offset(15);
+        make.top.equalTo(labelAlert.mas_bottom).with.offset(25);
+        make.size.mas_equalTo(CGSizeMake(80, 30));
+    }];
+    
+    
+    UISwitch *switchAlert1 = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+    switchAlert1.on=NO;
+    switchAlert1.tintColor=UIColorFromRGB(0xcccccc);
+    switchAlert1.onTintColor=get_theme_color;
+    [self addSubview:switchAlert1];
+    [switchAlert1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.size.mas_equalTo(CGSizeMake(60, 30));
+        make.right.equalTo(strongSelf.mas_right).with.offset(-15);
+        make.centerY.equalTo(labelAlert1);
+    }];
 }
 
 

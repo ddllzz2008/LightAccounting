@@ -16,6 +16,11 @@
     
     
     NSDictionary *colorDictionary;
+    
+    //更改账单日
+    UIWindow *chooseWindow;
+    UIView *accountView;
+    UIView *rootview;
 }
 
 @end

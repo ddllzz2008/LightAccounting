@@ -141,20 +141,27 @@
         chooseWindow.windowLevel = UIWindowLevelAlert;
         chooseWindow.hidden=NO;
         
-        UIView *rootview = [[UIView alloc] initWithFrame:chooseWindow.frame];
+        UIViewController *rootviewcontroller = [[UIViewController alloc] init];
+        chooseWindow.rootViewController = rootviewcontroller;
+        
+        
+        
+        rootview = [[UIView alloc] initWithFrame:chooseWindow.frame];
         rootview.backgroundColor=[UIColor grayColor];
         rootview.alpha=0.4f;
         UITapGestureRecognizer *hiddenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenAction:)];
         [rootview addGestureRecognizer:hiddenTap];
-        [chooseWindow addSubview:rootview];
+//        [chooseWindow addSubview:rootview];
+        [rootviewcontroller.view addSubview:rootview];
         
         accountView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-40, 200)];
         accountView.layer.cornerRadius=5.0f;
         accountView.layer.masksToBounds=YES;
         accountView.backgroundColor = get_theme_color;
-        [chooseWindow addSubview:accountView];
+//        [chooseWindow addSubview:accountView];
+        [rootviewcontroller.view addSubview:accountView];
         
-        __weak __typeof(self.view) weakSelf = chooseWindow;
+        __weak __typeof(rootviewcontroller.view) weakSelf = rootviewcontroller.view;
         
         [accountView mas_makeConstraints:^(MASConstraintMaker *make) {
             __strong __typeof(weakSelf) strongSelf = weakSelf;
@@ -164,8 +171,10 @@
             make.height.equalTo(@200);
         }];
         
-        __weak __typeof(self.view) weakaccountView = accountView;
-        UIImageView *photoview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        __weak __typeof(accountView) weakaccountView = accountView;
+        photoview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        photoview.layer.cornerRadius=30;
+        photoview.layer.masksToBounds=YES;
         photoview.image=[UIImage imageNamed:@"icon_capture"];
         UITapGestureRecognizer *choosephotoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePhoto:)];
         photoview.userInteractionEnabled = YES;
@@ -247,6 +256,129 @@
  @param sender 手势对象
  */
 -(void)choosePhoto:(UITapGestureRecognizer*)sender{
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:@"图片来源"
+                                  delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:@"从手机相册中选取"
+                                  otherButtonTitles:@"拍照",nil];
+    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    [actionSheet showInView:self.view];
+    
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex==0) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
+            if (status !=PHAuthorizationStatusAuthorized)return;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
+                picker.delegate =self;
+                // 显示选择的索引
+                picker.showsSelectionIndex =NO;
+                // 设置相册的类型：相机胶卷 +自定义相册
+                picker.assetCollectionSubtypes =@[
+                                                  @(PHAssetCollectionSubtypeSmartAlbumUserLibrary),
+                                                  @(PHAssetCollectionSubtypeAlbumRegular)];
+                // 不需要显示空的相册
+                picker.showsEmptyAlbums =NO;
+                
+                [chooseWindow.rootViewController presentViewController:picker animated:YES completion:nil];
+            });
+        }];
+    }else if (buttonIndex==1){
+        
+        UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+        /*设置媒体来源，即调用出来的UIImagePickerController所显示出来的界面，有一下三种来源
+         typedef NS_ENUM(NSInteger, UIImagePickerControllerSourceType) {
+         UIImagePickerControllerSourceTypePhotoLibrary,
+         UIImagePickerControllerSourceTypeCamera,
+         UIImagePickerControllerSourceTypeSavedPhotosAlbum
+         };分别表示：图片列表，摄像头，相机相册*/
+        [controller setSourceType:UIImagePickerControllerSourceTypeCamera];
+        // 设置所支持的媒体功能，即只能拍照，或则只能录像，或者两者都可以
+        NSString *requiredMediaType = (NSString *)kUTTypeImage;
+//        NSString *requiredMediaType1 = ( NSString *)kUTTypeMovie;
+        NSArray *arrMediaTypes=[NSArray arrayWithObjects:requiredMediaType,nil];
+        [controller setMediaTypes:arrMediaTypes];
+        // 设置录制视频的质量
+//        [controller setVideoQuality:UIImagePickerControllerQualityTypeHigh];
+        //设置最长摄像时间
+//        [controller setVideoMaximumDuration:10.f];
+        // 设置是否可以管理已经存在的图片或者视频
+        [controller setAllowsEditing:YES];
+        // 设置代理
+        [controller setDelegate:self];
+        [chooseWindow.rootViewController presentViewController:controller animated:YES completion:nil];
+        
+    }
+}
+
+-(BOOL)assetsPickerController:(CTAssetsPickerController *)picker shouldSelectAsset:(PHAsset *)asset
+{
+    NSInteger max =1;
+    if (picker.selectedAssets.count >= max) {
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:[NSString stringWithFormat:@"最多选择%zd张图片", max] preferredStyle:UIAlertControllerStyleAlert];
+//        [alert addAction:[UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil]];
+//        [picker presentViewController:alert animated:YES completion:nil];
+        // 这里不能使用self来modal别的控制器，因为此时self.view不在window上
+        return NO;
+    }
+    return YES;
+}
+
+/**
+ 选择相册返回
+
+ @param picker 选择器
+ @param assets 选择的资源
+ */
+-(void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+    //关闭选择界面
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    if (assets.count>0) {
+//        CGFloat scale = [UIScreen mainScreen].scale;
+        CGFloat scale = 20;
+        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+        options.resizeMode =PHImageRequestOptionsResizeModeExact;
+        options.deliveryMode =PHImageRequestOptionsDeliveryModeHighQualityFormat;
+        PHAsset *asset = assets[0];
+        CGSize size =CGSizeMake(asset.pixelWidth / scale, asset.pixelHeight / scale);
+        // // 获取图片
+        [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeDefault options:options resultHandler:^(UIImage *_Nullable result,NSDictionary *_Nullable info) {
+            
+            photoview.image = result;
+//            NSData *imageData =UIImageJPEGRepresentation([self imageWithImageSimple:result scaledToSize:CGSizeMake(200,200)], 0.5);
+//            [selfossUpload:imageData];
+        }];
+    }
+}
+
+/**
+ 拍照返回
+
+ @param picker 拍照选择器
+ @param info 返回的照片
+ */
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    // 判断获取类型：图片
+    if ([mediaType isEqualToString:( NSString *)kUTTypeImage]){
+        UIImage *theImage = nil;
+        // 判断，图片是否允许修改
+        if ([picker allowsEditing]){
+            //获取用户编辑之后的图像
+            theImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        } else {
+            // 照片的原数据
+            theImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        }
+        photoview.image = theImage;
+        [picker  dismissViewControllerAnimated:YES completion:nil];
+    }
     
 }
 

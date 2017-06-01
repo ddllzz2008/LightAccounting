@@ -41,16 +41,28 @@
     [tableview registerClass:[BudgetTableViewCell class] forCellReuseIdentifier:@"budgettableviewcell"];
     [self.view addSubview:tableview];
     
-    __weak __typeof(self) weakSelf = self;
+    __weak __typeof(self.view) weakSelf = self.view;
     [tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.left.equalTo(strongSelf.view).with.offset(15);
+        make.left.equalTo(strongSelf).with.offset(15);
         make.width.mas_equalTo(ScreenSize.width - 30);
-        make.centerX.equalTo(strongSelf.view);
-        make.bottom.equalTo(strongSelf.view.mas_bottom).with.offset(-20);
-        make.top.equalTo(strongSelf.view.mas_top).with.offset(15);
+        make.centerX.equalTo(strongSelf);
+        make.bottom.equalTo(strongSelf.mas_bottom).with.offset(-50);
+        make.top.equalTo(strongSelf.mas_top).with.offset(15);
     }];
     
+    UIButton *resetBilldate = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 40)];
+    [resetBilldate setTitle:@"更改账单日" forState:UIControlStateNormal];
+    [resetBilldate setBackgroundColor:get_theme_color];
+    [resetBilldate addTarget:self action:@selector(resetAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:resetBilldate];
+    
+    [resetBilldate mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.size.mas_equalTo(CGSizeMake(ScreenSize.width, 40));
+        make.left.equalTo(strongSelf);
+        make.bottom.equalTo(strongSelf);
+    }];
 }
 
 -(void)initWithViewModel{
@@ -74,10 +86,10 @@
     static NSString *idetifier = @"budgettableviewcell";
     BudgetTableViewCell *cell = (BudgetTableViewCell *)[tableView dequeueReusableCellWithIdentifier:idetifier forIndexPath:indexPath];
     if (cell) {
-        [cell setTitle:[NSString stringWithFormat:@"%d月",indexPath.item+1]];
+        [cell setTitle:[NSString stringWithFormat:@"%ld月",indexPath.item+1]];
         [cell setActualValue:90.0f];
         [cell setBudgetValue:100.0f];
-        NSNumber *colorvalue = [colorDictionary objectForKey:[NSString stringWithFormat:@"%d",indexPath.item+1]];
+        NSNumber *colorvalue = [colorDictionary objectForKey:[NSString stringWithFormat:@"%ld",indexPath.item+1]];
         [cell setHeaderColor:UIColorFromRGB([colorvalue longValue])];
         //加入键盘自动管理
         [self addTextFieldResponser:cell.inputmoney];
@@ -104,6 +116,103 @@
         tableview.frame = CGRectMake(tableview.frame.origin.x, tableview.frame.origin.y - rect.size.height, tableview.frame.size.width, tableview.frame.size.height);
     }else{
         tableview.frame = CGRectMake(tableview.frame.origin.x, tableview.frame.origin.y + rect.size.height, tableview.frame.size.width, tableview.frame.size.height);
+    }
+}
+
+#pragma mark---更改账单日
+-(void)resetAction:(id)sender{
+    if (accountView==nil) {
+        
+        chooseWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [chooseWindow setBackgroundColor:[UIColor clearColor]];
+        chooseWindow.alpha=1.0f;
+        chooseWindow.windowLevel = UIWindowLevelAlert;
+        chooseWindow.hidden=NO;
+        
+        rootview = [[UIView alloc] initWithFrame:chooseWindow.frame];
+        rootview.backgroundColor=[UIColor grayColor];
+        rootview.alpha=0.4f;
+        UITapGestureRecognizer *hiddenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenAction:)];
+        [rootview addGestureRecognizer:hiddenTap];
+        //        [chooseWindow addSubview:rootview];
+        [chooseWindow addSubview:rootview];
+        
+        accountView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-40, 200)];
+        accountView.layer.cornerRadius=5.0f;
+        accountView.layer.masksToBounds=YES;
+        accountView.backgroundColor = get_theme_color;
+        //        [chooseWindow addSubview:accountView];
+        [chooseWindow addSubview:accountView];
+        
+        __weak __typeof(chooseWindow) weakSelf = chooseWindow;
+        
+        [accountView mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.left.equalTo(strongSelf).with.offset(20);
+            make.right.equalTo(strongSelf.mas_right).with.offset(-20);
+            make.top.equalTo(strongSelf).with.offset(80);
+            make.height.equalTo(@200);
+        }];
+        
+        __weak __typeof(accountView) weakaccountView = accountView;
+        
+        UILabel *messagetitlte = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+        [messagetitlte setStyle:fontsize_13 color:UIColorFromRGB(0xffffff)];
+        messagetitlte.textAlignment=NSTextAlignmentCenter;
+        messagetitlte.numberOfLines=0;
+        messagetitlte.lineBreakMode=NSLineBreakByWordWrapping;
+        [messagetitlte setText:@"账单日为每月账单按照上月的账单日至本月的账单日统计,设置范围为1-31"];
+        [accountView addSubview:messagetitlte];
+        
+        [messagetitlte mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakaccountView) strongweakaccountView = weakaccountView;
+            make.left.equalTo(strongweakaccountView).with.offset(20);
+            make.right.equalTo(strongweakaccountView.mas_right).with.offset(-20);
+            make.top.equalTo(strongweakaccountView).with.offset(15);
+            make.height.equalTo(@40);
+        }];
+        
+        
+        UITextField *photoName = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+        photoName.backgroundColor=[UIColor whiteColor];
+        photoName.placeholder=@"输入账单日（默认为每月第一天）";
+        photoName.textColor=UIColorFromRGB(0x888888);
+        photoName.textAlignment=NSTextAlignmentCenter;
+        [accountView addSubview:photoName];
+        
+        [photoName mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakaccountView) strongweakaccountView = weakaccountView;
+            make.left.equalTo(strongweakaccountView).with.offset(20);
+            make.right.equalTo(strongweakaccountView).with.offset(-20);
+            make.height.equalTo(@40);
+            make.top.equalTo(messagetitlte.mas_bottom).with.offset(15);
+        }];
+        
+        UIButton *photosave = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+        [photosave setTitle:@"保存" forState:UIControlStateNormal];
+        photosave.backgroundColor=UIColorFromRGB(0xcccccc);
+        [accountView addSubview:photosave];
+        
+        [photosave mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakaccountView) strongweakaccountView = weakaccountView;
+            make.left.equalTo(strongweakaccountView).with.offset(20);
+            make.right.equalTo(strongweakaccountView).with.offset(-20);
+            make.height.equalTo(@40);
+            make.top.equalTo(photoName.mas_bottom).with.offset(15);
+        }];
+    }
+}
+
+-(void)hiddenAction:(UITapGestureRecognizer*)sender{
+    if (accountView!=nil) {
+        [accountView removeFromSuperview];
+        accountView = nil;
+    }
+    
+    if(chooseWindow!=nil){
+        
+        chooseWindow.hidden=YES;
+        chooseWindow=nil;
     }
 }
 

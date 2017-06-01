@@ -247,6 +247,58 @@
         make.right.equalTo(strongSelf).with.offset(-15);
         make.height.equalTo(@30);
     }];
+    
+    UILabel *labelaccount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+    [labelaccount setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
+    labelaccount.textAlignment=NSTextAlignmentLeft;
+    [labelaccount setText:@"账单外记账"];
+    [self addSubview:labelaccount];
+    
+    [labelaccount mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf).with.offset(15);
+        make.top.equalTo(labelcategory.mas_bottom).with.offset(25);
+        make.size.mas_equalTo(CGSizeMake(80, 30));
+    }];
+    
+    
+    UISwitch *switchaccount = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+    switchaccount.on=NO;
+    switchaccount.tintColor=UIColorFromRGB(0xcccccc);
+    switchaccount.onTintColor=get_theme_color;
+    [self addSubview:switchaccount];
+    [switchaccount mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.size.mas_equalTo(CGSizeMake(60, 30));
+        make.right.equalTo(strongSelf.mas_right).with.offset(-15);
+        make.centerY.equalTo(labelaccount);
+    }];
+    
+    UILabel *labelaccount1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+    [labelaccount1 setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
+    labelaccount1.textAlignment=NSTextAlignmentLeft;
+    [labelaccount1 setText:@"隐私记账"];
+    [self addSubview:labelaccount1];
+    
+    [labelaccount1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.left.equalTo(strongSelf).with.offset(15);
+        make.top.equalTo(labelaccount.mas_bottom).with.offset(25);
+        make.size.mas_equalTo(CGSizeMake(80, 30));
+    }];
+    
+    
+    UISwitch *switchaccount1 = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+    switchaccount1.on=NO;
+    switchaccount1.tintColor=UIColorFromRGB(0xcccccc);
+    switchaccount1.onTintColor=get_theme_color;
+    [self addSubview:switchaccount1];
+    [switchaccount1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.size.mas_equalTo(CGSizeMake(60, 30));
+        make.right.equalTo(strongSelf.mas_right).with.offset(-15);
+        make.centerY.equalTo(labelaccount1);
+    }];
 }
 
 
