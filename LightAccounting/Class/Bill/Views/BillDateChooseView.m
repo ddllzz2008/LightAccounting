@@ -42,7 +42,7 @@
     chooseDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width/3, 60)];
     [chooseDate setTextColor:get_theme_color];
     [chooseDate setTextAlignment:NSTextAlignmentCenter];
-    [chooseDate setFont:fontsize_22];
+    [chooseDate setFont:fontsize_18];
     [chooseDate setText:@"10月 | 2016"];
     [self addSubview:chooseDate];
     

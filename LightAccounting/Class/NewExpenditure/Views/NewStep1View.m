@@ -130,6 +130,9 @@
     
     UIImageView *imgmap = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 30, 30)];
     [imgmap setImage:[UIImage imageNamed:@"icon_map"]];
+    UITapGestureRecognizer *selectlocationTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoLocationTap:)];
+    imgmap.userInteractionEnabled=YES;
+    [imgmap addGestureRecognizer:selectlocationTap];
     [self addSubview:imgmap];
     
     [imgmap mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -194,7 +197,7 @@
     UILabel *labelAlert = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
     [labelAlert setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
     labelAlert.textAlignment=NSTextAlignmentLeft;
-    [labelAlert setText:@"账单外记账"];
+    [labelAlert setText:@"额外消费"];
     [self addSubview:labelAlert];
     
     [labelAlert mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -258,6 +261,17 @@
 }
 
 #pragma mark--交互事件
+
+/**
+ 跳转至选择位置
+
+ @param sender 手势对象
+ */
+-(void)gotoLocationTap:(UITapGestureRecognizer *)sender{
+    
+    [[self viewController].navigationController pushViewController:[[MapChooseViewController alloc] init] animated:YES];
+    
+}
 /**
  打开类别选择对话框
 

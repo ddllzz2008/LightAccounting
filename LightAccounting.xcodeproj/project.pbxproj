@@ -98,6 +98,7 @@
 		6944B7251E7E738A00474964 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6944B7211E7E738A00474964 /* BaiduMapAPI_Search.framework */; };
 		6944B7271E7E73A700474964 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6944B7261E7E73A700474964 /* mapapi.bundle */; };
 		6944B72A1E7E76F900474964 /* MainPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944B7291E7E76F900474964 /* MainPageView.m */; };
+		694815C81EE104A000DDADF2 /* MapChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 694815C71EE104A000DDADF2 /* MapChooseViewController.m */; };
 		694DAC961EA7AFAF00B5FFD6 /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC951EA7AFAF00B5FFD6 /* PasswordViewController.m */; };
 		694DAC991EA7B2BA00B5FFD6 /* TapPassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC981EA7B2BA00B5FFD6 /* TapPassView.m */; };
 		694DAC9C1EA7B4C400B5FFD6 /* PassCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 694DAC9B1EA7B4C400B5FFD6 /* PassCircleView.m */; };
@@ -304,6 +305,8 @@
 		6944B7261E7E73A700474964 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		6944B7281E7E76F900474964 /* MainPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageView.h; sourceTree = "<group>"; };
 		6944B7291E7E76F900474964 /* MainPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageView.m; sourceTree = "<group>"; };
+		694815C61EE104A000DDADF2 /* MapChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapChooseViewController.h; sourceTree = "<group>"; };
+		694815C71EE104A000DDADF2 /* MapChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapChooseViewController.m; sourceTree = "<group>"; };
 		694DAC941EA7AFAF00B5FFD6 /* PasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
 		694DAC951EA7AFAF00B5FFD6 /* PasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewController.m; sourceTree = "<group>"; };
 		694DAC971EA7B2BA00B5FFD6 /* TapPassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapPassView.h; sourceTree = "<group>"; };
@@ -1058,6 +1061,8 @@
 				699B2F921E87B33C00CE3FAD /* NewExpenditureViewController.m */,
 				692398651E6FEFCD00A86BAD /* ExpendVoiceViewController.h */,
 				692398661E6FEFCD00A86BAD /* ExpendVoiceViewController.m */,
+				694815C61EE104A000DDADF2 /* MapChooseViewController.h */,
+				694815C71EE104A000DDADF2 /* MapChooseViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1369,6 +1374,7 @@
 				6944B6D61E7E30E500474964 /* MainTabController.m in Sources */,
 				69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */,
 				6944B6D91E7E30E500474964 /* BaseViewModel.m in Sources */,
+				694815C81EE104A000DDADF2 /* MapChooseViewController.m in Sources */,
 				69D5B9001E7FDECC00B2EC8B /* RemindModel.m in Sources */,
 				6933BFE51E822F0000701ECB /* FamilyPersonDAL.m in Sources */,
 				6944B7031E7E5FA700474964 /* MainPageViewController.m in Sources */,

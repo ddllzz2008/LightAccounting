@@ -14,6 +14,7 @@
 #import "DLPickerView.h"
 #import "DLDatePickerView.h"
 #import "UIView+ExtMethod.h"
+#import "MapChooseViewController.h"
 
 @interface NewStep1View : UIView<UIGestureRecognizerDelegate,UITextFieldDelegate,CategoryChooseViewDelegate,DLDatePickerViewDelegate>{
     

@@ -76,7 +76,7 @@
     
     //初始化百度地图
     _mapManager = [[BMKMapManager alloc] init];
-    bool ret = [_mapManager start:@"HUacHqLeSVqrGC4CHtXG0sQqMTZLXZau" generalDelegate:nil];
+    bool ret = [_mapManager start:@"HUacHqLeSVqrGC4CHtXG0sQqMTZLXZau" generalDelegate:self];
     if (!ret) {
         DDLogError(@"百度地图服务启动失败");
     }
