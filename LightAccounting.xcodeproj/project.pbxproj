@@ -326,6 +326,7 @@
 		69596CB81EB0A11D00973E7F /* ThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeViewController.m; sourceTree = "<group>"; };
 		6974FC581EA51C63008F4495 /* BillTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableCell.h; sourceTree = "<group>"; };
 		6974FC591EA51C63008F4495 /* BillTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableCell.m; sourceTree = "<group>"; };
+		697A4E051EE1B85C0059106C /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		698F642C1EB0D595001BEB18 /* UIColor+ExtMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ExtMethod.h"; sourceTree = "<group>"; };
 		698F642D1EB0D595001BEB18 /* UIColor+ExtMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ExtMethod.m"; sourceTree = "<group>"; };
 		698F642F1EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
@@ -1167,6 +1168,7 @@
 		CCB2B2D6691EDFE066917BA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				697A4E051EE1B85C0059106C /* Reveal.framework */,
 				694EB56B1EDFB7ED007311DC /* MobileCoreServices.framework */,
 				6944B71E1E7E738A00474964 /* BaiduMapAPI_Base.framework */,
 				6944B71F1E7E738A00474964 /* BaiduMapAPI_Location.framework */,
@@ -1600,6 +1602,10 @@
 					"-framework",
 					"\"SDWebImage\"",
 					"-ObjC",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ddllzz.LightAccounting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1659,6 +1665,10 @@
 					"-framework",
 					"\"SDWebImage\"",
 					"-ObjC",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ddllzz.LightAccounting;
 				PRODUCT_NAME = "$(TARGET_NAME)";

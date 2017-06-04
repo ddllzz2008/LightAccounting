@@ -55,7 +55,7 @@
         __strong __typeof(weakheaderView) strongSelf = weakheaderView;
         make.size.mas_equalTo(CGSizeMake(ScreenSize.width-60, 30));
         make.left.equalTo(strongSelf).with.offset(10);
-        make.top.equalTo(strongSelf);
+        make.top.equalTo(strongSelf).with.offset(10);
     }];
     
     searchimg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -250,9 +250,11 @@
     if (errorCode == BMK_SEARCH_NO_ERROR) {
         for (int i = 0; i < poiResult.poiInfoList.count; i++) {
             BMKPoiInfo *info = [poiResult.poiInfoList objectAtIndex:i];
-            [tableArray addObject:info.name];
+            [tableArray addObject:info];
         }
-        
+        if (tableArray.count>0) {
+            [self.view bringSubviewToFront:resulttableview];
+        }
         [resulttableview reloadData];
     }
 }
@@ -267,12 +269,12 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellIndetifier = @"cell";
+    static NSString *cellIndetifier = @"mapsearchresultcell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndetifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndetifier];
-        [cell.textLabel setText:[tableArray objectAtIndex:indexPath.item]];
     }
+    cell.textLabel.text=[[tableArray objectAtIndex:indexPath.item] name];
     
     return cell;
     
@@ -282,19 +284,35 @@
     
     UIButton *closebutton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 120, 30)];
     [closebutton setTitle:@"关闭" forState:UIControlStateNormal];
-    
+    [closebutton setTitleColor:get_theme_color forState:UIControlStateNormal];
+    [closebutton addTarget:self action:@selector(closesearchPanel:) forControlEvents:UIControlEventTouchUpInside];
     return closebutton;
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 30;
+    return 40;
     
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 40;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    BMKPoiInfo *info = [tableArray objectAtIndex:indexPath.item];
+    if (_pointAnnotation!=nil) {
+        _pointAnnotation.coordinate = info.pt;
+    }
+    [mapview setCenterCoordinate:info.pt animated:true];
+    [addressLabel setText:[NSString stringWithFormat:@"%@", info.address]];
+    [self.view bringSubviewToFront:mapview];
+}
+
+-(void)closesearchPanel:(id)sender{
+    [self.view bringSubviewToFront:mapview];
 }
 
 #pragma mark---系统事件
@@ -305,6 +323,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     
+    [self initTextFieldArray:searchfield,nil];
+    
     [super viewWillAppear:animated];
     
     [mapview viewWillAppear];
@@ -313,7 +333,6 @@
     
     mapview.delegate=self;
     geocodesearch.delegate=self;
-    
     
 }
 
