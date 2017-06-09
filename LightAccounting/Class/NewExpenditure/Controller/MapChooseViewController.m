@@ -21,7 +21,7 @@
     [self hiddenTabbar];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"item_ok"] style:UIBarButtonItemStyleDone target:self action:@selector(saveData:)];
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"item_ok"] style:UIBarButtonItemStyleDone target:self action:@selector(chooseLoationCompleted:)];
     self.navigationItem.rightBarButtonItem = rightitem;
 }
 
@@ -138,6 +138,7 @@
         pt = userLocation.location.coordinate;
         pt.latitude= userLocation.location.coordinate.latitude;
         pt.longitude= userLocation.location.coordinate.longitude;
+        coord = pt;
         _pointAnnotation= [[BMKPointAnnotation alloc]init];
         _pointAnnotation.coordinate= pt;
         [mapview setCenterCoordinate:pt animated:true];
@@ -160,6 +161,7 @@
 - (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
     
     CLLocationCoordinate2D carLocation = [mapview convertPoint:self.view.center toCoordinateFromView:self.view];
+    coord = carLocation;
     BMKReverseGeoCodeOption *option = [[BMKReverseGeoCodeOption alloc] init];
     option.reverseGeoPoint = CLLocationCoordinate2DMake(carLocation.latitude, carLocation.longitude);
     NSLog(@"%f - %f", option.reverseGeoPoint.latitude, option.reverseGeoPoint.longitude);
@@ -183,6 +185,7 @@
     NSLog(@"%f - %f", option.reverseGeoPoint.latitude, option.reverseGeoPoint.longitude);
     if (_pointAnnotation!=nil) {
         _pointAnnotation.coordinate = CLLocationCoordinate2DMake(option.reverseGeoPoint.latitude, option.reverseGeoPoint.longitude);
+        coord = _pointAnnotation.coordinate;
     }
     //调用发地址编码方法，让其在代理方法onGetReverseGeoCodeResult中输出
     [geocodesearch reverseGeoCode:option];
@@ -256,6 +259,8 @@
             [self.view bringSubviewToFront:resulttableview];
         }
         [resulttableview reloadData];
+    }else{
+        [[AlertController sharedInstance] showMessageAutoClose:@"未搜索到相关地址"];
     }
 }
 
@@ -305,6 +310,7 @@
     BMKPoiInfo *info = [tableArray objectAtIndex:indexPath.item];
     if (_pointAnnotation!=nil) {
         _pointAnnotation.coordinate = info.pt;
+        coord = info.pt;
     }
     [mapview setCenterCoordinate:info.pt animated:true];
     [addressLabel setText:[NSString stringWithFormat:@"%@", info.address]];
@@ -313,6 +319,25 @@
 
 -(void)closesearchPanel:(id)sender{
     [self.view bringSubviewToFront:mapview];
+}
+
+
+/**
+ 返回结果
+
+ @param sender <#sender description#>
+ */
+-(void)chooseLoationCompleted:(id)sender{
+    if (addressLabel.text!=nil && ![addressLabel.text isEqualToString:@""]) {
+        if (self.chooseCallback!=nil) {
+            self.chooseCallback(self, addressLabel.text, coord.latitude, coord.longitude);
+        }
+    }else{
+        if (self.chooseCallback!=nil) {
+            self.chooseCallback(self, @"未选择消费地址", -1, -1);
+        }
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark---系统事件

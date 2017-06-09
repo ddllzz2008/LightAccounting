@@ -56,6 +56,23 @@
         NewExpenditureViewController *newexpendController = [[NewExpenditureViewController alloc] init];
         [strongSelf.navigationController pushViewController:newexpendController animated:YES];
     };
+    
+    chooseview = [[AccountChooseView alloc] initWithFrame:CGRectMake(0, 0, 100, 70)];
+    chooseview.oriFrame = CGRectMake(0, 0, 100, 70);
+    chooseview.backgroundColor = [UIColor clearColor];
+    chooseview.textColor=get_theme_color;
+    chooseview.source = [[NSMutableArray alloc] initWithObjects:@"默认：我的账本",@"老婆账本", nil];
+    chooseview.containerColor = UIColorFromRGB(0xffffff);
+    chooseview.userInteractionEnabled=YES;
+    
+    [self.view addSubview:chooseview];
+    
+    [chooseview mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.centerX.equalTo(strongSelf.view);
+        make.top.equalTo(strongSelf.view).with.offset(-20);
+        make.size.mas_equalTo(CGSizeMake(100, 70));
+    }];;
 }
 
 -(void)initWithViewModel{

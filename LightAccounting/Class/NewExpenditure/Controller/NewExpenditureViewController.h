@@ -8,11 +8,14 @@
 
 #import "BaseViewController.h"
 #import "NewStep1View.h"
+#import "ExpendViewModel.h"
 
 @interface NewExpenditureViewController : BaseViewController{
     
     @private NewStep1View *step1view;
     
 }
+
+@property (nonatomic,readonly) ExpendViewModel *viewmodel;
 
 @end

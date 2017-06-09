@@ -72,16 +72,16 @@
     
     [self addscrollview];
     
-    UIImageView *addview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-    [addview setImage:[UIImage imageNamed:@"icon_new"]];
-    UITapGestureRecognizer *addaccountTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateAccount)];
-    addview.userInteractionEnabled=YES;
-    [addview addGestureRecognizer:addaccountTap];
-    [self addSubview:addview];
-    [addview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self);
-        make.top.equalTo(self).with.offset(80);
-    }];
+//    UIImageView *addview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+//    [addview setImage:[UIImage imageNamed:@"icon_new"]];
+//    UITapGestureRecognizer *addaccountTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateAccount)];
+//    addview.userInteractionEnabled=YES;
+//    [addview addGestureRecognizer:addaccountTap];
+//    [self addSubview:addview];
+//    [addview mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self);
+//        make.top.equalTo(self).with.offset(80);
+//    }];
 }
 
 #pragma mark--回调方法

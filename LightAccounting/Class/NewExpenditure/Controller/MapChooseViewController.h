@@ -14,6 +14,9 @@
 #import <BaiduMapAPI_Location/BMKLocationService.h>
 #import <BaiduMapAPI_Search/BMKGeocodeSearch.h>
 #import "UILabel+Style.h"
+#import "AlertController.h"
+
+typedef void(^MapChooseViewCallback)(id sender,NSString *address,double lat,double lng);
 
 @interface MapChooseViewController : BaseViewController<BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKPoiSearchDelegate,UITableViewDelegate,UITableViewDataSource>{
     
@@ -33,5 +36,7 @@
     //数据源
     NSMutableArray *tableArray;
 }
+
+@property (nonatomic,copy) MapChooseViewCallback chooseCallback;
 
 @end

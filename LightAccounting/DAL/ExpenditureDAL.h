@@ -12,6 +12,7 @@
 #import "BusExpenditure.h"
 #import "NSString+ExtMethod.h"
 #import "NSDate+ExtMethod.h"
+#import "NewExpendModel.h"
 
 @interface ExpenditureDAL : NSObject
 
@@ -40,7 +41,7 @@
 /*
  *---------------------------插入消费---------------------------------------------*
  */
--(BOOL)addExpenditure:(NSString *)eid evalue:(double)evalue cid:(NSString *)cid fid:(NSString *)fid pid:(NSString *)pid createtime:(NSString *)createtime eyear:(NSString *)eyear emonth:(NSString *)emonth eday:(NSString *)eday imark:(NSString *)imark bdx:(NSString *)bdx bdy:(NSString *)bdy address:(NSString *)address;
+-(BOOL)addExpenditure:(NewExpendModel *)model;
 /*
  *---------------------------修改消费---------------------------------------------*
  */

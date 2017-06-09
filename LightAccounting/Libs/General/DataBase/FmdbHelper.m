@@ -76,7 +76,7 @@ static FmdbHelper *sharedInstance = nil;
     BOOL IsRollback=NO;
     @try {
         for (id sql in sqlList) {
-            if ([sql isEqualToString:@""] || sql == nil) {
+            if ([sql isEqualToString:@""] || sql == nil || [sql isEqualToString:@"\n"]) {
                 continue;
             }
             hresult = [db executeUpdate:[NSString stringWithFormat:@"%@;",sql]];

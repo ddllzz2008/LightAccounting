@@ -77,13 +77,11 @@ static ExpenditureDAL *instance = nil;
 /*
  *---------------------------插入消费---------------------------------------------*
  */
--(BOOL)addExpenditure:(NSString *)eid evalue:(double)evalue cid:(NSString *)cid fid:(NSString *)fid pid:(NSString *)pid createtime:(NSString *)createtime eyear:(NSString *)eyear emonth:(NSString *)emonth eday:(NSString *)eday imark:(NSString *)imark bdx:(NSString *)bdx bdy:(NSString *)bdy address:(NSString *)address{
+-(BOOL)addExpenditure:(NewExpendModel *)model{
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_EXPENDITURE(EID,EVALUE,CID,FID,PID,CREATETIME,EYEAR,EMONTH,EDAY,IMARK,BDX,BDY,BDADDRESS) VALUES('%@',%f,'%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@') ",eid,evalue,cid,fid,pid,createtime,eyear,emonth,eday,imark,bdx,bdy,address];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_EXPENDITURE(EID,EVALUE,CID,FID,PID,CREATETIME,EYEAR,EMONTH,EDAY,IMARK,BDX,BDY,BDADDRESS,OUTBUDGET,ISPRIVATE) VALUES('%@',%f,'%@','','%@','%@','%@','%@','%@','%@','%@','%@','%@',%d,%d)",model.eid,model.evalue,model.cid,model.fid,model.createtime,model.eyear,model.emonth,model.eday,model.imark,model.bdx,model.bdy,model.bdaddress,model.outbudget,model.isprivate];
     
-    NSString *updatePackageSql = [NSString stringWithFormat:@" UPDATE BASE_PACKAGE SET PVALUE = PVALUE-%f WHERE PID='%@' ",evalue,pid];
-    
-    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql,updatePackageSql, nil];
+    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql, nil];
     
     BOOL result = [[FmdbHelper Instance] executeSqlWithTransaction:sqlArray];
     

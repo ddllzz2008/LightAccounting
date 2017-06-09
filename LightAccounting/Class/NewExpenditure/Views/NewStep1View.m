@@ -143,7 +143,7 @@
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
     
-    UITextField *labelmap = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, self.bounds.size.width-30-40, 30)];
+    labelmap = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, self.bounds.size.width-30-40, 30)];
     [labelmap setBackgroundColor:UIColorFromRGB(0xE6E6E6)];
     [labelmap setTextColor:UIColorFromRGB(0xA6CE57)];
     [labelmap setLeftPadding:10.0f];
@@ -260,6 +260,74 @@
     return NO;
 }
 
+/**
+ 子视图布局，用于最后绘制数据
+ */
+-(void)layoutSubviews{
+    
+    [super layoutSubviews];
+    
+    mapservice = [[BMKLocationService alloc] init];
+    mapservice.delegate=self;
+    geocodesearch = [[BMKGeoCodeSearch alloc] init];
+    geocodesearch.delegate=self;
+    [mapservice startUserLocationService];
+    
+}
+
+/**
+ 定位结果返回
+ 
+ @param userLocation <#userLocation description#>
+ */
+-(void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
+    
+    if(userLocation.location!=nil) {
+        
+        CLLocationCoordinate2D pt;
+        pt = userLocation.location.coordinate;
+        pt.latitude= userLocation.location.coordinate.latitude;
+        pt.longitude= userLocation.location.coordinate.longitude;
+        [mapservice stopUserLocationService];
+        //反编码地理位置
+        
+        BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc] init];
+        reverseGeocodeSearchOption.reverseGeoPoint= pt;
+        [geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
+    }else{
+        [labelmap setText:@"获取位置失败，尝试重新获取"];
+    }
+}
+/**
+ 返回地理编码位置结果
+ 
+ @param searcher <#searcher description#>
+ @param result <#result description#>
+ @param error <#error description#>
+ */
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
+    if (result) {
+        [labelmap setText:[NSString stringWithFormat:@"%@", result.address]];
+    } else {
+        [labelmap setText:@"获取位置失败"];
+    }
+    [self stopLocation];
+}
+
+/**
+ 停止定位，viewcontroll出栈时调用
+ */
+-(void)stopLocation{
+    if (mapservice!=nil) {
+        [mapservice stopUserLocationService];
+    }
+    geocodesearch.delegate=nil;
+    mapservice.delegate=nil;
+    
+    geocodesearch = nil;
+    mapservice=nil;
+}
+
 #pragma mark--交互事件
 
 /**
@@ -269,7 +337,12 @@
  */
 -(void)gotoLocationTap:(UITapGestureRecognizer *)sender{
     
-    [[self viewController].navigationController pushViewController:[[MapChooseViewController alloc] init] animated:YES];
+    MapChooseViewController *mapcontroller = [[MapChooseViewController alloc] init];
+    mapcontroller.chooseCallback = ^(id sender, NSString *address, double lat, double lng) {
+        [labelmap setText:address];
+    };
+    
+    [[self viewController].navigationController pushViewController:mapcontroller animated:YES];
     
 }
 /**

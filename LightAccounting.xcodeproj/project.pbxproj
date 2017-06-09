@@ -113,6 +113,9 @@
 		698F64311EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F64301EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m */; };
 		699B2F901E87B0F400CE3FAD /* NewStep1View.m in Sources */ = {isa = PBXBuildFile; fileRef = 699B2F8F1E87B0F400CE3FAD /* NewStep1View.m */; };
 		699B2F931E87B33C00CE3FAD /* NewExpenditureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699B2F921E87B33C00CE3FAD /* NewExpenditureViewController.m */; };
+		69A5301B1EE53FDB00C22EDB /* NewExpendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A5301A1EE53FDB00C22EDB /* NewExpendModel.m */; };
+		69A5301E1EE5422600C22EDB /* ExpendViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A5301D1EE5422600C22EDB /* ExpendViewModel.m */; };
+		69A530211EE557FE00C22EDB /* AccountChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A530201EE557FE00C22EDB /* AccountChooseView.m */; };
 		69AD79271E81353400379835 /* ExpenditureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD79261E81353400379835 /* ExpenditureView.m */; };
 		69B41BC91EC061E900D4583B /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B41BC81EC061E900D4583B /* PlanTableViewCell.m */; };
 		69D5B8FB1E7FDECC00B2EC8B /* BusExpenditure.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D5B8EA1E7FDECC00B2EC8B /* BusExpenditure.m */; };
@@ -335,6 +338,12 @@
 		699B2F8F1E87B0F400CE3FAD /* NewStep1View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStep1View.m; sourceTree = "<group>"; };
 		699B2F911E87B33C00CE3FAD /* NewExpenditureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewExpenditureViewController.h; sourceTree = "<group>"; };
 		699B2F921E87B33C00CE3FAD /* NewExpenditureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewExpenditureViewController.m; sourceTree = "<group>"; };
+		69A530191EE53FDB00C22EDB /* NewExpendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewExpendModel.h; sourceTree = "<group>"; };
+		69A5301A1EE53FDB00C22EDB /* NewExpendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewExpendModel.m; sourceTree = "<group>"; };
+		69A5301C1EE5422600C22EDB /* ExpendViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpendViewModel.h; sourceTree = "<group>"; };
+		69A5301D1EE5422600C22EDB /* ExpendViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendViewModel.m; sourceTree = "<group>"; };
+		69A5301F1EE557FE00C22EDB /* AccountChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountChooseView.h; sourceTree = "<group>"; };
+		69A530201EE557FE00C22EDB /* AccountChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountChooseView.m; sourceTree = "<group>"; };
 		69AD79251E81353400379835 /* ExpenditureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenditureView.h; sourceTree = "<group>"; };
 		69AD79261E81353400379835 /* ExpenditureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenditureView.m; sourceTree = "<group>"; };
 		69B41BC71EC061E900D4583B /* PlanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanTableViewCell.h; sourceTree = "<group>"; };
@@ -1048,9 +1057,9 @@
 			isa = PBXGroup;
 			children = (
 				699B2F8A1E87B06E00CE3FAD /* Controller */,
-				699B2F8B1E87B06E00CE3FAD /* Model */,
-				699B2F8C1E87B06E00CE3FAD /* ViewModel */,
 				699B2F8D1E87B06E00CE3FAD /* Views */,
+				69A530181EE53F9C00C22EDB /* ViewModel */,
+				69A530171EE53F9C00C22EDB /* Model */,
 			);
 			path = NewExpenditure;
 			sourceTree = "<group>";
@@ -1068,20 +1077,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		699B2F8B1E87B06E00CE3FAD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		699B2F8C1E87B06E00CE3FAD /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		699B2F8D1E87B06E00CE3FAD /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1093,8 +1088,28 @@
 				69425FE81E94CE3C00345AC9 /* CategoryViewCell.m */,
 				692398681E6FF84F00A86BAD /* ExpendVoiceView.h */,
 				692398691E6FF84F00A86BAD /* ExpendVoiceView.m */,
+				69A5301F1EE557FE00C22EDB /* AccountChooseView.h */,
+				69A530201EE557FE00C22EDB /* AccountChooseView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		69A530171EE53F9C00C22EDB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				69A530191EE53FDB00C22EDB /* NewExpendModel.h */,
+				69A5301A1EE53FDB00C22EDB /* NewExpendModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		69A530181EE53F9C00C22EDB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				69A5301C1EE5422600C22EDB /* ExpendViewModel.h */,
+				69A5301D1EE5422600C22EDB /* ExpendViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		69D5B8E81E7FDECC00B2EC8B /* Model */ = {
@@ -1389,17 +1404,20 @@
 				69DC03ED1E70387F000C72AE /* MyZoneViewController.m in Sources */,
 				6944B6DB1E7E30E500474964 /* NSString+ExtMethod.m in Sources */,
 				6944B6E41E7E30E500474964 /* BorderView.m in Sources */,
+				69A5301B1EE53FDB00C22EDB /* NewExpendModel.m in Sources */,
 				6944B6EE1E7E30E500474964 /* UIButton+Style.m in Sources */,
 				6944B6D71E7E30E500474964 /* BaseTableViewController.m in Sources */,
 				69D5B8FF1E7FDECC00B2EC8B /* PackageCompare.m in Sources */,
 				695082611EB31D880037E547 /* PlanView.m in Sources */,
 				69D5B9011E7FDECC00B2EC8B /* SpendCategory.m in Sources */,
 				69425FE91E94CE3C00345AC9 /* CategoryViewCell.m in Sources */,
+				69A5301E1EE5422600C22EDB /* ExpendViewModel.m in Sources */,
 				6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */,
 				69EEAE5C1E8BABD00025695D /* CategoryChooseView.m in Sources */,
 				69AD79271E81353400379835 /* ExpenditureView.m in Sources */,
 				69F277E21EA8A96F0016FF6E /* BillDetailViewController.m in Sources */,
 				690E8D211E9CD627004DC684 /* BillDateChooseView.m in Sources */,
+				69A530211EE557FE00C22EDB /* AccountChooseView.m in Sources */,
 				6944B6531E7E30D500474964 /* AppDelegate+AppService.m in Sources */,
 				6933BFE81E822F0000701ECB /* PackageDAL.m in Sources */,
 				69D5B8FC1E7FDECC00B2EC8B /* BusIncome.m in Sources */,

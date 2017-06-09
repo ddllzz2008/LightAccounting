@@ -83,6 +83,7 @@
     [self addSubview:voiceAlert];
     
     labelMessage = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width/2, 80)];
+    labelMessage.textAlignment=NSTextAlignmentCenter;
     labelMessage.lineBreakMode =NSLineBreakByWordWrapping;
     labelMessage.numberOfLines = 0;
     [labelMessage setFont:fontsize_16];
