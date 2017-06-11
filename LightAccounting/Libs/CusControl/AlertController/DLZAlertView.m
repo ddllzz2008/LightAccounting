@@ -81,7 +81,7 @@ CGFloat margin_left;
     else{
         if (leftButton!=nil) {
             rect = viewContent.frame;
-            leftButton.frame=CGRectMake(25, rect.origin.y+rect.size.height+10, view_width-30, 30);
+            leftButton.frame=CGRectMake(25, rect.origin.y+rect.size.height+10, view_width-margin_left*2, 30);
             contentView.frame = CGRectMake(margin_left, (ScreenSize.height-view_height)/2-150, view_width, leftButton.frame.origin.y+leftButton.frame.size.height+10+20);
         }
         
@@ -209,8 +209,15 @@ CGFloat margin_left;
         }
     }
 
-    [controller.view addSubview:view];
-    [controller.view bringSubviewToFront:view];
+    
+    if (controller.navigationController!=nil) {
+        [controller.navigationController.view addSubview:view];
+        [controller.navigationController.view bringSubviewToFront:view];
+    }else{
+        [controller.view addSubview:view];
+        [controller.view bringSubviewToFront:view];
+    }
+    
 }
 
 +(void)showAlertMessage:(UIViewController*)controller title:(NSString*)title content:(NSString*)content{
@@ -222,8 +229,13 @@ CGFloat margin_left;
         DLZAlertView *alertview = sender;
         [alertview removeFromSuperview];
     };
-    [controller.view addSubview:view];
-    [controller.view bringSubviewToFront:view];
+    if (controller.navigationController!=nil) {
+        [controller.navigationController.view addSubview:view];
+        [controller.navigationController.view bringSubviewToFront:view];
+    }else{
+        [controller.view addSubview:view];
+        [controller.view bringSubviewToFront:view];
+    }
 }
 
 @end

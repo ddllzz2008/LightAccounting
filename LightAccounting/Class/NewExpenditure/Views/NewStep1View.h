@@ -17,6 +17,7 @@
 #import "MapChooseViewController.h"
 #import <BaiduMapAPI_Location/BMKLocationService.h>
 #import <BaiduMapAPI_Search/BMKGeocodeSearch.h>
+#import "ExpendViewModel.h"
 
 @interface NewStep1View : UIView<UIGestureRecognizerDelegate,UITextFieldDelegate,CategoryChooseViewDelegate,DLDatePickerViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>{
     
@@ -31,7 +32,15 @@
     BMKLocationService *mapservice;
     BMKGeoCodeSearch *geocodesearch;
     
+    //数据对象
+    NewExpendModel *model;
 }
+
+@property (nonatomic,assign) int accountType;
+
+@property (nonatomic,strong) ExpendViewModel *viewmodel;
+
+@property (nonatomic,strong) NewExpendModel *currentModel;
 
 @property (nonatomic,strong) UITextField *labelremark;
 
@@ -40,5 +49,7 @@
 @property(nonatomic,strong) UIWindow *chooseWindow;
 
 -(void)stopLocation;
+
+-(instancetype)initWithTypeFrame:(int)type frame:(CGRect)frame;
 
 @end

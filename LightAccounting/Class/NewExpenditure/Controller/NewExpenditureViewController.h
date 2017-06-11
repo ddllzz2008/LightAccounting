@@ -18,4 +18,9 @@
 
 @property (nonatomic,readonly) ExpendViewModel *viewmodel;
 
+/**
+ 记账类型，0：收入，1：支出
+ */
+@property (nonatomic,assign) int accountType;
+
 @end

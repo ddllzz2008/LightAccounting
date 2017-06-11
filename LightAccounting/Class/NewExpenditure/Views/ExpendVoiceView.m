@@ -144,6 +144,10 @@
     UITapGestureRecognizer *addaccountTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateAccount)];
     imgExpend.userInteractionEnabled=YES;
     [imgExpend addGestureRecognizer:addaccountTap];
+    
+    UITapGestureRecognizer *addincomeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateIncome)];
+    imgIncome.userInteractionEnabled=YES;
+    [imgIncome addGestureRecognizer:addincomeTap];
 }
 
 -(void)drawRect:(CGRect)rect{
@@ -159,7 +163,12 @@
 #pragma mark--回调方法
 -(void)navigateAccount{
     if (self.addnewAccount) {
-        self.addnewAccount();
+        self.addnewAccount(1);
+    }
+}
+-(void)navigateIncome{
+    if (self.addnewAccount) {
+        self.addnewAccount(0);
     }
 }
 

@@ -19,6 +19,18 @@
     return self;
 }
 
+-(instancetype)initWithTypeFrame:(int)type frame:(CGRect)frame{
+    if (self==[super initWithFrame:frame]) {
+        
+        self.accountType = type;
+        
+        self.backgroundColor=[UIColor whiteColor];
+        
+        [self initlayout];
+    }
+    return self;
+}
+
 -(id)init{
     if (self==[super init]) {
         self.backgroundColor=[UIColor whiteColor];
@@ -128,123 +140,189 @@
         make.height.equalTo(@30);
     }];
     
-    UIImageView *imgmap = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 30, 30)];
-    [imgmap setImage:[UIImage imageNamed:@"icon_map"]];
-    UITapGestureRecognizer *selectlocationTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoLocationTap:)];
-    imgmap.userInteractionEnabled=YES;
-    [imgmap addGestureRecognizer:selectlocationTap];
-    [self addSubview:imgmap];
+    if (self.accountType==0) {
+        //收入布局
+        imgcategory = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 30, 30)];
+        [imgcategory setImage:[UIImage imageNamed:@"icon_category"]];
+        
+        UITapGestureRecognizer *selectcategoryTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showCategory:)];
+        imgcategory.userInteractionEnabled=YES;
+        [imgcategory addGestureRecognizer:selectcategoryTap];
+        
+        [self addSubview:imgcategory];
+        
+        [imgcategory mas_makeConstraints:^(MASConstraintMaker *make) {
+            //        @strongify(self);
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.left.equalTo(strongSelf).with.offset(15);
+            make.top.equalTo(labeldate.mas_bottom).with.offset(25);
+            make.size.mas_equalTo(CGSizeMake(30, 30));
+        }];
+        
+        labelcategory = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, self.bounds.size.width-30-40, 30)];
+        [labelcategory setBackgroundColor:UIColorFromRGB(0xE6E6E6)];
+        [labelcategory setTextColor:UIColorFromRGB(0xA6CE57)];
+        [labelcategory setLeftPadding:10.0f];
+        labelcategory.delegate=self;
+        [labelcategory setPlaceholder:@"选择类别"];
+        
+        [self addSubview:labelcategory];
+        [labelcategory mas_makeConstraints:^(MASConstraintMaker *make) {
+            //        @strongify(self);
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.centerY.equalTo(imgcategory);
+            make.left.equalTo(imgcategory.mas_right).with.offset(12);
+            make.right.equalTo(strongSelf).with.offset(-15);
+            make.height.equalTo(@30);
+        }];
+        
+        UILabel *labelAlert1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+        [labelAlert1 setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
+        labelAlert1.textAlignment=NSTextAlignmentLeft;
+        [labelAlert1 setText:@"隐私记账"];
+        [self addSubview:labelAlert1];
+        
+        [labelAlert1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.left.equalTo(strongSelf).with.offset(15);
+            make.top.equalTo(labelcategory.mas_bottom).with.offset(25);
+            make.size.mas_equalTo(CGSizeMake(80, 30));
+        }];
+        
+        
+        UISwitch *switchAlert1 = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+        switchAlert1.on=NO;
+        switchAlert1.tintColor=UIColorFromRGB(0xcccccc);
+        switchAlert1.onTintColor=get_theme_color;
+        [self addSubview:switchAlert1];
+        [switchAlert1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.size.mas_equalTo(CGSizeMake(60, 30));
+            make.right.equalTo(strongSelf.mas_right).with.offset(-15);
+            make.centerY.equalTo(labelAlert1);
+        }];
+    }else{
+        //支出布局
+        UIImageView *imgmap = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 30, 30)];
+        [imgmap setImage:[UIImage imageNamed:@"icon_map"]];
+        UITapGestureRecognizer *selectlocationTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoLocationTap:)];
+        imgmap.userInteractionEnabled=YES;
+        [imgmap addGestureRecognizer:selectlocationTap];
+        [self addSubview:imgmap];
+        
+        [imgmap mas_makeConstraints:^(MASConstraintMaker *make) {
+            //        @strongify(self);
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.left.equalTo(strongSelf).with.offset(15);
+            make.top.equalTo(imgdate.mas_bottom).with.offset(25);
+            make.size.mas_equalTo(CGSizeMake(30, 30));
+        }];
+        
+        labelmap = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, self.bounds.size.width-30-40, 30)];
+        [labelmap setBackgroundColor:UIColorFromRGB(0xE6E6E6)];
+        [labelmap setTextColor:UIColorFromRGB(0xA6CE57)];
+        [labelmap setLeftPadding:10.0f];
+        labelmap.delegate=self;
+        [labelmap setText:@"正在获取位置"];
+        
+        [self addSubview:labelmap];
+        [labelmap mas_makeConstraints:^(MASConstraintMaker *make) {
+            //        @strongify(self);
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.centerY.equalTo(imgmap);
+            make.left.equalTo(imgmap.mas_right).with.offset(12);
+            make.right.equalTo(strongSelf).with.offset(-15);
+            make.height.equalTo(@30);
+        }];
+        
+        imgcategory = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 30, 30)];
+        [imgcategory setImage:[UIImage imageNamed:@"icon_category"]];
+        
+        UITapGestureRecognizer *selectcategoryTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showCategory:)];
+        imgcategory.userInteractionEnabled=YES;
+        [imgcategory addGestureRecognizer:selectcategoryTap];
+        
+        [self addSubview:imgcategory];
+        
+        [imgcategory mas_makeConstraints:^(MASConstraintMaker *make) {
+            //        @strongify(self);
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.left.equalTo(strongSelf).with.offset(15);
+            make.top.equalTo(imgmap.mas_bottom).with.offset(25);
+            make.size.mas_equalTo(CGSizeMake(30, 30));
+        }];
+        
+        labelcategory = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, self.bounds.size.width-30-40, 30)];
+        [labelcategory setBackgroundColor:UIColorFromRGB(0xE6E6E6)];
+        [labelcategory setTextColor:UIColorFromRGB(0xA6CE57)];
+        [labelcategory setLeftPadding:10.0f];
+        labelcategory.delegate=self;
+        [labelcategory setPlaceholder:@"选择类别"];
+        
+        [self addSubview:labelcategory];
+        [labelcategory mas_makeConstraints:^(MASConstraintMaker *make) {
+            //        @strongify(self);
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.centerY.equalTo(imgcategory);
+            make.left.equalTo(imgcategory.mas_right).with.offset(12);
+            make.right.equalTo(strongSelf).with.offset(-15);
+            make.height.equalTo(@30);
+        }];
+        
+        UILabel *labelAlert = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+        [labelAlert setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
+        labelAlert.textAlignment=NSTextAlignmentLeft;
+        [labelAlert setText:@"额外消费"];
+        [self addSubview:labelAlert];
+        
+        [labelAlert mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.left.equalTo(strongSelf).with.offset(15);
+            make.top.equalTo(labelcategory.mas_bottom).with.offset(25);
+            make.size.mas_equalTo(CGSizeMake(80, 30));
+        }];
+        
+        
+        UISwitch *switchAlert = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+        switchAlert.on=NO;
+        switchAlert.tintColor=UIColorFromRGB(0xcccccc);
+        switchAlert.onTintColor=get_theme_color;
+        [self addSubview:switchAlert];
+        [switchAlert mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.size.mas_equalTo(CGSizeMake(60, 30));
+            make.right.equalTo(strongSelf.mas_right).with.offset(-15);
+            make.centerY.equalTo(labelAlert);
+        }];
+        
+        UILabel *labelAlert1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+        [labelAlert1 setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
+        labelAlert1.textAlignment=NSTextAlignmentLeft;
+        [labelAlert1 setText:@"隐私记账"];
+        [self addSubview:labelAlert1];
+        
+        [labelAlert1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.left.equalTo(strongSelf).with.offset(15);
+            make.top.equalTo(labelAlert.mas_bottom).with.offset(25);
+            make.size.mas_equalTo(CGSizeMake(80, 30));
+        }];
+        
+        
+        UISwitch *switchAlert1 = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+        switchAlert1.on=NO;
+        switchAlert1.tintColor=UIColorFromRGB(0xcccccc);
+        switchAlert1.onTintColor=get_theme_color;
+        [self addSubview:switchAlert1];
+        [switchAlert1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            make.size.mas_equalTo(CGSizeMake(60, 30));
+            make.right.equalTo(strongSelf.mas_right).with.offset(-15);
+            make.centerY.equalTo(labelAlert1);
+        }];
+    }
     
-    [imgmap mas_makeConstraints:^(MASConstraintMaker *make) {
-//        @strongify(self);
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.left.equalTo(strongSelf).with.offset(15);
-        make.top.equalTo(imgdate.mas_bottom).with.offset(25);
-        make.size.mas_equalTo(CGSizeMake(30, 30));
-    }];
     
-    labelmap = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, self.bounds.size.width-30-40, 30)];
-    [labelmap setBackgroundColor:UIColorFromRGB(0xE6E6E6)];
-    [labelmap setTextColor:UIColorFromRGB(0xA6CE57)];
-    [labelmap setLeftPadding:10.0f];
-    labelmap.delegate=self;
-    [labelmap setText:@"正在获取位置"];
-    
-    [self addSubview:labelmap];
-    [labelmap mas_makeConstraints:^(MASConstraintMaker *make) {
-//        @strongify(self);
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.centerY.equalTo(imgmap);
-        make.left.equalTo(imgmap.mas_right).with.offset(12);
-        make.right.equalTo(strongSelf).with.offset(-15);
-        make.height.equalTo(@30);
-    }];
-    
-    imgcategory = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 30, 30)];
-    [imgcategory setImage:[UIImage imageNamed:@"icon_category"]];
-    
-    UITapGestureRecognizer *selectcategoryTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showCategory:)];
-    imgcategory.userInteractionEnabled=YES;
-    [imgcategory addGestureRecognizer:selectcategoryTap];
-    
-    [self addSubview:imgcategory];
-    
-    [imgcategory mas_makeConstraints:^(MASConstraintMaker *make) {
-//        @strongify(self);
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.left.equalTo(strongSelf).with.offset(15);
-        make.top.equalTo(imgmap.mas_bottom).with.offset(25);
-        make.size.mas_equalTo(CGSizeMake(30, 30));
-    }];
-    
-    labelcategory = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, self.bounds.size.width-30-40, 30)];
-    [labelcategory setBackgroundColor:UIColorFromRGB(0xE6E6E6)];
-    [labelcategory setTextColor:UIColorFromRGB(0xA6CE57)];
-    [labelcategory setLeftPadding:10.0f];
-    labelcategory.delegate=self;
-    [labelcategory setPlaceholder:@"选择类别"];
-    
-    [self addSubview:labelcategory];
-    [labelcategory mas_makeConstraints:^(MASConstraintMaker *make) {
-//        @strongify(self);
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.centerY.equalTo(imgcategory);
-        make.left.equalTo(imgcategory.mas_right).with.offset(12);
-        make.right.equalTo(strongSelf).with.offset(-15);
-        make.height.equalTo(@30);
-    }];
-    
-    UILabel *labelAlert = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
-    [labelAlert setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
-    labelAlert.textAlignment=NSTextAlignmentLeft;
-    [labelAlert setText:@"额外消费"];
-    [self addSubview:labelAlert];
-    
-    [labelAlert mas_makeConstraints:^(MASConstraintMaker *make) {
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.left.equalTo(strongSelf).with.offset(15);
-        make.top.equalTo(labelcategory.mas_bottom).with.offset(25);
-        make.size.mas_equalTo(CGSizeMake(80, 30));
-    }];
-    
-    
-    UISwitch *switchAlert = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
-    switchAlert.on=NO;
-    switchAlert.tintColor=UIColorFromRGB(0xcccccc);
-    switchAlert.onTintColor=get_theme_color;
-    [self addSubview:switchAlert];
-    [switchAlert mas_makeConstraints:^(MASConstraintMaker *make) {
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.size.mas_equalTo(CGSizeMake(60, 30));
-        make.right.equalTo(strongSelf.mas_right).with.offset(-15);
-        make.centerY.equalTo(labelAlert);
-    }];
-    
-    UILabel *labelAlert1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
-    [labelAlert1 setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
-    labelAlert1.textAlignment=NSTextAlignmentLeft;
-    [labelAlert1 setText:@"隐私记账"];
-    [self addSubview:labelAlert1];
-    
-    [labelAlert1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.left.equalTo(strongSelf).with.offset(15);
-        make.top.equalTo(labelAlert.mas_bottom).with.offset(25);
-        make.size.mas_equalTo(CGSizeMake(80, 30));
-    }];
-    
-    
-    UISwitch *switchAlert1 = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
-    switchAlert1.on=NO;
-    switchAlert1.tintColor=UIColorFromRGB(0xcccccc);
-    switchAlert1.onTintColor=get_theme_color;
-    [self addSubview:switchAlert1];
-    [switchAlert1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.size.mas_equalTo(CGSizeMake(60, 30));
-        make.right.equalTo(strongSelf.mas_right).with.offset(-15);
-        make.centerY.equalTo(labelAlert1);
-    }];
 }
 
 
@@ -429,6 +507,22 @@
     if (labeldate!=nil && date!=nil) {
         [labeldate setText:[date formatWithCode:dateformat_10]];
     }
+    
+}
+
+#pragma mark---数据操作放到文档最后
+-(void)setViewmodel:(ExpendViewModel *)viewmodel{
+    
+    
+    
+}
+
+/**
+ 修改时设置当前界面model
+
+ @param currentModel <#currentModel description#>
+ */
+-(void)setCurrentModel:(NewExpendModel *)currentModel{
     
 }
 

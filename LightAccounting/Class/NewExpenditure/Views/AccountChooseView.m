@@ -124,6 +124,18 @@ const double borderWidth = 2;
         return;
     }
     
+    int i = 0;
+    for (UILabel *label in container.subviews) {
+        label.userInteractionEnabled = YES;
+        [label setText:[_source objectAtIndex:i]];
+        if ([[_source objectAtIndex:i] isEqualToString:self.selectedValue]) {
+            [label setStyle:fontsize_13 color:_textColor];
+        }else{
+            [label setStyle:fontsize_13 color:UIColorFromRGB(0xcccccc)];
+        }
+        i++;
+    }
+    
     self.oriFrame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.oriFrame.size.width, self.oriFrame.size.height);
     
     [UIView animateWithDuration:0.5 animations:^{
@@ -142,17 +154,6 @@ const double borderWidth = 2;
             self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height - lineHeight + (lineHeight * _source.count));
             [self removeGestureRecognizer:panmove];
             uicanTouch = NO;
-            int i = 0;
-            for (UILabel *label in container.subviews) {
-                label.userInteractionEnabled = YES;
-                [label setText:[_source objectAtIndex:i]];
-                if ([[_source objectAtIndex:i] isEqualToString:self.selectedValue]) {
-                    [label setStyle:fontsize_13 color:_textColor];
-                }else{
-                    [label setStyle:fontsize_13 color:UIColorFromRGB(0xcccccc)];
-                }
-                i++;
-            }
             
         }];
         

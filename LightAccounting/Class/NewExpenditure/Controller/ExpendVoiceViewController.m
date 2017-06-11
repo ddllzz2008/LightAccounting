@@ -50,10 +50,10 @@
     
 //    @weakify(self);
     __weak typeof(self) weakSelf = self;
-    voiceview.addnewAccount=^(){
-//        @strongify(self);
+    voiceview.addnewAccount=^(int type){
         __strong __typeof(weakSelf) strongSelf = weakSelf;
         NewExpenditureViewController *newexpendController = [[NewExpenditureViewController alloc] init];
+        newexpendController.accountType = type;
         [strongSelf.navigationController pushViewController:newexpendController animated:YES];
     };
     
