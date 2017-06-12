@@ -129,16 +129,15 @@ const double borderWidth = 2;
         return;
     }
     
-    int i = 0;
-    for (UILabel *label in container.subviews) {
+    for (int i=0;i<container.subviews.count;i++) {
+        UILabel *label = [container.subviews objectAtIndex:i];
         label.userInteractionEnabled = YES;
-        [label setText:[_source objectAtIndex:i]];
-        if ([[_source objectAtIndex:i] isEqualToString:self.selectedValue]) {
+        [label setText:((FamilyPerson *)[_source objectAtIndex:i]).fname];
+        if ([((FamilyPerson *)[_source objectAtIndex:i]).fid isEqualToString:((FamilyPerson*)self.selectedValue).fid]) {
             [label setStyle:fontsize_13 color:_textColor];
         }else{
             [label setStyle:fontsize_13 color:UIColorFromRGB(0xcccccc)];
         }
-        i++;
     }
     
     self.oriFrame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.oriFrame.size.width, self.oriFrame.size.height);

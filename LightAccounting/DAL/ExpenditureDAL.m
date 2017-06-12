@@ -79,7 +79,7 @@ static ExpenditureDAL *instance = nil;
  */
 -(BOOL)addExpenditure:(NewExpendModel *)model{
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_EXPENDITURE(EID,EVALUE,CID,FID,PID,CREATETIME,EYEAR,EMONTH,EDAY,IMARK,BDX,BDY,BDADDRESS,OUTBUDGET,ISPRIVATE) VALUES('%@',%f,'%@','','%@','%@','%@','%@','%@','%@','%@','%@','%@',%d,%d)",model.eid,[model.evalue floatValue],model.cid,model.fid,model.createtime,model.eyear,model.emonth,model.eday,model.imark,model.bdx,model.bdy,model.bdaddress,model.outbudget,model.isprivate];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_EXPENDITURE(EID,EVALUE,CID,FID,PID,CREATETIME,EYEAR,EMONTH,EDAY,IMARK,BDX,BDY,BDADDRESS,OUTBUDGET,ISPRIVATE) VALUES('%@',%f,'%@','','%@','%@','%@','%@','%@','%@','%@','%@','%@',%d,%d)",model.eid,[model.evalue floatValue],model.cid,model.fid,model.createtime,model.eyear,model.emonth,model.eday,[model.imark replaceSqlString],model.bdx,model.bdy,model.bdaddress,model.outbudget,model.isprivate];
     
     NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql, nil];
     

@@ -576,13 +576,13 @@
  */
 -(void)addObserve{
     //添加属性监视KVO
-    [self.inputmoney addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
-    [self.labelremark addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
+    [self.inputmoney addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+    [self.labelremark addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     if (switchAlert!=nil) {
-        [switchAlert addObserver:self forKeyPath:@"on" options:NSKeyValueObservingOptionNew context:nil];
+        [switchAlert addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     }
     if (switchAlert1!=nil) {
-        [switchAlert1 addObserver:self forKeyPath:@"on" options:NSKeyValueObservingOptionNew context:nil];
+        [switchAlert1 addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     }
 }
 
@@ -590,25 +590,28 @@
  移除属性监视
  */
 -(void)removeObserve{
-    [self.inputmoney removeObserver:self forKeyPath:@"text"];
-    [self.labelremark removeObserver:self forKeyPath:@"text"];
+    [self.inputmoney removeTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+    [self.labelremark removeTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     if (switchAlert!=nil) {
-        [switchAlert removeObserver:self forKeyPath:@"on"];
+        [switchAlert removeTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     }
     if (switchAlert1!=nil) {
-        [switchAlert1 removeObserver:self forKeyPath:@"on"];
+        [switchAlert1 removeTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     }
 }
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    if ([object isEqual:self.inputmoney]) {
-        self.viewmodel.model.evalue = [change objectForKey:@"new"];
-    }else if([object isEqual:self.labelremark]){
-        self.viewmodel.model.imark = [change objectForKey:@"new"];
-    }else if([object isEqual:switchAlert]){
-        self.viewmodel.model.outbudget = [[change objectForKey:@"on"] boolValue]==YES?1:0;
-    }else if([object isEqual:switchAlert1]){
-        self.viewmodel.model.isprivate = [[change objectForKey:@"on"] boolValue]==YES?1:0;
-    }
 
+-(void)textFieldChanged:(UITextField *)sender{
+    if ([sender isEqual:self.inputmoney]) {
+        self.viewmodel.model.evalue = self.inputmoney.text;
+    }else if([sender isEqual:self.labelremark]){
+        self.viewmodel.model.imark = self.labelremark.text;
+    }
+}
+-(void)switchChanged:(UISwitch *)sender{
+    if([sender isEqual:switchAlert]){
+        self.viewmodel.model.outbudget = (switchAlert.on==YES?1:0);
+    }else if([sender isEqual:switchAlert1]){
+        self.viewmodel.model.isprivate = (switchAlert1.on ==YES?1:0);
+    }
 }
 @end

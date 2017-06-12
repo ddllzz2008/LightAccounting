@@ -35,5 +35,11 @@
  @return YES OR NO
  */
 -(BOOL)isFloat;
+/**
+ 替换sql中的关键字符
+ 
+ @return <#return value description#>
+ */
+-(NSString *)replaceSqlString;
 
 @end

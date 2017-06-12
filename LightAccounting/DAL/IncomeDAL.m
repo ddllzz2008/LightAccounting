@@ -25,7 +25,7 @@ static IncomeDAL *instance = nil;
  */
 -(BOOL)addIncome:(NewExpendModel *)model{
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_INCOME(IID,CID,FID,PID,IVALUE,CREATETIME,IYEAR,IMONTH,IDAY,IMARK) VALUES('%@','%@','%@','%@','%f','%@','%@','%@','%@','%@') ",model.eid,model.cid,model.fid,@"",[model.evalue floatValue],model.createtime,model.eyear,model.emonth,model.eday,model.imark];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_INCOME(IID,CID,FID,PID,IVALUE,CREATETIME,IYEAR,IMONTH,IDAY,IMARK) VALUES('%@','%@','%@','%@','%f','%@','%@','%@','%@','%@') ",model.eid,model.cid,model.fid,@"",[model.evalue floatValue],model.createtime,model.eyear,model.emonth,model.eday,[model.imark replaceSqlString]];
     
     NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql, nil];
     

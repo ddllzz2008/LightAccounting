@@ -95,4 +95,22 @@
     return [scan scanFloat:&val] && [scan isAtEnd];
 }
 
+/**
+ 替换sql中的关键字符
+
+ @return <#return value description#>
+ */
+-(NSString *)replaceSqlString{
+    NSString *result = self;
+    NSArray *array = @[@"'",@"\""];
+    NSArray *emtryarray = @[@"insert",@"update",@"delete",@"remove",@"create"];
+    for (NSString *str in array) {
+        result = [result stringByReplacingOccurrencesOfString:str withString:[NSString stringWithFormat:@"%@%@",str,str]];
+    }
+    for (NSString *str in emtryarray) {
+        result = [result stringByReplacingOccurrencesOfString:str withString:@""];
+    }
+    return result;
+}
+
 @end
