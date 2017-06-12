@@ -39,6 +39,8 @@
 
 @property (nonatomic,assign) NSDate *maxDate;
 
+@property (nonatomic,assign) NSDate *date;
+
 @property (nonatomic,strong) id<DLDatePickerViewDelegate> delegate;
 
 -(void)show;

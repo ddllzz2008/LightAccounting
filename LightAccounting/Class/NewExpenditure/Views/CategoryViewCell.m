@@ -13,10 +13,10 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.width)];
+        imageview = [[UIImageView alloc] initWithFrame:CGRectMake((frame.size.width-35)/2, 0, 35, 35)];
         [self addSubview:imageview];
         
-        title = [[UILabel alloc] initWithFrame:CGRectMake(0, frame.size.width+3, frame.size.width, frame.size.height-frame.size.width)];
+        title = [[UILabel alloc] initWithFrame:CGRectMake(0, 38, frame.size.width, frame.size.height-38)];
         [title setTextColor:UIColorFromRGB(0xcccccc)];
         [title setTextAlignment:NSTextAlignmentCenter];
         [title setFont:fontsize_14];

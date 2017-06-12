@@ -12,6 +12,7 @@
 #import "NSString+ExtMethod.h"
 #import "SpendDetail.h"
 #import "NSDate+ExtMethod.h"
+#import "NewExpendModel.h"
 
 @interface IncomeDAL : NSObject
 
@@ -20,7 +21,7 @@
 /*
  *---------------------------插入收入---------------------------------------------*
  */
--(BOOL)addIncome:(NSString *)eid evalue:(double)evalue cid:(NSString *)cid fid:(NSString *)fid pid:(NSString *)pid createtime:(NSString *)createtime eyear:(NSString *)eyear emonth:(NSString *)emonth eday:(NSString *)eday imark:(NSString *)imark;
+-(BOOL)addIncome:(NewExpendModel *)model;
 /*
  *---------------------------修改收入---------------------------------------------*
  */

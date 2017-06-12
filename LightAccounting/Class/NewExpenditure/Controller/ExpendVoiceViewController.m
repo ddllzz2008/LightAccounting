@@ -32,6 +32,9 @@
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     
     [voiceview setNeedsDisplay];
+    
+    chooseview.source = [self.viewmodel getFamilyAccounts];
+    chooseview.selectedValue = [self.viewmodel getDefaultFamily];
 }
 
 -(void)initViewStyle{
@@ -61,7 +64,7 @@
     chooseview.oriFrame = CGRectMake(0, 0, 100, 70);
     chooseview.backgroundColor = [UIColor clearColor];
     chooseview.textColor=get_theme_color;
-    chooseview.source = [[NSMutableArray alloc] initWithObjects:@"默认：我的账本",@"老婆账本", nil];
+    chooseview.delegate=self;
     chooseview.containerColor = UIColorFromRGB(0xffffff);
     chooseview.userInteractionEnabled=YES;
     
@@ -76,16 +79,12 @@
 }
 
 -(void)initWithViewModel{
-
+    self.viewmodel = [[ExpendVoiceViewModel alloc] init];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)AccountChooseView:(id)sender didSelectedChanged:(FamilyPerson *)person{
+    
+    [self.viewmodel setDefaultFamily:person.fid];
+    
 }
-*/
-
 @end

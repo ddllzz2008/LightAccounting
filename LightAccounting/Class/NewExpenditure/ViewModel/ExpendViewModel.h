@@ -7,9 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseViewModel.h"
+#import "NSString+ExtMethod.h"
 #import "NewExpendModel.h"
+#import "IncomeDAL.h"
+#import "ExpenditureDAL.h"
+#import "CategoryDAL.h"
 
-@interface ExpendViewModel : NSObject
+@interface ExpendViewModel : BaseViewModel
 
 @property (nonatomic,strong) NewExpendModel *model;
 
@@ -40,4 +45,17 @@
  @return <#return value description#>
  */
 -(BOOL)saveExpend;
+/**
+ 获取收入类别
+ type：0--支出，1--收入
+ @return <#return value description#>
+ */
+-(NSMutableArray *)getIncomeCategory;
+/**
+ 获取支出类别
+ type：0--支出，1--收入
+ @return <#return value description#>
+ */
+-(NSMutableArray *)getExpendCategory;
+    
 @end

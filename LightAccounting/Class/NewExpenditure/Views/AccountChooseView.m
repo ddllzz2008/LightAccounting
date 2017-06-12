@@ -57,20 +57,24 @@ const double borderWidth = 2;
     
 }
 
--(void)setSource:(NSMutableArray *)source{
+-(void)setSource:(NSArray *)source{
     
     _source = source;
-    self.selectedValue = [source objectAtIndex:0];
-    for (int i=0; i<source.count; i++) {
+//    self.selectedValue = [source objectAtIndex:0];
+}
+
+-(void)setSelectedValue:(FamilyPerson *)selectedValue{
+    _selectedValue = selectedValue;
+    for (int i=0; i<self.source.count; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, i*lineHeight, 100, lineHeight)];
-        if ([[source objectAtIndex:i] isEqualToString:self.selectedValue]) {
+        if ([((FamilyPerson *)[self.source objectAtIndex:i]).fid isEqualToString:((FamilyPerson *)self.selectedValue).fid]) {
             [label setStyle:fontsize_13 color:_textColor];
         }else{
             [label setStyle:fontsize_13 color:UIColorFromRGB(0xcccccc)];
         }
         
         label.textAlignment=NSTextAlignmentCenter;
-        [label setText:[source objectAtIndex:i]];
+        [label setText:((FamilyPerson *)[self.source objectAtIndex:i]).fname];
         [container addSubview:label];
         
         label.userInteractionEnabled=NO;
@@ -78,6 +82,7 @@ const double borderWidth = 2;
         UITapGestureRecognizer *chooseTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAccount:)];
         [label addGestureRecognizer:chooseTap];
     }
+    
 }
 
 -(void)setContainerColor:(UIColor *)containerColor{
@@ -182,6 +187,10 @@ const double borderWidth = 2;
     
     for (UILabel *label in container.subviews) {
         label.userInteractionEnabled = NO;
+    }
+    
+    if (self.delegate) {
+        [self.delegate AccountChooseView:self didSelectedChanged:self.selectedValue];
     }
 }
 

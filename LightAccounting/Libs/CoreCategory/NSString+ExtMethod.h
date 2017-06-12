@@ -23,5 +23,17 @@
  *-------------------字符串补位--------------------------------*
  */
 - (NSString*)padRightWithChar:(int)maxlength charstring:(NSString*)charstring;
+/**
+ 判断字符串是否为整数
+ 
+ @return YES OR NO
+ */
+-(BOOL)isInt;
+/**
+ 判断字符串是否为浮点数
+ 
+ @return YES OR NO
+ */
+-(BOOL)isFloat;
 
 @end

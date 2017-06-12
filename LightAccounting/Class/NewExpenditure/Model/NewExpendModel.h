@@ -12,13 +12,13 @@
 
 @property (nonatomic,strong) NSString *eid;
 
-@property (nonatomic,assign) double evalue;
+@property (nonatomic,assign) NSString *evalue;
 
 @property (nonatomic,strong) NSString *cid;
 
 @property (nonatomic,strong) NSString *fid;
 
-@property (nonatomic,strong) NSString *createtime;
+@property (nonatomic,strong) NSDate *createtime;
 
 @property (nonatomic,strong) NSString *eyear;
 

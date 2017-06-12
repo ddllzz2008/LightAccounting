@@ -23,13 +23,11 @@ static IncomeDAL *instance = nil;
 /*
  *---------------------------插入收入---------------------------------------------*
  */
--(BOOL)addIncome:(NSString *)eid evalue:(double)evalue cid:(NSString *)cid fid:(NSString *)fid pid:(NSString *)pid createtime:(NSString *)createtime eyear:(NSString *)eyear emonth:(NSString *)emonth eday:(NSString *)eday imark:(NSString *)imark{
+-(BOOL)addIncome:(NewExpendModel *)model{
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_INCOME(IID,CID,FID,PID,IVALUE,CREATETIME,IYEAR,IMONTH,IDAY,IMARK) VALUES('%@','%@','%@','%@','%f','%@','%@','%@','%@','%@') ",eid,cid,fid,pid,evalue,createtime,eyear,emonth,eday,imark];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_INCOME(IID,CID,FID,PID,IVALUE,CREATETIME,IYEAR,IMONTH,IDAY,IMARK) VALUES('%@','%@','%@','%@','%f','%@','%@','%@','%@','%@') ",model.eid,model.cid,model.fid,@"",[model.evalue floatValue],model.createtime,model.eyear,model.emonth,model.eday,model.imark];
     
-    NSString *updatePackageSql = [NSString stringWithFormat:@" UPDATE BASE_PACKAGE SET PVALUE = PVALUE+%f WHERE PID='%@' ",evalue,pid];
-    
-    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql,updatePackageSql, nil];
+    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql, nil];
     
     BOOL result = [[FmdbHelper Instance] executeSqlWithTransaction:sqlArray];
     

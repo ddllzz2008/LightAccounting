@@ -19,10 +19,11 @@
     return self;
 }
 
--(instancetype)initWithTypeFrame:(int)type frame:(CGRect)frame{
+-(instancetype)initWithTypeFrame:(int)type id:(NSString *)id frame:(CGRect)frame{
     if (self==[super initWithFrame:frame]) {
         
         self.accountType = type;
+        self.id = id;
         
         self.backgroundColor=[UIColor whiteColor];
         
@@ -190,7 +191,7 @@
         }];
         
         
-        UISwitch *switchAlert1 = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+        switchAlert1 = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
         switchAlert1.on=NO;
         switchAlert1.tintColor=UIColorFromRGB(0xcccccc);
         switchAlert1.onTintColor=get_theme_color;
@@ -283,7 +284,7 @@
         }];
         
         
-        UISwitch *switchAlert = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+        switchAlert = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
         switchAlert.on=NO;
         switchAlert.tintColor=UIColorFromRGB(0xcccccc);
         switchAlert.onTintColor=get_theme_color;
@@ -309,7 +310,7 @@
         }];
         
         
-        UISwitch *switchAlert1 = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+        switchAlert1 = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
         switchAlert1.on=NO;
         switchAlert1.tintColor=UIColorFromRGB(0xcccccc);
         switchAlert1.onTintColor=get_theme_color;
@@ -368,7 +369,8 @@
         pt.longitude= userLocation.location.coordinate.longitude;
         [mapservice stopUserLocationService];
         //反编码地理位置
-        
+        self.viewmodel.model.bdx = [NSString stringWithFormat:@"%lf",pt.latitude];
+        self.viewmodel.model.bdy = [NSString stringWithFormat:@"%lf",pt.longitude];
         BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc] init];
         reverseGeocodeSearchOption.reverseGeoPoint= pt;
         [geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
@@ -386,6 +388,7 @@
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
     if (result) {
         [labelmap setText:[NSString stringWithFormat:@"%@", result.address]];
+        self.viewmodel.model.bdaddress = result.address;
     } else {
         [labelmap setText:@"获取位置失败"];
     }
@@ -418,6 +421,9 @@
     MapChooseViewController *mapcontroller = [[MapChooseViewController alloc] init];
     mapcontroller.chooseCallback = ^(id sender, NSString *address, double lat, double lng) {
         [labelmap setText:address];
+        self.viewmodel.model.bdx = [NSString stringWithFormat:@"%lf",lat];
+        self.viewmodel.model.bdy = [NSString stringWithFormat:@"%lf",lng];
+        self.viewmodel.model.bdaddress = address;
     };
     
     [[self viewController].navigationController pushViewController:mapcontroller animated:YES];
@@ -447,6 +453,8 @@
     
     CategoryChooseView *categoryView = [[CategoryChooseView alloc] initwithTagView:imgcategory];
     
+    categoryView.source = categoryarray;
+    
     categoryView.delegate=self;
     
     CGRect targetrect = [self convertRect:imgcategory.frame toView:self.superview];
@@ -471,14 +479,26 @@
 }
 
 #pragma mark--协议
--(void)categorychooseView:(UIImage *)chooseImage category:(NSString *)category{
-    if (imgcategory!=nil && chooseImage!=nil) {
-        [imgcategory setImage:chooseImage];
+-(void)categorychooseView:(UIImage *)chooseImage category:(CategoryModel *)category{
+    
+    if (chooseImage==nil&&category==nil) {
+        
+        [[self viewController].navigationController pushViewController:[[CategoryViewController alloc] initWithType:YES] animated:(self.accountType==0)];
+        
+    }else{
+        
+        if (imgcategory!=nil && chooseImage!=nil) {
+            [imgcategory setImage:chooseImage];
+        }
+        
+        if (labelcategory!=nil && category!=nil) {
+            [labelcategory setText:category.CNAME];
+        }
+        
+        self.viewmodel.model.cid = category.CID;
+        
     }
     
-    if (labelcategory!=nil && category!=nil) {
-        [labelcategory setText:category];
-    }
 }
 
 /**
@@ -491,9 +511,10 @@
     [((BaseViewController *)[self viewController]) hiddenKeyBoard];
     
     DLDatePickerView *picker = [[DLDatePickerView sharedInstance] initWithFrame:CGRectMake(0, ScreenSize.height-80, ScreenSize.width, 80)];
-    picker.dateMode =UIDatePickerModeDateAndTime;
-    picker.minDate = [[[NSDate date] dateForLastYear] objectAtIndex:0];
-    picker.maxDate = [[[NSDate date] dateForNextYear] objectAtIndex:1];
+    picker.dateMode =UIDatePickerModeDate;
+    picker.date = self.viewmodel.model.createtime;
+//    picker.minDate = [[[NSDate date] dateForLastYear] objectAtIndex:0];
+//    picker.maxDate = [[[NSDate date] dateForNextYear] objectAtIndex:1];
     
     if([picker delegate]==nil){
         [picker setDelegate:self];
@@ -506,6 +527,7 @@
     
     if (labeldate!=nil && date!=nil) {
         [labeldate setText:[date formatWithCode:dateformat_10]];
+        self.viewmodel.model.createtime = date;
     }
     
 }
@@ -513,17 +535,80 @@
 #pragma mark---数据操作放到文档最后
 -(void)setViewmodel:(ExpendViewModel *)viewmodel{
     
+    _viewmodel = viewmodel;
+    model = [[NewExpendModel alloc] init];
+    if (self.accountType==0) {
+        //收入
+        if (self.id!=nil && ![self.id isEqualToString:@""]) {
+            //修改
+        }else{
+            //新增
+            model.evalue = self.inputmoney.text;
+            model.createtime = [NSDate dateWithZone];
+            model.fid = [self.viewmodel getDefaultFamily].fid;
+            model.isprivate = 0;
+            model.outbudget = 0;
+        }
+        categoryarray = [self.viewmodel getIncomeCategory];
+    }else{
+        //支出
+        if (self.id!=nil && ![self.id isEqualToString:@""]) {
+            //修改
+        }else{
+            //新增
+            model.evalue = self.inputmoney.text;
+            model.createtime = [NSDate dateWithZone];
+            model.fid = [self.viewmodel getDefaultFamily].fid;
+            model.isprivate = 0;
+            model.outbudget = 0;
+        }
+        categoryarray = [self.viewmodel getExpendCategory];
+    }
     
+    self.viewmodel.model = model;
     
+}
+
+#pragma mark---属性监视
+
+/**
+ 添加属性监视
+ */
+-(void)addObserve{
+    //添加属性监视KVO
+    [self.inputmoney addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
+    [self.labelremark addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
+    if (switchAlert!=nil) {
+        [switchAlert addObserver:self forKeyPath:@"on" options:NSKeyValueObservingOptionNew context:nil];
+    }
+    if (switchAlert1!=nil) {
+        [switchAlert1 addObserver:self forKeyPath:@"on" options:NSKeyValueObservingOptionNew context:nil];
+    }
 }
 
 /**
- 修改时设置当前界面model
-
- @param currentModel <#currentModel description#>
+ 移除属性监视
  */
--(void)setCurrentModel:(NewExpendModel *)currentModel{
-    
+-(void)removeObserve{
+    [self.inputmoney removeObserver:self forKeyPath:@"text"];
+    [self.labelremark removeObserver:self forKeyPath:@"text"];
+    if (switchAlert!=nil) {
+        [switchAlert removeObserver:self forKeyPath:@"on"];
+    }
+    if (switchAlert1!=nil) {
+        [switchAlert1 removeObserver:self forKeyPath:@"on"];
+    }
 }
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if ([object isEqual:self.inputmoney]) {
+        self.viewmodel.model.evalue = [change objectForKey:@"new"];
+    }else if([object isEqual:self.labelremark]){
+        self.viewmodel.model.imark = [change objectForKey:@"new"];
+    }else if([object isEqual:switchAlert]){
+        self.viewmodel.model.outbudget = [[change objectForKey:@"on"] boolValue]==YES?1:0;
+    }else if([object isEqual:switchAlert1]){
+        self.viewmodel.model.isprivate = [[change objectForKey:@"on"] boolValue]==YES?1:0;
+    }
 
+}
 @end

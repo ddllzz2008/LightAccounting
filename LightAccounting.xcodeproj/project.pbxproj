@@ -109,6 +109,7 @@
 		69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB51EB0454100973E7F /* CategoryTableCell.m */; };
 		69596CB91EB0A11D00973E7F /* ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB81EB0A11D00973E7F /* ThemeViewController.m */; };
 		6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6974FC591EA51C63008F4495 /* BillTableCell.m */; };
+		698F357A1EEEA62600D3BED8 /* ExpendVoiceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F35791EEEA62600D3BED8 /* ExpendVoiceViewModel.m */; };
 		698F642E1EB0D595001BEB18 /* UIColor+ExtMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F642D1EB0D595001BEB18 /* UIColor+ExtMethod.m */; };
 		698F64311EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F64301EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m */; };
 		699B2F901E87B0F400CE3FAD /* NewStep1View.m in Sources */ = {isa = PBXBuildFile; fileRef = 699B2F8F1E87B0F400CE3FAD /* NewStep1View.m */; };
@@ -330,6 +331,8 @@
 		6974FC581EA51C63008F4495 /* BillTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableCell.h; sourceTree = "<group>"; };
 		6974FC591EA51C63008F4495 /* BillTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableCell.m; sourceTree = "<group>"; };
 		697A4E051EE1B85C0059106C /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		698F35781EEEA62600D3BED8 /* ExpendVoiceViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpendVoiceViewModel.h; sourceTree = "<group>"; };
+		698F35791EEEA62600D3BED8 /* ExpendVoiceViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendVoiceViewModel.m; sourceTree = "<group>"; };
 		698F642C1EB0D595001BEB18 /* UIColor+ExtMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ExtMethod.h"; sourceTree = "<group>"; };
 		698F642D1EB0D595001BEB18 /* UIColor+ExtMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ExtMethod.m"; sourceTree = "<group>"; };
 		698F642F1EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
@@ -1108,6 +1111,8 @@
 			children = (
 				69A5301C1EE5422600C22EDB /* ExpendViewModel.h */,
 				69A5301D1EE5422600C22EDB /* ExpendViewModel.m */,
+				698F35781EEEA62600D3BED8 /* ExpendVoiceViewModel.h */,
+				698F35791EEEA62600D3BED8 /* ExpendVoiceViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1405,6 +1410,7 @@
 				6944B6DB1E7E30E500474964 /* NSString+ExtMethod.m in Sources */,
 				6944B6E41E7E30E500474964 /* BorderView.m in Sources */,
 				69A5301B1EE53FDB00C22EDB /* NewExpendModel.m in Sources */,
+				698F357A1EEEA62600D3BED8 /* ExpendVoiceViewModel.m in Sources */,
 				6944B6EE1E7E30E500474964 /* UIButton+Style.m in Sources */,
 				6944B6D71E7E30E500474964 /* BaseTableViewController.m in Sources */,
 				69D5B8FF1E7FDECC00B2EC8B /* PackageCompare.m in Sources */,

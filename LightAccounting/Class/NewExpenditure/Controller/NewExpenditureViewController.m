@@ -28,7 +28,7 @@
 }
 
 -(void)initControls{
-    step1view = [[NewStep1View alloc] initWithTypeFrame:self.accountType frame:(CGRect)CGRectMake(0, 0, ScreenSize.width, ScreenSize.height - StatusSize.height -self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height)];
+    step1view = [[NewStep1View alloc] initWithTypeFrame:self.accountType id:@"" frame:(CGRect)CGRectMake(0, 0, ScreenSize.width, ScreenSize.height - StatusSize.height -self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height)];
     
     [self.view addSubview:step1view];
 }
@@ -48,6 +48,14 @@
     [super viewWillAppear:animated];
     
     [step1view setNeedsDisplay];
+    
+    [step1view addObserve];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    [step1view removeObserve];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,7 +72,13 @@
         if (result!=nil && ![CommonFunc isBlankString:result]) {
             [DLZAlertView showAlertMessage:self title:@"错误提示" content:result];
         }else{
-            
+            [[AlertController sharedInstance] showMessage:@"记账中"];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [self.viewmodel saveIncome];
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [[AlertController sharedInstance] closeMessage];
+                });
+            });
         }
         
     }else{
@@ -73,7 +87,13 @@
         if (result!=nil && ![CommonFunc isBlankString:result]) {
             [DLZAlertView showAlertMessage:self title:@"错误提示" content:result];
         }else{
-            
+            [[AlertController sharedInstance] showMessage:@"记账中"];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [self.viewmodel saveExpend];
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [[AlertController sharedInstance] closeMessage];
+                });
+            });
         }
     }
     

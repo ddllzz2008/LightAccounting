@@ -59,7 +59,7 @@
  */
 - (NSString*)padRightWithChar:(int)maxlength charstring:(NSString*)charstring
 {
-    NSInteger len = self.length;
+    int len = (int)self.length;
     if (len >=maxlength) {
         return self;
     }else{
@@ -71,6 +71,28 @@
         }
         return [mutableString copy];
     }
+}
+
+/**
+ 判断字符串是否为整数
+
+ @return YES OR NO
+ */
+-(BOOL)isInt{
+    NSScanner *scan = [NSScanner scannerWithString:self];
+    int val;
+    return [scan scanInt:&val] && [scan isAtEnd];
+}
+
+/**
+ 判断字符串是否为浮点数
+
+ @return YES OR NO
+ */
+-(BOOL)isFloat{
+    NSScanner *scan = [NSScanner scannerWithString:self];
+    float val;
+    return [scan scanFloat:&val] && [scan isAtEnd];
 }
 
 @end

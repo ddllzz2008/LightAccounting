@@ -77,6 +77,11 @@ static const float kContentHeight = 180.0f;
     picker.maximumDate=maxDate;
 }
 
+-(void)setDate:(NSDate *)date{
+    _date = date;
+    picker.date = date;
+}
+
 -(void)show{
     
     self.windowLevel=UIWindowLevelAlert+1000;

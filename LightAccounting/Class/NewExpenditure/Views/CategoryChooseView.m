@@ -60,6 +60,12 @@
     }
 }
 
+-(void)setSource:(NSMutableArray *)source{
+    _source = source;
+    
+    [_collectionView reloadData];
+}
+
 -(void)drawRect:(CGRect)rect{
     
     [super drawRect:rect];
@@ -106,20 +112,21 @@
     return 1;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 10;
+    return self.source.count;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *indentifier = @"CategoryViewCell";
     CategoryViewCell *cell = (CategoryViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:indentifier forIndexPath:indexPath];
-    if (indexPath.item==9) {
+    if (indexPath.item==self.source.count-1) {
         //最后一项为添加
         [cell setAnchorImage:[UIImage imageNamed:@"category_add"]];
         [cell setLabelText:@"添加"];
     }else{
         //正常项为实际项
-        [cell setAnchorImage:[UIImage imageNamed:@"category_1"]];
-        [cell setLabelText:@"交通"];
+        CategoryModel *model = [self.source objectAtIndex:indexPath.item];
+        [cell setAnchorImage:[UIImage imageNamed:[NSString stringWithFormat:@"category_%@",model.CCOLOR]]];
+        [cell setLabelText:model.CNAME];
     }
     return cell;
     
@@ -128,23 +135,28 @@
 //定义每一个cell的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(35, 50);
+    return CGSizeMake(60, 50);
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     CategoryViewCell *cell = (CategoryViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     if (cell) {
         
-        if (chooseCell!=nil) {
-            [chooseCell setLabelColor:UIColorFromRGB(0xcccccc)];
+        if (indexPath.item==self.source.count-1) {
+            [self.delegate categorychooseView:nil category:nil];
+        }else{
+            if (chooseCell!=nil) {
+                [chooseCell setLabelColor:UIColorFromRGB(0xcccccc)];
+            }
+            
+            chooseCell = cell;
+            [cell setLabelColor:UIColorFromRGB(0xA6D157)];
+            CategoryModel *model = [self.source objectAtIndex:indexPath.item];
+            if (self.delegate) {
+                [self.delegate categorychooseView:cell.anchorImage category:model];
+            }
         }
         
-        chooseCell = cell;
-        [cell setLabelColor:UIColorFromRGB(0xA6D157)];
-        
-        if (self.delegate) {
-            [self.delegate categorychooseView:cell.anchorImage category:cell.labelText];
-        }
     }
 }
 

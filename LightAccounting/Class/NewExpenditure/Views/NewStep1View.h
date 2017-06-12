@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "CategoryViewController.h"
 #import "UITextField+Style.h"
 #import "NSDate+ExtMethod.h"
 #import "CategoryChooseView.h"
@@ -28,19 +29,24 @@
     UITextField *labelcategory;
     
     UITextField *labelmap;
+    
+    UISwitch *switchAlert1;
+    
+    UISwitch *switchAlert;
     //地图对象
     BMKLocationService *mapservice;
     BMKGeoCodeSearch *geocodesearch;
     
     //数据对象
     NewExpendModel *model;
+    NSMutableArray *categoryarray;
 }
 
 @property (nonatomic,assign) int accountType;
 
-@property (nonatomic,strong) ExpendViewModel *viewmodel;
+@property (nonatomic,strong) NSString *id;
 
-@property (nonatomic,strong) NewExpendModel *currentModel;
+@property (nonatomic,weak) ExpendViewModel *viewmodel;
 
 @property (nonatomic,strong) UITextField *labelremark;
 
@@ -50,6 +56,10 @@
 
 -(void)stopLocation;
 
--(instancetype)initWithTypeFrame:(int)type frame:(CGRect)frame;
+-(instancetype)initWithTypeFrame:(int)type id:(NSString *)id frame:(CGRect)frame;
+
+-(void)addObserve;
+
+-(void)removeObserve;
 
 @end

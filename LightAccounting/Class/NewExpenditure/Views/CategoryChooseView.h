@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CategoryViewCell.h"
+#import "CategoryModel.h"
 
 @protocol CategoryChooseViewDelegate <NSObject>
 
--(void)categorychooseView:(UIImage *)chooseImage category:(NSString *)category;
+-(void)categorychooseView:(UIImage *)chooseImage category:(CategoryModel *)category;
 
 @end
 
@@ -30,5 +31,7 @@
 -(id)initwithTagView:(__weak UIImageView *)imgTap;
 
 @property (nonatomic, weak) id <CategoryChooseViewDelegate> delegate;
+
+@property (nonatomic,strong) NSMutableArray *source;
 
 @end
