@@ -29,6 +29,8 @@
 		6933BFEE1E82509700701ECB /* MainExpendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6933BFED1E82509700701ECB /* MainExpendModel.m */; };
 		6933BFF01E825CE200701ECB /* configinfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6933BFEF1E825CE200701ECB /* configinfo.plist */; };
 		69388BF21ED7C05100D95C92 /* RadarUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69388BF11ED7C05100D95C92 /* RadarUIView.m */; };
+		6941DAA31EEFD188000CF5DE /* CategoryViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6941DAA21EEFD188000CF5DE /* CategoryViewModel.m */; };
+		6941DAA61EEFD2D7000CF5DE /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6941DAA51EEFD2D7000CF5DE /* CategoryModel.m */; };
 		69425FE91E94CE3C00345AC9 /* CategoryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69425FE81E94CE3C00345AC9 /* CategoryViewCell.m */; };
 		69435B521ED9222F005165DD /* RadarSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69435B511ED9222F005165DD /* RadarSearchButton.m */; };
 		6944B6291E7E2CF200474964 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944B6281E7E2CF200474964 /* main.m */; };
@@ -121,7 +123,6 @@
 		69B41BC91EC061E900D4583B /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B41BC81EC061E900D4583B /* PlanTableViewCell.m */; };
 		69D5B8FB1E7FDECC00B2EC8B /* BusExpenditure.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D5B8EA1E7FDECC00B2EC8B /* BusExpenditure.m */; };
 		69D5B8FC1E7FDECC00B2EC8B /* BusIncome.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D5B8EC1E7FDECC00B2EC8B /* BusIncome.m */; };
-		69D5B8FD1E7FDECC00B2EC8B /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D5B8EE1E7FDECC00B2EC8B /* CategoryModel.m */; };
 		69D5B8FE1E7FDECC00B2EC8B /* FamilyPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D5B8F01E7FDECC00B2EC8B /* FamilyPerson.m */; };
 		69D5B8FF1E7FDECC00B2EC8B /* PackageCompare.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D5B8F21E7FDECC00B2EC8B /* PackageCompare.m */; };
 		69D5B9001E7FDECC00B2EC8B /* RemindModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D5B8F41E7FDECC00B2EC8B /* RemindModel.m */; };
@@ -186,6 +187,10 @@
 		6933BFEF1E825CE200701ECB /* configinfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configinfo.plist; sourceTree = "<group>"; };
 		69388BF01ED7C05100D95C92 /* RadarUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarUIView.h; sourceTree = "<group>"; };
 		69388BF11ED7C05100D95C92 /* RadarUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarUIView.m; sourceTree = "<group>"; };
+		6941DAA11EEFD188000CF5DE /* CategoryViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewModel.h; sourceTree = "<group>"; };
+		6941DAA21EEFD188000CF5DE /* CategoryViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewModel.m; sourceTree = "<group>"; };
+		6941DAA41EEFD2D7000CF5DE /* CategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
+		6941DAA51EEFD2D7000CF5DE /* CategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
 		69425FE71E94CE3C00345AC9 /* CategoryViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewCell.h; sourceTree = "<group>"; };
 		69425FE81E94CE3C00345AC9 /* CategoryViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewCell.m; sourceTree = "<group>"; };
 		69435B501ED9222F005165DD /* RadarSearchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarSearchButton.h; sourceTree = "<group>"; };
@@ -355,8 +360,6 @@
 		69D5B8EA1E7FDECC00B2EC8B /* BusExpenditure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusExpenditure.m; sourceTree = "<group>"; };
 		69D5B8EB1E7FDECC00B2EC8B /* BusIncome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusIncome.h; sourceTree = "<group>"; };
 		69D5B8EC1E7FDECC00B2EC8B /* BusIncome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusIncome.m; sourceTree = "<group>"; };
-		69D5B8ED1E7FDECC00B2EC8B /* CategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryModel.h; sourceTree = "<group>"; };
-		69D5B8EE1E7FDECC00B2EC8B /* CategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
 		69D5B8EF1E7FDECC00B2EC8B /* FamilyPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyPerson.h; sourceTree = "<group>"; };
 		69D5B8F01E7FDECC00B2EC8B /* FamilyPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyPerson.m; sourceTree = "<group>"; };
 		69D5B8F11E7FDECC00B2EC8B /* PackageCompare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageCompare.h; sourceTree = "<group>"; };
@@ -478,9 +481,9 @@
 			isa = PBXGroup;
 			children = (
 				692398581E6FA39500A86BAD /* Controller */,
-				692398591E6FA39500A86BAD /* Model */,
-				6923985A1E6FA39500A86BAD /* ViewModel */,
 				6923985B1E6FA39500A86BAD /* Views */,
+				6941DA981EEFD141000CF5DE /* ViewModel */,
+				6941DAA01EEFD155000CF5DE /* Model */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -492,20 +495,6 @@
 				6923985D1E6FA94C00A86BAD /* CategoryViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		692398591E6FA39500A86BAD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		6923985A1E6FA39500A86BAD /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		6923985B1E6FA39500A86BAD /* Views */ = {
@@ -565,6 +554,24 @@
 			children = (
 				6933BFEC1E82509700701ECB /* MainExpendModel.h */,
 				6933BFED1E82509700701ECB /* MainExpendModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6941DA981EEFD141000CF5DE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6941DAA11EEFD188000CF5DE /* CategoryViewModel.h */,
+				6941DAA21EEFD188000CF5DE /* CategoryViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6941DAA01EEFD155000CF5DE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6941DAA41EEFD2D7000CF5DE /* CategoryModel.h */,
+				6941DAA51EEFD2D7000CF5DE /* CategoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1124,8 +1131,6 @@
 				69D5B8EA1E7FDECC00B2EC8B /* BusExpenditure.m */,
 				69D5B8EB1E7FDECC00B2EC8B /* BusIncome.h */,
 				69D5B8EC1E7FDECC00B2EC8B /* BusIncome.m */,
-				69D5B8ED1E7FDECC00B2EC8B /* CategoryModel.h */,
-				69D5B8EE1E7FDECC00B2EC8B /* CategoryModel.m */,
 				69D5B8EF1E7FDECC00B2EC8B /* FamilyPerson.h */,
 				69D5B8F01E7FDECC00B2EC8B /* FamilyPerson.m */,
 				69D5B8F11E7FDECC00B2EC8B /* PackageCompare.h */,
@@ -1377,6 +1382,7 @@
 				69D5B8FB1E7FDECC00B2EC8B /* BusExpenditure.m in Sources */,
 				69DC03F01E705576000C72AE /* TopLineView.m in Sources */,
 				6944B6521E7E30D500474964 /* AppDelegate+AppLifeCircle.m in Sources */,
+				6941DAA31EEFD188000CF5DE /* CategoryViewModel.m in Sources */,
 				698F642E1EB0D595001BEB18 /* UIColor+ExtMethod.m in Sources */,
 				69EA388C1EBED5CD000A7035 /* NewPlanView.m in Sources */,
 				694DAC991EA7B2BA00B5FFD6 /* TapPassView.m in Sources */,
@@ -1444,7 +1450,7 @@
 				698F64311EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m in Sources */,
 				694E728A1E80D343007AC23F /* WaterWareView.m in Sources */,
 				694DAC961EA7AFAF00B5FFD6 /* PasswordViewController.m in Sources */,
-				69D5B8FD1E7FDECC00B2EC8B /* CategoryModel.m in Sources */,
+				6941DAA61EEFD2D7000CF5DE /* CategoryModel.m in Sources */,
 				6923985E1E6FA94C00A86BAD /* CategoryViewController.m in Sources */,
 				6933BFE41E822F0000701ECB /* ExpenditureDAL.m in Sources */,
 				6944B6E61E7E30E500474964 /* ArchiverCache.m in Sources */,

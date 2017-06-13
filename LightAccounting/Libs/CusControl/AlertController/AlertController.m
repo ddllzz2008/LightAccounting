@@ -36,10 +36,14 @@
     hub.labelText = message;
     hub.removeFromSuperViewOnHide=YES;
     [hub hide:YES afterDelay:2];
-    if (messageWindow!=nil) {
-        messageWindow.hidden=YES;
-        messageWindow=nil;
-    }
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC));
+    
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        if (messageWindow!=nil) {
+            messageWindow.hidden=YES;
+            messageWindow=nil;
+        }
+    });
 }
 
 -(void)showMessage:(NSString*)message{

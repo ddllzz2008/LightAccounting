@@ -482,8 +482,8 @@
 -(void)categorychooseView:(UIImage *)chooseImage category:(CategoryModel *)category{
     
     if (chooseImage==nil&&category==nil) {
-        
-        [[self viewController].navigationController pushViewController:[[CategoryViewController alloc] initWithType:YES] animated:(self.accountType==0)];
+        [self hiddenAction:nil];
+        [[self viewController].navigationController pushViewController:[[CategoryViewController alloc] initWithType:(self.accountType==0)] animated:YES];
         
     }else{
         

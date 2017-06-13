@@ -9,7 +9,7 @@
 #import "MTLModel.h"
 #import "MTLJSONAdapter.h"
 
-@interface FamilyPerson : MTLModel<MTLJSONSerializing>
+@interface FamilyPerson : MTLModel<MTLJSONSerializing,NSCoding>
 
 @property (nonatomic,copy,readwrite) NSString *fid;
 

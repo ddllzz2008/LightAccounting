@@ -46,11 +46,19 @@
     [super viewWillAppear:animated];
     
     [self hiddenTabbar];
+    
+    [self addObserve];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    [self removeObserve];
 }
 
 -(void)initControls{
     
-    UITableView *tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
+    tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
     [tableview setBackgroundColor:[UIColor whiteColor]];
     tableview.delegate=self;
     tableview.dataSource = self;
@@ -85,7 +93,7 @@
     }];
  
     textfield = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 30)];
-    [textfield setTextColor:UIColorFromRGB(0x333333)];
+    [textfield setTextColor:get_theme_color];
     textfield.textAlignment=NSTextAlignmentLeft;
     [textfield setFont:fontsize_16];
     [textfield setPlaceholder:@"请输入分类名称"];
@@ -118,10 +126,11 @@
     //最小两行之间的间距
     layout.minimumLineSpacing = 15;
     
-    UICollectionView *_collectionView=[[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
+    _collectionView=[[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
     _collectionView.backgroundColor=[UIColor clearColor];
     _collectionView.delegate=self;
     _collectionView.dataSource=self;
+    _collectionView.showsVerticalScrollIndicator = NO;
     [_collectionView registerClass:[CategoryViewCell class] forCellWithReuseIdentifier:@"CategoryViewCell"];
     [self.view addSubview:_collectionView];
     
@@ -144,7 +153,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return categoryarray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -155,6 +164,10 @@
     
     UIView *footview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
     footview.backgroundColor = [UIColor whiteColor];
+    
+    footview.userInteractionEnabled = YES;
+    UITapGestureRecognizer *foottap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addnewCategory:)];
+    [footview addGestureRecognizer:foottap];
     
     __weak __typeof(footview) weakself = footview;
     
@@ -191,8 +204,9 @@
     static NSString *idetifier = @"CategoryTableCell";
     CategoryTableCell *cell = (CategoryTableCell *)[tableView dequeueReusableCellWithIdentifier:idetifier forIndexPath:indexPath];
     if (cell) {
-        [cell setTypeImage:[UIImage imageNamed:@"category_10"]];
-        [cell setTypeName:@"晚餐"];
+        CategoryModel *model  = [categoryarray objectAtIndex:indexPath.item];
+        [cell setTypeImage:[UIImage imageNamed:[NSString stringWithFormat:@"category_%@",model.CCOLOR]]];
+        [cell setTypeName:model.CNAME];
     }
     return cell;
 }
@@ -202,7 +216,15 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    CategoryModel *model = [categoryarray objectAtIndex:indexPath.item];
+    if (model!=nil) {
+        self.viewmodel.model = model;
+        textfield.text = model.CNAME;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[model.CCOLOR intValue]-1 inSection:0];
+        [_collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];//设置默认选中的行
+        
+    }
 }
 
 #pragma mark--uicollectionview视图
@@ -210,7 +232,7 @@
     return 1;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 13;
+    return 32;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -239,21 +261,114 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     CategoryViewCell *cell = (CategoryViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     if (cell) {
-        
-        
+        self.viewmodel.model.CCOLOR = [NSString stringWithFormat:@"%ld",indexPath.item+1];
     }
+}
+
+/**
+ 添加新分类
+ */
+-(void)addnewCategory:(UITapGestureRecognizer *)sender{
+    CategoryModel *model = [[CategoryModel alloc] init];
+    if (ifIncome) {
+        model.CREATETIME = [[NSDate dateWithZone] formatWithCode:@"yyyy-MM-dd HH:mm:ss"];
+        model.CTYPE = 1;
+    }else{
+        //支出
+        model.CREATETIME = [[NSDate dateWithZone] formatWithCode:@"yyyy-MM-dd HH:mm:ss"];
+        model.CTYPE = 0;
+    }
+    self.viewmodel.model = model;
+    
+    textfield.text = @"";
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [_collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];//设置默认选中的行
+}
+
+#pragma mark---viewmodel操作
+-(void)initWithViewModel{
+    
+    self.viewmodel = [[CategoryViewModel alloc] init];
+    CategoryModel *model = [[CategoryModel alloc] init];
+    if (ifIncome) {
+        model.CREATETIME = [[NSDate dateWithZone] formatWithCode:@"yyyy-MM-dd HH:mm:ss"];
+        model.CTYPE = 1;
+        categoryarray = [self.viewmodel getIncomeCategory];
+    }else{
+        //支出
+        model.CREATETIME = [[NSDate dateWithZone] formatWithCode:@"yyyy-MM-dd HH:mm:ss"];
+        model.CTYPE = 0;
+        categoryarray = [self.viewmodel getExpendCategory];
+    }
+    
+    self.viewmodel.model = model;
+    
+}
+
+#pragma mark---属性监视
+
+/**
+ 添加属性监视
+ */
+-(void)addObserve{
+    //添加属性监视KVO
+    [textfield addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+}
+
+/**
+ 移除属性监视
+ */
+-(void)removeObserve{
+    [textfield removeTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+}
+
+-(void)textFieldChanged:(UITextField *)sender{
+    self.viewmodel.model.CNAME=sender.text;
 }
 
 #pragma mark---保存数据
 -(void)saveData:(id)sender{
-//    UINavigationBar *navBar = [UINavigationBar appearance];
-    
-    
-//    [[UITabBar appearance]setTintColor:[UIColor redColor]];
-    
-//    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(0x333333),NSFontAttributeName:fontsize_14} forState:UIControlStateNormal];
-//    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor redColor],NSFontAttributeName:fontsize_13} forState:UIControlStateSelected];
-    
+    //收入
+    NSString *result = [self.viewmodel checkCategory];
+    if (result!=nil && ![CommonFunc isBlankString:result]) {
+        [DLZAlertView showAlertMessage:self title:@"错误提示" content:result];
+    }else{
+        [[AlertController sharedInstance] showMessage:@"保存中"];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if (self.viewmodel.model.CID==nil||[self.viewmodel.model.CID isEqualToString:@""]) {
+                CategoryModel *newmodel = [self.viewmodel addCategory];
+                if (newmodel!=nil) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [[AlertController sharedInstance] closeMessage];
+                        [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
+                        [categoryarray addObject:newmodel];
+                        [tableview reloadData];
+                        self.viewmodel.model = newmodel;
+                    });
+                }else{
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [[AlertController sharedInstance] closeMessage];
+                        [[AlertController sharedInstance] showMessageAutoClose:@"保存失败"];
+                    });
+                }
+            }else{
+                BOOL hresult = [self.viewmodel updateCategory];
+                if (hresult) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [[AlertController sharedInstance] closeMessage];
+                        [[AlertController sharedInstance] showMessageAutoClose:@"记账成功"];
+                        [tableview reloadData];
+                    });
+                }else{
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [[AlertController sharedInstance] closeMessage];
+                        [[AlertController sharedInstance] showMessageAutoClose:@"保存失败"];
+                    });
+                }
+            }
+            
+        });
+    }
 }
 
 @end

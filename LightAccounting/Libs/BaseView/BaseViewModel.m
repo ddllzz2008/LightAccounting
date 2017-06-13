@@ -28,13 +28,17 @@ static NSString *familycachestring = @"familycachestring";
  */
 -(FamilyPerson *)getDefaultFamily{
     
-    NSArray *array = [[StoreUserDefault instance] getDataWithArray:familycachestring];
+    NSData *data = [[StoreUserDefault instance] getDataWithNSData:familycachestring];
     
-    if (array!=nil && array.count>0) {
-        return [array objectAtIndex:0];
+    if (data!=nil) {
+        FamilyPerson *person = [NSKeyedUnarchiver unarchiveObjectWithData:data] ;
+        return person;
     }else{
         NSArray *array = [[FamilyPersonDAL Instance] getFamilyPersons];
         if (array!=nil && array.count>0) {
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[array objectAtIndex:0]];
+            
+            [[StoreUserDefault instance] setData:familycachestring data:data];
             return [array objectAtIndex:0];
         }else{
             return nil;
@@ -58,7 +62,9 @@ static NSString *familycachestring = @"familycachestring";
         NSArray *result = [array filteredArrayUsingPredicate:predicate];
         if (result!=nil && result.count>0) {
             
-            [[StoreUserDefault instance] setData:familycachestring data:result];
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[result objectAtIndex:0]];
+            
+            [[StoreUserDefault instance] setData:familycachestring data:data];
             
         }
         return YES;

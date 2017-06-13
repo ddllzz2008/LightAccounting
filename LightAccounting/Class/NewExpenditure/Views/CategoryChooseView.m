@@ -112,13 +112,13 @@
     return 1;
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.source.count;
+    return self.source.count +1;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *indentifier = @"CategoryViewCell";
     CategoryViewCell *cell = (CategoryViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:indentifier forIndexPath:indexPath];
-    if (indexPath.item==self.source.count-1) {
+    if (indexPath.item==self.source.count) {
         //最后一项为添加
         [cell setAnchorImage:[UIImage imageNamed:@"category_add"]];
         [cell setLabelText:@"添加"];
@@ -142,7 +142,7 @@
     CategoryViewCell *cell = (CategoryViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     if (cell) {
         
-        if (indexPath.item==self.source.count-1) {
+        if (indexPath.item==self.source.count) {
             [self.delegate categorychooseView:nil category:nil];
         }else{
             if (chooseCell!=nil) {

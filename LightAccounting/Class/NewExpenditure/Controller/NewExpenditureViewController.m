@@ -74,10 +74,20 @@
         }else{
             [[AlertController sharedInstance] showMessage:@"记账中"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [self.viewmodel saveIncome];
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    [[AlertController sharedInstance] closeMessage];
-                });
+                BOOL hresult = [self.viewmodel saveIncome];
+                if (hresult) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [[AlertController sharedInstance] closeMessage];
+                        [[AlertController sharedInstance] showMessageAutoClose:@"记账成功"];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    });
+                }else{
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [[AlertController sharedInstance] closeMessage];
+                        [[AlertController sharedInstance] showMessageAutoClose:@"保存失败"];
+                    });
+                }
+                
             });
         }
         
@@ -89,10 +99,19 @@
         }else{
             [[AlertController sharedInstance] showMessage:@"记账中"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [self.viewmodel saveExpend];
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    [[AlertController sharedInstance] closeMessage];
-                });
+                BOOL hresult = [self.viewmodel saveExpend];
+                if (hresult) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [[AlertController sharedInstance] closeMessage];
+                        [[AlertController sharedInstance] showMessageAutoClose:@"记账成功"];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    });
+                }else{
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [[AlertController sharedInstance] closeMessage];
+                        [[AlertController sharedInstance] showMessageAutoClose:@"保存失败"];
+                    });
+                }
             });
         }
     }

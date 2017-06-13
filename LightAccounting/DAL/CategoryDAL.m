@@ -33,7 +33,7 @@ static CategoryDAL *instance = nil;
 /*
  *---------------------------添加类别---------------------------------------------*
  */
--(CategoryModel *)addCategory:(NSString *)name color:(NSString *)color type:(NSInteger)type createtime:(NSString *)createtime{
+-(CategoryModel *)addCategory:(CategoryModel *)model{
     int order = 0;
     NSString *sqlMax = @"SELECT MAX(CSORT) AS CSORT FROM BASE_CATEGORY";
     NSMutableArray *maxArray = [[FmdbHelper Instance] querySql:sqlMax];
@@ -62,20 +62,14 @@ static CategoryDAL *instance = nil;
         code = [[NSString stringWithFormat:@"%ld",(long)max] padLeftWithChar:3 charstring:@"0"];
     }
     
-    NSString *guid = [CommonFunc NewGUID];
+    NSString *guid = model.CID;
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BASE_CATEGORY(CID,CNAME,CCODE,CPARENTCODE,CSORT,CREATETIME,CCOLOR,CTYPE,ISVALID) VALUES('%@','%@','%@','%@',%d,'%@','%@',%ld,'%d')",guid,name,code,@"",order,createtime,color,type,1];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BASE_CATEGORY(CID,CNAME,CCODE,CPARENTCODE,CSORT,CREATETIME,CCOLOR,CTYPE,ISVALID) VALUES('%@','%@','%@','%@',%d,'%@','%@',%ld,'%d')",guid,model.CNAME,code,@"",order,model.CREATETIME,model.CCOLOR,model.CTYPE,1];
     BOOL state = [[FmdbHelper Instance] executeSql:sql];
     if (state) {
-        CategoryModel *model = [CategoryModel new];
-        model.CID = guid;
-        model.CNAME = name;
         model.CCODE = code;
         model.CPARENTCODE = @"";
         model.CSORT = order;
-        model.CREATETIME = createtime;
-        model.CCOLOR = color;
-        model.CTYPE = type;
         model.ISVALID = 1;
         return model;
     }else{
@@ -86,9 +80,9 @@ static CategoryDAL *instance = nil;
 /*
  *---------------------------修改类别---------------------------------------------*
  */
--(BOOL)updateCategory:(NSString*)cid name:(NSString *)name color:(NSString *)color{
+-(BOOL)updateCategory:(CategoryModel *)model{
     
-    NSString *sql = [NSString stringWithFormat:@"UPDATE BASE_CATEGORY SET CNAME='%@',CCOLOR='%@' WHERE CID='%@'",name,color,cid];
+    NSString *sql = [NSString stringWithFormat:@"UPDATE BASE_CATEGORY SET CNAME='%@',CCOLOR='%@' WHERE CID='%@'",model.CNAME,model.CCOLOR,model.CID];
     BOOL state = [[FmdbHelper Instance] executeSql:sql];
     return state;
 }

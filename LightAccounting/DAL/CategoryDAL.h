@@ -21,11 +21,11 @@
 /*
  *---------------------------添加类别---------------------------------------------*
  */
--(CategoryModel *)addCategory:(NSString *)name color:(NSString *)color type:(NSInteger)type createtime:(NSString *)createtime;
+-(CategoryModel *)addCategory:(CategoryModel *)model;
 /*
  *---------------------------修改类别---------------------------------------------*
  */
--(BOOL)updateCategory:(NSString*)cid name:(NSString *)name color:(NSString *)color;
+-(BOOL)updateCategory:(CategoryModel *)model;
 /*
  *---------------------------删除类别---------------------------------------------*
  */
