@@ -80,6 +80,7 @@
 
 -(void)initWithViewModel{
     self.viewmodel = [[ExpendVoiceViewModel alloc] init];
+    voiceview.viewmodel = self.viewmodel;
 }
 
 -(void)AccountChooseView:(id)sender didSelectedChanged:(FamilyPerson *)person{

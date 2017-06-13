@@ -56,6 +56,12 @@
     imgVoice= [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
     [imgVoice setImage:[UIImage imageNamed:@"icon_voice"]];
     imgVoice.contentMode = UIViewContentModeScaleAspectFill;
+    
+    UILongPressGestureRecognizer *startrecord = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(startRecord:)];
+    imgVoice.userInteractionEnabled=YES;
+    startrecord.cancelsTouchesInView=NO;
+    [imgVoice addGestureRecognizer:startrecord];
+    
     [self addSubview:imgVoice];
     
     labelincome = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width/2, 30)];
@@ -170,6 +176,14 @@
     if (self.addnewAccount) {
         self.addnewAccount(0);
     }
+}
+
+-(void)startRecord:(UILongPressGestureRecognizer *)recognizer{
+    
+    NSLog(@"长按开始");
+    
+    [self.viewmodel startRecognize];
+    
 }
 
 @end

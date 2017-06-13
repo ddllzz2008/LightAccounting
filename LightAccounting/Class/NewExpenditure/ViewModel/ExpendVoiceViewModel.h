@@ -7,7 +7,19 @@
 //
 
 #import "BaseViewModel.h"
+#import <iflyMSC/IFlyRecognizerViewDelegate.h>
+#import <iflyMSC/IFlySpeechRecognizer.h>
+#import <iflyMSC/IFlySpeechConstant.h>
+//#import <iflyMSC/ISRDataHelper.h>
 
-@interface ExpendVoiceViewModel : BaseViewModel
+@interface ExpendVoiceViewModel : BaseViewModel<IFlySpeechRecognizerDelegate>
+
+@property (nonatomic, strong) IFlySpeechRecognizer *iFlySpeechRecognizer;
+
+
+/**
+ 启动语音识别
+ */
+-(void)startRecognize;
 
 @end

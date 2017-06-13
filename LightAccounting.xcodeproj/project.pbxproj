@@ -113,6 +113,13 @@
 		695082611EB31D880037E547 /* PlanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 695082601EB31D880037E547 /* PlanView.m */; };
 		69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB51EB0454100973E7F /* CategoryTableCell.m */; };
 		69596CB91EB0A11D00973E7F /* ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB81EB0A11D00973E7F /* ThemeViewController.m */; };
+		696B54221EF029CE00B0173D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B54211EF029CE00B0173D /* libz.tbd */; };
+		696B54241EF02A9800B0173D /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B54231EF02A9800B0173D /* iflyMSC.framework */; };
+		696B54261EF0309400B0173D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B54251EF0309400B0173D /* AVFoundation.framework */; };
+		696B54281EF030C900B0173D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B54271EF030C900B0173D /* Foundation.framework */; };
+		696B542A1EF030DC00B0173D /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B54291EF030DC00B0173D /* Contacts.framework */; };
+		696B542C1EF031C100B0173D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B542B1EF031C100B0173D /* AudioToolbox.framework */; };
+		696B542E1EF031CA00B0173D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B542D1EF031CA00B0173D /* AddressBook.framework */; };
 		6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6974FC591EA51C63008F4495 /* BillTableCell.m */; };
 		698F357A1EEEA62600D3BED8 /* ExpendVoiceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F35791EEEA62600D3BED8 /* ExpendVoiceViewModel.m */; };
 		698F642E1EB0D595001BEB18 /* UIColor+ExtMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F642D1EB0D595001BEB18 /* UIColor+ExtMethod.m */; };
@@ -342,6 +349,13 @@
 		69596CB51EB0454100973E7F /* CategoryTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableCell.m; sourceTree = "<group>"; };
 		69596CB71EB0A11D00973E7F /* ThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeViewController.h; sourceTree = "<group>"; };
 		69596CB81EB0A11D00973E7F /* ThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeViewController.m; sourceTree = "<group>"; };
+		696B54211EF029CE00B0173D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		696B54231EF02A9800B0173D /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iflyMSC.framework; path = libs/iflyMSC.framework; sourceTree = "<group>"; };
+		696B54251EF0309400B0173D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		696B54271EF030C900B0173D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		696B54291EF030DC00B0173D /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		696B542B1EF031C100B0173D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		696B542D1EF031CA00B0173D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		6974FC581EA51C63008F4495 /* BillTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableCell.h; sourceTree = "<group>"; };
 		6974FC591EA51C63008F4495 /* BillTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableCell.m; sourceTree = "<group>"; };
 		697A4E051EE1B85C0059106C /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
@@ -410,9 +424,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				696B542E1EF031CA00B0173D /* AddressBook.framework in Frameworks */,
+				696B542C1EF031C100B0173D /* AudioToolbox.framework in Frameworks */,
+				696B542A1EF030DC00B0173D /* Contacts.framework in Frameworks */,
+				696B54281EF030C900B0173D /* Foundation.framework in Frameworks */,
+				6944B70F1E7E72F900474964 /* SystemConfiguration.framework in Frameworks */,
+				696B54261EF0309400B0173D /* AVFoundation.framework in Frameworks */,
+				696B54221EF029CE00B0173D /* libz.tbd in Frameworks */,
 				694EB56C1EDFB7ED007311DC /* MobileCoreServices.framework in Frameworks */,
 				6944B7221E7E738A00474964 /* BaiduMapAPI_Base.framework in Frameworks */,
 				6944B7231E7E738A00474964 /* BaiduMapAPI_Location.framework in Frameworks */,
+				696B54241EF02A9800B0173D /* iflyMSC.framework in Frameworks */,
 				6944B7241E7E738A00474964 /* BaiduMapAPI_Map.framework in Frameworks */,
 				6944B7251E7E738A00474964 /* BaiduMapAPI_Search.framework in Frameworks */,
 				6944B71C1E7E733700474964 /* libcrypto.a in Frameworks */,
@@ -422,7 +444,6 @@
 				6944B7151E7E731100474964 /* libsqlite3.0.tbd in Frameworks */,
 				6944B7131E7E730900474964 /* Security.framework in Frameworks */,
 				6944B7111E7E730200474964 /* CoreGraphics.framework in Frameworks */,
-				6944B70F1E7E72F900474964 /* SystemConfiguration.framework in Frameworks */,
 				6944B70D1E7E72F300474964 /* OpenGLES.framework in Frameworks */,
 				6944B70B1E7E72EC00474964 /* QuartzCore.framework in Frameworks */,
 				6944B7091E7E72E400474964 /* CoreLocation.framework in Frameworks */,
@@ -1208,6 +1229,13 @@
 		CCB2B2D6691EDFE066917BA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				696B542D1EF031CA00B0173D /* AddressBook.framework */,
+				696B542B1EF031C100B0173D /* AudioToolbox.framework */,
+				696B54291EF030DC00B0173D /* Contacts.framework */,
+				696B54271EF030C900B0173D /* Foundation.framework */,
+				696B54251EF0309400B0173D /* AVFoundation.framework */,
+				696B54211EF029CE00B0173D /* libz.tbd */,
+				696B54231EF02A9800B0173D /* iflyMSC.framework */,
 				697A4E051EE1B85C0059106C /* Reveal.framework */,
 				694EB56B1EDFB7ED007311DC /* MobileCoreServices.framework */,
 				6944B71E1E7E738A00474964 /* BaiduMapAPI_Base.framework */,
@@ -1604,6 +1632,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3MNRXW5B2B;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libs",
@@ -1667,6 +1696,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3MNRXW5B2B;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libs",

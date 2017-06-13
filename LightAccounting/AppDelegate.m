@@ -12,6 +12,7 @@
 #import "AppDelegate+RootController.h"
 #import "Class/Login/Controller/LoginViewController.h"
 #import "AppliationLogic.h"
+#import <iflyMSC/IFlySpeechUtility.h>
 
 @interface AppDelegate (){
     
@@ -80,6 +81,9 @@
     if (!ret) {
         DDLogError(@"百度地图服务启动失败");
     }
+    
+    NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@", @"593ff00a"];
+    [IFlySpeechUtility createUtility:initString];
     
     [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"CMT"]];
     
