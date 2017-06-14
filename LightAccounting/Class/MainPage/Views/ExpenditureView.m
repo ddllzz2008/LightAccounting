@@ -102,35 +102,6 @@
 //    currentmodel = model;
     
     if (model!=nil) {
-//        switch (model.PAYTYPE) {
-//            case 1:
-//            case 2:
-//            case 3:
-//                backgroundview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainbackground1"]];
-//                break;
-//            case 4:
-//            case 5:
-//            case 6:
-//                backgroundview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainbackground3"]];
-//                break;
-//            case 7:
-//                backgroundview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mainbackground3"]];
-//                break;
-//            default:
-//                break;
-//        }
-//        [backgroundview setFrame:self.bounds];
-//        
-//        [backgroundview setContentMode:UIViewContentModeScaleToFill];
-//        
-//        [self addSubview:backgroundview];
-        
-        //读取支付类型列表
-//        UIImageView *imgtype = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 30)];
-//        [imgtype setImage:[UIImage imageNamed:model.PAYTYPEICON]];
-        
-        
-//        [self addSubview:imgtype];
         
         UILabel *ulcategory = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width/2-10, 10, self.bounds.size.width/2, 30)];
         [ulcategory setTextColor:UIColorFromRGB(0xffffff)];
@@ -156,7 +127,6 @@
         [ulnumric setText:[NSString stringWithFormat:@"%.1f",model.groupExpend]];
         
         [self addSubview:ulnumric];
-        
         
         MainExpendModel *submodel;
         

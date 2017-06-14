@@ -7,6 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSDate+ExtMethod.h"
+
+typedef NS_ENUM(NSInteger, BillDateChooseMode) {
+    BillDateChooseModeYear=0,
+    BillDateChooseModeYearMonth=1
+};
+
+@protocol BillDateChooseDelegate <NSObject>
+
+@optional
+-(void)BillDateChoose:(id)sender prebuttonPressed:(NSDate*)date;
+-(void)BillDateChoose:(id)sender nextbuttonPressed:(NSDate*)date;
+
+@end
 
 @interface BillDateChooseView : UIView{
     
@@ -19,5 +33,11 @@
 }
 
 -(void)refreshTheme;
+
+@property (nonatomic,strong) NSDate *currentDate;
+
+@property (nonatomic,assign) BillDateChooseMode mode;
+
+@property (nonatomic,weak) id<BillDateChooseDelegate> delegate;
 
 @end

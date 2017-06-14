@@ -25,9 +25,15 @@ static IncomeDAL *instance = nil;
  */
 -(BOOL)addIncome:(NewExpendModel *)model{
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_INCOME(IID,CID,FID,PID,IVALUE,CREATETIME,IYEAR,IMONTH,IDAY,IMARK) VALUES('%@','%@','%@','%@','%f','%@','%@','%@','%@','%@') ",model.eid,model.cid,model.fid,@"",[model.evalue floatValue],model.createtime,model.eyear,model.emonth,model.eday,[model.imark replaceSqlString]];
+    model.eyear = [NSString stringWithFormat:@"%ld",(long)[model.createtime year]];
+    model.emonth = [NSString stringWithFormat:@"%ld",(long)[model.createtime month]];
+    model.eday = [NSString stringWithFormat:@"%ld",(long)[model.createtime day]];
     
-    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql, nil];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_INCOME(IID,CID,FID,PID,IVALUE,CREATETIME,IYEAR,IMONTH,IDAY,IMARK) VALUES('%@','%@','%@','%@','%f','%@','%@','%@','%@','%@') ",model.eid,model.cid,model.fid,@"",[model.evalue floatValue],[model.createtime formatWithCode:@"yyyy-MM-dd"],model.eyear,model.emonth,model.eday,[model.imark replaceSqlString]];
+    
+    NSString *sqlupdate = [NSString stringWithFormat:@"UPDATE APP_CONFIGURATION SET LASTDATE='%@'",model.createtime];
+    
+    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql,sqlupdate, nil];
     
     BOOL result = [[FmdbHelper Instance] executeSqlWithTransaction:sqlArray];
     

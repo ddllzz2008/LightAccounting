@@ -14,6 +14,11 @@
 		692398641E6FB7BE00A86BAD /* CategoryEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 692398631E6FB7BE00A86BAD /* CategoryEditView.m */; };
 		692398671E6FEFCD00A86BAD /* ExpendVoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692398661E6FEFCD00A86BAD /* ExpendVoiceViewController.m */; };
 		6923986A1E6FF84F00A86BAD /* ExpendVoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 692398691E6FF84F00A86BAD /* ExpendVoiceView.m */; };
+		692AE0491EF10CAE00BC29CC /* AppConfigurationDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 692AE0481EF10CAE00BC29CC /* AppConfigurationDAL.m */; };
+		692AE0511EF1174A00BC29CC /* AppConfigurationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 692AE04F1EF1174A00BC29CC /* AppConfigurationModel.m */; };
+		692AE0541EF1177100BC29CC /* BudgetViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 692AE0531EF1177100BC29CC /* BudgetViewModel.m */; };
+		692AE0571EF11A2D00BC29CC /* BusBudgetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 692AE0561EF11A2D00BC29CC /* BusBudgetModel.m */; };
+		692AE05A1EF11ACF00BC29CC /* BusBudgetDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 692AE0591EF11ACF00BC29CC /* BusBudgetDAL.m */; };
 		6931066B1EAEDBDB006C607A /* BudgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931066A1EAEDBDB006C607A /* BudgetViewController.m */; };
 		6931066E1EAEE0DF006C607A /* BudgetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6931066D1EAEE0DF006C607A /* BudgetTableViewCell.m */; };
 		693106741EAF27AC006C607A /* TouchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 693106731EAF27AC006C607A /* TouchTableView.m */; };
@@ -23,9 +28,7 @@
 		6933BFE51E822F0000701ECB /* FamilyPersonDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6933BFD81E822F0000701ECB /* FamilyPersonDAL.m */; };
 		6933BFE61E822F0000701ECB /* IncomeDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6933BFDA1E822F0000701ECB /* IncomeDAL.m */; };
 		6933BFE71E822F0000701ECB /* MainDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6933BFDC1E822F0000701ECB /* MainDAL.m */; };
-		6933BFE81E822F0000701ECB /* PackageDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6933BFDE1E822F0000701ECB /* PackageDAL.m */; };
 		6933BFE91E822F0000701ECB /* RemindDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6933BFE01E822F0000701ECB /* RemindDAL.m */; };
-		6933BFEA1E822F0000701ECB /* TransferDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6933BFE21E822F0000701ECB /* TransferDAL.m */; };
 		6933BFEE1E82509700701ECB /* MainExpendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6933BFED1E82509700701ECB /* MainExpendModel.m */; };
 		6933BFF01E825CE200701ECB /* configinfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6933BFEF1E825CE200701ECB /* configinfo.plist */; };
 		69388BF21ED7C05100D95C92 /* RadarUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69388BF11ED7C05100D95C92 /* RadarUIView.m */; };
@@ -158,6 +161,16 @@
 		692398661E6FEFCD00A86BAD /* ExpendVoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendVoiceViewController.m; sourceTree = "<group>"; };
 		692398681E6FF84F00A86BAD /* ExpendVoiceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpendVoiceView.h; sourceTree = "<group>"; };
 		692398691E6FF84F00A86BAD /* ExpendVoiceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendVoiceView.m; sourceTree = "<group>"; };
+		692AE0471EF10CAE00BC29CC /* AppConfigurationDAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigurationDAL.h; sourceTree = "<group>"; };
+		692AE0481EF10CAE00BC29CC /* AppConfigurationDAL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfigurationDAL.m; sourceTree = "<group>"; };
+		692AE04E1EF1174A00BC29CC /* AppConfigurationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfigurationModel.h; sourceTree = "<group>"; };
+		692AE04F1EF1174A00BC29CC /* AppConfigurationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConfigurationModel.m; sourceTree = "<group>"; };
+		692AE0521EF1177100BC29CC /* BudgetViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetViewModel.h; sourceTree = "<group>"; };
+		692AE0531EF1177100BC29CC /* BudgetViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BudgetViewModel.m; sourceTree = "<group>"; };
+		692AE0551EF11A2D00BC29CC /* BusBudgetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusBudgetModel.h; sourceTree = "<group>"; };
+		692AE0561EF11A2D00BC29CC /* BusBudgetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusBudgetModel.m; sourceTree = "<group>"; };
+		692AE0581EF11ACF00BC29CC /* BusBudgetDAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusBudgetDAL.h; sourceTree = "<group>"; };
+		692AE0591EF11ACF00BC29CC /* BusBudgetDAL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusBudgetDAL.m; sourceTree = "<group>"; };
 		693106691EAEDBDB006C607A /* BudgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetViewController.h; sourceTree = "<group>"; };
 		6931066A1EAEDBDB006C607A /* BudgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BudgetViewController.m; sourceTree = "<group>"; };
 		6931066C1EAEE0DF006C607A /* BudgetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BudgetTableViewCell.h; sourceTree = "<group>"; };
@@ -176,12 +189,8 @@
 		6933BFDA1E822F0000701ECB /* IncomeDAL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeDAL.m; sourceTree = "<group>"; };
 		6933BFDB1E822F0000701ECB /* MainDAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDAL.h; sourceTree = "<group>"; };
 		6933BFDC1E822F0000701ECB /* MainDAL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDAL.m; sourceTree = "<group>"; };
-		6933BFDD1E822F0000701ECB /* PackageDAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageDAL.h; sourceTree = "<group>"; };
-		6933BFDE1E822F0000701ECB /* PackageDAL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageDAL.m; sourceTree = "<group>"; };
 		6933BFDF1E822F0000701ECB /* RemindDAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindDAL.h; sourceTree = "<group>"; };
 		6933BFE01E822F0000701ECB /* RemindDAL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindDAL.m; sourceTree = "<group>"; };
-		6933BFE11E822F0000701ECB /* TransferDAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferDAL.h; sourceTree = "<group>"; };
-		6933BFE21E822F0000701ECB /* TransferDAL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferDAL.m; sourceTree = "<group>"; };
 		6933BFEC1E82509700701ECB /* MainExpendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainExpendModel.h; sourceTree = "<group>"; };
 		6933BFED1E82509700701ECB /* MainExpendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainExpendModel.m; sourceTree = "<group>"; };
 		6933BFEF1E825CE200701ECB /* configinfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configinfo.plist; sourceTree = "<group>"; };
@@ -508,6 +517,26 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		692AE04D1EF1174A00BC29CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				692AE04E1EF1174A00BC29CC /* AppConfigurationModel.h */,
+				692AE04F1EF1174A00BC29CC /* AppConfigurationModel.m */,
+				692AE0551EF11A2D00BC29CC /* BusBudgetModel.h */,
+				692AE0561EF11A2D00BC29CC /* BusBudgetModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		692AE0501EF1174A00BC29CC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				692AE0521EF1177100BC29CC /* BudgetViewModel.h */,
+				692AE0531EF1177100BC29CC /* BudgetViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		693106711EAF2798006C607A /* TouchTableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +558,10 @@
 		6933BFD21E822F0000701ECB /* DAL */ = {
 			isa = PBXGroup;
 			children = (
+				692AE0471EF10CAE00BC29CC /* AppConfigurationDAL.h */,
+				692AE0481EF10CAE00BC29CC /* AppConfigurationDAL.m */,
+				692AE0581EF11ACF00BC29CC /* BusBudgetDAL.h */,
+				692AE0591EF11ACF00BC29CC /* BusBudgetDAL.m */,
 				6933BFD31E822F0000701ECB /* CategoryDAL.h */,
 				6933BFD41E822F0000701ECB /* CategoryDAL.m */,
 				6933BFD51E822F0000701ECB /* ExpenditureDAL.h */,
@@ -539,12 +572,8 @@
 				6933BFDA1E822F0000701ECB /* IncomeDAL.m */,
 				6933BFDB1E822F0000701ECB /* MainDAL.h */,
 				6933BFDC1E822F0000701ECB /* MainDAL.m */,
-				6933BFDD1E822F0000701ECB /* PackageDAL.h */,
-				6933BFDE1E822F0000701ECB /* PackageDAL.m */,
 				6933BFDF1E822F0000701ECB /* RemindDAL.h */,
 				6933BFE01E822F0000701ECB /* RemindDAL.m */,
-				6933BFE11E822F0000701ECB /* TransferDAL.h */,
-				6933BFE21E822F0000701ECB /* TransferDAL.m */,
 			);
 			path = DAL;
 			sourceTree = "<group>";
@@ -998,9 +1027,9 @@
 			isa = PBXGroup;
 			children = (
 				694DAC901EA7AF8400B5FFD6 /* Controller */,
-				694DAC911EA7AF8400B5FFD6 /* Model */,
-				694DAC921EA7AF8400B5FFD6 /* ViewModel */,
 				694DAC931EA7AF8400B5FFD6 /* Views */,
+				692AE04D1EF1174A00BC29CC /* Model */,
+				692AE0501EF1174A00BC29CC /* ViewModel */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1022,20 +1051,6 @@
 				69FCE3781ECAEEBE004959CC /* FamilyViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		694DAC911EA7AF8400B5FFD6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		694DAC921EA7AF8400B5FFD6 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		694DAC931EA7AF8400B5FFD6 /* Views */ = {
@@ -1373,6 +1388,7 @@
 				69596CB91EB0A11D00973E7F /* ThemeViewController.m in Sources */,
 				6944B6D81E7E30E500474964 /* BaseViewController.m in Sources */,
 				6944B72A1E7E76F900474964 /* MainPageView.m in Sources */,
+				692AE0571EF11A2D00BC29CC /* BusBudgetModel.m in Sources */,
 				6944B6D51E7E30E500474964 /* LeftSubMenuController.m in Sources */,
 				6944B6EF1E7E30E500474964 /* UILabel+extmethod.m in Sources */,
 				6944B6D41E7E30E500474964 /* LeftMenuController.m in Sources */,
@@ -1383,6 +1399,7 @@
 				69DC03F01E705576000C72AE /* TopLineView.m in Sources */,
 				6944B6521E7E30D500474964 /* AppDelegate+AppLifeCircle.m in Sources */,
 				6941DAA31EEFD188000CF5DE /* CategoryViewModel.m in Sources */,
+				692AE05A1EF11ACF00BC29CC /* BusBudgetDAL.m in Sources */,
 				698F642E1EB0D595001BEB18 /* UIColor+ExtMethod.m in Sources */,
 				69EA388C1EBED5CD000A7035 /* NewPlanView.m in Sources */,
 				694DAC991EA7B2BA00B5FFD6 /* TapPassView.m in Sources */,
@@ -1403,12 +1420,15 @@
 				69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */,
 				6944B6D91E7E30E500474964 /* BaseViewModel.m in Sources */,
 				694815C81EE104A000DDADF2 /* MapChooseViewController.m in Sources */,
+				692AE0491EF10CAE00BC29CC /* AppConfigurationDAL.m in Sources */,
 				69D5B9001E7FDECC00B2EC8B /* RemindModel.m in Sources */,
 				6933BFE51E822F0000701ECB /* FamilyPersonDAL.m in Sources */,
 				6944B7031E7E5FA700474964 /* MainPageViewController.m in Sources */,
 				692398671E6FEFCD00A86BAD /* ExpendVoiceViewController.m in Sources */,
 				6944B6E11E7E30E500474964 /* DLPickerView.m in Sources */,
 				6944B6E21E7E30E500474964 /* DLPopoverView.m in Sources */,
+				692AE0511EF1174A00BC29CC /* AppConfigurationModel.m in Sources */,
+				692AE0541EF1177100BC29CC /* BudgetViewModel.m in Sources */,
 				6944B6DC1E7E30E500474964 /* UIImage+ExtMethod.m in Sources */,
 				69D5B9031E7FDECC00B2EC8B /* TestModel.m in Sources */,
 				6944B6CB1E7E30E500474964 /* LoginViewController.m in Sources */,
@@ -1431,7 +1451,6 @@
 				690E8D211E9CD627004DC684 /* BillDateChooseView.m in Sources */,
 				69A530211EE557FE00C22EDB /* AccountChooseView.m in Sources */,
 				6944B6531E7E30D500474964 /* AppDelegate+AppService.m in Sources */,
-				6933BFE81E822F0000701ECB /* PackageDAL.m in Sources */,
 				69D5B8FC1E7FDECC00B2EC8B /* BusIncome.m in Sources */,
 				69B41BC91EC061E900D4583B /* PlanTableViewCell.m in Sources */,
 				6944B6DF1E7E30E500474964 /* DLTabView.m in Sources */,
@@ -1439,7 +1458,6 @@
 				6944B6E51E7E30E500474964 /* CircleBorderView.m in Sources */,
 				69F277DF1EA8A93E0016FF6E /* BillDetailTableCell.m in Sources */,
 				6944B6E81E7E30E500474964 /* AppliationLogic.m in Sources */,
-				6933BFEA1E822F0000701ECB /* TransferDAL.m in Sources */,
 				6933BFE61E822F0000701ECB /* IncomeDAL.m in Sources */,
 				6944B6F21E7E30E500474964 /* UITextField+Style.m in Sources */,
 				6950825E1EB31C190037E547 /* PlanViewController.m in Sources */,

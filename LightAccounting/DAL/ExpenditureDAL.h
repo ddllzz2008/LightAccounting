@@ -13,6 +13,8 @@
 #import "NSString+ExtMethod.h"
 #import "NSDate+ExtMethod.h"
 #import "NewExpendModel.h"
+#import "FamilyPerson.h"
+#import "FamilyPersonDAL.h"
 
 @interface ExpenditureDAL : NSObject
 
@@ -30,6 +32,13 @@
  @return 消费列表
  */
 -(NSArray *)getExpenditure:(NSDate*)start end:(NSDate *)end categoryid:(NSString *)categoryid minspend:(NSString*)minspend maxspend:(NSString*)maxspend;
+/**
+ 获取消费汇总
+ 
+ @param year <#year description#>
+ @return <#return value description#>
+ */
+-(NSArray *)getExpenditureByMonth:(NSString *)year;
 /**
  更新消费照片
  

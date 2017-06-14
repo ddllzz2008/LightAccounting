@@ -10,6 +10,8 @@
 
 @implementation ExpenditureDAL
 
+static NSString *familycachestring = @"familycachestring";
+
 static ExpenditureDAL *instance = nil;
 
 +(ExpenditureDAL*)Instance{
@@ -31,7 +33,7 @@ static ExpenditureDAL *instance = nil;
  @return 消费列表
  */
 -(NSArray *)getExpenditure:(NSDate*)start end:(NSDate *)end categoryid:(NSString *)categoryid minspend:(NSString*)minspend maxspend:(NSString*)maxspend{
-    NSString *sql = [NSString stringWithFormat:@"SELECT A.EID,IFNULL(A.EVALUE,0) AS EVALUE,A.CID,A.FID,date(A.CREATETIME) AS CREATETIME,A.EYEAR,A.EMONTH,A.EDAY,A.IMARK,A.PID,A.BDX,A.BDY,A.BDADDRESS,A.PHOTO1,\
+    NSString *sql = [NSString stringWithFormat:@"SELECT A.EID,IFNULL(A.EVALUE,0) AS EVALUE,A.CID,A.FID,A.CREATETIME,A.EYEAR,A.EMONTH,A.EDAY,A.IMARK,A.PID,A.BDX,A.BDY,A.BDADDRESS,A.PHOTO1,\
                      C.CNAME,C.CCOLOR\
                      FROM BUS_EXPENDITURE A\
                      INNER JOIN BASE_FAMILY B ON A.FID=B.FID\
@@ -57,6 +59,35 @@ static ExpenditureDAL *instance = nil;
     return array;
 }
 
+/**
+ 获取消费汇总
+
+ @param year <#year description#>
+ @return <#return value description#>
+ */
+-(NSArray *)getExpenditureByMonth:(NSString *)year{
+    FamilyPerson *person;
+    
+    NSData *data = [[StoreUserDefault instance] getDataWithNSData:familycachestring];
+    
+    if (data!=nil) {
+        person = [NSKeyedUnarchiver unarchiveObjectWithData:data] ;
+    }else{
+        NSArray *array = [[FamilyPersonDAL Instance] getFamilyPersons];
+        if (array!=nil && array.count>0) {
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[array objectAtIndex:0]];
+            
+            [[StoreUserDefault instance] setData:familycachestring data:data];
+            person = [array objectAtIndex:0];
+        }
+    }
+    
+    NSString *expendsql = [NSString stringWithFormat:@"SELECT SUM(EVALUE) AS EVALUE,EMONTH FROM BUS_EXPENDITURE WHERE EYEAR='%@' AND FID='%@' GROUP BY EMONTH",year,person.fid];
+    
+    NSMutableArray *array = [[FmdbHelper Instance] querySql:expendsql];
+    return array;
+}
+
 
 /**
  更新消费照片
@@ -79,9 +110,15 @@ static ExpenditureDAL *instance = nil;
  */
 -(BOOL)addExpenditure:(NewExpendModel *)model{
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_EXPENDITURE(EID,EVALUE,CID,FID,PID,CREATETIME,EYEAR,EMONTH,EDAY,IMARK,BDX,BDY,BDADDRESS,OUTBUDGET,ISPRIVATE) VALUES('%@',%f,'%@','%@','','%@','%@','%@','%@','%@','%@','%@','%@',%d,%d)",model.eid,[model.evalue floatValue],model.cid,model.fid,model.createtime,model.eyear,model.emonth,model.eday,[model.imark replaceSqlString],model.bdx,model.bdy,model.bdaddress,model.outbudget,model.isprivate];
+    model.eyear = [NSString stringWithFormat:@"%ld",(long)[model.createtime year]];
+    model.emonth = [NSString stringWithFormat:@"%ld",(long)[model.createtime month]];
+    model.eday = [NSString stringWithFormat:@"%ld",(long)[model.createtime day]];
     
-    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql, nil];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_EXPENDITURE(EID,EVALUE,CID,FID,PID,CREATETIME,EYEAR,EMONTH,EDAY,IMARK,BDX,BDY,BDADDRESS,OUTBUDGET,ISPRIVATE) VALUES('%@',%f,'%@','%@','','%@','%@','%@','%@','%@','%@','%@','%@',%d,%d)",model.eid,[model.evalue floatValue],model.cid,model.fid,[model.createtime formatWithCode:@"yyyy-MM-dd"],model.eyear,model.emonth,model.eday,[model.imark replaceSqlString],model.bdx,model.bdy,model.bdaddress,model.outbudget,model.isprivate];
+    
+    NSString *sqlupdate = [NSString stringWithFormat:@"UPDATE APP_CONFIGURATION SET LASTDATE='%@'",model.createtime];
+    
+    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql,sqlupdate, nil];
     
     BOOL result = [[FmdbHelper Instance] executeSqlWithTransaction:sqlArray];
     

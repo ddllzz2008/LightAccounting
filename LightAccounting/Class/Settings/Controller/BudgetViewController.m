@@ -29,6 +29,12 @@
 
 -(void)initControls{
     
+    choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 80)];
+    choosedateview.delegate=self;
+    choosedateview.currentDate = [NSDate dateWithZone];
+    choosedateview.mode = BillDateChooseModeYear;
+    [self.view addSubview:choosedateview];
+    
     tableview = [[TouchTableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
     [tableview setBackgroundColor:[UIColor clearColor]];
     tableview.delegate=self;
@@ -48,7 +54,7 @@
         make.width.mas_equalTo(ScreenSize.width - 30);
         make.centerX.equalTo(strongSelf);
         make.bottom.equalTo(strongSelf.mas_bottom).with.offset(-50);
-        make.top.equalTo(strongSelf.mas_top).with.offset(15);
+        make.top.equalTo(choosedateview.mas_bottom).with.offset(15);
     }];
     
     UIButton *resetBilldate = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 40)];
@@ -65,20 +71,12 @@
     }];
 }
 
--(void)initWithViewModel{
-    
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"configinfo" ofType:@"plist"];
-    NSMutableDictionary *configInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    colorDictionary = [configInfo objectForKey:@"MonthColor"];
-}
-
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 12;
+    return self.viewmodel.budgetArray.count;
 }
 
 // 设置cell
@@ -86,13 +84,19 @@
     static NSString *idetifier = @"budgettableviewcell";
     BudgetTableViewCell *cell = (BudgetTableViewCell *)[tableView dequeueReusableCellWithIdentifier:idetifier forIndexPath:indexPath];
     if (cell) {
-        [cell setTitle:[NSString stringWithFormat:@"%ld月",indexPath.item+1]];
-        [cell setActualValue:90.0f];
-        [cell setBudgetValue:100.0f];
-        NSNumber *colorvalue = [colorDictionary objectForKey:[NSString stringWithFormat:@"%ld",indexPath.item+1]];
-        [cell setHeaderColor:UIColorFromRGB([colorvalue longValue])];
-        //加入键盘自动管理
-        [self addTextFieldResponser:cell.inputmoney];
+        BusBudgetModel *model = [self.viewmodel.budgetArray objectAtIndex:indexPath.item];
+        if (model!=nil) {
+            cell.inputmoney.tag = indexPath.item;
+            [cell.inputmoney setText:[NSString stringWithFormat:@"%.1f",model.BVALUE]];
+            [cell.inputmoney addTarget:self action:@selector(budgetValueChanged:) forControlEvents:UIControlEventEditingChanged];
+            [cell setTitle:model.BMONTH];
+            [cell setActualValue:model.ACTUALVALUE];
+            [cell setBudgetValue:model.LEFTVALUE];
+            NSNumber *colorvalue = [colorDictionary objectForKey:model.BMONTH];
+            [cell setHeaderColor:UIColorFromRGB([colorvalue longValue])];
+            //加入键盘自动管理
+            [self addTextFieldResponser:cell.inputmoney];
+        }
     }
     return cell;
 }
@@ -178,7 +182,11 @@
         photoName.placeholder=@"输入账单日（默认为每月第一天）";
         photoName.textColor=UIColorFromRGB(0x888888);
         photoName.textAlignment=NSTextAlignmentCenter;
+        photoName.keyboardType=UIKeyboardTypeNumberPad;
+        [photoName setText:self.viewmodel.billDate];
         [accountView addSubview:photoName];
+        
+        [photoName addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
         
         [photoName mas_makeConstraints:^(MASConstraintMaker *make) {
             __strong __typeof(weakaccountView) strongweakaccountView = weakaccountView;
@@ -190,6 +198,7 @@
         
         UIButton *photosave = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
         [photosave setTitle:@"保存" forState:UIControlStateNormal];
+        [photosave addTarget:self action:@selector(saveBillDate:) forControlEvents:UIControlEventTouchUpInside];
         photosave.backgroundColor=UIColorFromRGB(0xcccccc);
         [accountView addSubview:photosave];
         
@@ -216,4 +225,116 @@
     }
 }
 
+#pragma mark---viewmodel操作
+-(void)initWithViewModel{
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"configinfo" ofType:@"plist"];
+    NSMutableDictionary *configInfo = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    colorDictionary = [configInfo objectForKey:@"MonthColor"];
+    
+    self.viewmodel = [[BudgetViewModel alloc] init];
+    self.viewmodel.currentYear = [[NSDate dateWithZone] formatWithCode:@"yyyy"];
+    
+    [[AlertController sharedInstance] showMessage:@"加载中"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.viewmodel getBudgetsByYear];
+        [tableview reloadData];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [[AlertController sharedInstance] closeMessage];
+        });
+    });
+}
+
+#pragma mark---日期选择变更
+
+/**
+ 上月
+
+ @param sender <#sender description#>
+ @param date <#date description#>
+ */
+-(void)BillDateChoose:(id)sender prebuttonPressed:(NSDate *)date{
+    self.viewmodel.currentYear = [date formatWithCode:@"yyyy"];
+}
+
+/**
+ 下月
+
+ @param sender <#sender description#>
+ @param date <#date description#>
+ */
+-(void)BillDateChoose:(id)sender nextbuttonPressed:(NSDate *)date{
+    self.viewmodel.currentYear = [date formatWithCode:@"yyyy"];
+}
+
+-(void)textFieldChanged:(UITextField *)sender{
+    self.viewmodel.billDate = sender.text;
+}
+
+/**
+ 预算变更
+
+ @param textfield <#textfield description#>
+ */
+-(void)budgetValueChanged:(UITextField *)textfield{
+    
+    if (textfield!=nil) {
+        BusBudgetModel *model = [self.viewmodel.budgetArray objectAtIndex:textfield.tag];
+        model.BVALUEString = textfield.text;
+    }
+    
+}
+
+#pragma mari---数据操作
+
+/**
+ 保存账单日
+
+ @param button <#button description#>
+ */
+-(void)saveBillDate:(UIButton*)button{
+    
+    [[AlertController sharedInstance] showMessage:@"保存中"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *result = [self.viewmodel setBillDate];
+        if ([result isEqualToString:@""]) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [[AlertController sharedInstance] closeMessage];
+                [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
+                [self hiddenAction:nil];
+            });
+        }else{
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [[AlertController sharedInstance] closeMessage];
+                [[AlertController sharedInstance] showMessageAutoClose:result];
+            });
+        }
+        
+    });
+    
+}
+
+/**
+ 保存预算
+
+ @param sender <#sender description#>
+ */
+-(void)saveData:(id)sender{
+    
+    [[AlertController sharedInstance] showMessage:@"保存中"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *result = [self.viewmodel setBudgetsByYear];
+        if ([result isEqualToString:@""]) {
+            [self.viewmodel getBudgetsByYear];
+            [tableview reloadData];
+            [[AlertController sharedInstance] closeMessage];
+            [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
+        }else{
+            [[AlertController sharedInstance] closeMessage];
+            [[AlertController sharedInstance] showMessageAutoClose:result];
+        }
+        
+    });
+    
+}
 @end

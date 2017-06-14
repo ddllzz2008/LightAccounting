@@ -56,6 +56,9 @@
     viewleft.layer.cornerRadius=15;
     viewleft.layer.masksToBounds=YES;
     viewleft.backgroundColor=get_theme_color;
+    viewleft.userInteractionEnabled = YES;
+    UITapGestureRecognizer *lefttap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(leftPress:)];
+    [viewleft addGestureRecognizer:lefttap];
     [self addSubview:viewleft];
     
     [viewleft mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,18 +72,21 @@
     [imgleft setImage:[UIImage imageNamed:@"icon_left"]];
     [viewleft addSubview:imgleft];
     
-    @weakify(viewleft);
+    __weak __typeof(viewleft) weakviewleft = viewleft;
     [imgleft mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(viewleft);
+        __strong __typeof(weakviewleft) strongviewleft = weakviewleft;
         make.size.mas_equalTo(CGSizeMake(12, 12));
-        make.centerX.equalTo(viewleft);
-        make.centerY.equalTo(viewleft);
+        make.centerX.equalTo(strongviewleft);
+        make.centerY.equalTo(strongviewleft);
     }];
     
     viewright = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     viewright.layer.cornerRadius=15;
     viewright.layer.masksToBounds=YES;
     viewright.backgroundColor=get_theme_color;
+    viewright.userInteractionEnabled = YES;
+    UITapGestureRecognizer *righttap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightPress:)];
+    [viewright addGestureRecognizer:righttap];
     [self addSubview:viewright];
     
     [viewright mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -94,13 +100,79 @@
     [imgright setImage:[UIImage imageNamed:@"icon_right"]];
     [viewright addSubview:imgright];
     
-    @weakify(viewright);
+    __weak __typeof(viewright) weakviewright = viewright;
     [imgright mas_makeConstraints:^(MASConstraintMaker *make) {
-        @strongify(viewright);
+        __strong __typeof(weakviewright) strongviewright = weakviewright;
         make.size.mas_equalTo(CGSizeMake(12, 12));
-        make.centerX.equalTo(viewright);
-        make.centerY.equalTo(viewright);
+        make.centerX.equalTo(strongviewright);
+        make.centerY.equalTo(strongviewright);
     }];
+    
+}
+
+-(void)setCurrentDate:(NSDate *)currentDate{
+    
+    _currentDate = currentDate;
+    
+    switch (_mode) {
+        case BillDateChooseModeYear:
+            [chooseDate setText:[currentDate formatWithCode:@"yyyy年"]];
+            break;
+        case BillDateChooseModeYearMonth:
+            [chooseDate setText:[currentDate formatWithCode:@"MM月 | yyyy"]];
+            break;
+    }
+    
+}
+
+-(void)setMode:(BillDateChooseMode)mode{
+    
+    _mode = mode;
+    
+    switch (_mode) {
+        case BillDateChooseModeYear:
+            [chooseDate setText:[_currentDate formatWithCode:@"yyyy年"]];
+            break;
+        case BillDateChooseModeYearMonth:
+            [chooseDate setText:[_currentDate formatWithCode:@"MM月 | yyyy"]];
+            break;
+    }
+    
+}
+
+#pragma mark---交互事件
+-(void)leftPress:(UITapGestureRecognizer *)recognizer{
+    
+    switch (_mode) {
+        case BillDateChooseModeYear:
+            self.currentDate = [[_currentDate dateForLastYear] objectAtIndex:0];
+            break;
+        case BillDateChooseModeYearMonth:
+            self.currentDate = [[_currentDate dateForLastMonth] objectAtIndex:0];
+            break;
+    }
+    
+    if (self.delegate) {
+        __weak typeof(self) weakself = self;
+        [self.delegate BillDateChoose:weakself prebuttonPressed:self.currentDate];
+    }
+    
+}
+-(void)rightPress:(UITapGestureRecognizer *)recognizer{
+    
+    switch (_mode) {
+        case BillDateChooseModeYear:
+            self.currentDate = [[_currentDate dateForNextYear] objectAtIndex:0];
+            break;
+        case BillDateChooseModeYearMonth:
+            self.currentDate = [[_currentDate dateForNextMonth] objectAtIndex:0];
+            break;
+    }
+    
+    if (self.delegate) {
+        __weak typeof(self) weakself = self;
+        [self.delegate BillDateChoose:weakself prebuttonPressed:self.currentDate];
+    }
     
 }
 
