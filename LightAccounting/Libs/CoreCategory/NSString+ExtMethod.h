@@ -41,5 +41,11 @@
  @return <#return value description#>
  */
 -(NSString *)replaceSqlString;
+/**
+ 去掉字符串中所有空格
+ 
+ @return <#return value description#>
+ */
+-(NSString *)trimSpace;
 
 @end

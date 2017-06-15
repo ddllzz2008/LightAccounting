@@ -30,4 +30,17 @@ static FamilyPersonDAL *instance = nil;
     return result;
 }
 
+/**
+ 设置用户头像
+
+ @param fid <#fid description#>
+ @param filename <#filename description#>
+ @return <#return value description#>
+ */
+-(BOOL)setFamilyPhoto:(NSString *)fid filename:(NSString *)filename{
+    NSString *sql = [NSString stringWithFormat:@" UPDATE BASE_FAMILY SET FPHOTO='%@' WHERE FID='%@' ",filename,fid];
+    BOOL result = [[FmdbHelper Instance] executeSql:sql];
+    return result;
+}
+
 @end

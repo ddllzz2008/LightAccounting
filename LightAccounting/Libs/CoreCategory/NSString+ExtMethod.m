@@ -113,4 +113,14 @@
     return result;
 }
 
+/**
+ 去掉字符串中所有空格
+
+ @return <#return value description#>
+ */
+-(NSString *)trimSpace{
+    NSString *str = [self stringByReplacingOccurrencesOfString:@" " withString:@""];
+    return str;
+}
+
 @end

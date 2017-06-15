@@ -42,26 +42,6 @@
         
     }
     
-    NSString * resultFromJson =  [ISRDataHelper    stringFromJson:resultString];
-    
-    self.voiceStr = [NSString stringWithFormat:@"%@%@",    self.voiceStr,resultFromJson];
-    
-    if (isLast){//是否是最后一次回调 因为此方法会调用多次
-        
-        NSLog(@"听写结果(json)：%@测试",  self.voiceStr);
-        
-        if (self.voiceStr.length>0) {
-            
-        }
-        
-        else{
-            
-            NSLog(@"未检测到");
-            
-        }
-        
-    }
-    
 }
 
 - (void)onError: (IFlySpeechError *) error{

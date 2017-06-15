@@ -15,4 +15,13 @@
 
 -(NSArray*)getFamilyPersons;
 
+/**
+ 设置用户头像
+ 
+ @param fid <#fid description#>
+ @param filename <#filename description#>
+ @return <#return value description#>
+ */
+-(BOOL)setFamilyPhoto:(NSString *)fid filename:(NSString *)filename;
+
 @end

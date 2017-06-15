@@ -29,7 +29,7 @@
 
 -(void)initControls{
     
-    choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 80)];
+    choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 50)];
     choosedateview.delegate=self;
     choosedateview.currentDate = [NSDate dateWithZone];
     choosedateview.mode = BillDateChooseModeYear;
@@ -255,6 +255,14 @@
  */
 -(void)BillDateChoose:(id)sender prebuttonPressed:(NSDate *)date{
     self.viewmodel.currentYear = [date formatWithCode:@"yyyy"];
+        [[AlertController sharedInstance] showMessage:@"加载中"];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self.viewmodel getBudgetsByYear];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [tableview reloadData];
+                [[AlertController sharedInstance] closeMessage];
+            });
+        });
 }
 
 /**
@@ -265,6 +273,14 @@
  */
 -(void)BillDateChoose:(id)sender nextbuttonPressed:(NSDate *)date{
     self.viewmodel.currentYear = [date formatWithCode:@"yyyy"];
+    [[AlertController sharedInstance] showMessage:@"加载中"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.viewmodel getBudgetsByYear];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [tableview reloadData];
+            [[AlertController sharedInstance] closeMessage];
+        });
+    });
 }
 
 -(void)textFieldChanged:(UITextField *)sender{
@@ -298,13 +314,13 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSString *result = [self.viewmodel setBillDate];
         if ([result isEqualToString:@""]) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [[AlertController sharedInstance] closeMessage];
                 [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
                 [self hiddenAction:nil];
             });
         }else{
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [[AlertController sharedInstance] closeMessage];
                 [[AlertController sharedInstance] showMessageAutoClose:result];
             });
@@ -326,12 +342,16 @@
         NSString *result = [self.viewmodel setBudgetsByYear];
         if ([result isEqualToString:@""]) {
             [self.viewmodel getBudgetsByYear];
-            [tableview reloadData];
-            [[AlertController sharedInstance] closeMessage];
-            [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [tableview reloadData];
+                [[AlertController sharedInstance] closeMessage];
+                [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
+            });
         }else{
-            [[AlertController sharedInstance] closeMessage];
-            [[AlertController sharedInstance] showMessageAutoClose:result];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[AlertController sharedInstance] closeMessage];
+                [[AlertController sharedInstance] showMessageAutoClose:result];
+            });
         }
         
     });

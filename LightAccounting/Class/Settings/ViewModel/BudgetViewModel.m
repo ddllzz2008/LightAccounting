@@ -36,6 +36,9 @@
         NSPredicate *pre;
         NSArray *newarray;
         for (BusBudgetModel *model in array) {
+            
+            model.BVALUEString = [NSString stringWithFormat:@"%.1f",model.BVALUE];
+            
             pre = [NSPredicate predicateWithFormat:@"EMONTH in {%@}",model.BMONTH];
             newarray = [expendarray filteredArrayUsingPredicate:pre];
             if (newarray!=nil && newarray.count>0) {
@@ -57,6 +60,7 @@
         for (int i=1; i<=12; i++) {
             BusBudgetModel *model = [[BusBudgetModel alloc] init];
             model.BVALUE = 0;
+            model.BVALUEString=@"0";
             model.BYEAR = self.currentYear;
             model.BMONTH = [NSString stringWithFormat:@"%d",i];
             pre = [NSPredicate predicateWithFormat:@"EMONTH in {%@}",model.BMONTH];
@@ -85,12 +89,12 @@
 -(NSString *)setBudgetsByYear{
     NSString *errorstring = @"";
     for (BusBudgetModel *model in self.budgetArray) {
-        if (![model.BVALUEString isInt] && ![model.BVALUEString isFloat] && model.BVALUEString!=nil && ![model.BVALUEString isEqualToString:@""]) {
+        if (![model.BVALUEString isInt] && ![model.BVALUEString isFloat] && model.BVALUEString!=nil && ![[model.BVALUEString trimSpace] isEqualToString:@""]) {
             errorstring = [NSString stringWithFormat:@"%@月的预算输入不合法，请输入有效数值",model.BMONTH];
             return errorstring;
             break;
         }
-        if (model.BVALUEString==nil||[model.BVALUEString isEqualToString:@""]) {
+        if (model.BVALUEString==nil||[[model.BVALUEString trimSpace] isEqualToString:@""]) {
             model.BVALUE = 0;
         }else{
             model.BVALUE = [model.BVALUEString doubleValue];

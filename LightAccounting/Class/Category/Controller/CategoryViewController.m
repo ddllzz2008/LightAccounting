@@ -356,7 +356,7 @@
                 if (hresult) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [[AlertController sharedInstance] closeMessage];
-                        [[AlertController sharedInstance] showMessageAutoClose:@"记账成功"];
+                        [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
                         [tableview reloadData];
                     });
                 }else{

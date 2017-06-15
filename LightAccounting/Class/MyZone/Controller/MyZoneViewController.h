@@ -14,7 +14,10 @@
 #import "ThemeViewController.h"
 #import "PlanViewController.h"
 #import "FamilyViewController.h"
+#import "MyZoneViewModel.h"
 
-@interface MyZoneViewController : BaseViewController
+@interface MyZoneViewController : BaseViewController<CTAssetsPickerControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate>
+
+@property (nonatomic,strong) MyZoneViewModel *viewmodel;
 
 @end
