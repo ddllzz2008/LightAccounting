@@ -274,6 +274,20 @@
 }
 
 /**
+ 计算日期相差天数
+
+ @param date <#date description#>
+ @return <#return value description#>
+ */
+-(int)dateDiff:(NSDate*)date{
+    //计算时间间隔（单位是秒）
+    NSTimeInterval time = [self timeIntervalSinceDate:date];
+    //计算天数、时、分、秒
+    int days = ((int)time)/(3600*24);
+    return days;
+}
+
+/**
  获取当前日期对应的星期几
 
  @return 星期几

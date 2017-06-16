@@ -65,22 +65,25 @@ const double borderWidth = 2;
 
 -(void)setSelectedValue:(FamilyPerson *)selectedValue{
     _selectedValue = selectedValue;
-    for (int i=0; i<self.source.count; i++) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, i*lineHeight, 100, lineHeight)];
-        if ([((FamilyPerson *)[self.source objectAtIndex:i]).fid isEqualToString:((FamilyPerson *)self.selectedValue).fid]) {
-            [label setStyle:fontsize_13 color:_textColor];
-        }else{
-            [label setStyle:fontsize_13 color:UIColorFromRGB(0xcccccc)];
+    
+    if (container.subviews==nil || container.subviews.count<=0) {
+        for (int i=0; i<self.source.count; i++) {
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, i*lineHeight, 100, lineHeight)];
+            if ([((FamilyPerson *)[self.source objectAtIndex:i]).fid isEqualToString:((FamilyPerson *)self.selectedValue).fid]) {
+                [label setStyle:fontsize_13 color:_textColor];
+            }else{
+                [label setStyle:fontsize_13 color:UIColorFromRGB(0xcccccc)];
+            }
+            
+            label.textAlignment=NSTextAlignmentCenter;
+            [label setText:((FamilyPerson *)[self.source objectAtIndex:i]).fname];
+            [container addSubview:label];
+            
+            label.userInteractionEnabled=NO;
+            label.tag = i;
+            UITapGestureRecognizer *chooseTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAccount:)];
+            [label addGestureRecognizer:chooseTap];
         }
-        
-        label.textAlignment=NSTextAlignmentCenter;
-        [label setText:((FamilyPerson *)[self.source objectAtIndex:i]).fname];
-        [container addSubview:label];
-        
-        label.userInteractionEnabled=NO;
-        label.tag = i;
-        UITapGestureRecognizer *chooseTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAccount:)];
-        [label addGestureRecognizer:chooseTap];
     }
     
 }
@@ -125,43 +128,50 @@ const double borderWidth = 2;
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    if (!uicanTouch) {
-        return;
-    }
-    
-    for (int i=0;i<container.subviews.count;i++) {
-        UILabel *label = [container.subviews objectAtIndex:i];
-        label.userInteractionEnabled = YES;
-        [label setText:((FamilyPerson *)[_source objectAtIndex:i]).fname];
-        if ([((FamilyPerson *)[_source objectAtIndex:i]).fid isEqualToString:((FamilyPerson*)self.selectedValue).fid]) {
-            [label setStyle:fontsize_13 color:_textColor];
-        }else{
-            [label setStyle:fontsize_13 color:UIColorFromRGB(0xcccccc)];
+    @try {
+        if (!uicanTouch) {
+            return;
         }
-    }
-    
-    self.oriFrame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.oriFrame.size.width, self.oriFrame.size.height);
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        self.frame = CGRectMake(self.oriFrame.origin.x, self.oriFrame.origin.y, self.oriFrame.size.width, self.oriFrame.size.height);
-        container.frame=CGRectMake(0, self.oriFrame.size.height - lineHeight, self.oriFrame.size.width, lineHeight);
-    } completion:^(BOOL finished) {
-//        container.frame=CGRectMake(0, 0, self.oriFrame.size.width, lineHeight*_source.count);
+        
+        for (int i=0;i<container.subviews.count;i++) {
+            UILabel *label = [container.subviews objectAtIndex:i];
+            label.userInteractionEnabled = YES;
+            [label setText:((FamilyPerson *)[_source objectAtIndex:i]).fname];
+            if ([((FamilyPerson *)[_source objectAtIndex:i]).fid isEqualToString:((FamilyPerson*)self.selectedValue).fid]) {
+                [label setStyle:fontsize_13 color:_textColor];
+            }else{
+                [label setStyle:fontsize_13 color:UIColorFromRGB(0xcccccc)];
+            }
+        }
+        
+        self.oriFrame=CGRectMake(self.frame.origin.x, self.frame.origin.y, self.oriFrame.size.width, self.oriFrame.size.height);
+        
         [UIView animateWithDuration:0.5 animations:^{
-            
-//            self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height - lineHeight + (lineHeight * _source.count));
-//            
-            container.frame=CGRectMake(0, container.frame.origin.y, self.oriFrame.size.width, lineHeight * _source.count);
-            
+            self.frame = CGRectMake(self.oriFrame.origin.x, self.oriFrame.origin.y, self.oriFrame.size.width, self.oriFrame.size.height);
+            container.frame=CGRectMake(0, self.oriFrame.size.height - lineHeight, self.oriFrame.size.width, lineHeight);
         } completion:^(BOOL finished) {
-            
-            self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height - lineHeight + (lineHeight * _source.count));
-            [self removeGestureRecognizer:panmove];
-            uicanTouch = NO;
+            //        container.frame=CGRectMake(0, 0, self.oriFrame.size.width, lineHeight*_source.count);
+            [UIView animateWithDuration:0.5 animations:^{
+                
+                //            self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height - lineHeight + (lineHeight * _source.count));
+                //
+                container.frame=CGRectMake(0, container.frame.origin.y, self.oriFrame.size.width, lineHeight * _source.count);
+                
+            } completion:^(BOOL finished) {
+                
+                self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height - lineHeight + (lineHeight * _source.count));
+                [self removeGestureRecognizer:panmove];
+                uicanTouch = NO;
+                
+            }];
             
         }];
+    } @catch (NSException *exception) {
+        DDLogError(@"%@",exception);
+    } @finally {
         
-    }];
+    }
+    
 }
 
 /**
@@ -171,26 +181,34 @@ const double borderWidth = 2;
  */
 -(void)chooseAccount:(UITapGestureRecognizer *)sender{
     
-    NSInteger i = sender.view.tag;
-    self.selectedValue = [_source objectAtIndex:i];
-    
-    UILabel *defaultLabel = [container.subviews objectAtIndex:0];
-    [defaultLabel setText:((UILabel *)sender.view).text];
-    [defaultLabel setStyle:fontsize_13 color:_textColor];
-    
-    container.frame=CGRectMake(0, container.frame.origin.y, self.oriFrame.size.width, lineHeight);
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.oriFrame.size.width, self.oriFrame.size.height);
-    
-    [self addGestureRecognizer:panmove];
-    uicanTouch = YES;
-    
-    for (UILabel *label in container.subviews) {
-        label.userInteractionEnabled = NO;
+    @try {
+        NSInteger i = sender.view.tag;
+        self.selectedValue = [_source objectAtIndex:i];
+        
+        UILabel *defaultLabel = [container.subviews objectAtIndex:0];
+        [defaultLabel setText:((UILabel *)sender.view).text];
+        [defaultLabel setStyle:fontsize_13 color:_textColor];
+        
+        container.frame=CGRectMake(0, container.frame.origin.y, self.oriFrame.size.width, lineHeight);
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.oriFrame.size.width, self.oriFrame.size.height);
+        
+        [self addGestureRecognizer:panmove];
+        uicanTouch = YES;
+        
+        for (UILabel *label in container.subviews) {
+            label.userInteractionEnabled = NO;
+        }
+        
+        if (self.delegate) {
+            [self.delegate AccountChooseView:self didSelectedChanged:self.selectedValue];
+        }
+    } @catch (NSException *exception) {
+        DDLogError(@"%@",exception);
+    } @finally {
+        
     }
     
-    if (self.delegate) {
-        [self.delegate AccountChooseView:self didSelectedChanged:self.selectedValue];
-    }
+    
 }
 
 -(void)drawRect:(CGRect)rect{

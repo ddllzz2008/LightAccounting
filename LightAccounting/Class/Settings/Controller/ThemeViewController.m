@@ -109,6 +109,8 @@
             [(DLZAlertView*)sender close];
             [self.navigationController popViewControllerAnimated:YES];
         }];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
     return NO;

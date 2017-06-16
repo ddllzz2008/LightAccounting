@@ -9,10 +9,13 @@
 #import "BaseViewModel.h"
 #import "SandboxManager.h"
 #import "FamilyPersonDAL.h"
+#import "AppConfigurationDAL.h"
 #import "FamilyPerson.h"
 
 @interface MyZoneViewModel : BaseViewModel
 
+@property (nonatomic,strong) FamilyPerson *currentPerson;
+@property (nonatomic,strong) AppConfigurationModel *currentConfig;
 /**
  保存用户头像
  

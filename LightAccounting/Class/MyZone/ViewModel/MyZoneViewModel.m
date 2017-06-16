@@ -50,10 +50,12 @@
     
     NSArray *array = [[FamilyPersonDAL Instance] getFamilyPersons];
     if (array!=nil) {
-        FamilyPerson *person = [array objectAtIndex:0];
+        
+        _currentPerson = [array objectAtIndex:0];
+        _currentConfig = [[AppConfigurationDAL Instance] getAppConfiguration];
         
         SandboxManager *manager = [[SandboxManager alloc] initWithMode:SandboxModeDocument directory:@"photos"];
-        NSString *photoname = [NSString stringWithFormat:@"%@.jpg",person.fid];
+        NSString *photoname = [NSString stringWithFormat:@"%@.jpg",_currentPerson.fid];
         
         UIImage *image = [manager getImageFromSandbox:photoname];
         

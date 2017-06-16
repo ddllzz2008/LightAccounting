@@ -43,7 +43,6 @@
     agelabel.textAlignment=NSTextAlignmentRight;
     [agelabel setFont:fontsize_13];
     [agelabel setTextColor:UIColorFromRGB(0xCCCCCC)];
-    [agelabel setText:@"我的账龄:365天"];
     [self.view addSubview:agelabel];
     
     [agelabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -74,7 +73,6 @@
     namelabel.textAlignment=NSTextAlignmentCenter;
     [namelabel setFont:fontsize_16];
     [namelabel setTextColor:get_theme_color];
-    [namelabel setText:@"李方超"];
     [self.view addSubview:namelabel];
     
     [namelabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -86,7 +84,6 @@
     lasttimelabel.textAlignment=NSTextAlignmentRight;
     [lasttimelabel setFont:fontsize_13];
     [lasttimelabel setTextColor:UIColorFromRGB(0xCCCCCC)];
-    [lasttimelabel setText:@"最后记账时间:2017年3月12日"];
     [self.view addSubview:lasttimelabel];
     
     [lasttimelabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -387,13 +384,27 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
         UIImage *image = [self.viewmodel displayUserPhoto];
-        if (image!=nil) {
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                photoImgView.image = image;
-            });
-            
+        
+        NSDate *date = [self.viewmodel.currentConfig.STARTDATE convertDateFromString:@"yyyy-MM-dd HH:mm:ss"];
+        int days = [[NSDate dateWithZone] dateDiff:date];
+        
+        NSDate *lastdate = nil;
+        if ([self.viewmodel.currentConfig.LASTDATE isEqualToString:@""] || self.viewmodel.currentConfig.LASTDATE==nil) {
+            lastdate = date;
+        }else{
+            lastdate = [self.viewmodel.currentConfig.LASTDATE convertDateFromString:@"yyyy-MM-dd HH:mm:ss"];
         }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (image!=nil) {
+                photoImgView.image = image;
+            }
+            
+            [agelabel setText:[NSString stringWithFormat:@"我的账龄:%d天",days]];
+            [namelabel setText:self.viewmodel.currentPerson.fname];
+            [lasttimelabel setText:[NSString stringWithFormat:@"最后记账时间:%@",[lastdate formatWithCode:@"yyyy年MM月dd日"]]];
+        });
         
     });
     

@@ -29,6 +29,13 @@
 - (NSArray *)dateForNextYear;
 
 -(NSDate *)dateForDays:(NSInteger)days;
+/**
+ 计算日期相差天数
+ 
+ @param date <#date description#>
+ @return <#return value description#>
+ */
+-(int)dateDiff:(NSDate*)date;
 
 -(NSInteger)weekday;
 
@@ -37,8 +44,6 @@
 -(NSInteger)month;
 
 -(NSInteger)year;
-
-+(NSDate *)dateForDays:(NSInteger)days;
 
 +(NSDate *)dateWithZone;
 
