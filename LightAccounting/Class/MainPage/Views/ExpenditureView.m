@@ -79,9 +79,9 @@
     if(ulmark!=nil){
         [ulmark setFrame:CGRectMake(10, self.frame.size.height -40, self.frame.size.width-20, 30)];
     }
-//    if (backgroundview!=nil) {
-//        [backgroundview setFrame:CGRectMake(0, 10, frame.size.width, frame.size.height-10)];
-//    }
+    if (container!=nil) {
+        [container setFrame:CGRectMake(0, 70, frame.size.width, frame.size.height-70)];
+    }
 }
 
 -(void)drawRect:(CGRect)rect{
@@ -128,6 +128,11 @@
         
         [self addSubview:ulnumric];
         
+        container = [[UIView alloc] initWithFrame:CGRectMake(0, 70, self.frame.size.width, self.frame.size.height-70)];
+        container.backgroundColor = [UIColor clearColor];
+        container.clipsToBounds=YES;
+        [self addSubview:container];
+        
         MainExpendModel *submodel;
         
         for (int i=0; i<model.groupSource.count; i++) {
@@ -136,20 +141,20 @@
             
             UIImageView *image1 = [[UIImageView alloc] initWithFrame:CGRectMake(10, 90, 40, 40)];
             [image1 setImage:[UIImage imageNamed:[NSString stringWithFormat:@"category_%@",submodel.CCOLOR]]];
-            [self addSubview:image1];
+            [container addSubview:image1];
             
             UILabel *labelcategory1 = [[UILabel alloc] initWithFrame:CGRectMake(60, 90, self.bounds.size.width-60, 40)];
             [labelcategory1 setTextColor:UIColorFromRGB(0xffffff)];
             [labelcategory1 setTextAlignment:NSTextAlignmentLeft];
             [labelcategory1 setFont:fontsize_16];
             [labelcategory1 setText:[NSString stringWithFormat:@"%@: %.1f",submodel.CNAME,submodel.EVALUE]];
-            [self addSubview:labelcategory1];
+            [container addSubview:labelcategory1];
             
-            @weakify(self);
+            @weakify(container);
             [image1 mas_makeConstraints:^(MASConstraintMaker *make) {
-                @strongify(self);
-                make.bottom.equalTo(self.mas_bottom).with.offset(-20 -40*i - 10*i);
-                make.left.equalTo(self.mas_left).with.offset(10);
+                @strongify(container);
+                make.bottom.equalTo(container.mas_bottom).with.offset(-20 -40*i - 10*i);
+                make.left.equalTo(container.mas_left).with.offset(10);
             }];
             
             [labelcategory1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -158,51 +163,6 @@
             }];
         }
         
-        
-        
-        
-        //添加地图
-//        if([CommonFunc isBlankString:model.PHOTO1]){
-//            UIImageView *imgview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 75, self.bounds.size.width-20, self.bounds.size.height - 75 - 50)];
-//            [imgview setImage:[UIImage imageNamed:@"icon_photo"]];
-//            [imgview setContentMode:UIViewContentModeCenter];
-//            [self addSubview:imgview];
-//            [imgview stringTag:model.EID];
-//            imageviewArray = [NSArray arrayWithObjects:imgview, nil];
-//            
-//            UITapGestureRecognizer *choosePhotoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePhotoAction:)];
-//            imgview.userInteractionEnabled=YES;
-//            [imgview addGestureRecognizer:choosePhotoTap];
-//            
-//        }else{
-//            
-//            NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
-//            NSString *photopath = [libraryPath stringByAppendingString:[NSString stringWithFormat:@"/%@",model.PHOTO1]];
-//            
-//            UIImageView *imgview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 75, self.bounds.size.width-20, self.bounds.size.height - 75 - 50)];
-//            [imgview setImage:[UIImage imageWithContentsOfFile:photopath]];
-//            [imgview setContentMode:UIViewContentModeScaleToFill];
-//            imgview.layer.cornerRadius = 10;
-//            imgview.clipsToBounds=YES;
-//            [self addSubview:imgview];
-//            imageviewArray = [NSArray arrayWithObjects:imgview, nil];
-//        }
-        
-//        ulmark = [[UILabel alloc] initWithFrame:CGRectMake(10, self.bounds.size.height -50, self.bounds.size.width-20, 30)];
-//        [ulmark setTextColor:UIColorFromRGB(0xffffff)];
-//        [ulmark setTextAlignment:NSTextAlignmentLeft];
-//        [ulmark setFont:fontsize_16];
-//        [ulmark setText:model.IMARK];
-//        
-//        [self addSubview:ulmark];
-        //    @weakify(self);
-        //    [mapView mas_makeConstraints:^(MASConstraintMaker *make) {
-        //        @strongify(self);
-        //        make.width.equalTo(self).with.offset(-20);
-        //        make.bottom.equalTo(self.mas_bottom).with.offset(40);
-        //        make.top.equalTo(imgtype.mas_bottom).with.offset(5);
-        //    }];
-        
     }else{
         //暂无数据
         UIImageView *imgview = [[UIImageView alloc] initWithFrame:self.bounds];
@@ -210,85 +170,6 @@
         [imgview setContentMode:UIViewContentModeCenter];
         [self addSubview:imgview];
     }
-}
-
-/**
- 选择照片
-
- @param recognizer 点击手势
- */
--(void)choosePhotoAction:(UITapGestureRecognizer *)recognizer{
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status){
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            // init picker
-            CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
-            // set delegate
-            picker.delegate = self;
-//            picker.assetsFetchOptions
-            // Optionally present picker as a form sheet on iPad
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-                picker.modalPresentationStyle = UIModalPresentationFormSheet;
-            
-            // present picker
-            [self.viewController presentViewController:picker animated:YES completion:nil];
-        });
-    }];
-}
-
-- (BOOL)assetsPickerController:(CTAssetsPickerController *)picker shouldSelectAsset:(PHAsset *)asset{
-    return picker.selectedAssets.count<1?true:false;
-}
-
-- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
-{
-    [picker dismissViewControllerAnimated:YES completion:^{
-        
-        CGFloat scale = [UIScreen mainScreen].scale;
-        PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-        options.resizeMode = PHImageRequestOptionsResizeModeNone;
-        options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
-        /** 遍历选择的所有图片*/
-        for (NSInteger i = 0; i < assets.count; i++) {
-            PHAsset *asset = assets[i];
-            CGSize size = CGSizeMake(asset.pixelWidth / scale, asset.pixelHeight / scale);
-            
-            @weakify(self);
-            /** 获取图片*/
-            [[PHImageManager defaultManager] requestImageForAsset:asset
-                                                       targetSize:size
-                                                      contentMode:PHImageContentModeDefault
-                                                          options:options
-                                                    resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                                                        
-                                                        @strongify(self);
-                                                        
-                                                        if(result!=nil){
-                                                            
-                                                            NSData *imageData = UIImagePNGRepresentation(result);
-                                                            NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
-                                                            NSString *photopath = [libraryPath stringByAppendingString:[NSString stringWithFormat:@"/%@_%@.png",currentmodel.EID,@"photo1"]];
-                                                            
-                                                            BOOL state = [[NSFileManager defaultManager] createFileAtPath:photopath contents:imageData attributes:nil];
-                                                            if (state) {
-//                                                                currentmodel.PHOTO1 = [NSString stringWithFormat:@"%@_%@.png",currentmodel.EID,@"photo1"];
-                                                                UIImageView *imgview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 75, self.bounds.size.width-20, self.bounds.size.height - 75 - 40)];
-                                                                [imgview setImage:result];
-                                                                [imgview setContentMode:UIViewContentModeScaleToFill];
-                                                                [self addSubview:imgview];
-                                                                imageviewArray = [NSArray arrayWithObjects:imgview, nil];
-                                                                
-//                                                                if (self.updatePhotoBlock) {
-//                                                                    self.updatePhotoBlock(currentmodel.EID,currentmodel.PHOTO1);
-//                                                                }
-                                                                
-                                                            }
-                                                        }
-                                                        
-                                                    }];
-        }
-        
-    }];
 }
 
 @end

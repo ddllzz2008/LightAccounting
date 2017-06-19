@@ -9,17 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "MainExpendModel.h"
 #import <QuartzCore/QuartzCore.h>
-//#import <BaiduMapAPI_Base/BMKBaseComponent.h>
-#import <CTAssetsPickerController/CTAssetsPickerController.h>
 #import "NSString+ExtMethod.h"
 #import "NSDate+ExtMethod.h"
 #import "UIView+ExtMethod.h"
 
-@interface ExpenditureView : UIView<CTAssetsPickerControllerDelegate>{
+@interface ExpenditureView : UIView{
     
     UIView *backgroundview;
     
-//    MKMapView* mapView;
+    UIView *container;
     
     UILabel *ulmark;
     

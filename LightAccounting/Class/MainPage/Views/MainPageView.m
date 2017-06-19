@@ -151,6 +151,8 @@
         for (int i=0; i<mapsourceArray.count; i++) {
             
             ExpenditureView *view = [[ExpenditureView alloc] init];
+            UITapGestureRecognizer *detailtap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navdetail:)];
+            [view addGestureRecognizer:detailtap];
 //            view.updatePhotoBlock=^(NSString *eid,NSString *photopath){
 //                
 //                if (self.updatePhotoBlock) {
@@ -355,6 +357,12 @@
     } @finally {
         
     }
+}
+
+-(void)navdetail:(id)sender{
+    
+    BillDetailViewController *billdetailcontroller = [[BillDetailViewController alloc] init];
+    [[self viewController].navigationController pushViewController:billdetailcontroller animated:YES];
     
 }
 

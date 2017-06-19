@@ -11,6 +11,7 @@
 #import "WaterWareView.h"
 #import "ExpenditureView.h"
 #import "MainExpendModel.h"
+#import "BillDetailViewController.h"
 
 @interface MainPageView : UIView{
     
