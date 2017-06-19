@@ -16,6 +16,8 @@
 
 @implementation NewExpenditureViewController
 
+extern NSDictionary *viewrefreshCache;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -79,6 +81,7 @@
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [[AlertController sharedInstance] closeMessage];
                         [[AlertController sharedInstance] showMessageAutoClose:@"记账成功"];
+                        [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
                         [self.navigationController popViewControllerAnimated:YES];
                     });
                 }else{
@@ -104,6 +107,7 @@
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         [[AlertController sharedInstance] closeMessage];
                         [[AlertController sharedInstance] showMessageAutoClose:@"记账成功"];
+                        [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
                         [self.navigationController popViewControllerAnimated:YES];
                     });
                 }else{

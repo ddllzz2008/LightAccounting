@@ -26,7 +26,7 @@
 
 @implementation AppDelegate
 
-
+extern NSDictionary *viewrefreshCache;
 /**
  获取键盘是否弹出
 
@@ -63,17 +63,15 @@
     //初始化下载配置信息数据
     [AppliationLogic createDatabase];
     
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    LoginViewController *loginViewController = (LoginViewController *)[storyboard instantiateViewControllerWithIdentifier:@"loginviewcontroller"];
-//
-//    self.viewController = loginViewController;
-    
     [self setAppWindows];
     [self setTabbarController];
     [self setRootViewController];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+
+    //初始化view刷新缓存对象
+    [Constants Instance].viewrefreshCache = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@YES,@"mainpage",@YES,@"billpage",@YES,@"settingpage", nil];
     
     //初始化百度地图
     _mapManager = [[BMKMapManager alloc] init];

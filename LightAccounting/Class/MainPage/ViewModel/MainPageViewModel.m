@@ -42,18 +42,19 @@
             [returnsource addObject:groupmodel];
         }
         
-//        [[setindex allObjects] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CREATETIME==%@",obj];
-//            NSArray *sourcearray = [returnArray filteredArrayUsingPredicate:predicate];
-//            MainGroupModel *groupmodel = [[MainGroupModel alloc] init];
-//            groupmodel.groupDate =obj;
-//            groupmodel.groupExpend = [[sourcearray valueForKeyPath:@"@sum.EVALUE"] floatValue];
-//            groupmodel.groupSource = sourcearray;
-//            [returnsource addObject:groupmodel];
-//        }];
-        
     }
     return returnsource;
+}
+
+/**
+ 获取本月预算
+
+ @return <#return value description#>
+ */
+-(CGFloat)getCurrentBudget{
+    NSDate *date = [NSDate dateWithZone];
+    return [[BusBudgetDAL Instance] getBudgetInfo:[NSString stringWithFormat:@"%ld",(long)[date year]] month:[NSString stringWithFormat:@"%ld",(long)[date month]]];
+    
 }
 
 -(void)updateExpendPhoto:(NSString *)eid photo:(NSString *)photo{

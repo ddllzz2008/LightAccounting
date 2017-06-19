@@ -13,6 +13,9 @@
 #import "MainExpendModel.h"
 
 @interface MainPageView : UIView{
+    
+    UILabel *currentSpend;
+    UILabel *currentPlan;
     //支付类型图标列表
     NSDictionary *paytypeDictionry;
     //私有变量
@@ -43,16 +46,26 @@
  */
 -(void)startlayout;
 
+/**
+ 加载数据
+ */
+-(void)loadData;
+
 
 /**
   数据源
  */
 @property(nonatomic,strong) NSArray *source;
 
+@property (nonatomic,assign) CGFloat currentBudget;
+
+@property (nonatomic,assign) CGFloat currentExpend;
+
 @property(nonatomic,copy) void(^updatePhotoBlock)(NSString *eid,NSString *photopath);
 
 @property (nonatomic,copy) void(^addnewAccount)();
 
 -(void)refreshTheme;
+
 
 @end

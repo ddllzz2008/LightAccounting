@@ -77,7 +77,8 @@ static BusBudgetDAL *instance = nil;
     NSMutableArray *array = [[FmdbHelper Instance] querySql:sql];
     NSArray *result = [MTLJSONAdapter modelsOfClass:[BusBudgetModel class] fromJSONArray:array error:nil];
     if (result!=nil &&result.count>0) {
-        return [[result objectAtIndex:0] floatValue];
+        BusBudgetModel *model = [result objectAtIndex:0];
+        return model.BVALUE;
     }else{
         return 0.0f;
     }

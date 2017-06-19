@@ -20,6 +20,8 @@
 
 @implementation MainPageViewController
 
+extern NSDictionary *viewrefreshCache;
+
 - (void)viewDidLoad {
     
     self.viewmodel = [[MainPageViewModel alloc] init];
@@ -56,11 +58,6 @@
     mainview = [[MainPageView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, ScreenSize.height - StatusSize.height -self.navigationController.navigationBar.frame.size.height-self.tabBarController.tabBar.frame.size.height)];
     [self.view addSubview:mainview];
     
-    NSArray *dateArray = [[NSDate date] dateForCurrentMonth];
-    [self.viewmodel initFilters:[dateArray objectAtIndex:0] end:[dateArray objectAtIndex:1] categoryid:nil packageid:nil minexpend:nil maxexpend:nil];
-    NSArray *source = [self.viewmodel loadData];
-    
-    [mainview setSource:source];
     [mainview startlayout];
 }
 
@@ -78,6 +75,30 @@
         NewExpenditureViewController *newexpendController = [[NewExpenditureViewController alloc] init];
         [strongSelf.navigationController pushViewController:newexpendController animated:YES];
     };
+}
+
+-(void)loadAppearData{
+    
+    //界面赋值
+    if ([[[Constants Instance].viewrefreshCache objectForKey:@"mainpage"] isEqual:@YES]) {
+        NSArray *dateArray = [[NSDate date] dateForCurrentMonth];
+        [self.viewmodel initFilters:[dateArray objectAtIndex:0] end:[dateArray objectAtIndex:1] categoryid:nil packageid:nil minexpend:nil maxexpend:nil];
+        NSArray *source = [self.viewmodel loadData];
+        
+        CGFloat totalexpend = [[source valueForKeyPath:@"@sum.groupExpend"] floatValue];
+        
+        [mainview setCurrentExpend:totalexpend];
+        
+        [mainview setSource:source];
+        [mainview loadData];
+        
+        CGFloat totalbudget = [self.viewmodel getCurrentBudget];
+        [mainview setCurrentBudget:totalbudget];
+        
+        [[Constants Instance].viewrefreshCache setValue:@NO forKey:@"mainpage"];
+        
+    }
+    
 }
 
 

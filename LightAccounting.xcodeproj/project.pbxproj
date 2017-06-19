@@ -120,6 +120,7 @@
 		696B542A1EF030DC00B0173D /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B54291EF030DC00B0173D /* Contacts.framework */; };
 		696B542C1EF031C100B0173D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B542B1EF031C100B0173D /* AudioToolbox.framework */; };
 		696B542E1EF031CA00B0173D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B542D1EF031CA00B0173D /* AddressBook.framework */; };
+		69734BE51EF7B33300ABD566 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 69734BE41EF7B33300ABD566 /* Constants.m */; };
 		6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6974FC591EA51C63008F4495 /* BillTableCell.m */; };
 		698F357A1EEEA62600D3BED8 /* ExpendVoiceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F35791EEEA62600D3BED8 /* ExpendVoiceViewModel.m */; };
 		698F642E1EB0D595001BEB18 /* UIColor+ExtMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F642D1EB0D595001BEB18 /* UIColor+ExtMethod.m */; };
@@ -358,6 +359,8 @@
 		696B54291EF030DC00B0173D /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		696B542B1EF031C100B0173D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		696B542D1EF031CA00B0173D /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		69734BE31EF7B33300ABD566 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		69734BE41EF7B33300ABD566 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		6974FC581EA51C63008F4495 /* BillTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableCell.h; sourceTree = "<group>"; };
 		6974FC591EA51C63008F4495 /* BillTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableCell.m; sourceTree = "<group>"; };
 		697A4E051EE1B85C0059106C /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
@@ -1047,6 +1050,8 @@
 				6944B6501E7E30D500474964 /* AppDelegate+AppService.m */,
 				6944B6511E7E30D500474964 /* AppDelegate+RootController.h */,
 				6944B6FF1E7E335300474964 /* AppDelegate+RootController.m */,
+				69734BE31EF7B33300ABD566 /* Constants.h */,
+				69734BE41EF7B33300ABD566 /* Constants.m */,
 			);
 			name = Deletegate;
 			sourceTree = "<group>";
@@ -1436,6 +1441,7 @@
 				6944B72A1E7E76F900474964 /* MainPageView.m in Sources */,
 				692AE0571EF11A2D00BC29CC /* BusBudgetModel.m in Sources */,
 				6944B6D51E7E30E500474964 /* LeftSubMenuController.m in Sources */,
+				69734BE51EF7B33300ABD566 /* Constants.m in Sources */,
 				6944B6EF1E7E30E500474964 /* UILabel+extmethod.m in Sources */,
 				6944B6D41E7E30E500474964 /* LeftMenuController.m in Sources */,
 				6931066B1EAEDBDB006C607A /* BudgetViewController.m in Sources */,

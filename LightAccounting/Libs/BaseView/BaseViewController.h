@@ -12,6 +12,7 @@
 #import "FBKVOController.h"
 #import "../../Protocol/BaseViewDelegate.h"
 #import "BaseViewModel.h"
+#import "AppDelegate+AppLifeCircle.h"
 
 @class UserModel;
 
@@ -27,6 +28,7 @@
 @property (nonatomic,weak,readwrite) id<UIViewControllerKeyboardDelegate> viewcontrollerKeyboardDelegate;
 
 #pragma mark---UI模式
+-(AppDelegate *)getCurrentAppdelegate;
 /*!
  *  @brief 初始化当前ViewController的viewmodel
  *
@@ -58,6 +60,12 @@
  *  @since 1.0
  */
 -(void)addObservObject;
+
+/**
+ 加载视图显示时数据
+
+ */
+-(void)loadAppearData;
 
 #pragma mark---UI相关
 /*!

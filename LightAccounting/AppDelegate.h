@@ -10,6 +10,7 @@
 #import "MMDrawerController.h"
 #import "BaseViewDelegate.h"
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
+#import "Constants.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -20,7 +21,6 @@
 + (UINavigationController *)rootNavigationController;
 
 @property (nonatomic,weak) id<AppdelegateKeyboardState> keyboardDelegate;
-
 
 @end
 

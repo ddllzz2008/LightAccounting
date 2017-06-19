@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "ExpenditureDAL.h"
+#import "BusBudgetDAL.h"
+#import "NSDate+ExtMethod.h"
 #import "MainExpendModel.h"
 #import "MTLJSONAdapter.h"
 
@@ -40,8 +42,12 @@
  @return 数据列表
  */
 -(NSMutableArray *)loadData;
-
-
+/**
+ 获取本月预算
+ 
+ @return <#return value description#>
+ */
+-(CGFloat)getCurrentBudget;
 /**
  更新消费记录照片
 

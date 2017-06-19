@@ -28,6 +28,19 @@
     return self;
 }
 
+-(void)setCurrentExpend:(CGFloat)currentExpend{
+    
+    _currentExpend = currentExpend;
+    [currentSpend setText:[NSString stringWithFormat:@"%.1f",currentExpend]];
+    
+}
+
+-(void)setCurrentBudget:(CGFloat)currentBudget{
+    
+    _currentBudget = currentBudget;
+    [currentPlan setText:[NSString stringWithFormat:@"%.1f",currentBudget]];
+}
+
 /**
  刷新主题
  */
@@ -49,7 +62,7 @@
     [currentSpendtitle setText:@"本月支出"];
     [self addSubview:currentSpendtitle];
     
-    UILabel *currentSpend = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, self.bounds.size.width/2, 30)];
+    currentSpend = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, self.bounds.size.width/2, 30)];
     [currentSpend setTextColor:UIColorFromRGB(0xffffff)];
     [currentSpend setTextAlignment:NSTextAlignmentCenter];
     [currentSpend setFont:fontsize_24];
@@ -63,25 +76,29 @@
     [currentPlantitle setText:@"本月预算"];
     [self addSubview:currentPlantitle];
     
-    UILabel *currentPlan = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width/2, 35, self.bounds.size.width/2, 30)];
+    currentPlan = [[UILabel alloc] initWithFrame:CGRectMake(self.bounds.size.width/2, 35, self.bounds.size.width/2, 30)];
     [currentPlan setTextColor:UIColorFromRGB(0xffffff)];
     [currentPlan setTextAlignment:NSTextAlignmentCenter];
     [currentPlan setFont:fontsize_24];
     [currentPlan setText:@"3098.00"];
     [self addSubview:currentPlan];
     
+//    [self addscrollview];
+}
+
+-(void)loadData{
+    
+    for (UIView *subview in self.subviews) {
+        if ([subview isKindOfClass:[ExpenditureView class]]) {
+            [subview removeFromSuperview];
+        }
+    }
+    
+    mapsourceArray = [[NSMutableArray alloc] initWithCapacity:5];
+    mapArray = [[NSMutableArray alloc] initWithCapacity:5];
+    
     [self addscrollview];
     
-//    UIImageView *addview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-//    [addview setImage:[UIImage imageNamed:@"icon_new"]];
-//    UITapGestureRecognizer *addaccountTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateAccount)];
-//    addview.userInteractionEnabled=YES;
-//    [addview addGestureRecognizer:addaccountTap];
-//    [self addSubview:addview];
-//    [addview mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self);
-//        make.top.equalTo(self).with.offset(80);
-//    }];
 }
 
 #pragma mark--回调方法

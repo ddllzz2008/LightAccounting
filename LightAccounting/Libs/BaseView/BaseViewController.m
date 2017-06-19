@@ -53,6 +53,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    [self loadAppearData];
+    
     if (textfieldArray.count>0) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         
@@ -76,6 +78,11 @@
 }
 
 #pragma mark---UI模式
+-(AppDelegate *)getCurrentAppdelegate{
+    
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+}
 /*!
  *  @brief 初始化当前ViewController的viewmodel
  *
@@ -107,6 +114,10 @@
  *  @since 1.0
  */
 -(void)addObservObject{}
+/**
+ 加载视图显示时数据
+ */
+-(void)loadAppearData{}
 
 #pragma mark---UI相关
 /*!
