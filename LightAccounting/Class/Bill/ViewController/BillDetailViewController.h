@@ -10,7 +10,17 @@
 #import "BillDateChooseView.h"
 #import "BillDetailTableCell.h"
 #import "BillDetailSectionCell.h"
+#import "BillViewModel.h"
 
-@interface BillDetailViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
+@interface BillDetailViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>{
+    
+    BillDateChooseView *choosedateview;
+    UILabel *totalmoney;
+    
+}
+
+@property(nonatomic,strong) BillViewModel *viewmodel;
+
+@property(nonatomic,strong) NSDate *currentDate;
 
 @end

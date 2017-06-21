@@ -18,6 +18,22 @@
     filterMaxExpend=maxexpend;
 }
 
+/**
+ 获取账单日
+
+ @return <#return value description#>
+ */
+-(int)getBillDay{
+    
+    AppConfigurationModel *model = [[AppConfigurationDAL Instance] getAppConfiguration];
+    if (model!=nil) {
+        return model.BILLDATE;
+    }else{
+        return 1;
+    }
+    
+}
+
 -(NSMutableArray *)loadData{
     NSMutableArray *returnsource = [[NSMutableArray alloc] init];
     NSArray *expends = [[ExpenditureDAL Instance] getExpenditure:filterStartDate end:filterEndDate categoryid:filterCategoryID minspend:filterMinExpend maxspend:filterMaxExpend];

@@ -151,6 +151,7 @@
 		69F277DF1EA8A93E0016FF6E /* BillDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F277DE1EA8A93E0016FF6E /* BillDetailTableCell.m */; };
 		69F277E21EA8A96F0016FF6E /* BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F277E11EA8A96F0016FF6E /* BillDetailViewController.m */; };
 		69F277E51EA8AA510016FF6E /* BillDetailSectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F277E41EA8AA510016FF6E /* BillDetailSectionCell.m */; };
+		69FA0C6C1EFA5AA40085720F /* BillViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FA0C6B1EFA5AA40085720F /* BillViewModel.m */; };
 		69FCE3791ECAEEBE004959CC /* FamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FCE3781ECAEEBE004959CC /* FamilyViewController.m */; };
 		73F31E87C5531E6856486A74 /* Pods_LightAccounting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F085A264F6B0E44809150BE /* Pods_LightAccounting.framework */; };
 /* End PBXBuildFile section */
@@ -422,6 +423,8 @@
 		69F277E11EA8A96F0016FF6E /* BillDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailViewController.m; sourceTree = "<group>"; };
 		69F277E31EA8AA510016FF6E /* BillDetailSectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailSectionCell.h; sourceTree = "<group>"; };
 		69F277E41EA8AA510016FF6E /* BillDetailSectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailSectionCell.m; sourceTree = "<group>"; };
+		69FA0C6A1EFA5AA40085720F /* BillViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillViewModel.h; sourceTree = "<group>"; };
+		69FA0C6B1EFA5AA40085720F /* BillViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillViewModel.m; sourceTree = "<group>"; };
 		69FCE3771ECAEEBE004959CC /* FamilyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyViewController.h; sourceTree = "<group>"; };
 		69FCE3781ECAEEBE004959CC /* FamilyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyViewController.m; sourceTree = "<group>"; };
 		7566DBA92425B4A85BAE98A0 /* Pods-LightAccounting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LightAccounting.release.xcconfig"; path = "Pods/Target Support Files/Pods-LightAccounting/Pods-LightAccounting.release.xcconfig"; sourceTree = "<group>"; };
@@ -467,18 +470,11 @@
 			isa = PBXGroup;
 			children = (
 				690E8D101E9CC97C004DC684 /* ViewController */,
-				690E8D0F1E9CC97C004DC684 /* Model */,
-				690E8D111E9CC97C004DC684 /* ViewModel */,
 				690E8D121E9CC97C004DC684 /* Views */,
+				69FA0C691EFA5A6E0085720F /* ViewModel */,
+				69FA0C681EFA5A6E0085720F /* Model */,
 			);
 			path = Bill;
-			sourceTree = "<group>";
-		};
-		690E8D0F1E9CC97C004DC684 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		690E8D101E9CC97C004DC684 /* ViewController */ = {
@@ -490,13 +486,6 @@
 				690E8D141E9CC9EB004DC684 /* BillViewController.m */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		690E8D111E9CC97C004DC684 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		690E8D121E9CC97C004DC684 /* Views */ = {
@@ -1249,6 +1238,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		69FA0C681EFA5A6E0085720F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		69FA0C691EFA5A6E0085720F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				69FA0C6A1EFA5AA40085720F /* BillViewModel.h */,
+				69FA0C6B1EFA5AA40085720F /* BillViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CCB2B2D6691EDFE066917BA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1527,6 +1532,7 @@
 				6933BFE41E822F0000701ECB /* ExpenditureDAL.m in Sources */,
 				6944B6E61E7E30E500474964 /* ArchiverCache.m in Sources */,
 				693106741EAF27AC006C607A /* TouchTableView.m in Sources */,
+				69FA0C6C1EFA5AA40085720F /* BillViewModel.m in Sources */,
 				6944B62C1E7E2CF200474964 /* AppDelegate.m in Sources */,
 				6944B6DA1E7E30E500474964 /* NSDate+ExtMethod.m in Sources */,
 				692398641E6FB7BE00A86BAD /* CategoryEditView.m in Sources */,

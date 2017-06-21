@@ -298,6 +298,7 @@
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
     NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     comps = [calendar components:unitFlags fromDate:self];
+    [comps setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     return [comps weekday];
 }
 
@@ -308,11 +309,18 @@
  */
 -(NSInteger)day{
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
-    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    comps = [calendar components:unitFlags fromDate:self];
-    return [comps day];
+//    NSDateComponents *comps = [[NSDateComponents alloc] init];
+//    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+//    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+//    comps = [calendar components:unitFlags fromDate:self];
+//    
+//    return [comps day];
+    
+    NSDateComponents *dateComponents = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSCalendarUnitDay | NSDayCalendarUnit | NSCalendarUnitTimeZone fromDate:self];
+    
+    [dateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    
+    return [dateComponents day];
 }
 
 /**
@@ -326,6 +334,7 @@
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
     NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     comps = [calendar components:unitFlags fromDate:self];
+    [comps setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     return [comps month];
 }
 
@@ -340,6 +349,7 @@
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
     NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     comps = [calendar components:unitFlags fromDate:self];
+    [comps setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     return [comps year];
 }
 

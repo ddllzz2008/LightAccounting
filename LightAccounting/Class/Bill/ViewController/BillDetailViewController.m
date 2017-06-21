@@ -22,11 +22,20 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
+#pragma mark---属性赋值
+-(void)setCurrentDate:(NSDate *)currentDate{
+    
+    _currentDate = currentDate;
+    choosedateview.currentDate = currentDate;
+    
+}
+
 -(void)initControls{
-    BillDateChooseView *choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 80)];
+    choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 80)];
+    choosedateview.mode=BillDateChooseModeYearMonth;
     [self.view addSubview:choosedateview];
     
-    UILabel *totalmoney = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 20)];
+    totalmoney = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 20)];
     [totalmoney setTextColor:get_theme_color];
     [totalmoney setTextAlignment:NSTextAlignmentCenter];
     [totalmoney setFont:fontsize_16];
@@ -59,6 +68,12 @@
         make.bottom.equalTo(strongSelf.view.mas_bottom).with.offset(-20);
         make.top.equalTo(totalmoney.mas_bottom).with.offset(10);
     }];
+}
+
+-(void)initWithViewModel{
+    
+    self.viewmodel = [[BillViewModel alloc] init];
+    
 }
 
 

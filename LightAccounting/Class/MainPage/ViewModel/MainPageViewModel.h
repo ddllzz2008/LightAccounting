@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "ExpenditureDAL.h"
 #import "BusBudgetDAL.h"
+#import "AppConfigurationDAL.h"
+#import "AppConfigurationModel.h"
 #import "NSDate+ExtMethod.h"
 #import "MainExpendModel.h"
 #import "MTLJSONAdapter.h"
@@ -35,7 +37,12 @@
  */
 -(void)initFilters:(NSDate*)start end:(NSDate*)end categoryid:(NSString*)categoryid packageid:(NSString *)packageid minexpend:(NSString *)minexpend maxexpend:(NSString *)maxexpend;
 
-
+/**
+ 获取账单日
+ 
+ @return <#return value description#>
+ */
+-(int)getBillDay;
 /**
  加载数据
 
