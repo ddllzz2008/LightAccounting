@@ -363,4 +363,34 @@
     return currentDate;
 }
 
+// 格式转换
+/**
+ 根据格式获取时间具体数值
+
+ @param format <#format description#>
+ @return <#return value description#>
+ */
+-(long)getDateFormatter:(NSString *)format{
+    NSTimeZone* localzone = [NSTimeZone systemTimeZone];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:[NSString stringWithFormat:@"%@", format]];
+    [formatter setTimeZone:localzone];
+//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self timeIntervalSince1970]];
+    NSString *dateStr = [formatter stringFromDate:self];
+    return [dateStr integerValue];
+    
+//    NSTimeZone* localzone = [NSTimeZone localTimeZone];
+//    NSTimeZone* GTMzone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:format];
+//    [dateFormatter setTimeZone:GTMzone];
+//    
+//    NSDate *day = [NSDate dateWithTimeInterval:3600 sinceDate:self];
+//    
+//    [dateFormatter setTimeZone:localzone];
+//    
+//    NSString *dateStr = [dateFormatter stringFromDate:day];
+//    return [dateStr integerValue];
+}
+
 @end

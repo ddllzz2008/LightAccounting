@@ -47,4 +47,13 @@
 
 +(NSDate *)dateWithZone;
 
+// 格式转换
+/**
+ 根据格式获取时间具体数值
+ 
+ @param format <#format description#>
+ @return <#return value description#>
+ */
+-(long)getDateFormatter:(NSString *)format;
+
 @end

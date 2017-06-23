@@ -82,11 +82,11 @@ extern NSDictionary *viewrefreshCache;
     //界面赋值
     if ([[[Constants Instance].viewrefreshCache objectForKey:@"mainpage"] isEqual:@YES]) {
         NSDate *today = [NSDate dateWithZone];
-        long day = [today day];
+        long day = [today getDateFormatter:@"dd"];
         int billday = [self.viewmodel getBillDay];
-        long startyear = [today year];
+        long startyear = [today getDateFormatter:@"yyyy"];
         long endyear = startyear;
-        long startmonth = [today month];
+        long startmonth = [today getDateFormatter:@"MM"];
         long endmonth = startmonth;
         if (day>=billday) {
             if (startmonth==12) {
