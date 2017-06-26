@@ -29,7 +29,7 @@ static IncomeDAL *instance = nil;
     model.emonth = [NSString stringWithFormat:@"%ld",(long)[model.createtime month]];
     model.eday = [NSString stringWithFormat:@"%ld",(long)[model.createtime day]];
     
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_INCOME(IID,CID,FID,PID,IVALUE,CREATETIME,IYEAR,IMONTH,IDAY,IMARK) VALUES('%@','%@','%@','%@','%f','%@','%@','%@','%@','%@') ",model.eid,model.cid,model.fid,@"",[model.evalue floatValue],[model.createtime formatWithCode:@"yyyy-MM-dd"],model.eyear,model.emonth,model.eday,[model.imark replaceSqlString]];
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_INCOME(IID,CID,FID,PID,IVALUE,CREATETIME,IYEAR,IMONTH,IDAY,IMARK,ISPRIVATE) VALUES('%@','%@','%@','%@','%f','%@','%@','%@','%@','%@',%d) ",model.eid,model.cid,model.fid,@"",[model.evalue floatValue],[model.createtime formatWithCode:@"yyyy-MM-dd"],model.eyear,model.emonth,model.eday,[model.imark replaceSqlString],model.isprivate];
     
     NSString *sqlupdate = [NSString stringWithFormat:@"UPDATE APP_CONFIGURATION SET LASTDATE='%@'",model.createtime];
     

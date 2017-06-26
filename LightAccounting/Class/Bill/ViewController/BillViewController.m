@@ -17,8 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_chart"] style:UIBarButtonItemStyleDone target:self action:@selector(navigateDetail)];
+    UIBarButtonItem *lefttitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_chart"] style:UIBarButtonItemStyleDone target:self action:@selector(navigateDetail)];
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_filter"] style:UIBarButtonItemStyleDone target:self action:@selector(navigateDetail)];
+    self.navigationItem.leftBarButtonItem = lefttitem;
     self.navigationItem.rightBarButtonItem = rightitem;
+    self.navigationItem.leftBarButtonItem.tintColor = UIColorFromRGB(0xffffff);
     self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0xffffff);
 }
 

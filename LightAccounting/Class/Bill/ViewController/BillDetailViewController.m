@@ -20,6 +20,10 @@
     [self.navigationItem setTitle:@"账单明细"];
     [self hiddenTabbar];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_filter"] style:UIBarButtonItemStyleDone target:self action:@selector(navigateDetail)];
+    self.navigationItem.rightBarButtonItem = rightitem;
+    self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0xffffff);
 }
 
 #pragma mark---属性赋值

@@ -59,6 +59,33 @@ static ExpenditureDAL *instance = nil;
     return array;
 }
 
+-(NSArray *)getAccountDetail:(NSDate*)start end:(NSDate *)end categoryid:(NSString *)categoryid minspend:(NSString*)minspend maxspend:(NSString*)maxspend{
+    NSString *sql = [NSString stringWithFormat:@"SELECT A.EID,IFNULL(A.EVALUE,0) AS EVALUE,A.CID,A.FID,A.CREATETIME,A.EYEAR,A.EMONTH,A.EDAY,A.IMARK,A.PID,A.BDX,A.BDY,A.BDADDRESS,A.PHOTO1,\
+                     C.CNAME,C.CCOLOR\
+                     FROM BUS_EXPENDITURE A\
+                     INNER JOIN BASE_FAMILY B ON A.FID=B.FID\
+                     INNER JOIN BASE_CATEGORY C ON A.CID=C.CID\
+                     WHERE C.ISVALID = 1 "];
+    if (start!=nil) {
+        sql = [sql stringByAppendingFormat:@" AND A.CREATETIME >= '%@' ",[start formatWithCode:dateformat_08]];
+    }
+    if(end!=nil){
+        sql = [sql stringByAppendingFormat:@" AND A.CREATETIME <= '%@' ",[end formatWithCode:dateformat_09]];
+    }
+    if(![CommonFunc isBlankString:categoryid]){
+        sql = [sql stringByAppendingFormat:@" AND C.CID='%@' ",categoryid];
+    }
+    if(![CommonFunc isBlankString:minspend]){
+        sql = [sql stringByAppendingFormat:@" AND A.EVALUE>%f ",[minspend doubleValue]];
+    }
+    if(![CommonFunc isBlankString:maxspend]){
+        sql = [sql stringByAppendingFormat:@" AND A.EVALUE<%f ",[maxspend doubleValue]];
+    }
+    sql = [sql stringByAppendingString:@" ORDER BY A.CREATETIME DESC "];
+    NSArray *array = [[FmdbHelper Instance] querySql:sql];
+    return array;
+}
+
 /**
  获取消费汇总
 
