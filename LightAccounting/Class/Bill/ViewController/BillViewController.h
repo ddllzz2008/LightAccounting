@@ -20,10 +20,13 @@
     
     UILabel *totalmoney;
     
-    UITableView *tableview;
+    UITableView *lefttableview;
     
     UIView *viewleft;
     UIView *viewright;
+    
+    UILabel *detailmoney;
+    UITableView *righttableview;
     
 }
 

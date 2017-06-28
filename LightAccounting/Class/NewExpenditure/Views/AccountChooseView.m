@@ -160,7 +160,9 @@ const double borderWidth = 2;
             } completion:^(BOOL finished) {
                 
                 self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height - lineHeight + (lineHeight * _source.count));
-                [self removeGestureRecognizer:panmove];
+                if (self.source.count>1) {
+                    [self removeGestureRecognizer:panmove];
+                }
                 uicanTouch = NO;
                 
             }];
