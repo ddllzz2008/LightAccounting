@@ -42,6 +42,20 @@
     choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 80)];
     [self.view addSubview:choosedateview];
     
+    viewleft = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, ScreenSize.height)];
+    viewleft.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:viewleft];
+    
+    __weak typeof(self.view) weakSelf = self.view;
+    
+    [viewleft mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.top.equalTo(choosedateview.mas_bottom).with.offset(5);
+        make.left.equalTo(strongSelf);
+        make.bottom.equalTo(strongSelf);
+        make.width.mas_equalTo(ScreenSize.width);
+    }];
+    
     NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"支出",@"收入",nil];
     segmentControl = [[UISegmentedControl alloc] initWithItems:segmentedArray];
     segmentControl.frame = CGRectMake(0, 0, ScreenSize.width/2, 30);
@@ -50,16 +64,16 @@
     [segmentControl setTintColor:get_theme_color];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:fontsize_14,UITextAttributeFont ,nil];
     [segmentControl setTitleTextAttributes:dic forState:UIControlStateNormal];
-    [self.view addSubview:segmentControl];
+    [viewleft addSubview:segmentControl];
     
-    __weak typeof(self) weakSelf = self;
+    __weak typeof(viewleft) weakviewleft = viewleft;
     
     [segmentControl mas_makeConstraints:^(MASConstraintMaker *make) {
 //        @strongify(self);
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakviewleft) strongviewleft = weakviewleft;
         make.size.mas_equalTo(CGSizeMake(ScreenSize.width/2, 30));
-        make.centerX.equalTo(strongSelf.view);
-        make.top.equalTo(choosedateview.mas_bottom).with.offset(5);
+        make.centerX.equalTo(strongviewleft);
+        make.top.equalTo(strongviewleft);
     }];
     
     totalmoney = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 20)];
@@ -67,7 +81,7 @@
     [totalmoney setTextAlignment:NSTextAlignmentCenter];
     [totalmoney setFont:fontsize_26];
     [totalmoney setText:@"1,5000.0"];
-    [self.view addSubview:totalmoney];
+    [viewleft addSubview:totalmoney];
     
     [totalmoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(ScreenSize.width, 20));
@@ -75,13 +89,13 @@
     }];
     
     BillChartView *chartview = [[BillChartView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 150)];
-    [self.view addSubview:chartview];
+    [viewleft addSubview:chartview];
     
     [chartview mas_makeConstraints:^(MASConstraintMaker *make) {
 //        @strongify(self);
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        __strong __typeof(weakviewleft) strongviewleft = weakviewleft;
         make.size.mas_equalTo(CGSizeMake(ScreenSize.width-30, 150));
-        make.left.equalTo(strongSelf.view.mas_left).with.offset(15);
+        make.left.equalTo(strongviewleft.mas_left).with.offset(15);
         make.top.equalTo(totalmoney.mas_bottom).with.offset(5);
     }];
     
@@ -94,15 +108,15 @@
     tableview.allowsSelection = NO;
     tableview.showsVerticalScrollIndicator = NO;
     [tableview registerClass:[BillTableCell class] forCellReuseIdentifier:@"billtablecell"];
-    [self.view addSubview:tableview];
+    [viewleft addSubview:tableview];
     
     [tableview mas_makeConstraints:^(MASConstraintMaker *make) {
 //        @strongify(self);
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.left.equalTo(strongSelf.view).with.offset(15);
+        __strong __typeof(weakviewleft) strongviewleft = weakviewleft;
+        make.left.equalTo(strongviewleft).with.offset(15);
         make.width.mas_equalTo(ScreenSize.width - 30);
-        make.centerX.equalTo(strongSelf.view);
-        make.bottom.equalTo(strongSelf.view.mas_bottom).with.offset(-60);
+        make.centerX.equalTo(strongviewleft);
+        make.bottom.equalTo(strongviewleft.mas_bottom).with.offset(-60);
         make.top.equalTo(chartview.mas_bottom).with.offset(10);
     }];
 }
@@ -149,6 +163,46 @@
 #pragma mark---跳转事件
 -(void)navigateDetail{
     [self.navigationController pushViewController:[[BillDetailViewController alloc] init] animated:YES];
+}
+
+#pragma mark---滑动手势
+-(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+    if (viewleft.frame.origin.x>=0) {
+        viewleft.frame = CGRectMake(0, viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
+        return;
+    }
+    
+    UITouch *touch = [touches anyObject];
+    if (touch) {
+        CGPoint location = [touch locationInView:self.view];
+        if ([viewleft pointInside:location withEvent:nil]) {
+            CGPoint prevLocation = [touch previousLocationInView:self.view];
+            if (location.x - prevLocation.x > 0) {
+                //finger touch went right
+            } else {
+                //finger touch went left
+            }
+            
+            if (viewleft.frame.origin.x+(location.x - prevLocation.x)>0) {
+                viewleft.frame = CGRectMake(0, viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
+                return;
+            }
+            
+            viewleft.frame = CGRectMake(viewleft.frame.origin.x+(location.x - prevLocation.x), viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
+            
+            if (location.y - prevLocation.y > 0) {
+                //finger touch went upwards
+            } else {
+                //finger touch went downwards
+            }
+        }
+    }
+    
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
 }
 
 @end

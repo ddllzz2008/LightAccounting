@@ -26,12 +26,22 @@
  @param start 开始时间
  @param end 结束时间
  @param categoryid 类别
- @param packageid 钱包
  @param minspend 最低消费
  @param maxspend 最高消费
  @return 消费列表
  */
 -(NSArray *)getExpenditure:(NSDate*)start end:(NSDate *)end categoryid:(NSString *)categoryid minspend:(NSString*)minspend maxspend:(NSString*)maxspend;
+/**
+ 获取消费明细
+ 
+ @param start 开始时间
+ @param end 结束时间
+ @param categoryids 类别ID
+ @param minspend 最低消费
+ @param maxspend 最大消费
+ @return 消费汇总
+ */
+-(NSArray *)getAccountDetail:(NSDate*)start end:(NSDate *)end categoryid:(NSArray<NSString *>*)categoryids minspend:(NSString*)minspend maxspend:(NSString*)maxspend;
 /**
  获取消费汇总
  

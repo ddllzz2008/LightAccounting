@@ -32,6 +32,9 @@
     arrayPassword = [[NSMutableArray alloc] init];
     arrayImageView = [[NSMutableArray alloc] init];
     
+    movestartpoint = CGPointZero;
+    moveendpoint = CGPointZero;
+    
     __weak __typeof(self) weakself = self;
     int radius = 50;
     int space = 30;
@@ -192,15 +195,16 @@
 
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
-    
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextSetLineWidth(ctx, 2);
-    CGContextSetStrokeColorWithColor(ctx, [get_theme_color CGColor]);
-    CGPoint aPoints[2];//坐标点
-    aPoints[0] =movestartpoint;//坐标1
-    aPoints[1] =moveendpoint;//坐标2
-    CGContextAddLines(ctx, aPoints, 2);//添加线
-    CGContextDrawPath(ctx, kCGPathStroke); //根据坐标绘制路径
+    if (!(movestartpoint.x == CGPointZero.x&&movestartpoint.y==CGPointZero.y)) {
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        CGContextSetLineWidth(ctx, 2);
+        CGContextSetStrokeColorWithColor(ctx, [get_theme_color CGColor]);
+        CGPoint aPoints[2];//坐标点
+        aPoints[0] =movestartpoint;//坐标1
+        aPoints[1] =moveendpoint;//坐标2
+        CGContextAddLines(ctx, aPoints, 2);//添加线
+        CGContextDrawPath(ctx, kCGPathStroke); //根据坐标绘制路径
+    }
 }
 
 -(void)clear{

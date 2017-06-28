@@ -59,7 +59,17 @@ static ExpenditureDAL *instance = nil;
     return array;
 }
 
--(NSArray *)getAccountDetail:(NSDate*)start end:(NSDate *)end categoryid:(NSString *)categoryid minspend:(NSString*)minspend maxspend:(NSString*)maxspend{
+/**
+ 获取消费明细
+
+ @param start 开始时间
+ @param end 结束时间
+ @param categoryids 类别ID
+ @param minspend 最低消费
+ @param maxspend 最大消费
+ @return 消费汇总
+ */
+-(NSArray *)getAccountDetail:(NSDate*)start end:(NSDate *)end categoryid:(NSArray<NSString *>*)categoryids minspend:(NSString*)minspend maxspend:(NSString*)maxspend{
     NSString *sql = [NSString stringWithFormat:@"SELECT A.EID,IFNULL(A.EVALUE,0) AS EVALUE,A.CID,A.FID,A.CREATETIME,A.EYEAR,A.EMONTH,A.EDAY,A.IMARK,A.PID,A.BDX,A.BDY,A.BDADDRESS,A.PHOTO1,\
                      C.CNAME,C.CCOLOR\
                      FROM BUS_EXPENDITURE A\
@@ -72,8 +82,13 @@ static ExpenditureDAL *instance = nil;
     if(end!=nil){
         sql = [sql stringByAppendingFormat:@" AND A.CREATETIME <= '%@' ",[end formatWithCode:dateformat_09]];
     }
-    if(![CommonFunc isBlankString:categoryid]){
-        sql = [sql stringByAppendingFormat:@" AND C.CID='%@' ",categoryid];
+    if(categoryids!=nil && categoryids.count>0){
+        NSString *cids = @"";
+        for (NSString *str in categoryids) {
+            cids = [cids stringByAppendingFormat:@"'%@',",str];
+        }
+        cids = [cids substringToIndex:([cids length]-1)];
+        sql = [sql stringByAppendingFormat:@" AND C.CID IN (%@)",cids];
     }
     if(![CommonFunc isBlankString:minspend]){
         sql = [sql stringByAppendingFormat:@" AND A.EVALUE>%f ",[minspend doubleValue]];

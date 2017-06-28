@@ -22,6 +22,9 @@
     
     UITableView *tableview;
     
+    UIView *viewleft;
+    UIView *viewright;
+    
 }
 
 @end
