@@ -24,7 +24,10 @@ static CategoryDAL *instance = nil;
  *---------------------------获取类别---------------------------------------------*
  */
 -(NSMutableArray *)getCategory:(NSInteger)type{
-    NSString *sql = [NSString stringWithFormat:@"SELECT CID,CNAME,CCODE,CPARENTCODE,CSORT,CCOLOR,CREATETIME,CTYPE,CCOLOR FROM BASE_CATEGORY WHERE CTYPE=%ld AND ISVALID=1",type];
+    NSString *sql = @"SELECT CID,CNAME,CCODE,CPARENTCODE,CSORT,CCOLOR,CREATETIME,CTYPE,CCOLOR FROM BASE_CATEGORY WHERE ISVALID=1";
+    if (type!=-1) {
+        sql = [sql stringByAppendingFormat:@" AND CTYPE=%ld",type];
+    }
     NSMutableArray *array = [[FmdbHelper Instance]querySql:sql];
     NSArray *result = [MTLJSONAdapter modelsOfClass:[CategoryModel class] fromJSONArray:array error:nil];
     return [result mutableCopy];

@@ -45,4 +45,15 @@
     
 }
 
+/**
+ 加载类别
+
+ @return <#return value description#>
+ */
+-(NSMutableArray *)loadCategory{
+    
+    return [[CategoryDAL Instance] getCategory:-1];
+    
+}
+
 @end

@@ -31,31 +31,33 @@
 
 -(void)initLayout{
     
-    currentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
+    double width = ScreenSize.width-30;
+    
+    currentLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 40, 40)];
     [currentLabel setStyle:fontsize_16 color:UIColorFromRGB(0xAAAAAA)];
     currentLabel.textAlignment=NSTextAlignmentLeft;
     [self addSubview:currentLabel];
     
-    __weak __typeof(self) weakself = self;
+//    __weak __typeof(self) weakself = self;
+//    
+//    [currentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        __strong __typeof(weakself) strongself = weakself;
+//        make.left.equalTo(strongself.mas_left).with.offset(40);
+//        make.width.mas_equalTo(@40);
+//        make.height.equalTo(strongself);
+//    }];
     
-    [currentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        __strong __typeof(weakself) strongself = weakself;
-        make.left.equalTo(strongself.mas_left).with.offset(40);
-        make.width.mas_equalTo(@40);
-        make.height.equalTo(strongself);
-    }];
-    
-    numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
+    numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(width/2, 0, width/2, 40)];
     [numberLabel setStyle:fontsize_20 color:UIColorFromRGB(0xAAAAAA)];
     numberLabel.textAlignment=NSTextAlignmentRight;
     [self addSubview:numberLabel];
     
-    [numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        __strong __typeof(weakself) strongself = weakself;
-        make.right.equalTo(strongself.mas_right);
-        make.width.mas_equalTo(strongself.mas_width).multipliedBy(0.5);
-        make.height.equalTo(strongself);
-    }];
+//    [numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        __strong __typeof(weakself) strongself = weakself;
+//        make.right.equalTo(strongself.mas_right);
+//        make.width.mas_equalTo(strongself.mas_width).multipliedBy(0.5);
+//        make.height.equalTo(strongself);
+//    }];
 }
 
 -(void)setDate:(NSString *)date{

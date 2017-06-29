@@ -11,9 +11,17 @@
 #import "NSString+ExtMethod.h"
 #import "AppConfigurationDAL.h"
 #import "AppConfigurationModel.h"
+#import "CategoryDAL.h"
 
 @interface BillViewModel : BaseViewModel
 
 @property (nonatomic,strong) NSArray *source;
+
+/**
+ 加载类别
+ 
+ @return <#return value description#>
+ */
+-(NSMutableArray *)loadCategory;
 
 @end

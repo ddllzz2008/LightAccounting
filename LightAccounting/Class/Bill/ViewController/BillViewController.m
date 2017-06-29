@@ -37,6 +37,8 @@
 -(void)initControls{
     
     choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 80)];
+    choosedateview.mode=BillDateChooseModeYearMonth;
+    choosedateview.currentDate = [NSDate dateWithZone];
     [self.view addSubview:choosedateview];
     
     /*--------------左边容器-------------------*/
@@ -263,8 +265,41 @@
 }
 
 #pragma mark---跳转事件
+
+/**
+ 打开筛选面板
+ */
 -(void)navigateDetail{
-    [self.navigationController pushViewController:[[BillDetailViewController alloc] init] animated:YES];
+    chooseWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [chooseWindow setBackgroundColor:[UIColor clearColor]];
+    chooseWindow.alpha=1.0f;
+    chooseWindow.windowLevel = UIWindowLevelAlert;
+    chooseWindow.hidden=NO;
+    
+    UIView *rootview = [[UIView alloc] initWithFrame:chooseWindow.frame];
+    rootview.backgroundColor=[UIColor grayColor];
+    rootview.alpha=0.4f;
+    UITapGestureRecognizer *hiddenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenAction:)];
+    [rootview addGestureRecognizer:hiddenTap];
+    [chooseWindow addSubview:rootview];
+    
+    filterview = [[FilterUIView alloc] initWithFrame:CGRectMake(ScreenSize.width/3, 0, ScreenSize.width*2/3, ScreenSize.height)];
+    filterview.categorySource = [self.viewmodel loadCategory];
+    [chooseWindow addSubview:filterview];
+    
+}
+
+-(void)hiddenAction:(UITapGestureRecognizer*)sender{
+    if (filterview!=nil) {
+        [filterview removeFromSuperview];
+        filterview = nil;
+    }
+    
+    if(chooseWindow!=nil){
+        
+        chooseWindow.hidden=YES;
+        chooseWindow=nil;
+    }
 }
 
 #pragma mark---滑动手势
@@ -353,6 +388,12 @@
             
         }
     }
+    
+}
+
+-(void)initWithViewModel{
+    
+    self.viewmodel = [[BillViewModel alloc] init];
     
 }
 

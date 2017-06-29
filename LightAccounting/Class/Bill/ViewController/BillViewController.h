@@ -10,7 +10,10 @@
 #import "BillDateChooseView.h"
 #import "BillChartView.h"
 #import "BillTableCell.h"
-#import "BillDetailViewController.h"
+#import "BillDetailSectionCell.h"
+#import "BillDetailTableCell.h"
+#import "FilterUIView.h"
+#import "BillViewModel.h"
 
 @interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>{
     
@@ -28,6 +31,11 @@
     UILabel *detailmoney;
     UITableView *righttableview;
     
+    UIWindow *chooseWindow;
+    FilterUIView *filterview;
+    
 }
+
+@property (nonatomic,strong) BillViewModel *viewmodel;
 
 @end

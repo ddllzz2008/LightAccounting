@@ -35,6 +35,7 @@
 		6941DAA31EEFD188000CF5DE /* CategoryViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6941DAA21EEFD188000CF5DE /* CategoryViewModel.m */; };
 		6941DAA61EEFD2D7000CF5DE /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6941DAA51EEFD2D7000CF5DE /* CategoryModel.m */; };
 		69425FE91E94CE3C00345AC9 /* CategoryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69425FE81E94CE3C00345AC9 /* CategoryViewCell.m */; };
+		6942C3B71F04F10300BF1BAA /* FilterUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6942C3B61F04F10300BF1BAA /* FilterUIView.m */; };
 		69435B521ED9222F005165DD /* RadarSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69435B511ED9222F005165DD /* RadarSearchButton.m */; };
 		6944B6291E7E2CF200474964 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944B6281E7E2CF200474964 /* main.m */; };
 		6944B62C1E7E2CF200474964 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944B62B1E7E2CF200474964 /* AppDelegate.m */; };
@@ -213,6 +214,8 @@
 		6941DAA51EEFD2D7000CF5DE /* CategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryModel.m; sourceTree = "<group>"; };
 		69425FE71E94CE3C00345AC9 /* CategoryViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewCell.h; sourceTree = "<group>"; };
 		69425FE81E94CE3C00345AC9 /* CategoryViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewCell.m; sourceTree = "<group>"; };
+		6942C3B51F04F10300BF1BAA /* FilterUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterUIView.h; sourceTree = "<group>"; };
+		6942C3B61F04F10300BF1BAA /* FilterUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterUIView.m; sourceTree = "<group>"; };
 		69435B501ED9222F005165DD /* RadarSearchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarSearchButton.h; sourceTree = "<group>"; };
 		69435B511ED9222F005165DD /* RadarSearchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarSearchButton.m; sourceTree = "<group>"; };
 		6944B6241E7E2CF200474964 /* LightAccounting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightAccounting.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -501,6 +504,8 @@
 				69F277DE1EA8A93E0016FF6E /* BillDetailTableCell.m */,
 				69F277E31EA8AA510016FF6E /* BillDetailSectionCell.h */,
 				69F277E41EA8AA510016FF6E /* BillDetailSectionCell.m */,
+				6942C3B51F04F10300BF1BAA /* FilterUIView.h */,
+				6942C3B61F04F10300BF1BAA /* FilterUIView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1478,6 +1483,7 @@
 				69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */,
 				6944B6D91E7E30E500474964 /* BaseViewModel.m in Sources */,
 				694815C81EE104A000DDADF2 /* MapChooseViewController.m in Sources */,
+				6942C3B71F04F10300BF1BAA /* FilterUIView.m in Sources */,
 				692AE0491EF10CAE00BC29CC /* AppConfigurationDAL.m in Sources */,
 				69D5B9001E7FDECC00B2EC8B /* RemindModel.m in Sources */,
 				6933BFE51E822F0000701ECB /* FamilyPersonDAL.m in Sources */,
