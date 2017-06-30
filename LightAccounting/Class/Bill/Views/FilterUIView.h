@@ -19,4 +19,8 @@
 
 @property (nonatomic,strong) NSArray *categorySource;
 
+@property (nonatomic,strong) UITextField *minfield;
+
+@property (nonatomic,strong) UITextField *maxfield;
+
 @end

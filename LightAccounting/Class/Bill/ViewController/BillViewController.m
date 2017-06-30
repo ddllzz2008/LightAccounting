@@ -36,7 +36,7 @@
 
 -(void)initControls{
     
-    choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 80)];
+    choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 60)];
     choosedateview.mode=BillDateChooseModeYearMonth;
     choosedateview.currentDate = [NSDate dateWithZone];
     [self.view addSubview:choosedateview];
@@ -287,6 +287,9 @@
     filterview.categorySource = [self.viewmodel loadCategory];
     [chooseWindow addSubview:filterview];
     
+    [self addTextFieldResponser:filterview.minfield];
+    [self addTextFieldResponser:filterview.maxfield];
+    
 }
 
 -(void)hiddenAction:(UITapGestureRecognizer*)sender{
@@ -300,11 +303,13 @@
         chooseWindow.hidden=YES;
         chooseWindow=nil;
     }
+    
+    [self hiddenKeyBoard];
 }
 
 #pragma mark---滑动手势
 -(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
+    isscroll = NO;
     UITouch *touch = [touches anyObject];
     if (touch) {
         CGPoint location = [touch locationInView:self.view];
@@ -327,11 +332,6 @@
             }
             
             CGPoint prevLocation = [touch previousLocationInView:self.view];
-            if (location.x - prevLocation.x > 0) {
-                //finger touch went right
-            } else {
-                //finger touch went left
-            }
             
             if (viewleft.frame.origin.x+(location.x - prevLocation.x)>0) {
                 viewleft.frame = CGRectMake(0, viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
@@ -343,6 +343,14 @@
                 return;
             }
             
+            if (location.x - prevLocation.x > 0) {
+                //finger touch went right
+                lastdirection = 1;
+            } else {
+                //finger touch went left
+                lastdirection = 2;
+            }
+            
             viewleft.frame = CGRectMake(viewleft.frame.origin.x+(location.x - prevLocation.x), viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
             viewright.frame = CGRectMake(viewright.frame.origin.x+(location.x - prevLocation.x), viewright.frame.origin.y, viewright.frame.size.width, viewright.frame.size.height);
             
@@ -351,6 +359,8 @@
             } else {
                 //finger touch went downwards
             }
+            
+            isscroll = YES;
         }
     }
     
@@ -358,32 +368,62 @@
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
+//    if (!isscroll) {
+//        return;
+//    }
+    
     UITouch *touch = [touches anyObject];
     if (touch) {
         CGPoint location = [touch locationInView:self.view];
         
         if ([viewleft pointInside:location withEvent:nil]) {
             
-            if (viewleft.frame.origin.x<(0-ScreenSize.width/2)) {
-                
-                //切换到第二个
-                [UIView animateWithDuration:0.2 animations:^{
-                    viewleft.frame = CGRectMake(0-ScreenSize.width, viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
-                    viewright.frame = CGRectMake(0, viewright.frame.origin.y, viewright.frame.size.width, viewright.frame.size.height);
-                } completion:^(BOOL finished) {
+            if (lastdirection==1) {
+                //向右滑
+                if (viewleft.frame.origin.x>(0-ScreenSize.width*3/4)) {
                     
+                    //切换到第一个
+                    [UIView animateWithDuration:0.2 animations:^{
+                        viewleft.frame = CGRectMake(0, viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
+                        viewright.frame = CGRectMake(ScreenSize.width, viewright.frame.origin.y, viewright.frame.size.width, viewright.frame.size.height);
+                    } completion:^(BOOL finished) {
+                        
+                        
+                    }];
                     
-                }];
-                
-            }else{
-                //切换到第一个
-                [UIView animateWithDuration:0.2 animations:^{
-                    viewleft.frame = CGRectMake(0, viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
-                    viewright.frame = CGRectMake(ScreenSize.width, viewright.frame.origin.y, viewright.frame.size.width, viewright.frame.size.height);
-                } completion:^(BOOL finished) {
+                }else{
+                    //切换到第二个
+                    [UIView animateWithDuration:0.2 animations:^{
+                        viewleft.frame = CGRectMake(0-ScreenSize.width, viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
+                        viewright.frame = CGRectMake(0, viewright.frame.origin.y, viewright.frame.size.width, viewright.frame.size.height);
+                    } completion:^(BOOL finished) {
+                        
+                        
+                    }];
+                }
+            }else if(lastdirection==2){
+                //向左滑
+                if (viewleft.frame.origin.x>(0-ScreenSize.width/4)) {
                     
+                    //切换到第一个
+                    [UIView animateWithDuration:0.2 animations:^{
+                        viewleft.frame = CGRectMake(0, viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
+                        viewright.frame = CGRectMake(ScreenSize.width, viewright.frame.origin.y, viewright.frame.size.width, viewright.frame.size.height);
+                    } completion:^(BOOL finished) {
+                        
+                        
+                    }];
                     
-                }];
+                }else{
+                    //切换到第二个
+                    [UIView animateWithDuration:0.2 animations:^{
+                        viewleft.frame = CGRectMake(0-ScreenSize.width, viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
+                        viewright.frame = CGRectMake(0, viewright.frame.origin.y, viewright.frame.size.width, viewright.frame.size.height);
+                    } completion:^(BOOL finished) {
+                        
+                        
+                    }];
+                }
             }
             
         }

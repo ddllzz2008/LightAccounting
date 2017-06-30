@@ -43,12 +43,12 @@
     betweenview.backgroundColor = UIColorFromRGB(0xeeeeee);
     [self addSubview:betweenview];
     
-    UITextField *minfield = [[UITextField alloc] initWithFrame:CGRectMake(5, 5, (width -50)/2, 30)];
-    minfield.placeholder = @"最低";
-    minfield.textColor=UIColorFromRGB(0x333333);
-    minfield.keyboardType=UIKeyboardTypeNumberPad;
-    minfield.backgroundColor = [UIColor whiteColor];
-    [betweenview addSubview:minfield];
+    self.minfield = [[UITextField alloc] initWithFrame:CGRectMake(5, 5, (width -50)/2, 30)];
+    self.minfield.placeholder = @"最低";
+    self.minfield.textColor=UIColorFromRGB(0x333333);
+    self.minfield.keyboardType=UIKeyboardTypeNumberPad;
+    self.minfield.backgroundColor = [UIColor whiteColor];
+    [betweenview addSubview:self.minfield];
     
     UILabel *middlelabel = [[UILabel alloc] initWithFrame:CGRectMake(width -10 - 5 - (width -50)/2, 5, 30, 30)];
     [middlelabel setStyle:fontsize_14 color:UIColorFromRGB(0xAAAAAA)];
@@ -56,12 +56,12 @@
     [middlelabel setText:@"123"];
     [betweenview addSubview:middlelabel];
     
-    UITextField *maxfield = [[UITextField alloc] initWithFrame:CGRectMake(width -10 - 5 - (width -50)/2, 5, (width -50)/2, 30)];
-    maxfield.placeholder = @"最高";
-    maxfield.textColor=UIColorFromRGB(0x333333);
-    maxfield.keyboardType=UIKeyboardTypeNumberPad;
-    maxfield.backgroundColor = [UIColor whiteColor];
-    [betweenview addSubview:maxfield];
+    self.maxfield = [[UITextField alloc] initWithFrame:CGRectMake(width -10 - 5 - (width -50)/2, 5, (width -50)/2, 30)];
+    self.maxfield.placeholder = @"最高";
+    self.maxfield.textColor=UIColorFromRGB(0x333333);
+    self.maxfield.keyboardType=UIKeyboardTypeNumberPad;
+    self.maxfield.backgroundColor = [UIColor whiteColor];
+    [betweenview addSubview:self.maxfield];
     
     UILabel *categorytitle = [[UILabel alloc] initWithFrame:CGRectMake(5, betweenview.frame.size.height+betweenview.frame.origin.y+10, width -10, 20)];
     [categorytitle setStyle:fontsize_13 color:UIColorFromRGB(0xcccccc)];
@@ -87,13 +87,13 @@
     [self addSubview:_collectionView];
     
     
-    UIButton *resetbutton = [[UIButton alloc] initWithFrame:CGRectMake(0, ScreenSize.height-30, width/2, 30)];
+    UIButton *resetbutton = [[UIButton alloc] initWithFrame:CGRectMake(0, ScreenSize.height-40, width/2, 40)];
     resetbutton.backgroundColor = UIColorFromRGB(0xcccccc);
     [resetbutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [resetbutton setTitle:@"重置" forState:UIControlStateNormal];
     [self addSubview:resetbutton];
     
-    UIButton *savebutton = [[UIButton alloc] initWithFrame:CGRectMake(width/2, ScreenSize.height-30, width/2, 30)];
+    UIButton *savebutton = [[UIButton alloc] initWithFrame:CGRectMake(width/2, ScreenSize.height-40, width/2, 40)];
     savebutton.backgroundColor = get_theme_color;
     [savebutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [savebutton setTitle:@"完成" forState:UIControlStateNormal];

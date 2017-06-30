@@ -34,6 +34,10 @@
     UIWindow *chooseWindow;
     FilterUIView *filterview;
     
+    //最后滑动的方向
+    int lastdirection;
+    BOOL isscroll;
+    
 }
 
 @property (nonatomic,strong) BillViewModel *viewmodel;

@@ -48,8 +48,9 @@
         gradientLayer.endPoint = CGPointMake(0, 1);
         
         //设置颜色数组
-        gradientLayer.colors = @[(__bridge id)[UIColor colorWithRed:166/255.0 green:209/255.0 blue:87/255.0 alpha:1].CGColor,
-                                 (__bridge id)[UIColor colorWithRed:132/255.0 green:214/255.0 blue:77/255.0 alpha:1].CGColor];
+        UIColor *color = get_theme_color;
+        gradientLayer.colors = @[(__bridge id)color.CGColor,
+                                 (__bridge id)[UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1].CGColor];
         //设置颜色分割点（范围：0-1）
         gradientLayer.locations = @[@(0.6f),@(1)];
     }else{
@@ -62,8 +63,9 @@
         gradientLayer.endPoint = CGPointMake(0, 1);
         
         //设置颜色数组
-        gradientLayer.colors = @[(__bridge id)[UIColor colorWithRed:166/255.0 green:209/255.0 blue:87/255.0 alpha:1].CGColor,
-                                 (__bridge id)[UIColor colorWithRed:132/255.0 green:214/255.0 blue:77/255.0 alpha:1].CGColor];
+        UIColor *color = get_theme_color;
+        gradientLayer.colors = @[(__bridge id)color.CGColor,
+                                 (__bridge id)[UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1].CGColor];
         //设置颜色分割点（范围：0-1）
         gradientLayer.locations = @[@(0.6f),@(1)];
     }
@@ -93,7 +95,7 @@
     CGContextAddLineToPoint(ctx, rect.size.width/2+8, 10);
     CGContextClosePath(ctx);
     
-    [[UIColor colorWithRed:166/255.0 green:209/255.0 blue:87/255.0 alpha:1] setFill];
+    [get_theme_color setFill];
     CGContextDrawPath(ctx, kCGPathFill);
 }
 
