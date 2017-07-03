@@ -24,7 +24,10 @@
              @"BDX":@"BDX",
              @"BDY":@"BDY",
              @"BDADDRESS":@"BDADDRESS",
-             @"PHOTO1":@"PHOTO1"};
+             @"PHOTO1":@"PHOTO1",
+             @"TYPE":@"TYPE",
+             @"CNAME":@"CNAME",
+             @"CCOLOR":@"CCOLOR",};
 }
 
 @end

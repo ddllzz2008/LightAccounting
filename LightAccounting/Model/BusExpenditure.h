@@ -38,6 +38,12 @@
 @property (nonatomic,copy,readwrite) NSString *BDADDRESS;
 
 @property (nonatomic,copy,readwrite) NSString *PHOTO1;
+
+@property (nonatomic,assign) int TYPE;
+
+@property (nonatomic,copy,readwrite) NSString *CNAME;
+
+@property (nonatomic,copy,readwrite) NSString *CCOLOR;
     
 
 @end

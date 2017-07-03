@@ -41,6 +41,43 @@
         
         NSString *startday = [NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",startyear,startmonth,billday];
         NSString *endday = [NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",endyear,endmonth,billday];
+        
+        NSArray *source = [[ExpenditureDAL Instance] getAccountDetail:[startday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"] end:[endday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"] categoryid:categories minspend:minvalue maxspend:maxvalue];
+        
+        if (source!=nil&&source.count>0) {
+            NSArray *returnArray = [MTLJSONAdapter modelsOfClass:[BusExpenditure class] fromJSONArray:source error:nil];
+            //类型分组
+            NSArray *namearray = [returnArray valueForKey:@"CNAME"];
+            //类型筛选
+            NSSet *nameset = [NSSet setWithArray:namearray];
+            //用于存放类别分组的对象
+            NSMutableArray *nameresultArray = [NSMutableArray array];
+            
+            [[nameset allObjects] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CNAME == %@",obj];
+                NSArray *indexArray = [returnArray filteredArrayUsingPredicate:predicate];
+                // 将查询结果加入到resultArray中
+                [nameresultArray addObject:indexArray];
+            }];
+            
+            //日期分组
+            NSArray *datearray = [returnArray valueForKey:@"CNAME"];
+            //日期筛选
+            NSSet *dateset = [NSSet setWithArray:datearray];
+            NSArray *sortDesc = @[[[NSSortDescriptor alloc] initWithKey:nil ascending:NO]];
+            NSArray *sortSetArray = [dateset sortedArrayUsingDescriptors:sortDesc];
+            //用于存放类别分组的对象
+            NSMutableArray *dateresultArray = [NSMutableArray array];
+            
+            for (NSString *date in sortSetArray){
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CREATETIME == %@",date];
+                NSArray *indexArray = [returnArray filteredArrayUsingPredicate:predicate];
+                // 将查询结果加入到resultArray中
+                [dateresultArray addObject:indexArray];
+            }
+            
+        }
+        
     }
     
 }

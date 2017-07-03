@@ -12,15 +12,34 @@
 #import "AppConfigurationDAL.h"
 #import "AppConfigurationModel.h"
 #import "CategoryDAL.h"
+#import "ExpenditureDAL.h"
+#import "BusExpenditure.h"
+#import "MTLJSONAdapter.h"
 
-@interface BillViewModel : BaseViewModel
+@interface BillViewModel : BaseViewModel{
+    
+    NSString *minvalue;
+    NSString *maxvalue;
+    NSArray<NSString *> *categories;
+    
+}
 
-@property (nonatomic,strong) NSArray *source;
+@property (nonatomic,copy) NSArray *leftsource;
 
+@property (nonatomic,copy) NSArray *rightsource;
+
+/**
+ 设置筛选条件
+
+ @param min <#min description#>
+ @param max <#max description#>
+ @param cids <#cids description#>
+ */
+- (void)setFilter:(NSString *)min max:(NSString *)max cids:(NSArray<NSString *> *)cids;
 /**
  加载类别
  
- @return <#return value description#>
+ @return 类别数组
  */
 -(NSMutableArray *)loadCategory;
 
