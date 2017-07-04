@@ -15,6 +15,7 @@
 #import "FilterUIView.h"
 #import "BillViewModel.h"
 #import "AlertController.h"
+#import "BusExpenditure.h"
 
 @interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,BillDateChooseDelegate,FilterUIViewDelegate>{
     

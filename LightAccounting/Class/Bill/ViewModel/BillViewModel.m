@@ -8,6 +8,14 @@
 
 #import "BillViewModel.h"
 
+@interface BillViewModel()
+
+@property (nonatomic,copy,readwrite) NSString *totalIncome;
+
+@property (nonatomic,copy,readwrite) NSString *totalExpend;
+
+@end
+
 @implementation BillViewModel
 
 -(void)loadBill:(NSDate *)date{
@@ -80,6 +88,15 @@
                 self.leftsource = nameresultArray;
                 
                 self.rightsource = dateresultArray;
+                
+                //设置总共支出，收入
+                NSPredicate *incomepredicate = [NSPredicate predicateWithFormat:@" TYPE==0 "];
+                NSArray *incomearray = [returnArray filteredArrayUsingPredicate:incomepredicate];
+                self.totalIncome = [[incomearray valueForKeyPath:@"@sum.EVALUE"] stringValue];
+                
+                NSPredicate *expendpredicate = [NSPredicate predicateWithFormat:@" TYPE==0 "];
+                NSArray *expendarray = [returnArray filteredArrayUsingPredicate:expendpredicate];
+                self.totalIncome = [[expendarray valueForKeyPath:@"@sum.EVALUE"] stringValue];
                 
             }
             

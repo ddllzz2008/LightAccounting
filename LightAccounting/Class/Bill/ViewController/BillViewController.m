@@ -66,6 +66,7 @@
     [segmentControl setTintColor:get_theme_color];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:fontsize_14,UITextAttributeFont ,nil];
     [segmentControl setTitleTextAttributes:dic forState:UIControlStateNormal];
+    [segmentControl addTarget:self action:@selector(billtypeChanged:) forControlEvents:UIControlEventValueChanged];
     [viewleft addSubview:segmentControl];
     
     __weak typeof(viewleft) weakviewleft = viewleft;
@@ -183,32 +184,15 @@
     if ([tableView isEqual:lefttableview]) {
         return 1;
     }else{
-        return 4;
+        return self.viewmodel.rightsource.count;
     }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if ([tableView isEqual:lefttableview]) {
-        return 8;
+        return self.viewmodel.leftdictionry.count;
     }else{
-        NSInteger secnumber = 0;
-        switch (section) {
-            case 0:
-                secnumber = 2;
-                break;
-            case 1:
-                secnumber = 3;
-                break;
-            case 2:
-                secnumber = 2;
-                break;
-            case 3:
-                secnumber = 1;
-                break;
-            default:
-                break;
-        }
-        return secnumber;
+        return [[self.viewmodel.rightsource objectAtIndex:section] count];
     }
 }
 
@@ -221,8 +205,10 @@
             [cellsection setIfFirstLine:NO];
         }
         
-        [cellsection setDate:@"11-29"];
-        [cellsection setMoney:@"199.0"];
+        BusExpenditure *model =  [[self.viewmodel.rightsource objectAtIndex:section] objectAtIndex:0];
+        
+        [cellsection setDate:model.CREATETIME];
+        [cellsection setMoney:[NSString stringWithFormat:@"%.1f",model.EVALUE]];
         return cellsection;
     }
     return nil;
@@ -450,8 +436,27 @@
         
         [[AlertController sharedInstance] showMessage:@"获取账单中"];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
             [self.viewmodel loadBill:choosedateview.currentDate];
-                    });
+            //对leftsource进行分组
+            if (self.viewmodel.leftdictionry==nil) {
+                self.viewmodel.leftdictionry = [[NSMutableArray alloc] init];
+            }
+            [self.viewmodel.leftdictionry removeAllObjects];
+            CGFloat totalvalue = segmentControl.selectedSegmentIndex==0?[self.viewmodel.totalIncome floatValue]:[self.viewmodel.totalExpend floatValue];
+            for (NSArray *leftarray in self.viewmodel.leftsource) {
+                BusExpenditure *model = [leftarray objectAtIndex:0];
+                NSNumber *total = [leftarray valueForKeyPath:@"@sum.EVALUE"];
+                NSString *percent = [NSString stringWithFormat:@"%.1f%%",[total floatValue]/totalvalue];
+                [self.viewmodel.leftdictionry addObject:@{@"name":model.CNAME,@"percent":percent,@"evalue":total}];
+                [lefttableview reloadData];
+                [righttableview reloadData];
+                
+                [[AlertController sharedInstance] closeMessage];
+                
+            }
+            
+        });
         
         [[Constants Instance].viewrefreshCache setValue:@NO forKey:@"billpage"];
         
@@ -462,7 +467,57 @@
 #pragma mark---协议回调
 -(void)FilterUIViewComfirm:(NSString *)min max:(NSString *)max categories:(NSArray<NSString *> *)categories isoutlet:(BOOL)isoutlet isprivate:(BOOL)isprivate{
     
+    [self.viewmodel setFilter:min max:max cids:categories outlet:isoutlet private:isprivate];
+    [[AlertController sharedInstance] showMessage:@"获取账单中"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [self.viewmodel loadBill:choosedateview.currentDate];
+        //对leftsource进行分组
+        if (self.viewmodel.leftdictionry==nil) {
+            self.viewmodel.leftdictionry = [[NSMutableArray alloc] init];
+        }
+        [self.viewmodel.leftdictionry removeAllObjects];
+        CGFloat totalvalue = segmentControl.selectedSegmentIndex==0?[self.viewmodel.totalIncome floatValue]:[self.viewmodel.totalExpend floatValue];
+        for (NSArray *leftarray in self.viewmodel.leftsource) {
+            BusExpenditure *model = [leftarray objectAtIndex:0];
+            NSNumber *total = [leftarray valueForKeyPath:@"@sum.EVALUE"];
+            NSString *percent = [NSString stringWithFormat:@"%.1f%%",[total floatValue]/totalvalue];
+            [self.viewmodel.leftdictionry addObject:@{@"name":model.CNAME,@"percent":percent,@"evalue":total}];
+            [lefttableview reloadData];
+            [righttableview reloadData];
+            
+            [[AlertController sharedInstance] closeMessage];
+            
+        }
+        
+    });
     
+}
+
+-(void)billtypeChanged:(UISegmentedControl *)segment{
+    
+    [[AlertController sharedInstance] showMessage:@"获取账单中"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        //对leftsource进行分组
+        if (self.viewmodel.leftdictionry==nil) {
+            self.viewmodel.leftdictionry = [[NSMutableArray alloc] init];
+        }
+        [self.viewmodel.leftdictionry removeAllObjects];
+        CGFloat totalvalue = segmentControl.selectedSegmentIndex==0?[self.viewmodel.totalIncome floatValue]:[self.viewmodel.totalExpend floatValue];
+        for (NSArray *leftarray in self.viewmodel.leftsource) {
+            BusExpenditure *model = [leftarray objectAtIndex:0];
+            NSNumber *total = [leftarray valueForKeyPath:@"@sum.EVALUE"];
+            NSString *percent = [NSString stringWithFormat:@"%.1f%%",[total floatValue]/totalvalue];
+            [self.viewmodel.leftdictionry addObject:@{@"name":model.CNAME,@"percent":percent,@"evalue":total}];
+            [lefttableview reloadData];
+            [righttableview reloadData];
+            
+            [[AlertController sharedInstance] closeMessage];
+            
+        }
+        
+    });
     
 }
 

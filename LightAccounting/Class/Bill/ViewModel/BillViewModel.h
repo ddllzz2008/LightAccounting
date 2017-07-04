@@ -30,6 +30,12 @@
 
 @property (nonatomic,copy) NSArray *rightsource;
 
+@property (nonatomic,copy) NSMutableArray *leftdictionry;
+
+@property (nonatomic,copy,readonly) NSString *totalIncome;
+
+@property (nonatomic,copy,readonly) NSString *totalExpend;
+
 
 /**
  设置筛选条件
