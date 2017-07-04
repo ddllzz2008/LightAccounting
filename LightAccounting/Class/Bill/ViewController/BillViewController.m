@@ -37,6 +37,7 @@
 -(void)initControls{
     
     choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 60)];
+    choosedateview.delegate=self;
     choosedateview.mode=BillDateChooseModeYearMonth;
     choosedateview.currentDate = [NSDate dateWithZone];
     [self.view addSubview:choosedateview];
@@ -129,7 +130,6 @@
     [self.view addSubview:viewright];
     
     [viewright mas_makeConstraints:^(MASConstraintMaker *make) {
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
         make.top.equalTo(viewleft.mas_top);
         make.left.equalTo(viewleft.mas_right);
         make.bottom.equalTo(viewleft.mas_bottom);
@@ -284,6 +284,7 @@
     [chooseWindow addSubview:rootview];
     
     filterview = [[FilterUIView alloc] initWithFrame:CGRectMake(ScreenSize.width/3, 0, ScreenSize.width*2/3, ScreenSize.height)];
+    filterview.delegate=self;
     filterview.categorySource = [self.viewmodel loadCategory];
     [chooseWindow addSubview:filterview];
     
@@ -293,18 +294,22 @@
 }
 
 -(void)hiddenAction:(UITapGestureRecognizer*)sender{
-    if (filterview!=nil) {
-        [filterview removeFromSuperview];
-        filterview = nil;
-    }
     
-    if(chooseWindow!=nil){
+    if ([self iskeyboardShow]) {
+        [self hiddenKeyBoard];
+    }else{
+        if (filterview!=nil) {
+            filterview.delegate=self;
+            [filterview removeFromSuperview];
+            filterview = nil;
+        }
         
-        chooseWindow.hidden=YES;
-        chooseWindow=nil;
+        if(chooseWindow!=nil){
+            
+            chooseWindow.hidden=YES;
+            chooseWindow=nil;
+        }
     }
-    
-    [self hiddenKeyBoard];
 }
 
 #pragma mark---滑动手势
@@ -434,6 +439,30 @@
 -(void)initWithViewModel{
     
     self.viewmodel = [[BillViewModel alloc] init];
+    [self.viewmodel setFilter:@"" max:@"" cids:nil outlet:NO private:NO];
+    
+}
+
+-(void)loadAppearData{
+    
+    //界面赋值
+    if ([[[Constants Instance].viewrefreshCache objectForKey:@"billpage"] isEqual:@YES]) {
+        
+        [[AlertController sharedInstance] showMessage:@"获取账单中"];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self.viewmodel loadBill:choosedateview.currentDate];
+                    });
+        
+        [[Constants Instance].viewrefreshCache setValue:@NO forKey:@"billpage"];
+        
+    }
+    
+}
+
+#pragma mark---协议回调
+-(void)FilterUIViewComfirm:(NSString *)min max:(NSString *)max categories:(NSArray<NSString *> *)categories isoutlet:(BOOL)isoutlet isprivate:(BOOL)isprivate{
+    
+    
     
 }
 

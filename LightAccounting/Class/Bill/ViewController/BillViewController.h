@@ -14,8 +14,9 @@
 #import "BillDetailTableCell.h"
 #import "FilterUIView.h"
 #import "BillViewModel.h"
+#import "AlertController.h"
 
-@interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>{
+@interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,BillDateChooseDelegate,FilterUIViewDelegate>{
     
     BillDateChooseView *choosedateview;
     

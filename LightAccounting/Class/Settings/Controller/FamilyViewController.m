@@ -219,6 +219,9 @@
 }
 
 -(void)hiddenAction:(UITapGestureRecognizer*)sender{
+    
+    
+    
     if (accountView!=nil) {
         [accountView removeFromSuperview];
         accountView = nil;

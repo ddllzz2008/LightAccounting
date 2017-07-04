@@ -63,7 +63,19 @@
     self.maxfield.backgroundColor = [UIColor whiteColor];
     [betweenview addSubview:self.maxfield];
     
-    UILabel *categorytitle = [[UILabel alloc] initWithFrame:CGRectMake(5, betweenview.frame.size.height+betweenview.frame.origin.y+10, width -10, 20)];
+    cboutlet = [[SSCheckBoxView alloc] initWithFrame:CGRectMake(5, betweenview.frame.size.height+betweenview.frame.origin.y+10, width -10, 30) style:kSSCheckBoxViewStyleMono checked:YES];
+    [cboutlet setText:@"显示额外消费"];
+    [cboutlet.textLabel setStyle:fontsize_13 color:UIColorFromRGB(0x888888)];
+    [cboutlet setStateChangedTarget:self selector:@selector(outletChanged:)];
+    [self addSubview:cboutlet];
+    
+    cbprivate = [[SSCheckBoxView alloc] initWithFrame:CGRectMake(5, cboutlet.frame.size.height+cboutlet.frame.origin.y+10, width -10, 30) style:kSSCheckBoxViewStyleMono checked:YES];
+    [cbprivate setText:@"显示隐私消费"];
+    [cbprivate.textLabel setStyle:fontsize_13 color:UIColorFromRGB(0x888888)];
+    [cbprivate setStateChangedTarget:self selector:@selector(privateChanged:)];
+    [self addSubview:cbprivate];
+    
+    UILabel *categorytitle = [[UILabel alloc] initWithFrame:CGRectMake(5, cbprivate.frame.size.height+cbprivate.frame.origin.y+10, width -10, 20)];
     [categorytitle setStyle:fontsize_13 color:UIColorFromRGB(0xcccccc)];
     categorytitle.textAlignment=NSTextAlignmentLeft;
     [categorytitle setText:@"消费/收入类型(支持多选)"];
@@ -77,11 +89,11 @@
     
     float top = categorytitle.frame.size.height+categorytitle.frame.origin.y+10;
     
-    _collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(5, top, width -10, ScreenSize.height-top-30) collectionViewLayout:layout];
+    _collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(5, top, width -10, ScreenSize.height-top-45) collectionViewLayout:layout];
     _collectionView.backgroundColor=[UIColor clearColor];
     _collectionView.delegate=self;
     _collectionView.dataSource=self;
-    _collectionView.showsVerticalScrollIndicator = NO;
+    _collectionView.showsVerticalScrollIndicator = YES;
     _collectionView.allowsMultipleSelection=YES;
     [_collectionView registerClass:[CategoryViewCell class] forCellWithReuseIdentifier:@"CategoryViewCell"];
     [self addSubview:_collectionView];
@@ -91,12 +103,14 @@
     resetbutton.backgroundColor = UIColorFromRGB(0xcccccc);
     [resetbutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [resetbutton setTitle:@"重置" forState:UIControlStateNormal];
+    [resetbutton addTarget:self action:@selector(revert:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:resetbutton];
     
     UIButton *savebutton = [[UIButton alloc] initWithFrame:CGRectMake(width/2, ScreenSize.height-40, width/2, 40)];
     savebutton.backgroundColor = get_theme_color;
     [savebutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [savebutton setTitle:@"完成" forState:UIControlStateNormal];
+    [savebutton addTarget:self action:@selector(comfirm:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:savebutton];
 }
 
@@ -106,6 +120,35 @@
     _categorySource = categorySource;
     [_collectionView reloadData];
     
+}
+
+-(void)setCategories:(NSArray *)array{
+    
+    if (categoryArray==nil) {
+        categoryArray = [[NSMutableArray alloc] init];
+    }else{
+        [categoryArray removeAllObjects];
+    }
+    
+    [categoryArray addObjectsFromArray:array];
+    
+    [_collectionView reloadData];
+    
+}
+
+-(void)setMinValue:(NSString *)minvalue{
+    [_minfield setText:minvalue];
+}
+
+-(void)setMaxValue:(NSString *)maxvalue{
+    [_maxfield setText:maxvalue];
+}
+
+-(void)setOutlet:(BOOL)isoutlet{
+    cboutlet.checked=isoutlet;
+}
+-(void)setPrivate:(BOOL)isprivate{
+    cbprivate.checked=isprivate;
 }
 
 #pragma mark--uicollectionview视图
@@ -132,6 +175,12 @@
     selectedBGView.backgroundColor = [UIColor clearColor];
     cell.selectedBackgroundView = selectedBGView;
     
+    if ([categoryArray containsObject:model.CID]) {
+        [cell setSelected:YES];
+    }else{
+        [cell setSelected:NO];
+    }
+    
     return cell;
     
 }
@@ -143,9 +192,57 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    CategoryViewCell *cell = (CategoryViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    if (cell) {
-//        self.viewmodel.model.CCOLOR = [NSString stringWithFormat:@"%ld",indexPath.item+1];
+    CategoryModel *model = [_categorySource objectAtIndex:indexPath.item];
+    if (model) {
+        if (categoryArray==nil) {
+            categoryArray = [[NSMutableArray alloc] init];
+        }
+        if (![categoryArray containsObject:model.CID]) {
+            [categoryArray addObject:model.CID];
+        }
+    }
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+    CategoryModel *model = [_categorySource objectAtIndex:indexPath.item];
+    if (model) {
+        if (categoryArray==nil) {
+            categoryArray = [[NSMutableArray alloc] init];
+        }
+        if (![categoryArray containsObject:model.CID]) {
+            [categoryArray removeObject:model.CID];
+        }
+    }
+}
+
+#pragma mark---outlet changed
+-(void)outletChanged:(SSCheckBoxView *)sender{
+    
+}
+#pragma mark---private changed
+-(void)privateChanged:(SSCheckBoxView *)sender{
+    
+}
+
+#pragma mark---button operate
+-(void)revert:(UIButton *)button{
+    if (categoryArray==nil) {
+        categoryArray = [[NSMutableArray alloc] init];
+    }
+    [categoryArray removeAllObjects];
+    [self.minfield setText:@""];
+    [self.maxfield setText:@""];
+    cboutlet.checked=NO;
+    cbprivate.checked=NO;
+    if (self.delegate) {
+        [self.delegate FilterUIViewComfirm:@"" max:@"" categories:categoryArray isoutlet:NO isprivate:NO];
+    }
+}
+-(void)comfirm:(UIButton *)button{
+    if (self.delegate) {
+        NSString *min = [self.minfield.text isFloat]?self.minfield.text:@"";
+        NSString *max = [self.maxfield.text isFloat]?self.minfield.text:@"";
+        [self.delegate FilterUIViewComfirm:min max:max categories:categoryArray isoutlet:cboutlet.checked isprivate:cbprivate.checked];
     }
 }
 

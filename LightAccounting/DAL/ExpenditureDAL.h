@@ -41,7 +41,7 @@
  @param maxspend 最大消费
  @return 消费汇总
  */
--(NSArray *)getAccountDetail:(NSDate*)start end:(NSDate *)end categoryid:(NSArray<NSString *>*)categoryids minspend:(NSString*)minspend maxspend:(NSString*)maxspend;
+-(NSArray *)getAccountDetail:(NSDate*)start end:(NSDate *)end categoryid:(NSArray<NSString *>*)categoryids minspend:(NSString*)minspend maxspend:(NSString*)maxspend outlet:(BOOL)outlet isprivate:(BOOL)isprivate;
 /**
  获取消费汇总
  

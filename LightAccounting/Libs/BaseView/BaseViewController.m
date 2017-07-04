@@ -296,6 +296,15 @@
 -(void)keyboardWillHidden:(NSNotification *)sender{
     [self keyboardStateChanged:NO view:currentResponser rect:CGRectMake(0, 0, 0, 0)];
 }
+
+/**
+ 键盘是否弹起
+
+ @return YES OR NO
+ */
+-(BOOL)iskeyboardShow{
+    return keyboardIsShow;
+}
 /*!
  *  @brief 键盘状态更回调
  *

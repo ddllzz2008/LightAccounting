@@ -114,6 +114,12 @@
  关闭弹出键盘
  */
 -(void)hiddenKeyBoard;
+/**
+ 键盘是否弹起
+ 
+ @return YES OR NO
+ */
+-(BOOL)iskeyboardShow;
 #pragma mark---用户相关
 /*!
  *  @brief 获取当前登录用户
