@@ -38,7 +38,7 @@
             make.centerY.equalTo(strongself);
         }];
         
-        typenameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+        typenameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 20)];
         typenameLabel.textAlignment=NSTextAlignmentLeft;
         [typenameLabel setStyle:fontsize_16 color:UIColorFromRGB(0xbbbbbb)];
         [self.contentView addSubview:typenameLabel];
@@ -47,7 +47,7 @@
 //            __strong __typeof(weakself) strongself = weakself;
             make.left.equalTo(imagetype.mas_right).with.offset(5);
             make.centerY.equalTo(imagetype);
-            make.size.mas_equalTo(CGSizeMake(50, 20));
+            make.size.mas_equalTo(CGSizeMake(90, 20));
         }];
         
         typesectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
@@ -63,7 +63,7 @@
         
         detailnumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 20)];
         detailnumberLabel.textAlignment=NSTextAlignmentRight;
-        [detailnumberLabel setStyle:fontsize_16 color:get_theme_color];
+        [detailnumberLabel setStyle:fontsize_16 color:UIColorFromRGB(0xAAAAAA)];
         [self.contentView addSubview:detailnumberLabel];
         
         [detailnumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,7 +108,8 @@
     //        CGContextMoveToPoint(ctx, 10, 0);//设置Path的起点
     //        CGContextAddLineToPoint(ctx, 10, self.contentView.frame.size.height);
     //
-    [get_theme_color setStroke];
+//    [get_theme_color setStroke];
+    [UIColorFromRGB(0xCCCCCC) setStroke];
     
     //        CGContextStrokePath(ctx);
     

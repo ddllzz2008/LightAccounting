@@ -14,7 +14,7 @@
     if (self==[super initWithFrame:frame]) {
         
         self.backgroundColor=[UIColor whiteColor];
-        self.chartsource = @[@3000,@4500,@9000,@4500,@3000,@2400,@4670,@7800,@9000,@1000,@4666,@1899];
+//        self.chartsource = @[@3000,@4500,@9000,@4500,@3000,@2400,@4670,@7800,@9000,@1000,@4666,@1899];
         self.selectedMonth = 4;
         
     }
@@ -25,7 +25,7 @@
     if (self==[super init]) {
         self.backgroundColor=[UIColor whiteColor];
         
-        self.chartsource = @[@3000,@4500,@9000,@4500,@3000,@2400,@4670,@7800,@9000,@1000,@4666,@1899];
+//        self.chartsource = @[@3000,@4500,@9000,@4500,@3000,@2400,@4670,@7800,@9000,@1000,@4666,@1899];
         
         self.selectedMonth = 4;
         
@@ -38,6 +38,22 @@
         (p0.x + p1.x) / 2.0,
         (p0.y + p1.y) / 2.0
     };
+}
+
+-(void)setChartsource:(NSArray *)chartsource{
+    
+    _chartsource = chartsource;
+    
+    [self setNeedsDisplay];
+    
+}
+
+-(void)setSelectedMonth:(NSInteger)selectedMonth{
+    
+    _selectedMonth = selectedMonth;
+    
+    [self setNeedsDisplay];
+    
 }
 
 -(void)drawRect:(CGRect)rect{
@@ -56,7 +72,7 @@
     //记录曲线顶点
 //    NSMutableArray *pointarray = [[NSMutableArray alloc] initWithCapacity:12];
     //消费所有之和
-    float maxvalue = [[self.chartsource valueForKeyPath:@"@max.floatValue"] floatValue];
+    float maxvalue = [[self.chartsource valueForKeyPath:@"@max.EVALUE"] floatValue];
     
     CGGradientRef _gradient = CGGradientCreateWithColorComponents(rgb, colors, NULL, sizeof(colors)/(sizeof(colors[0])*4));
     CGColorSpaceRelease(rgb);
@@ -79,7 +95,16 @@
         //获得一个CGRect
         //    CGRect clip = CGRectInset(CGContextGetClipBoundingBox(ctx), 0, 0);
         //当月所占比例
-        float percent = [[self.chartsource objectAtIndex:i] floatValue]/maxvalue;
+        float percent = 0;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CREATETIME ENDSWITH %@",[[NSString stringWithFormat:@"%d",i+1] padLeftWithChar:2 charstring:@"0"]];
+        NSArray *arr = [self.chartsource filteredArrayUsingPredicate:predicate];
+        if (arr==nil || arr.count==0) {
+            percent = 0;
+        }else{
+            percent = [[[arr objectAtIndex:0] objectForKey:@"EVALUE"] floatValue]/maxvalue;
+        }
+//        float percent = [[self.chartsource objectAtIndex:i] floatValue]/maxvalue;
         float actualheight = (rect.size.height - height) * percent;
         float starty = rect.size.height - height - actualheight;
         float startx = i*width + width/2;
@@ -114,7 +139,16 @@
         CGContextRestoreGState(ctx);
     }
     
-    float percent = [[self.chartsource objectAtIndex:self.selectedMonth] floatValue]/maxvalue;
+    float percent = 0;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CREATETIME ENDSWITH '%@'",[[NSString stringWithFormat:@"%ld",self.selectedMonth] padLeftWithChar:2 charstring:@"0"]];
+    NSArray *arr = [self.chartsource filteredArrayUsingPredicate:predicate];
+    if (arr==nil || arr.count==0) {
+        percent = 0;
+    }else{
+        percent = [[[arr objectAtIndex:0] objectForKey:@"EVALUE"] floatValue]/maxvalue;
+    }
+    
+//    float percent = [[self.chartsource objectAtIndex:self.selectedMonth] floatValue]/maxvalue;
     float actualheight = (rect.size.height - height) * percent;
     float starty = rect.size.height - height - actualheight;
     float startx = self.selectedMonth*width + width/2;

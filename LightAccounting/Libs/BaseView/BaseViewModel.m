@@ -75,4 +75,48 @@ static NSString *familycachestring = @"familycachestring";
     
 }
 
+/**
+ 获取月账单范围
+
+ @param currentDate 当前日期
+ @return 起始日期
+ */
+-(NSArray<NSDate *> *)getBillDateRange:(NSDate *)currentDate{
+    
+    AppConfigurationModel *config = [[AppConfigurationDAL Instance] getAppConfiguration];
+    if (config!=nil) {
+        long day = [currentDate getDateFormatter:@"dd"];
+        int billday = config.BILLDATE;
+        long startyear = [currentDate getDateFormatter:@"yyyy"];
+        long endyear = startyear;
+        long startmonth = [currentDate getDateFormatter:@"MM"];
+        long endmonth = startmonth;
+        if (day>=billday) {
+            if (startmonth==12) {
+                endyear = startyear+1;
+                startmonth = 12;
+                endmonth = 1;
+            }else{
+                endmonth = startmonth+1;
+            }
+        }else{
+            if(startmonth==1){
+                startyear = startyear-1;
+                startmonth = 12;
+                endmonth = 1;
+            }else{
+                startmonth = startmonth - 1;
+            }
+        }
+        
+        NSString *startday = [NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",startyear,startmonth,billday];
+        NSString *endday = [NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",endyear,endmonth,billday];
+        
+        return [NSArray arrayWithObjects:[startday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"],[endday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"], nil];
+        
+    }else{
+        return [currentDate dateForCurrentMonth];
+    }
+}
+
 @end

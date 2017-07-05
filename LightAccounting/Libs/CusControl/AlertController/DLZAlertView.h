@@ -28,6 +28,8 @@ typedef void(^DLZAlertViewCallback)(id sender);
 
 +(void)showAlertMessage:(UIViewController*)controller title:(NSString*)title content:(NSString*)content leftButton:(NSString*)leftButton leftaction:(void (^)(id sender))leftaction rightButton:(NSString*)rightButton rightaction:(void (^)(id sender))rightaction;
 
++(void)showAlertMessage:(UIViewController*)controller title:(NSString*)title content:(NSString*)content callback:(void (^)())callback;
+
 +(void)showAlertMessage:(UIViewController*)controller title:(NSString*)title content:(NSString*)content;
 
 @property (nonatomic,copy) DLZAlertViewCallback leftButtonAction;

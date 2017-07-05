@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSString+ExtMethod.h"
 
 @interface BillChartView : UIView
 

@@ -50,6 +50,13 @@
  */
 -(NSArray *)getExpenditureByMonth:(NSString *)year;
 /**
+ 获取消费汇总
+ 
+ @param year <#year description#>
+ @return <#return value description#>
+ */
+-(NSArray *)getExpenditureByYear:(NSString *)year categoryid:(NSArray<NSString *>*)categoryids minspend:(NSString*)minspend maxspend:(NSString*)maxspend outlet:(BOOL)outlet isprivate:(BOOL)isprivate;
+/**
  更新消费照片
  
  @param eid 消费主键

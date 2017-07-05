@@ -497,6 +497,8 @@
         
         self.viewmodel.model.cid = category.CID;
         
+        [self hiddenAction:nil];
+        
     }
     
 }

@@ -220,7 +220,7 @@ CGFloat margin_left;
     
 }
 
-+(void)showAlertMessage:(UIViewController*)controller title:(NSString*)title content:(NSString*)content{
++(void)showAlertMessage:(UIViewController*)controller title:(NSString*)title content:(NSString*)content callback:(void (^)())callback{
     DLZAlertView *view = [[DLZAlertView alloc] init];
     [view setTitle:title];
     [view setContent:content];
@@ -228,6 +228,11 @@ CGFloat margin_left;
     view.leftButtonAction =^(id sender){
         DLZAlertView *alertview = sender;
         [alertview removeFromSuperview];
+        
+        if (callback!=nil) {
+            callback();
+        }
+        
     };
     if (controller.navigationController!=nil) {
         [controller.navigationController.view addSubview:view];
@@ -236,6 +241,10 @@ CGFloat margin_left;
         [controller.view addSubview:view];
         [controller.view bringSubviewToFront:view];
     }
+}
+
++(void)showAlertMessage:(UIViewController*)controller title:(NSString*)title content:(NSString*)content{
+    [DLZAlertView showAlertMessage:controller title:title content:content callback:nil];
 }
 
 @end

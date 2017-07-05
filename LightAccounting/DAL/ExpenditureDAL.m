@@ -39,6 +39,16 @@ static ExpenditureDAL *instance = nil;
                      INNER JOIN BASE_FAMILY B ON A.FID=B.FID\
                      INNER JOIN BASE_CATEGORY C ON A.CID=C.CID\
                      WHERE C.ISVALID = 1 "];
+    
+    NSData *data = [[StoreUserDefault instance] getDataWithNSData:familycachestring];
+    
+    if (data!=nil) {
+        FamilyPerson *person = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        if (person!=nil) {
+            sql = [sql stringByAppendingFormat:@" AND A.FID='%@' ",person.fid];
+        }
+    }
+    
     if (start!=nil) {
         sql = [sql stringByAppendingFormat:@" AND A.CREATETIME >= '%@' ",[start formatWithCode:dateformat_08]];
     }
@@ -71,20 +81,30 @@ static ExpenditureDAL *instance = nil;
  */
 -(NSArray *)getAccountDetail:(NSDate*)start end:(NSDate *)end categoryid:(NSArray<NSString *>*)categoryids minspend:(NSString*)minspend maxspend:(NSString*)maxspend outlet:(BOOL)outlet isprivate:(BOOL)isprivate{
     NSString *sql = [NSString stringWithFormat:@"SELECT A.* FROM (\
-                     SELECT A.EID,IFNULL(A.EVALUE,0) AS EVALUE,A.CID,A.FID,A.CREATETIME,A.EYEAR,A.EMONTH,A.EDAY,A.IMARK,A.PID,A.BDX,A.BDY,A.BDADDRESS,A.PHOTO1,\
-                     C.CNAME,C.CCOLOR,1 AS TYPE,A.OUTBUDGET,A.ISPRIVATE\
+                     SELECT A.EID,0 - IFNULL(A.EVALUE,0) AS EVALUE,A.CID,A.FID,A.CREATETIME,A.EYEAR,A.EMONTH,A.EDAY,A.IMARK,A.PID,A.BDX,A.BDY,A.BDADDRESS,A.PHOTO1,\
+                     C.CNAME,C.CCOLOR,0 AS TYPE,A.OUTBUDGET,A.ISPRIVATE\
                      FROM BUS_EXPENDITURE A\
                      INNER JOIN BASE_FAMILY B ON A.FID=B.FID\
                      INNER JOIN BASE_CATEGORY C ON A.CID=C.CID\
                      WHERE C.ISVALID = 1\
                      UNION\
                      SELECT A.IID AS EID,IFNULL(A.IVALUE,0) AS IVALUE,A.CID,A.FID,A.CREATETIME,A.IYEAR AS EYEAR,A.IMONTH AS EMONTH,A.IDAY AS EDAY,A.IMARK,A.PID,'-1' AS BDX,'-1' AS BDY,'' AS BDADDRESS,'' AS PHOTO1,\
-                     C.CNAME,C.CCOLOR,0 AS TYPE,-1 AS OUTBUDGET,A.ISPRIVATE\
+                     C.CNAME,C.CCOLOR,1 AS TYPE,-1 AS OUTBUDGET,A.ISPRIVATE\
                      FROM BUS_INCOME A\
                      INNER JOIN BASE_FAMILY B ON A.FID=B.FID\
                      INNER JOIN BASE_CATEGORY C ON A.CID=C.CID\
                      WHERE C.ISVALID = 1\
                      ) A WHERE 1=1 "];
+    
+    NSData *data = [[StoreUserDefault instance] getDataWithNSData:familycachestring];
+    
+    if (data!=nil) {
+        FamilyPerson *person = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        if (person!=nil) {
+            sql = [sql stringByAppendingFormat:@" AND A.FID='%@' ",person.fid];
+        }
+    }
+    
     if (start!=nil) {
         sql = [sql stringByAppendingFormat:@" AND A.CREATETIME >= '%@' ",[start formatWithCode:dateformat_08]];
     }
@@ -92,10 +112,14 @@ static ExpenditureDAL *instance = nil;
         sql = [sql stringByAppendingFormat:@" AND A.CREATETIME <= '%@' ",[end formatWithCode:dateformat_09]];
     }
     if (outlet) {
-        sql = [sql stringByAppendingString:@" AND (A.OUTBUDGET==1 OR A.A.OUTBUDGET==-1 ) "];
+//        sql = [sql stringByAppendingString:@" AND (A.OUTBUDGET==1 OR A.OUTBUDGET==-1 ) "];
+    }else{
+        sql = [sql stringByAppendingString:@" AND (A.OUTBUDGET!=1 OR A.OUTBUDGET==-1 ) "];
     }
     if (isprivate) {
-        sql = [sql stringByAppendingString:@" AND A.ISPRIVATE==1 "];
+//        sql = [sql stringByAppendingString:@" AND A.ISPRIVATE==1 "];
+    }else{
+        sql = [sql stringByAppendingString:@" AND A.ISPRIVATE!=1 "];
     }
     if(categoryids!=nil && categoryids.count>0){
         NSString *cids = @"";
@@ -139,9 +163,63 @@ static ExpenditureDAL *instance = nil;
         }
     }
     
-    NSString *expendsql = [NSString stringWithFormat:@"SELECT SUM(EVALUE) AS EVALUE,EMONTH FROM BUS_EXPENDITURE WHERE EYEAR='%@' AND FID='%@' GROUP BY EMONTH",year,person.fid];
+    NSString *expendsql = [NSString stringWithFormat:@"SELECT SUM(A.EVALUE) AS EVALUE,A.EMONTH FROM BUS_EXPENDITURE A INNER JOIN BASE_CATEGORY C ON A.CID=C.CID\
+        WHERE C.ISVALID = 1 AND A.EYEAR='%@' AND A.FID='%@' AND A.ISPRIVATE!=1 AND A.OUTBUDGET!=1 GROUP BY EMONTH",year,person.fid];
     
     NSMutableArray *array = [[FmdbHelper Instance] querySql:expendsql];
+    return array;
+}
+
+/**
+ 获取消费汇总
+ 
+ @param year <#year description#>
+ @return <#return value description#>
+ */
+-(NSArray *)getExpenditureByYear:(NSString *)year categoryid:(NSArray<NSString *>*)categoryids minspend:(NSString*)minspend maxspend:(NSString*)maxspend outlet:(BOOL)outlet isprivate:(BOOL)isprivate{
+    NSString *sql = [NSString stringWithFormat:@"SELECT CREATETIME,SUM(A.EVALUE) AS EVALUE FROM (\
+                     SELECT IFNULL(A.EVALUE,0) AS EVALUE,substr(A.CREATETIME,0,7) AS CREATETIME\
+                     FROM BUS_EXPENDITURE A\
+                     INNER JOIN BASE_FAMILY B ON A.FID=B.FID\
+                     INNER JOIN BASE_CATEGORY C ON A.CID=C.CID\
+                     WHERE C.ISVALID = 1 AND A.CREATETIME GLOB '%@*' ",year];
+    
+    NSData *data = [[StoreUserDefault instance] getDataWithNSData:familycachestring];
+    
+    if (data!=nil) {
+        FamilyPerson *person = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        if (person!=nil) {
+            sql = [sql stringByAppendingFormat:@" AND A.FID='%@' ",person.fid];
+        }
+    }
+    if (outlet) {
+//        sql = [sql stringByAppendingString:@" AND (A.OUTBUDGET==1 OR A.OUTBUDGET==-1 ) "];
+    }else{
+        sql = [sql stringByAppendingString:@" AND A.OUTBUDGET!=1 "];
+    }
+    if (isprivate) {
+        //        sql = [sql stringByAppendingString:@" AND A.ISPRIVATE==1 "];
+    }else{
+        sql = [sql stringByAppendingString:@" AND A.ISPRIVATE!=1 "];
+    }
+    if(categoryids!=nil && categoryids.count>0){
+        NSString *cids = @"";
+        for (NSString *str in categoryids) {
+            cids = [cids stringByAppendingFormat:@"'%@',",str];
+        }
+        cids = [cids substringToIndex:([cids length]-1)];
+        sql = [sql stringByAppendingFormat:@" AND C.CID IN (%@)",cids];
+    }
+    if(![CommonFunc isBlankString:minspend]){
+        sql = [sql stringByAppendingFormat:@" AND A.EVALUE>%f ",[minspend doubleValue]];
+    }
+    if(![CommonFunc isBlankString:maxspend]){
+        sql = [sql stringByAppendingFormat:@" AND A.EVALUE<%f ",[maxspend doubleValue]];
+    }
+    
+    sql = [sql stringByAppendingString:@") A WHERE 1=1 GROUP BY A.CREATETIME"];
+    
+    NSMutableArray *array = [[FmdbHelper Instance] querySql:sql];
     return array;
 }
 

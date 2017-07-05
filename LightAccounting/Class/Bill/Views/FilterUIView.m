@@ -132,7 +132,21 @@
     
     [categoryArray addObjectsFromArray:array];
     
-    [_collectionView reloadData];
+    if (array.count>0) {
+        for (NSString *cid in array) {
+            for (NSInteger i=0; i<_categorySource.count; i++) {
+                if ([((CategoryModel *)[_categorySource objectAtIndex:i]).CID isEqualToString:cid]) {
+                    
+                    [_collectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+                    break;
+                }
+            }
+            
+        }
+    }
+    
+    
+    
     
 }
 
@@ -175,11 +189,11 @@
     selectedBGView.backgroundColor = [UIColor clearColor];
     cell.selectedBackgroundView = selectedBGView;
     
-    if ([categoryArray containsObject:model.CID]) {
-        [cell setSelected:YES];
-    }else{
-        [cell setSelected:NO];
-    }
+//    if ([categoryArray containsObject:model.CID]) {
+//        [cell setSelected:YES];
+//    }else{
+//        [cell setSelected:NO];
+//    }
     
     return cell;
     
@@ -209,7 +223,7 @@
         if (categoryArray==nil) {
             categoryArray = [[NSMutableArray alloc] init];
         }
-        if (![categoryArray containsObject:model.CID]) {
+        if ([categoryArray containsObject:model.CID]) {
             [categoryArray removeObject:model.CID];
         }
     }

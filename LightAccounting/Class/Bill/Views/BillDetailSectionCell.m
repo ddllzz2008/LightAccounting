@@ -33,7 +33,7 @@
     
     double width = ScreenSize.width-30;
     
-    currentLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 40, 40)];
+    currentLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 100, 40)];
     [currentLabel setStyle:fontsize_16 color:UIColorFromRGB(0xAAAAAA)];
     currentLabel.textAlignment=NSTextAlignmentLeft;
     [self addSubview:currentLabel];
@@ -48,7 +48,7 @@
 //    }];
     
     numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(width/2, 0, width/2, 40)];
-    [numberLabel setStyle:fontsize_20 color:UIColorFromRGB(0xAAAAAA)];
+    [numberLabel setStyle:fontsize_20 color:get_theme_color];
     numberLabel.textAlignment=NSTextAlignmentRight;
     [self addSubview:numberLabel];
     
@@ -89,7 +89,7 @@
     //        CGContextMoveToPoint(ctx, 10, 0);//设置Path的起点
     //        CGContextAddLineToPoint(ctx, 10, self.contentView.frame.size.height);
     //
-    [get_theme_color setStroke];
+    [UIColorFromRGB(0xCCCCCC) setStroke];
     
     //        CGContextStrokePath(ctx);
     

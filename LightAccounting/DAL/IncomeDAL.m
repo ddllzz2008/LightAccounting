@@ -10,6 +10,8 @@
 
 @implementation IncomeDAL
 
+static NSString *familycachestring = @"familycachestring";
+
 static IncomeDAL *instance = nil;
 
 +(IncomeDAL*)Instance{
@@ -98,6 +100,59 @@ static IncomeDAL *instance = nil;
         return [array objectAtIndex:0];
     }
     return nil;
+}
+
+/**
+ 获取年度收入汇总
+
+ @param year <#year description#>
+ @param categoryids <#categoryids description#>
+ @param minspend <#minspend description#>
+ @param maxspend <#maxspend description#>
+ @param outlet <#outlet description#>
+ @param isprivate <#isprivate description#>
+ @return <#return value description#>
+ */
+-(NSArray *)getIncomeByYear:(NSString *)year categoryid:(NSArray<NSString *>*)categoryids minspend:(NSString*)minspend maxspend:(NSString*)maxspend isprivate:(BOOL)isprivate{
+    NSString *sql = [NSString stringWithFormat:@"SELECT CREATETIME,SUM(A.EVALUE) AS EVALUE FROM (\
+                     SELECT IFNULL(A.IVALUE,0) AS EVALUE,substr(A.CREATETIME,0,7) AS CREATETIME\
+                     FROM BUS_INCOME A\
+                     INNER JOIN BASE_FAMILY B ON A.FID=B.FID\
+                     INNER JOIN BASE_CATEGORY C ON A.CID=C.CID\
+                     WHERE C.ISVALID = 1 AND A.CREATETIME GLOB '%@*' ",year];
+    
+    NSData *data = [[StoreUserDefault instance] getDataWithNSData:familycachestring];
+    
+    if (data!=nil) {
+        FamilyPerson *person = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        if (person!=nil) {
+            sql = [sql stringByAppendingFormat:@" AND A.FID='%@' ",person.fid];
+        }
+    }
+    if (isprivate) {
+
+    }else{
+        sql = [sql stringByAppendingString:@" AND A.ISPRIVATE!=1 "];
+    }
+    if(categoryids!=nil && categoryids.count>0){
+        NSString *cids = @"";
+        for (NSString *str in categoryids) {
+            cids = [cids stringByAppendingFormat:@"'%@',",str];
+        }
+        cids = [cids substringToIndex:([cids length]-1)];
+        sql = [sql stringByAppendingFormat:@" AND C.CID IN (%@)",cids];
+    }
+    if(![CommonFunc isBlankString:minspend]){
+        sql = [sql stringByAppendingFormat:@" AND A.EVALUE>%f ",[minspend doubleValue]];
+    }
+    if(![CommonFunc isBlankString:maxspend]){
+        sql = [sql stringByAppendingFormat:@" AND A.EVALUE<%f ",[maxspend doubleValue]];
+    }
+    
+    sql = [sql stringByAppendingString:@") A WHERE 1=1 GROUP BY A.CREATETIME"];
+    
+    NSMutableArray *array = [[FmdbHelper Instance] querySql:sql];
+    return array;
 }
 
 /*

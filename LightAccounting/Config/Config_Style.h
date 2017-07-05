@@ -10,8 +10,8 @@
 #define Config_Style_h
 
 //define style
-#define color_theme_green 0xA6D157
-#define get_theme_color [[StoreUserDefault instance] getDataWithString:appcache_themecolor]==nil?UIColorFromRGB(0xA6D157):[UIColor colorWithHexString:[[StoreUserDefault instance] getDataWithString:appcache_themecolor]]
+#define color_theme_green 0x5ED1D1
+#define get_theme_color [[StoreUserDefault instance] getDataWithString:appcache_themecolor]==nil?UIColorFromRGB(0x5ED1D1):[UIColor colorWithHexString:[[StoreUserDefault instance] getDataWithString:appcache_themecolor]]
 //define color
 #define color_blue_01 0x347aea
 #define color_blue_02 0x3667b7

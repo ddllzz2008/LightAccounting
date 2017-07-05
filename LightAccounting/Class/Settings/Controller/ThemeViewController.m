@@ -21,10 +21,10 @@
     [self hiddenTabbar];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"item_ok"] style:UIBarButtonItemStyleDone target:self action:@selector(saveData:)];
-    self.navigationItem.rightBarButtonItem = rightitem;
+//    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"item_ok"] style:UIBarButtonItemStyleDone target:self action:@selector(saveData:)];
+//    self.navigationItem.rightBarButtonItem = rightitem;
     
-    currentColor = [[StoreUserDefault instance] getDataWithString:appcache_themecolor]==nil?UIColorFromRGB(0xA6D157):[UIColor colorWithHexString:[[StoreUserDefault instance] getDataWithString:appcache_themecolor]];
+    currentColor = [[StoreUserDefault instance] getDataWithString:appcache_themecolor]==nil?UIColorFromRGB(0x5ED1D1):[UIColor colorWithHexString:[[StoreUserDefault instance] getDataWithString:appcache_themecolor]];
 }
 
 -(void)initControls{
@@ -89,26 +89,45 @@
 -(BOOL)navigationShouldPopOnBackButton{
     
     if (ifcolorChanged) {
-        [DLZAlertView showAlertMessage:self title:@"提示" content:@"改变的主题颜色还未保存，是否继续退出" leftButton:@"取消" leftaction:^(id sender) {
-            
-            [(DLZAlertView*)sender close];
-        } rightButton:@"退出" rightaction:^(id sender) {
-            
-            UIColor *savecolor = get_theme_color;
-            
-            self.navigationController.navigationBar.barTintColor = savecolor;
-            //    [navBar setTranslucent:NO];
-            
-            for (UITabBarItem *item in self.tabBarController.tabBar.items) {
-                [item setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(0x333333),NSFontAttributeName:fontsize_14} forState:UIControlStateNormal];
-                [item setTitleTextAttributes:@{NSForegroundColorAttributeName : savecolor,NSFontAttributeName:fontsize_13} forState:UIControlStateSelected];
-            }
-            
-            [self.tabBarController.tabBar setTintColor:savecolor];
-            
-            [(DLZAlertView*)sender close];
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
+        
+        NSString *savecolorString = [UIColor hexFromUIColor:currentColor];
+        
+        [[StoreUserDefault instance] setData:appcache_themecolor data:savecolorString];
+        
+        DDLogDebug(@"save color is %@",savecolorString);
+        
+        [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
+        
+        [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
+        
+        ifcolorChanged = NO;
+        
+        for (UINavigationController *navcontroller in self.tabBarController.viewControllers) {
+            navcontroller.navigationBar.barTintColor=currentColor;
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+//        
+//        [DLZAlertView showAlertMessage:self title:@"提示" content:@"改变的主题颜色还未保存，是否继续退出" leftButton:@"取消" leftaction:^(id sender) {
+//            
+//            [(DLZAlertView*)sender close];
+//        } rightButton:@"退出" rightaction:^(id sender) {
+//            
+//            UIColor *savecolor = get_theme_color;
+//            
+//            self.navigationController.navigationBar.barTintColor = savecolor;
+//            //    [navBar setTranslucent:NO];
+//            
+//            for (UITabBarItem *item in self.tabBarController.tabBar.items) {
+//                [item setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColorFromRGB(0x333333),NSFontAttributeName:fontsize_14} forState:UIControlStateNormal];
+//                [item setTitleTextAttributes:@{NSForegroundColorAttributeName : savecolor,NSFontAttributeName:fontsize_13} forState:UIControlStateSelected];
+//            }
+//            
+//            [self.tabBarController.tabBar setTintColor:savecolor];
+//            
+//            [(DLZAlertView*)sender close];
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }];
     }else{
         [self.navigationController popViewControllerAnimated:YES];
     }

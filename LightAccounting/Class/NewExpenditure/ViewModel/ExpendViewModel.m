@@ -42,7 +42,7 @@
         self.model.eid = [CommonFunc NewGUID];
     }
     if (self.model.cid==nil || [CommonFunc isBlankString:self.model.cid]) {
-        errorstring = @"请选择收入类别";
+        errorstring = @"请选择支出类别";
     }else if(self.model.evalue==nil || (!([self.model.evalue isInt]) && !([self.model.evalue isFloat]))){
         errorstring = @"请输入有效金额";
     }else if(self.model.createtime==nil){

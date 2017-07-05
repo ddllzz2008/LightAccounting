@@ -75,6 +75,8 @@ extern NSDictionary *viewrefreshCache;
         NewExpenditureViewController *newexpendController = [[NewExpenditureViewController alloc] init];
         [strongSelf.navigationController pushViewController:newexpendController animated:YES];
     };
+    
+    [self.viewmodel getDefaultFamily];
 }
 
 -(void)loadAppearData{

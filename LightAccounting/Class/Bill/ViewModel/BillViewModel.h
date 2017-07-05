@@ -13,10 +13,13 @@
 #import "AppConfigurationModel.h"
 #import "CategoryDAL.h"
 #import "ExpenditureDAL.h"
+#import "IncomeDAL.h"
 #import "BusExpenditure.h"
 #import "MTLJSONAdapter.h"
 
 @interface BillViewModel : BaseViewModel{
+    
+    NSArray *totalArray;
     
     NSString *minvalue;
     NSString *maxvalue;
@@ -26,27 +29,38 @@
     
 }
 
+@property (nonatomic,assign) NSInteger currentType;
+
 @property (nonatomic,copy) NSArray *leftsource;
 
 @property (nonatomic,copy) NSArray *rightsource;
-
-@property (nonatomic,copy) NSMutableArray *leftdictionry;
 
 @property (nonatomic,copy,readonly) NSString *totalIncome;
 
 @property (nonatomic,copy,readonly) NSString *totalExpend;
 
+@property (nonatomic,copy,readonly) NSArray *yearForExpend;
+
+@property (nonatomic,copy,readonly) NSArray *yearForIncome;
+
 
 /**
  设置筛选条件
-
+ 
+ @param type <#min description#>
  @param min <#min description#>
  @param max <#max description#>
  @param cids <#cids description#>
  @param outlet <#outlet description#>
  @param private <#private description#>
  */
-- (void)setFilter:(NSString *)min max:(NSString *)max cids:(NSArray<NSString *> *)cids outlet:(BOOL)outlet private:(BOOL)private;
+- (void)setFilter:(NSInteger)type min:(NSString *)min max:(NSString *)max cids:(NSArray<NSString *> *)cids outlet:(BOOL)outlet private:(BOOL)private;
+
+- (NSString *)minvalue;
+- (NSString *)maxvalue;
+- (NSArray<NSString *> *)categories;
+- (BOOL)isoutlet;
+- (BOOL)isprivate;
 /**
  加载类别
  

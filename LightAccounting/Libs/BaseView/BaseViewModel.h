@@ -7,6 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSDate+ExtMethod.h"
+#import "NSString+ExtMethod.h"
+#import "AppConfigurationDAL.h"
+#import "AppConfigurationModel.h"
 #import "FamilyPerson.h"
 #import "FamilyPersonDAL.h"
 
@@ -32,5 +36,13 @@
  @return <#return value description#>
  */
 -(BOOL)setDefaultFamily:(NSString *)familyid;
+
+/**
+ 获取月账单范围
+ 
+ @param currentDate 当前日期
+ @return 起始日期
+ */
+-(NSArray<NSDate *> *)getBillDateRange:(NSDate *)currentDate;
 
 @end

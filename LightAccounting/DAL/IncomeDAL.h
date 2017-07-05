@@ -13,6 +13,7 @@
 #import "SpendDetail.h"
 #import "NSDate+ExtMethod.h"
 #import "NewExpendModel.h"
+#import "FamilyPerson.h"
 
 @interface IncomeDAL : NSObject
 
@@ -30,6 +31,18 @@
  *-----------获取收入汇总-------------*
  */
 -(NSDictionary*)getTotal:(NSString*)cid start:(NSDate*)start end:(NSDate*)end;
+/**
+ 获取年度收入汇总
+ 
+ @param year <#year description#>
+ @param categoryids <#categoryids description#>
+ @param minspend <#minspend description#>
+ @param maxspend <#maxspend description#>
+ @param outlet <#outlet description#>
+ @param isprivate <#isprivate description#>
+ @return <#return value description#>
+ */
+-(NSArray *)getIncomeByYear:(NSString *)year categoryid:(NSArray<NSString *>*)categoryids minspend:(NSString*)minspend maxspend:(NSString*)maxspend isprivate:(BOOL)isprivate;
 /*
  *---------------------------获取收入详细信息---------------------------------------------*
  */

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseViewModel.h"
 #import "ExpenditureDAL.h"
 #import "BusBudgetDAL.h"
 #import "AppConfigurationDAL.h"
@@ -15,7 +16,7 @@
 #import "MainExpendModel.h"
 #import "MTLJSONAdapter.h"
 
-@interface MainPageViewModel : NSObject{
+@interface MainPageViewModel : BaseViewModel{
     
     NSDate *filterStartDate;
     NSDate *filterEndDate;

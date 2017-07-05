@@ -6,6 +6,7 @@
 //  Copyright © 2017年 ddllzz. All rights reserved.
 //
 
+#import "UITableView+EmptyPhoto.h"
 #import "BaseViewController.h"
 #import "BillDateChooseView.h"
 #import "BillChartView.h"
@@ -20,6 +21,8 @@
 @interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,BillDateChooseDelegate,FilterUIViewDelegate>{
     
     BillDateChooseView *choosedateview;
+    
+    BillChartView *chartview;
     
     UISegmentedControl *segmentControl;
     

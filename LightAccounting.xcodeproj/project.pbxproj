@@ -112,6 +112,7 @@
 		694EB56C1EDFB7ED007311DC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 694EB56B1EDFB7ED007311DC /* MobileCoreServices.framework */; };
 		6950825E1EB31C190037E547 /* PlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6950825D1EB31C190037E547 /* PlanViewController.m */; };
 		695082611EB31D880037E547 /* PlanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 695082601EB31D880037E547 /* PlanView.m */; };
+		6952E58C1F0CA2E9001B8F53 /* UITableView+EmptyPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6952E58B1F0CA2E9001B8F53 /* UITableView+EmptyPhoto.m */; };
 		69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB51EB0454100973E7F /* CategoryTableCell.m */; };
 		69596CB91EB0A11D00973E7F /* ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB81EB0A11D00973E7F /* ThemeViewController.m */; };
 		696B54221EF029CE00B0173D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B54211EF029CE00B0173D /* libz.tbd */; };
@@ -374,6 +375,8 @@
 		6950825D1EB31C190037E547 /* PlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanViewController.m; sourceTree = "<group>"; };
 		6950825F1EB31D880037E547 /* PlanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanView.h; sourceTree = "<group>"; };
 		695082601EB31D880037E547 /* PlanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanView.m; sourceTree = "<group>"; };
+		6952E58A1F0CA2E9001B8F53 /* UITableView+EmptyPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+EmptyPhoto.h"; sourceTree = "<group>"; };
+		6952E58B1F0CA2E9001B8F53 /* UITableView+EmptyPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+EmptyPhoto.m"; sourceTree = "<group>"; };
 		69596CB41EB0454100973E7F /* CategoryTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableCell.h; sourceTree = "<group>"; };
 		69596CB51EB0454100973E7F /* CategoryTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableCell.m; sourceTree = "<group>"; };
 		69596CB71EB0A11D00973E7F /* ThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeViewController.h; sourceTree = "<group>"; };
@@ -1066,6 +1069,8 @@
 				6944B6C51E7E30E500474964 /* UIView+ExtMethod.m */,
 				698F642F1EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.h */,
 				698F64301EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m */,
+				6952E58A1F0CA2E9001B8F53 /* UITableView+EmptyPhoto.h */,
+				6952E58B1F0CA2E9001B8F53 /* UITableView+EmptyPhoto.m */,
 			);
 			path = UICategory;
 			sourceTree = "<group>";
@@ -1580,6 +1585,7 @@
 				692AE05A1EF11ACF00BC29CC /* BusBudgetDAL.m in Sources */,
 				698F642E1EB0D595001BEB18 /* UIColor+ExtMethod.m in Sources */,
 				69EA388C1EBED5CD000A7035 /* NewPlanView.m in Sources */,
+				6952E58C1F0CA2E9001B8F53 /* UITableView+EmptyPhoto.m in Sources */,
 				69A42EE61EF28016007F4419 /* SandboxManager.m in Sources */,
 				694DAC991EA7B2BA00B5FFD6 /* TapPassView.m in Sources */,
 				6944B6F41E7E30E500474964 /* ServiceModel.m in Sources */,

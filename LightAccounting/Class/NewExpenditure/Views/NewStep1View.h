@@ -58,6 +58,13 @@
 
 -(instancetype)initWithTypeFrame:(int)type id:(NSString *)id frame:(CGRect)frame;
 
+/**
+ 打开类别选择对话框
+ 
+ @param sender 手势对象
+ */
+-(void)showCategory:(UITapGestureRecognizer *)sender;
+
 -(void)addObserve;
 
 -(void)removeObserve;

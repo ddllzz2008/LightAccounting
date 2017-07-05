@@ -123,4 +123,31 @@
     return str;
 }
 
+/**
+ 转换金额单位
+
+ @return <#return value description#>
+ */
+-(NSString *)transferMoney{
+    
+    if ([self isFloat] || [self isInt]) {
+        
+        NSString *str = @"";
+        //以万为单位计
+        CGFloat fvalue = [self floatValue];
+        if (fvalue>=10000 && fvalue<10000000) {
+            str = [NSString stringWithFormat:@"%.1f 万",fvalue/10000];
+        }else if(fvalue>=10000000){
+            str = [NSString stringWithFormat:@"%.1f 亿",fvalue/10000000];
+        }else{
+            str = [NSString stringWithFormat:@"%.1f",fvalue];
+        }
+        return str;
+        
+    }else{
+        return @"";
+    }
+    
+}
+
 @end

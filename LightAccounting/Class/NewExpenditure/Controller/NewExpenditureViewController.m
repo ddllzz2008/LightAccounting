@@ -72,7 +72,11 @@ extern NSDictionary *viewrefreshCache;
         //收入
         NSString *result = [self.viewmodel checkIncomeData];
         if (result!=nil && ![CommonFunc isBlankString:result]) {
-            [DLZAlertView showAlertMessage:self title:@"错误提示" content:result];
+            [DLZAlertView showAlertMessage:self title:@"错误提示" content:result callback:^(){
+                if ([result isEqualToString:@"请选择收入类别"]) {
+                    [step1view showCategory:nil];
+                }
+            }];
         }else{
             [[AlertController sharedInstance] showMessage:@"记账中"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -96,9 +100,14 @@ extern NSDictionary *viewrefreshCache;
         
     }else{
         //支出
-        NSString *result = [self.viewmodel checkIncomeData];
+        NSString *result = [self.viewmodel checkExpendData];
         if (result!=nil && ![CommonFunc isBlankString:result]) {
-            [DLZAlertView showAlertMessage:self title:@"错误提示" content:result];
+            [DLZAlertView showAlertMessage:self title:@"错误提示" content:result callback:^(){
+                if ([result isEqualToString:@"请选择支出类别"]) {
+                    [step1view showCategory:nil];
+                }
+            }];
+            
         }else{
             [[AlertController sharedInstance] showMessage:@"记账中"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

@@ -38,7 +38,7 @@
             @strongify(self);
             make.left.equalTo(self.contentView).with.offset(10);
             make.top.equalTo(self.contentView).with.offset(15);
-            make.size.mas_equalTo(CGSizeMake(40, 15));
+            make.size.mas_equalTo(CGSizeMake(80, 15));
         }];
         
         spendmoneyLabel = [[UILabel alloc] init];

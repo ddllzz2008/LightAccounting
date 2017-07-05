@@ -47,5 +47,11 @@
  @return <#return value description#>
  */
 -(NSString *)trimSpace;
+/**
+ 转换金额单位
+ 
+ @return <#return value description#>
+ */
+-(NSString *)transferMoney;
 
 @end
