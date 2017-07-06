@@ -33,7 +33,7 @@
 
 @property (nonatomic,copy) NSArray *leftsource;
 
-@property (nonatomic,copy) NSArray *rightsource;
+@property (nonatomic,strong) NSMutableArray *rightsource;
 
 @property (nonatomic,copy,readonly) NSString *totalIncome;
 

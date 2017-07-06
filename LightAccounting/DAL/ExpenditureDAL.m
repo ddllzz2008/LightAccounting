@@ -251,7 +251,7 @@ static ExpenditureDAL *instance = nil;
     
     NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_EXPENDITURE(EID,EVALUE,CID,FID,PID,CREATETIME,EYEAR,EMONTH,EDAY,IMARK,BDX,BDY,BDADDRESS,OUTBUDGET,ISPRIVATE) VALUES('%@',%f,'%@','%@','','%@','%@','%@','%@','%@','%@','%@','%@',%d,%d)",model.eid,[model.evalue floatValue],model.cid,model.fid,[model.createtime formatWithCode:@"yyyy-MM-dd"],model.eyear,model.emonth,model.eday,[model.imark replaceSqlString],model.bdx,model.bdy,model.bdaddress,model.outbudget,model.isprivate];
     
-    NSString *sqlupdate = [NSString stringWithFormat:@"UPDATE APP_CONFIGURATION SET LASTDATE='%@'",model.createtime];
+    NSString *sqlupdate = [NSString stringWithFormat:@"UPDATE APP_CONFIGURATION SET LASTDATE='%@'",[model.createtime formatWithCode:@"yyyy-MM-dd HH:mm:ss"]];
     
     NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql,sqlupdate, nil];
     

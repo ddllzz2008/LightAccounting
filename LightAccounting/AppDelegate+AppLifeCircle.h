@@ -7,7 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import <objc/runtime.h>
 
 @interface AppDelegate (AppLifeCircle)
+
+- (CGFloat)autoScaleW:(CGFloat)w;
+
+- (CGFloat)autoScaleH:(CGFloat)h;
 
 @end

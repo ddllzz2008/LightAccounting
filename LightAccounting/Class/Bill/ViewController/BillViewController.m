@@ -63,10 +63,10 @@
     NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"支出",@"收入",nil];
     segmentControl = [[UISegmentedControl alloc] initWithItems:segmentedArray];
     segmentControl.frame = CGRectMake(0, 0, ScreenSize.width/2, 30);
-    segmentControl.segmentedControlStyle=UISegmentedControlStylePlain;
+//    segmentControl.segmentedControlStyle=UISegmentedControlStylePlain;
     segmentControl.selectedSegmentIndex=0;
     [segmentControl setTintColor:get_theme_color];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:fontsize_14,UITextAttributeFont ,nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:fontsize_14,NSFontAttributeName ,nil];
     [segmentControl setTitleTextAttributes:dic forState:UIControlStateNormal];
     [segmentControl addTarget:self action:@selector(billtypeChanged:) forControlEvents:UIControlEventValueChanged];
     [viewleft addSubview:segmentControl];
@@ -104,10 +104,11 @@
         make.top.equalTo(totalmoney.mas_bottom).with.offset(5);
     }];
     
-    lefttableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
+    lefttableview = [[TouchTableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
     [lefttableview setBackgroundColor:get_theme_color];
     lefttableview.delegate=self;
     lefttableview.dataSource = self;
+    lefttableview.touchDelegate=self;
     lefttableview.layer.cornerRadius = 10;
     lefttableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     lefttableview.allowsSelection = NO;
@@ -155,10 +156,11 @@
         make.top.equalTo(strongviewright).with.offset(0);
     }];
     
-    righttableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
+    righttableview = [[TouchTableView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width-30, 40)];
     [righttableview setBackgroundColor:[UIColor clearColor]];
     righttableview.delegate=self;
     righttableview.dataSource = self;
+    righttableview.touchDelegate=self;
     righttableview.layer.cornerRadius = 10;
     righttableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     righttableview.allowsSelection = NO;
@@ -255,6 +257,84 @@
     }
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([tableView isEqual:righttableview]) {
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return @"删除";
+    
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([tableView isEqual:righttableview]) {
+        
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            
+            @try {
+                
+                NSMutableArray *array = [self.viewmodel.rightsource objectAtIndex:indexPath.section];
+                NSLog(@"-----%ld",indexPath.section);
+                if (array.count<=1) {
+                    [array removeObjectAtIndex:indexPath.item];
+                    [self.viewmodel.rightsource removeObjectAtIndex:indexPath.section];
+                }else{
+                    [array removeObjectAtIndex:indexPath.item];
+                }
+                
+                [tableView beginUpdates];
+                
+                NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:indexPath.section];
+                
+                if (array.count<=0) {
+                    [tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+                    if (indexPath.section==0) {
+                        @try {
+                            [tableView reloadSections:[[NSIndexSet alloc] initWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+                        } @catch (NSException *exception) {
+                            
+                        } @finally {
+                            
+                        }
+                        
+                    }
+                }else{
+                    [tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+                }
+                
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                
+                [tableView endUpdates];
+                
+            } @catch (NSException *exception) {
+                
+                [[AlertController sharedInstance] showMessageAutoClose:@"操作异常"];
+                
+            } @finally {
+                
+            }
+
+        }
+        
+        
+    }
+    
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return UITableViewCellEditingStyleDelete;
+    
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if ([tableView isEqual:lefttableview]) {
         return 0;
@@ -264,7 +344,7 @@
 }
 
 - (CGFloat)tableView:(nonnull UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    return 40;
+    return 50;
 }
 
 #pragma mark---跳转事件
@@ -332,9 +412,9 @@
         if ([viewleft pointInside:location withEvent:nil]) {
             
             //防止uitableview被响应
-            if (location.y>segmentControl.frame.size.height+choosedateview.frame.size.height) {
-                return;
-            }
+//            if (location.y>segmentControl.frame.size.height+choosedateview.frame.size.height+chartview.frame.size.height) {
+//                return;
+//            }
             
             if (viewleft.frame.origin.x>0) {
                 viewleft.frame = CGRectMake(0, viewleft.frame.origin.y, viewleft.frame.size.width, viewleft.frame.size.height);
@@ -444,6 +524,24 @@
         }
     }
     
+}
+
+- (void)tableView:(UITableView *)tableView
+     touchesEnded:(NSSet *)touches
+        withEvent:(UIEvent *)event{
+    [self touchesEnded:touches withEvent:event];
+}
+
+- (void)tableView:(UITableView *)tableView
+     touchesMoved:(NSSet *)touches
+        withEvent:(UIEvent *)event{
+    [self touchesMoved:touches withEvent:event];
+}
+
+- (void)tableView:(UITableView *)tableView
+ touchesCancelled:(NSSet *)touches
+        withEvent:(UIEvent *)event{
+    [self touchesEnded:touches withEvent:event];
 }
 
 -(void)initWithViewModel{

@@ -33,7 +33,7 @@ static IncomeDAL *instance = nil;
     
     NSString *sql = [NSString stringWithFormat:@"INSERT INTO BUS_INCOME(IID,CID,FID,PID,IVALUE,CREATETIME,IYEAR,IMONTH,IDAY,IMARK,ISPRIVATE) VALUES('%@','%@','%@','%@','%f','%@','%@','%@','%@','%@',%d) ",model.eid,model.cid,model.fid,@"",[model.evalue floatValue],[model.createtime formatWithCode:@"yyyy-MM-dd"],model.eyear,model.emonth,model.eday,[model.imark replaceSqlString],model.isprivate];
     
-    NSString *sqlupdate = [NSString stringWithFormat:@"UPDATE APP_CONFIGURATION SET LASTDATE='%@'",model.createtime];
+    NSString *sqlupdate = [NSString stringWithFormat:@"UPDATE APP_CONFIGURATION SET LASTDATE='%@'",[model.createtime formatWithCode:@"yyyy-MM-dd HH:mm:ss"]];
     
     NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql,sqlupdate, nil];
     

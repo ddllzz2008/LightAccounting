@@ -12,7 +12,7 @@
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>
 #import "Constants.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

@@ -151,7 +151,7 @@
 //    float percent = [[self.chartsource objectAtIndex:self.selectedMonth] floatValue]/maxvalue;
     float actualheight = (rect.size.height - height) * percent;
     float starty = rect.size.height - height - actualheight;
-    float startx = self.selectedMonth*width + width/2;
+    float startx = (self.selectedMonth-1)*width + width/2;
     //画当前点
     CGContextAddEllipseInRect(ctx, CGRectMake(startx - 4, starty - 4, 8, 8));
     [UIColorFromRGB(0xF5739E) set];

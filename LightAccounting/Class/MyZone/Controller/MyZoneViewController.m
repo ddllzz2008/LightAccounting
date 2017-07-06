@@ -381,32 +381,40 @@
     
     self.viewmodel = [[MyZoneViewModel alloc] init];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+}
+
+-(void)loadAppearData{
     
-        UIImage *image = [self.viewmodel displayUserPhoto];
-        
-        NSDate *date = [self.viewmodel.currentConfig.STARTDATE convertDateFromString:@"yyyy-MM-dd HH:mm:ss"];
-        int days = [[NSDate dateWithZone] dateDiff:date];
-        
-        NSDate *lastdate = nil;
-        if ([self.viewmodel.currentConfig.LASTDATE isEqualToString:@""] || self.viewmodel.currentConfig.LASTDATE==nil) {
-            lastdate = date;
-        }else{
-            lastdate = [self.viewmodel.currentConfig.LASTDATE convertDateFromString:@"yyyy-MM-dd HH:mm:ss"];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+    if ([[[Constants Instance].viewrefreshCache valueForKey:@"settingpage"] isEqual:@YES]) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            if (image!=nil) {
-                photoImgView.image = image;
+            UIImage *image = [self.viewmodel displayUserPhoto];
+            
+            NSDate *date = [self.viewmodel.currentConfig.STARTDATE convertDateFromString:@"yyyy-MM-dd HH:mm:ss"];
+            int days = [[NSDate dateWithZone] dateDiff:date];
+            
+            NSDate *lastdate = nil;
+            if ([self.viewmodel.currentConfig.LASTDATE isEqualToString:@""] || self.viewmodel.currentConfig.LASTDATE==nil) {
+                lastdate = date;
+            }else{
+                lastdate = [self.viewmodel.currentConfig.LASTDATE convertDateFromString:@"yyyy-MM-dd HH:mm:ss"];
             }
             
-            [agelabel setText:[NSString stringWithFormat:@"我的账龄:%d天",days]];
-            [namelabel setText:self.viewmodel.currentPerson.fname];
-            [lasttimelabel setText:[NSString stringWithFormat:@"最后记账时间:%@",[lastdate formatWithCode:@"yyyy年MM月dd日"]]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (image!=nil) {
+                    photoImgView.image = image;
+                }
+                
+                [agelabel setText:[NSString stringWithFormat:@"我的账龄:%d天",days]];
+                [namelabel setText:self.viewmodel.currentPerson.fname];
+                [lasttimelabel setText:[NSString stringWithFormat:@"最后记账时间:%@",[lastdate formatWithCode:@"yyyy年MM月dd日"]]];
+                
+                [[Constants Instance].viewrefreshCache setValue:@NO forKey:@"settingpage"];
+            });
+            
         });
-        
-    });
+    }
     
 }
 

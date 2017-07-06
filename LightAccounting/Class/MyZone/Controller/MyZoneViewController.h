@@ -16,6 +16,7 @@
 #import "FamilyViewController.h"
 #import "MyZoneViewModel.h"
 #import "NSString+ExtMethod.h"
+#import "Constants.h"
 
 @interface MyZoneViewController : BaseViewController<CTAssetsPickerControllerDelegate,UIImagePickerControllerDelegate,UIActionSheetDelegate,UINavigationControllerDelegate>
 

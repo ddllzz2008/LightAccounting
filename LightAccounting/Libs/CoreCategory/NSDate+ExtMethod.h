@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSString+ExtMethod.h"
 
 @interface NSDate (ExtMethod)
 

@@ -25,7 +25,7 @@ extern NSDictionary *viewrefreshCache;
     [self hiddenTabbar];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"item_ok"] style:UIBarButtonItemStyleDone target:self action:@selector(saveAccount:)];
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleDone target:self action:@selector(saveAccount:)];
     self.navigationItem.rightBarButtonItem = rightitem;
 }
 
@@ -39,13 +39,13 @@ extern NSDictionary *viewrefreshCache;
     
     self.viewmodel = [[ExpendViewModel alloc] init];
     
-    step1view.viewmodel = self.viewmodel;
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     
     [self initTextFieldArray:step1view.inputmoney,step1view.labelremark,nil];
+    
+    step1view.viewmodel = self.viewmodel;
     
     [super viewWillAppear:animated];
     
@@ -86,6 +86,8 @@ extern NSDictionary *viewrefreshCache;
                         [[AlertController sharedInstance] closeMessage];
                         [[AlertController sharedInstance] showMessageAutoClose:@"记账成功"];
                         [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
+                        [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"billpage"];
+                        [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"settingpage"];
                         [self.navigationController popViewControllerAnimated:YES];
                     });
                 }else{
@@ -117,6 +119,7 @@ extern NSDictionary *viewrefreshCache;
                         [[AlertController sharedInstance] closeMessage];
                         [[AlertController sharedInstance] showMessageAutoClose:@"记账成功"];
                         [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
+                        [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"billpage"];
                         [self.navigationController popViewControllerAnimated:YES];
                     });
                 }else{

@@ -29,7 +29,8 @@
  */
 - (NSDate*) convertDateFromString:(NSString *)format
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     [formatter setDateFormat:format];
     NSDate *date=[formatter dateFromString:self];
     return date;

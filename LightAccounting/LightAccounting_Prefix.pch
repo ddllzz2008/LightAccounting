@@ -9,6 +9,8 @@
 #define DLZProject_Prefix_pch
 
 
+#import "AppDelegate+AppLifeCircle.h"
+
 #import "Config/Config.h"
 #import "Config/Config_Style.h"
 #import "Config/Config_Service.h"

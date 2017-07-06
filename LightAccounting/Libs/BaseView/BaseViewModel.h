@@ -13,6 +13,7 @@
 #import "AppConfigurationModel.h"
 #import "FamilyPerson.h"
 #import "FamilyPersonDAL.h"
+#import "AlertController.h"
 
 @interface BaseViewModel : NSObject
 
@@ -44,5 +45,16 @@
  @return 起始日期
  */
 -(NSArray<NSDate *> *)getBillDateRange:(NSDate *)currentDate;
+
+/**
+ 封装基于GCD的线程操作
+ 
+ @param loadingtitle 加载提示
+ @param successtitle 成功提示
+ @param errortitle 成功提示
+ @param threadaction 子线程操作
+ @param mainuiaction UI主线程操作
+ */
+- (void)runThreadAction:(NSString * __nullable)loadingtitle successtitle:(NSString * __nullable)successtitle errortitle:(NSString * __nullable)errortitle threadaction:(BOOL (^_Nullable)())threadaction mainuiaction:(void (^_Nullable)(BOOL))mainuiaction;
 
 @end

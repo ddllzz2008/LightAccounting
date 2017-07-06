@@ -21,7 +21,7 @@
     [self hiddenTabbar];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"item_ok"] style:UIBarButtonItemStyleDone target:self action:@selector(saveData:)];
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleDone target:self action:@selector(saveData:)];
     self.navigationItem.rightBarButtonItem = rightitem;
     
     self.viewcontrollerKeyboardDelegate = self;

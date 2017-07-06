@@ -13,12 +13,13 @@
 #import "BillTableCell.h"
 #import "BillDetailSectionCell.h"
 #import "BillDetailTableCell.h"
+#import "TouchTableView.h"
 #import "FilterUIView.h"
 #import "BillViewModel.h"
 #import "AlertController.h"
 #import "BusExpenditure.h"
 
-@interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,BillDateChooseDelegate,FilterUIViewDelegate>{
+@interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,BillDateChooseDelegate,FilterUIViewDelegate,TouchTableViewDelegate>{
     
     BillDateChooseView *choosedateview;
     
@@ -28,13 +29,13 @@
     
     UILabel *totalmoney;
     
-    UITableView *lefttableview;
+    TouchTableView *lefttableview;
     
     UIView *viewleft;
     UIView *viewright;
     
     UILabel *detailmoney;
-    UITableView *righttableview;
+    TouchTableView *righttableview;
     
     UIWindow *chooseWindow;
     FilterUIView *filterview;

@@ -59,13 +59,13 @@
             NSArray *sortDesc = @[[[NSSortDescriptor alloc] initWithKey:nil ascending:NO]];
             NSArray *sortSetArray = [dateset sortedArrayUsingDescriptors:sortDesc];
             //用于存放类别分组的对象
-            NSMutableArray *dateresultArray = [NSMutableArray array];
+            NSMutableArray *dateresultArray = [[NSMutableArray alloc] init];
             
             for (NSString *date in sortSetArray){
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CREATETIME == %@",date];
                 NSArray *indexArray = [totalArray filteredArrayUsingPredicate:predicate];
                 // 将查询结果加入到resultArray中
-                [dateresultArray addObject:indexArray];
+                [dateresultArray addObject:[indexArray mutableCopy]];
             }
             
             self.rightsource = dateresultArray;

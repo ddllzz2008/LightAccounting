@@ -9,6 +9,20 @@
 #ifndef Config_Style_h
 #define Config_Style_h
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
 //define style
 #define color_theme_green 0x5ED1D1
 #define get_theme_color [[StoreUserDefault instance] getDataWithString:appcache_themecolor]==nil?UIColorFromRGB(0x5ED1D1):[UIColor colorWithHexString:[[StoreUserDefault instance] getDataWithString:appcache_themecolor]]
@@ -41,15 +55,18 @@
 #define color_font_09 0xed2c4b
 #define color_font_10 0x35bcf8
 
-#define fontsize_32 [UIFont fontWithName:@"Arial" size:32]
-#define fontsize_26 [UIFont fontWithName:@"Arial" size:26]
-#define fontsize_24 [UIFont fontWithName:@"Arial" size:24]
-#define fontsize_22 [UIFont fontWithName:@"Arial" size:22]
-#define fontsize_20 [UIFont fontWithName:@"Arial" size:20]
-#define fontsize_18 [UIFont fontWithName:@"Arial" size:18]
-#define fontsize_16 [UIFont fontWithName:@"Arial" size:16]
-#define fontsize_14 [UIFont fontWithName:@"Arial" size:14]
-#define fontsize_13 [UIFont fontWithName:@"Arial" size:13]
+#define autoScaleW(width) [(AppDelegate *)[UIApplication sharedApplication].delegate autoScaleW:width]
+#define autoScaleH(height) [(AppDelegate *)[UIApplication sharedApplication].delegate autoScaleH:height]
+
+#define fontsize_32 [UIFont fontWithName:@"Arial" size:autoScaleW(32)]
+#define fontsize_26 [UIFont fontWithName:@"Arial" size:autoScaleW(26)]
+#define fontsize_24 [UIFont fontWithName:@"Arial" size:autoScaleW(24)]
+#define fontsize_22 [UIFont fontWithName:@"Arial" size:autoScaleW(22)]
+#define fontsize_20 [UIFont fontWithName:@"Arial" size:autoScaleW(20)]
+#define fontsize_18 [UIFont fontWithName:@"Arial" size:autoScaleW(18)]
+#define fontsize_16 [UIFont fontWithName:@"Arial" size:autoScaleW(16)]
+#define fontsize_14 [UIFont fontWithName:@"Arial" size:autoScaleW(14)]
+#define fontsize_13 [UIFont fontWithName:@"Arial" size:autoScaleW(13)]
 
 #define color_navigation_bar 0x347aea
 

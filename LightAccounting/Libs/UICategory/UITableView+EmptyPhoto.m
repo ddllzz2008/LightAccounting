@@ -31,7 +31,11 @@
         [imgview setContentMode:UIViewContentModeCenter];
         [self addSubview:imgview];
         
+        self.scrollEnabled=NO;
+        
     }else{
+        
+        self.scrollEnabled=YES;
         
         for (UIView *view in self.subviews) {
             if ([view isKindOfClass:[UIImageView class]]) {

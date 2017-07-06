@@ -30,10 +30,10 @@
 - (NSArray *)dateForCurrentWeek{
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
-    NSDateComponents *components = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit | NSCalendarUnitDay | NSDayCalendarUnit | NSCalendarUnitTimeZone fromDate:self];
+    NSDateComponents *components = [gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitCalendar | NSCalendarUnitTimeZone fromDate:self];
     
     [components setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    NSInteger dayofweek = [[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:self]weekday];
+    NSInteger dayofweek = [[[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:self]weekday];
     [components setDay:([components day] - ((dayofweek) - 2))];// for beginning of the week.
     NSDate *beginningOfWeek = [gregorian dateFromComponents:components];
     [components setDay:([components day]+(7-dayofweek)+1)];// for end day of the week
@@ -52,10 +52,10 @@
 - (NSArray *)dateForLastWeek{
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
-    NSDateComponents *components = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit | NSCalendarUnitDay | NSDayCalendarUnit | NSCalendarUnitTimeZone fromDate:self];
+    NSDateComponents *components = [gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitCalendar | NSCalendarUnitTimeZone fromDate:self];
     
     [components setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    NSInteger dayofweek = [[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:self]weekday];
+    NSInteger dayofweek = [[[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:self]weekday];
     [components setDay:([components day] - ((dayofweek) - 2) - 7)];// for beginning of the week.
     NSDate *beginningOfWeek = [gregorian dateFromComponents:components];
     [components setDay:([components day]+(7-dayofweek)+1 - 7)];// for end day of the week
@@ -79,14 +79,16 @@
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
     
-    BOOL ok = [gregorian rangeOfUnit:NSMonthCalendarUnit startDate:&beginDate interval:&interval forDate:self];
+    BOOL ok = [gregorian rangeOfUnit:NSCalendarUnitMonth startDate:&beginDate interval:&interval forDate:self];
     if (ok) {
         endDate = [beginDate dateByAddingTimeInterval:interval-1];
     }else {
         
     }
     
-    NSArray *weekArray = [NSArray arrayWithObjects:beginDate,endDate,nil];
+    NSDate *firstDate = [[NSString stringWithFormat:@"%ld-%@-01 00:00:00",[self year],[[NSString stringWithFormat:@"%ld",[self month]] padLeftWithChar:2 charstring:@"0"]] convertDateFromString:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSArray *weekArray = [NSArray arrayWithObjects:firstDate,endDate,nil];
     
     return weekArray;
 }
@@ -104,7 +106,7 @@
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
     
-    NSDateComponents *components = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit | NSCalendarUnitDay | NSDayCalendarUnit | NSCalendarUnitTimeZone fromDate:self];
+    NSDateComponents *components = [gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitCalendar | NSCalendarUnitTimeZone fromDate:self];
     
     [components setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     
@@ -114,14 +116,16 @@
     
     NSDate *lastMonth = [gregorian dateFromComponents:components];
     
-    BOOL ok = [gregorian rangeOfUnit:NSMonthCalendarUnit startDate:&beginDate interval:&interval forDate:lastMonth];
+    NSDate *firstDate = [[NSString stringWithFormat:@"%ld-%@-01 00:00:00",[lastMonth year],[[NSString stringWithFormat:@"%ld",[lastMonth month]] padLeftWithChar:2 charstring:@"0"]] convertDateFromString:@"yyyy-MM-dd HH:mm:ss"];
+    
+    BOOL ok = [gregorian rangeOfUnit:NSCalendarUnitMonth startDate:&beginDate interval:&interval forDate:lastMonth];
     if (ok) {
         endDate = [beginDate dateByAddingTimeInterval:interval-1];
     }else {
         
     }
     
-    NSArray *weekArray = [NSArray arrayWithObjects:beginDate,endDate,nil];
+    NSArray *weekArray = [NSArray arrayWithObjects:firstDate,endDate,nil];
     
     return weekArray;
 }
@@ -139,7 +143,7 @@
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
     
-    NSDateComponents *components = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit | NSCalendarUnitDay | NSDayCalendarUnit | NSCalendarUnitTimeZone fromDate:self];
+    NSDateComponents *components = [gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitCalendar | NSCalendarUnitTimeZone fromDate:self];
     
     [components setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     
@@ -149,14 +153,16 @@
     
     NSDate *lastMonth = [gregorian dateFromComponents:components];
     
-    BOOL ok = [gregorian rangeOfUnit:NSMonthCalendarUnit startDate:&beginDate interval:&interval forDate:lastMonth];
+    NSDate *firstDate = [[NSString stringWithFormat:@"%ld-%@-01 00:00:00",[lastMonth year],[[NSString stringWithFormat:@"%ld",[lastMonth month]] padLeftWithChar:2 charstring:@"0"]] convertDateFromString:@"yyyy-MM-dd HH:mm:ss"];
+    
+    BOOL ok = [gregorian rangeOfUnit:NSCalendarUnitMonth startDate:&beginDate interval:&interval forDate:lastMonth];
     if (ok) {
         endDate = [beginDate dateByAddingTimeInterval:interval-1];
     }else {
         
     }
     
-    NSArray *weekArray = [NSArray arrayWithObjects:beginDate,endDate,nil];
+    NSArray *weekArray = [NSArray arrayWithObjects:firstDate,endDate,nil];
     
     return weekArray;
 }
@@ -173,7 +179,7 @@
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
     
-    NSDateComponents *dateComponents = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit | NSCalendarUnitDay | NSDayCalendarUnit | NSCalendarUnitTimeZone fromDate:self];
+    NSDateComponents *dateComponents = [gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitCalendar | NSCalendarUnitTimeZone fromDate:self];
     
     NSDateComponents *components = [[NSDateComponents alloc] init];
     [components setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -207,7 +213,7 @@
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
     
-    NSDateComponents *dateComponents = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit | NSCalendarUnitDay | NSDayCalendarUnit | NSCalendarUnitTimeZone fromDate:self];
+    NSDateComponents *dateComponents = [gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitCalendar | NSCalendarUnitTimeZone fromDate:self];
     
     NSDateComponents *components = [[NSDateComponents alloc] init];
     [components setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -241,7 +247,7 @@
     
     NSCalendar *gregorian = [NSCalendar currentCalendar];
     
-    NSDateComponents *dateComponents = [gregorian components:NSYearCalendarUnit | NSMonthCalendarUnit | NSCalendarUnitDay | NSDayCalendarUnit | NSCalendarUnitTimeZone fromDate:self];
+    NSDateComponents *dateComponents = [gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitCalendar | NSCalendarUnitTimeZone fromDate:self];
     
     NSDateComponents *components = [[NSDateComponents alloc] init];
     [components setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -295,8 +301,8 @@
 -(NSInteger)weekday{
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [[NSDateComponents alloc] init];
-    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
-    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday |
+    NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     comps = [calendar components:unitFlags fromDate:self];
     [comps setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     return [comps weekday];
@@ -316,7 +322,7 @@
 //    
 //    return [comps day];
     
-    NSDateComponents *dateComponents = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSCalendarUnitDay | NSDayCalendarUnit | NSCalendarUnitTimeZone fromDate:self];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitCalendar | NSCalendarUnitTimeZone fromDate:self];
     
     [dateComponents setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     
@@ -331,8 +337,8 @@
 -(NSInteger)month{
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [[NSDateComponents alloc] init];
-    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
-    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday |
+    NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     comps = [calendar components:unitFlags fromDate:self];
     [comps setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     return [comps month];
@@ -346,8 +352,8 @@
 -(NSInteger)year{
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [[NSDateComponents alloc] init];
-    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
-    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday |
+    NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     comps = [calendar components:unitFlags fromDate:self];
     [comps setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     return [comps year];

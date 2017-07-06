@@ -110,13 +110,65 @@ static NSString *familycachestring = @"familycachestring";
         }
         
         NSString *startday = [NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",startyear,startmonth,billday];
-        NSString *endday = [NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",endyear,endmonth,billday];
+        NSString *endday = [NSString stringWithFormat:@"%ld-%ld-%d 23:59:59",endyear,endmonth,billday];
         
         return [NSArray arrayWithObjects:[startday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"],[endday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"], nil];
         
     }else{
         return [currentDate dateForCurrentMonth];
     }
+}
+
+/**
+ 封装基于GCD的线程操作
+
+ @param loadingtitle 加载提示
+ @param successtitle 成功提示
+ @param errortitle 成功提示
+ @param threadaction 子线程操作
+ @param mainuiaction UI主线程操作
+ */
+- (void)runThreadAction:(NSString * __nullable)loadingtitle successtitle:(NSString * __nullable)successtitle errortitle:(NSString * __nullable)errortitle threadaction:(BOOL (^)())threadaction mainuiaction:(void (^)(BOOL))mainuiaction{
+    
+    if (loadingtitle!=nil&&![loadingtitle isEqualToString:@""]) {
+        [[AlertController sharedInstance] showMessage:loadingtitle];
+    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        BOOL hresult = YES;
+        
+        if (threadaction!=nil) {
+            hresult = threadaction();
+        }
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            
+            if (mainuiaction!=nil) {
+                mainuiaction(hresult);
+            }
+            
+            if (hresult) {
+                if (successtitle!=nil&&![successtitle isEqualToString:@""]) {
+                    [[AlertController sharedInstance] closeMessage];
+                    
+                    [[AlertController sharedInstance] showMessageAutoClose:successtitle];
+                }else{
+                    [[AlertController sharedInstance] closeMessage];
+                }
+            }else{
+                if (errortitle!=nil&&![errortitle isEqualToString:@""]) {
+                    [[AlertController sharedInstance] closeMessage];
+                    
+                    [[AlertController sharedInstance] showMessageAutoClose:errortitle];
+                }else{
+                    [[AlertController sharedInstance] closeMessage];
+                }
+            }
+
+        });
+    });
+    
 }
 
 @end

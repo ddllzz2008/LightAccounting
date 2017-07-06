@@ -25,6 +25,8 @@
     //数据源
     NSMutableArray *categoryarray;
     
+    UIButton *deletebutton;
+    
 }
 
 @property (nonatomic,strong) CategoryViewModel *viewmodel;

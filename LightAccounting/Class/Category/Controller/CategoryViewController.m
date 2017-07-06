@@ -35,7 +35,8 @@
 //    [self hiddenTabbar];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"item_ok"] style:UIBarButtonItemStyleDone target:self action:@selector(saveData:)];
+//    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"item_ok"] style:UIBarButtonItemStyleDone target:self action:@selector(saveData:)];
+    UIBarButtonItem *rightitem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleDone target:self action:@selector(saveData:)];
     self.navigationItem.rightBarButtonItem = rightitem;
 }
 
@@ -97,7 +98,7 @@
     textfield.textAlignment=NSTextAlignmentLeft;
     [textfield setFont:fontsize_16];
     [textfield setPlaceholder:@"请输入分类名称"];
-    textfield.keyboardType=UIKeyboardTypeDecimalPad;
+    textfield.keyboardType=UIKeyboardTypeDefault;
     textfield.returnKeyType=UIReturnKeyDone;
     [self.view addSubview:textfield];
     [textfield mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -120,6 +121,21 @@
         make.height.equalTo(@20);
     }];
     
+    deletebutton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 35)];
+    [deletebutton setTitle:@"删除" forState:UIControlStateNormal];
+    [deletebutton setBackgroundColor:get_theme_color];
+    [deletebutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [deletebutton addTarget:self action:@selector(deleteCategory:) forControlEvents:UIControlEventTouchUpInside];
+    deletebutton.hidden=YES;
+    [self.view addSubview:deletebutton];
+    
+    [deletebutton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(@0);
+        make.width.equalTo(tableview);
+        make.left.equalTo(categoryicon);
+        make.bottom.equalTo(tableview.mas_bottom).with.offset(10);
+    }];
+    
     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc]init];
     //同一行相邻两个cell的最小间距
     layout.minimumInteritemSpacing = 20;
@@ -137,7 +153,7 @@
     [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(categoryicon);
         make.top.equalTo(categoryicon.mas_bottom).with.offset(10);
-        make.bottom.equalTo(tableview);
+        make.bottom.equalTo(deletebutton.mas_top).with.offset(-10);
         make.width.equalTo(tableview);
     }];
 }
@@ -224,6 +240,12 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[model.CCOLOR intValue]-1 inSection:0];
         [_collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];//设置默认选中的行
         
+        deletebutton.hidden=NO;
+        [deletebutton mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(@35);
+            make.bottom.equalTo(tableview.mas_bottom).with.offset(0);
+        }];
+        
     }
 }
 
@@ -283,6 +305,26 @@
     textfield.text = @"";
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [_collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];//设置默认选中的行
+    
+    deletebutton.hidden=YES;
+    [deletebutton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(@0);
+        make.bottom.equalTo(tableview.mas_bottom).with.offset(10);
+    }];
+}
+
+- (void)deleteCategory:(UIButton *)sender{
+    
+    [self.viewmodel runThreadAction:@"正在删除" successtitle:@"删除成功" errortitle:@"删除失败" threadaction:^BOOL{
+        BOOL hresult = [self.viewmodel deleteCategory];
+        return hresult;
+    } mainuiaction:^(BOOL result) {
+        if (result) {
+            [self addnewCategory:nil];
+            [tableview reloadData];
+        }
+    }];
+    
 }
 
 #pragma mark---viewmodel操作
@@ -344,6 +386,13 @@
                         [categoryarray addObject:newmodel];
                         [tableview reloadData];
                         self.viewmodel.model = newmodel;
+                        
+                        deletebutton.hidden=NO;
+                        [deletebutton mas_updateConstraints:^(MASConstraintMaker *make) {
+                            make.height.mas_equalTo(@35);
+                            make.bottom.equalTo(tableview.mas_bottom).with.offset(0);
+                        }];
+                        
                     });
                 }else{
                     dispatch_sync(dispatch_get_main_queue(), ^{
@@ -358,6 +407,13 @@
                         [[AlertController sharedInstance] closeMessage];
                         [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
                         [tableview reloadData];
+                        
+                        deletebutton.hidden=NO;
+                        [deletebutton mas_updateConstraints:^(MASConstraintMaker *make) {
+                            make.height.mas_equalTo(@35);
+                            make.bottom.equalTo(tableview.mas_bottom).with.offset(0);
+                        }];
+                        
                     });
                 }else{
                     dispatch_sync(dispatch_get_main_queue(), ^{
