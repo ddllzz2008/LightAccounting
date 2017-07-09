@@ -123,6 +123,50 @@
     
 }
 
+/**
+ 删除账单
+
+ @param bid 账单ID
+ @param type 类型，0：支出，1：收入
+ */
+- (BOOL)deleteBill:(NSString *)bid type:(int)type{
+    
+    BOOL hresult = NO;
+    if (type==0) {
+        //支出
+        hresult = [[ExpenditureDAL Instance] deleteExpenditure:bid];
+    }else{
+        //收入
+        hresult = [[IncomeDAL Instance] deleteIncome:bid];
+    }
+    
+    if (hresult) {
+        //设置总共支出，收入
+        NSMutableArray *nameresultArray = [NSMutableArray array];
+        NSPredicate *incomepredicate = [NSPredicate predicateWithFormat:@" TYPE==1 "];
+        NSArray *incomearray = [totalArray filteredArrayUsingPredicate:incomepredicate];
+        self.totalIncome = [[incomearray valueForKeyPath:@"@sum.EVALUE"] stringValue];
+        
+        NSPredicate *expendpredicate = [NSPredicate predicateWithFormat:@" TYPE==0 "];
+        NSArray *expendarray = [totalArray filteredArrayUsingPredicate:expendpredicate];
+        self.totalExpend = [[expendarray valueForKeyPath:@"@sum.EVALUE"] stringValue];
+        
+        NSMutableArray *leftdictionry = [[NSMutableArray alloc] init];
+        CGFloat totalvalue = _currentType==0?[self.totalExpend floatValue]:[self.totalIncome floatValue];
+        for (NSArray *leftarray in nameresultArray) {
+            BusExpenditure *model = [leftarray objectAtIndex:0];
+            NSNumber *total = [leftarray valueForKeyPath:@"@sum.EVALUE"];
+            NSString *percent = [NSString stringWithFormat:@"%.1f%%",[total floatValue]/totalvalue];
+            [leftdictionry addObject:@{@"name":model.CNAME,@"percent":percent,@"evalue":total}];
+        }
+        
+        self.leftsource = leftdictionry;
+    }
+    
+    return hresult;
+    
+}
+
 - (NSString *)minvalue{
     
     return minvalue;

@@ -67,6 +67,13 @@
  @return 类别数组
  */
 -(NSMutableArray *)loadCategory;
+/**
+ 删除账单
+ 
+ @param bid 账单ID
+ @param type 类型，0：支出，1：收入
+ */
+- (BOOL)deleteBill:(NSString *)bid type:(int)type;
 
 /**
  加载账单

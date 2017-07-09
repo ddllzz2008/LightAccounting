@@ -173,13 +173,13 @@ static IncomeDAL *instance = nil;
 /*
  *---------------------------删除收入---------------------------------------------*
  */
--(BOOL)deleteIncome:(NSString *)eid pid:(NSString*)pid evalue:(double)evalue{
+-(BOOL)deleteIncome:(NSString *)eid{
     
     NSString *sql = [NSString stringWithFormat:@"DELETE FROM BUS_INCOME WHERE IID='%@'",eid];
     
-    NSString *updatePackageSql = [NSString stringWithFormat:@" UPDATE BASE_PACKAGE SET PVALUE = PVALUE-%f WHERE PID='%@' ",evalue,pid];
+//    NSString *updatePackageSql = [NSString stringWithFormat:@" UPDATE BASE_PACKAGE SET PVALUE = PVALUE-%f WHERE PID='%@' ",evalue,pid];
     
-    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql,updatePackageSql, nil];
+    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql, nil];
     
     BOOL result = [[FmdbHelper Instance] executeSqlWithTransaction:sqlArray];
     

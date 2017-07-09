@@ -335,13 +335,13 @@ static ExpenditureDAL *instance = nil;
 /*
  *---------------------------删除消费---------------------------------------------*
  */
--(BOOL)deleteExpenditure:(NSString *)eid pid:(NSString*)pid evalue:(double)evalue{
+-(BOOL)deleteExpenditure:(NSString *)eid{
     
     NSString *sql = [NSString stringWithFormat:@"DELETE FROM BUS_EXPENDITURE WHERE EID='%@'",eid];
     
-    NSString *updatePackageSql = [NSString stringWithFormat:@" UPDATE BASE_PACKAGE SET PVALUE = PVALUE+%f WHERE PID='%@' ",evalue,pid];
+//    NSString *updatePackageSql = [NSString stringWithFormat:@" UPDATE BASE_PACKAGE SET PVALUE = PVALUE+%f WHERE PID='%@' ",evalue,pid];
     
-    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql,updatePackageSql, nil];
+    NSArray *sqlArray = [[NSArray alloc] initWithObjects:sql, nil];
     
     BOOL result = [[FmdbHelper Instance] executeSqlWithTransaction:sqlArray];
     

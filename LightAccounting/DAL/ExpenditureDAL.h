@@ -85,7 +85,7 @@
 /*
  *---------------------------删除消费---------------------------------------------*
  */
--(BOOL)deleteExpenditure:(NSString *)eid pid:(NSString*)pid evalue:(double)evalue;
+-(BOOL)deleteExpenditure:(NSString *)eid;
 /*
  *---------------------------获取消费汇总---------------------------------------------*
  */

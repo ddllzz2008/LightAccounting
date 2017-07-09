@@ -279,10 +279,19 @@
         
         if (editingStyle == UITableViewCellEditingStyleDelete) {
             
+            BOOL hresult = NO;
+            NSString *billid = @"";
+            int billtype = 0;
+            
             @try {
                 
                 NSMutableArray *array = [self.viewmodel.rightsource objectAtIndex:indexPath.section];
-                NSLog(@"-----%ld",indexPath.section);
+                
+                BusExpenditure *model = [array objectAtIndex:indexPath.item];
+                
+                billid = model.CID;
+                billtype = model.TYPE;
+                
                 if (array.count<=1) {
                     [array removeObjectAtIndex:indexPath.item];
                     [self.viewmodel.rightsource removeObjectAtIndex:indexPath.section];
@@ -314,11 +323,30 @@
                 
                 [tableView endUpdates];
                 
+                hresult = YES;
+                
             } @catch (NSException *exception) {
                 
                 [[AlertController sharedInstance] showMessageAutoClose:@"操作异常"];
                 
             } @finally {
+                
+                if (hresult) {
+                    
+                    [self.viewmodel runThreadAction:@"删除中" successtitle:@"删除成功" errortitle:@"删除失败" threadaction:^BOOL{
+                        BOOL deleteresult = [self.viewmodel deleteBill:billid type:billtype];
+                        return deleteresult;
+                    } mainuiaction:^(BOOL result) {
+                        if (result) {
+                            [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
+                            [lefttableview reloadData];
+                        }
+                    }];
+                    
+                    
+                    
+                    
+                }
                 
             }
 
