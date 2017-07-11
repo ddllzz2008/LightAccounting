@@ -71,7 +71,7 @@ extern NSDictionary *viewrefreshCache;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
     //初始化view刷新缓存对象
-    [Constants Instance].viewrefreshCache = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@YES,@"mainpage",@YES,@"billpage",@YES,@"settingpage", nil];
+    [Constants Instance].viewrefreshCache = [[NSMutableDictionary alloc] initWithObjectsAndKeys:@YES,@"mainpage",@YES,@"newexpend",@YES,@"billpage",@YES,@"settingpage", nil];
     
     //初始化百度地图
     _mapManager = [[BMKMapManager alloc] init];

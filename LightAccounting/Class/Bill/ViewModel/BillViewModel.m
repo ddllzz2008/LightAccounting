@@ -36,7 +36,7 @@
         NSArray *source = [[ExpenditureDAL Instance] getAccountDetail:[monthrange objectAtIndex:0] end:[monthrange objectAtIndex:1] categoryid:categories minspend:minvalue maxspend:maxvalue outlet:isoutlet isprivate:isprivate];
         
         if (source!=nil&&source.count>0) {
-            totalArray = [MTLJSONAdapter modelsOfClass:[BusExpenditure class] fromJSONArray:source error:nil];
+            totalArray = [[MTLJSONAdapter modelsOfClass:[BusExpenditure class] fromJSONArray:source error:nil] mutableCopy];
             //类型分组
             NSPredicate *typepredicate = [NSPredicate predicateWithFormat:@"TYPE==%d",_currentType];
             NSArray *nameallarray = [totalArray filteredArrayUsingPredicate:typepredicate];
@@ -206,8 +206,16 @@
     }
     
     if (hresult) {
+        //从totalarray中删除
+        NSPredicate *totalpredicate = [NSPredicate predicateWithFormat:@" EID==%@ ",bid];
+        NSArray *deletemodel = [totalArray filteredArrayUsingPredicate:totalpredicate];
+        if (deletemodel&&deletemodel.count>0) {
+            [totalArray removeObject:[deletemodel objectAtIndex:0]];
+        }
+        
+        [self setCurrentType:self.currentType];
+        
         //设置总共支出，收入
-        NSMutableArray *nameresultArray = [NSMutableArray array];
         NSPredicate *incomepredicate = [NSPredicate predicateWithFormat:@" TYPE==1 "];
         NSArray *incomearray = [totalArray filteredArrayUsingPredicate:incomepredicate];
         self.totalIncome = [[incomearray valueForKeyPath:@"@sum.EVALUE"] stringValue];
@@ -215,17 +223,7 @@
         NSPredicate *expendpredicate = [NSPredicate predicateWithFormat:@" TYPE==0 "];
         NSArray *expendarray = [totalArray filteredArrayUsingPredicate:expendpredicate];
         self.totalExpend = [[expendarray valueForKeyPath:@"@sum.EVALUE"] stringValue];
-        
-        NSMutableArray *leftdictionry = [[NSMutableArray alloc] init];
-        CGFloat totalvalue = _currentType==0?[self.totalExpend floatValue]:[self.totalIncome floatValue];
-        for (NSArray *leftarray in nameresultArray) {
-            BusExpenditure *model = [leftarray objectAtIndex:0];
-            NSNumber *total = [leftarray valueForKeyPath:@"@sum.EVALUE"];
-            NSString *percent = [NSString stringWithFormat:@"%.1f%%",[total floatValue]/totalvalue];
-            [leftdictionry addObject:@{@"name":model.CNAME,@"percent":percent,@"evalue":total}];
-        }
-        
-        self.leftsource = leftdictionry;
+
     }
     
     return hresult;

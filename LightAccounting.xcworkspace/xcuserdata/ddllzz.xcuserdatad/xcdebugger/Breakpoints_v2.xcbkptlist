@@ -33,13 +33,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LightAccounting/DAL/ExpenditureDAL.m"
-            timestampString = "521017115.389165"
+            filePath = "LightAccounting/Class/NewExpenditure/Controller/NewExpenditureViewController.m"
+            timestampString = "521392570.283143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
-            landmarkName = "-addExpenditure:"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-initWithViewModel"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LightAccounting/Class/NewExpenditure/Views/NewStep1View.m"
+            timestampString = "521392647.567243"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "540"
+            endingLineNumber = "540"
+            landmarkName = "-setViewmodel:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LightAccounting/Class/NewExpenditure/Views/NewStep1View.m"
+            timestampString = "521392809.811146"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "424"
+            endingLineNumber = "424"
+            landmarkName = "-gotoLocationTap:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

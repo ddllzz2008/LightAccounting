@@ -19,7 +19,7 @@
 
 @interface BillViewModel : BaseViewModel{
     
-    NSArray *totalArray;
+    NSMutableArray *totalArray;
     
     NSString *minvalue;
     NSString *maxvalue;

@@ -166,6 +166,47 @@
     CGContextFillRect(context,CGRectMake(0, 0, rect.size.width, 150));//填充框
 }
 
+#pragma mark---观察对象
+
+-(void)addNotification{
+    
+    [self.viewmodel addObserver:self forKeyPath:@"categoryArray" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    self.viewmodel.delegate=self;
+    
+}
+
+- (void)removeNotification{
+    
+    [self.viewmodel removeObserver:self forKeyPath:@"categoryArray"];
+    self.viewmodel.delegate=nil;
+    
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"categoryArray"])
+    {
+        NSArray *array = self.viewmodel.categoryArray;
+        
+        NSString *str = @"可以说\n";
+        
+        for (NSInteger i=0; i<5; i++) {
+            if (array.count>i) {
+                str = [str stringByAppendingFormat:@"%@%ld\n",((CategoryModel *)[array objectAtIndex:i]).CNAME,(i+1)*30];
+            }
+        }
+        if (array.count>0) {
+            str = [str stringByAppendingString:@"\n......"];
+            str = [str stringByAppendingString:@"\n格式为(收入/支出分类名称+金额)"];
+        }else{
+            str = @"请先前往设置-收入/支出分类-新增分类";
+        }
+        
+        [labelMessage setText:str];
+        
+    }
+}
+
 #pragma mark--回调方法
 -(void)navigateAccount{
     if (self.addnewAccount) {
@@ -180,9 +221,33 @@
 
 -(void)startRecord:(UILongPressGestureRecognizer *)recognizer{
     
-    NSLog(@"长按开始");
+    if (recognizer.state==UIGestureRecognizerStateBegan) {
+        
+        [[AlertController sharedInstance] showMessage:@"正在说话"];
+        [self.viewmodel startRecognize];
+        
+        
+    }else if(recognizer.state==UIGestureRecognizerStateEnded){
+        
+//        [[AlertController sharedInstance] closeMessage];
+        
+        [self.viewmodel stopRecognie];
+    }
     
-    [self.viewmodel startRecognize];
+}
+
+#pragma mark---返回结果
+- (void)voiceresult:(NSString *)result iferror:(BOOL)iferror{
+    
+    if (iferror) {
+        [[AlertController sharedInstance] closeMessage];
+        [[AlertController sharedInstance] showMessageAutoClose:@"请重新录入"];
+    }else{
+        
+        [[AlertController sharedInstance] closeMessage];
+        [[AlertController sharedInstance] showMessageAutoClose:[NSString stringWithFormat:@"识别结果\n%@",result]];
+        
+    }
     
 }
 

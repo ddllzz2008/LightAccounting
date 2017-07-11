@@ -26,12 +26,22 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    [self addObserve];
+    
     [super viewWillAppear: animated];
     [self showTabbar];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     
     [voiceview setNeedsDisplay];
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    [self removeObserve];
 }
 
 -(void)initViewStyle{
@@ -75,14 +85,38 @@
 //    }];;
 }
 
+-(void)loadAppearData{
+    
+    //界面赋值
+    if ([[[Constants Instance].viewrefreshCache objectForKey:@"newexpend"] isEqual:@YES]) {
+        
+        [self.viewmodel loadCategory];
+        
+        [[Constants Instance].viewrefreshCache setValue:@NO forKey:@"newexpend"];
+        
+    }
+    
+}
+
 -(void)initWithViewModel{
     self.viewmodel = [[ExpendVoiceViewModel alloc] init];
     voiceview.viewmodel = self.viewmodel;
 }
 
-//-(void)AccountChooseView:(id)sender didSelectedChanged:(FamilyPerson *)person{
-//    
-//    [self.viewmodel setDefaultFamily:person.fid];
-//    
-//}
+#pragma mark---属性监视
+
+/**
+ 添加属性监视
+ */
+-(void)addObserve{
+    //添加属性监视KVO
+    [voiceview addNotification];
+}
+
+/**
+ 移除属性监视
+ */
+-(void)removeObserve{
+    [voiceview removeNotification];
+}
 @end

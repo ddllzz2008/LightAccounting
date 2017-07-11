@@ -46,7 +46,7 @@
 
 @property (nonatomic,strong) NSString *id;
 
-@property (nonatomic,weak) ExpendViewModel *viewmodel;
+@property (nonatomic,strong) ExpendViewModel *viewmodel;
 
 @property (nonatomic,strong) UITextField *labelremark;
 

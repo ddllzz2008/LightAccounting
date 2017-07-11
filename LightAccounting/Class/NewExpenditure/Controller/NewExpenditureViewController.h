@@ -17,7 +17,7 @@
     
 }
 
-@property (nonatomic,readonly) ExpendViewModel *viewmodel;
+@property (nonatomic,strong,readonly) ExpendViewModel *viewmodel;
 
 /**
  记账类型，0：收入，1：支出

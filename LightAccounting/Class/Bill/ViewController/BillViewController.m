@@ -289,7 +289,7 @@
                 
                 BusExpenditure *model = [array objectAtIndex:indexPath.item];
                 
-                billid = model.CID;
+                billid = model.EID;
                 billtype = model.TYPE;
                 
                 if (array.count<=1) {
@@ -338,7 +338,13 @@
                         return deleteresult;
                     } mainuiaction:^(BOOL result) {
                         if (result) {
+                            
                             [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
+                            
+                            [totalmoney setText:self.viewmodel.currentType==0?[[self.viewmodel.totalExpend transferMoney] stringByReplacingOccurrencesOfString:@"-" withString:@""]:[self.viewmodel.totalIncome transferMoney]];
+                            [totalmoney setText:[NSString stringWithFormat:@"￥%@",totalmoney.text]];
+                            [detailmoney setText:[NSString stringWithFormat:@"收入：%@ ／ 支出：%@",[self.viewmodel.totalIncome transferMoney],[[self.viewmodel.totalExpend transferMoney] stringByReplacingOccurrencesOfString:@"-" withString:@""]]];
+                            
                             [lefttableview reloadData];
                         }
                     }];

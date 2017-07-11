@@ -137,6 +137,8 @@
 		69A530211EE557FE00C22EDB /* AccountChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A530201EE557FE00C22EDB /* AccountChooseView.m */; };
 		69AD79271E81353400379835 /* ExpenditureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AD79261E81353400379835 /* ExpenditureView.m */; };
 		69B41BC91EC061E900D4583B /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B41BC81EC061E900D4583B /* PlanTableViewCell.m */; };
+		69B770131F151E9D00443D27 /* IATConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B770101F151E9D00443D27 /* IATConfig.m */; };
+		69B770141F151E9D00443D27 /* ISRDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B770121F151E9D00443D27 /* ISRDataHelper.m */; };
 		69D089371F0B79CC000FD94E /* cb_box_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 69D0891D1F0B79CC000FD94E /* cb_box_off.png */; };
 		69D089381F0B79CC000FD94E /* cb_box_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69D0891E1F0B79CC000FD94E /* cb_box_off@2x.png */; };
 		69D089391F0B79CC000FD94E /* cb_box_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 69D0891F1F0B79CC000FD94E /* cb_box_on.png */; };
@@ -420,6 +422,10 @@
 		69AD79261E81353400379835 /* ExpenditureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenditureView.m; sourceTree = "<group>"; };
 		69B41BC71EC061E900D4583B /* PlanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanTableViewCell.h; sourceTree = "<group>"; };
 		69B41BC81EC061E900D4583B /* PlanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanTableViewCell.m; sourceTree = "<group>"; };
+		69B7700F1F151E9D00443D27 /* IATConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IATConfig.h; sourceTree = "<group>"; };
+		69B770101F151E9D00443D27 /* IATConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IATConfig.m; sourceTree = "<group>"; };
+		69B770111F151E9D00443D27 /* ISRDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISRDataHelper.h; sourceTree = "<group>"; };
+		69B770121F151E9D00443D27 /* ISRDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISRDataHelper.m; sourceTree = "<group>"; };
 		69D0891D1F0B79CC000FD94E /* cb_box_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cb_box_off.png; sourceTree = "<group>"; };
 		69D0891E1F0B79CC000FD94E /* cb_box_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cb_box_off@2x.png"; sourceTree = "<group>"; };
 		69D0891F1F0B79CC000FD94E /* cb_box_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cb_box_on.png; sourceTree = "<group>"; };
@@ -1241,12 +1247,24 @@
 		69A530181EE53F9C00C22EDB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				69B7700E1F151E7C00443D27 /* sr */,
 				69A5301C1EE5422600C22EDB /* ExpendViewModel.h */,
 				69A5301D1EE5422600C22EDB /* ExpendViewModel.m */,
 				698F35781EEEA62600D3BED8 /* ExpendVoiceViewModel.h */,
 				698F35791EEEA62600D3BED8 /* ExpendVoiceViewModel.m */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		69B7700E1F151E7C00443D27 /* sr */ = {
+			isa = PBXGroup;
+			children = (
+				69B7700F1F151E9D00443D27 /* IATConfig.h */,
+				69B770101F151E9D00443D27 /* IATConfig.m */,
+				69B770111F151E9D00443D27 /* ISRDataHelper.h */,
+				69B770121F151E9D00443D27 /* ISRDataHelper.m */,
+			);
+			name = sr;
 			sourceTree = "<group>";
 		};
 		69D0891B1F0B79CC000FD94E /* SSCheckBoxView */ = {
@@ -1440,7 +1458,7 @@
 				TargetAttributes = {
 					6944B6231E7E2CF200474964 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3MNRXW5B2B;
+						DevelopmentTeam = X8C6BS72HZ;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -1576,6 +1594,7 @@
 				6944B6D81E7E30E500474964 /* BaseViewController.m in Sources */,
 				6944B72A1E7E76F900474964 /* MainPageView.m in Sources */,
 				692AE0571EF11A2D00BC29CC /* BusBudgetModel.m in Sources */,
+				69B770141F151E9D00443D27 /* ISRDataHelper.m in Sources */,
 				6944B6D51E7E30E500474964 /* LeftSubMenuController.m in Sources */,
 				69734BE51EF7B33300ABD566 /* Constants.m in Sources */,
 				6944B6EF1E7E30E500474964 /* UILabel+extmethod.m in Sources */,
@@ -1663,6 +1682,7 @@
 				698F64311EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m in Sources */,
 				694E728A1E80D343007AC23F /* WaterWareView.m in Sources */,
 				694DAC961EA7AFAF00B5FFD6 /* PasswordViewController.m in Sources */,
+				69B770131F151E9D00443D27 /* IATConfig.m in Sources */,
 				6941DAA61EEFD2D7000CF5DE /* CategoryModel.m in Sources */,
 				6923985E1E6FA94C00A86BAD /* CategoryViewController.m in Sources */,
 				6933BFE41E822F0000701ECB /* ExpenditureDAL.m in Sources */,
@@ -1799,7 +1819,8 @@
 			baseConfigurationReference = C184D483B9358075E016B2B7 /* Pods-LightAccounting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3MNRXW5B2B;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = X8C6BS72HZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1852,8 +1873,10 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ddllzz.LightAccounting;
+				PRODUCT_BUNDLE_IDENTIFIER = hbzpsoft.LightAccounting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1863,7 +1886,8 @@
 			baseConfigurationReference = 7566DBA92425B4A85BAE98A0 /* Pods-LightAccounting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3MNRXW5B2B;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = X8C6BS72HZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1916,7 +1940,7 @@
 					"-framework",
 					Reveal,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ddllzz.LightAccounting;
+				PRODUCT_BUNDLE_IDENTIFIER = hbzpsoft.LightAccounting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
