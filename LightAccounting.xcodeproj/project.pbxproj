@@ -115,6 +115,7 @@
 		6952E58C1F0CA2E9001B8F53 /* UITableView+EmptyPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6952E58B1F0CA2E9001B8F53 /* UITableView+EmptyPhoto.m */; };
 		69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB51EB0454100973E7F /* CategoryTableCell.m */; };
 		69596CB91EB0A11D00973E7F /* ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69596CB81EB0A11D00973E7F /* ThemeViewController.m */; };
+		695A463C1F14C8A6000A19E7 /* PasswordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 695A463B1F14C8A6000A19E7 /* PasswordViewModel.m */; };
 		696B54221EF029CE00B0173D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B54211EF029CE00B0173D /* libz.tbd */; };
 		696B54241EF02A9800B0173D /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B54231EF02A9800B0173D /* iflyMSC.framework */; };
 		696B54261EF0309400B0173D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B54251EF0309400B0173D /* AVFoundation.framework */; };
@@ -381,6 +382,8 @@
 		69596CB51EB0454100973E7F /* CategoryTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableCell.m; sourceTree = "<group>"; };
 		69596CB71EB0A11D00973E7F /* ThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeViewController.h; sourceTree = "<group>"; };
 		69596CB81EB0A11D00973E7F /* ThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeViewController.m; sourceTree = "<group>"; };
+		695A463A1F14C8A6000A19E7 /* PasswordViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordViewModel.h; sourceTree = "<group>"; };
+		695A463B1F14C8A6000A19E7 /* PasswordViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordViewModel.m; sourceTree = "<group>"; };
 		696B54211EF029CE00B0173D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		696B54231EF02A9800B0173D /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iflyMSC.framework; path = libs/iflyMSC.framework; sourceTree = "<group>"; };
 		696B54251EF0309400B0173D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -607,6 +610,8 @@
 			children = (
 				692AE0521EF1177100BC29CC /* BudgetViewModel.h */,
 				692AE0531EF1177100BC29CC /* BudgetViewModel.m */,
+				695A463A1F14C8A6000A19E7 /* PasswordViewModel.h */,
+				695A463B1F14C8A6000A19E7 /* PasswordViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1650,6 +1655,7 @@
 				6933BFE61E822F0000701ECB /* IncomeDAL.m in Sources */,
 				6944B6F21E7E30E500474964 /* UITextField+Style.m in Sources */,
 				6950825E1EB31C190037E547 /* PlanViewController.m in Sources */,
+				695A463C1F14C8A6000A19E7 /* PasswordViewModel.m in Sources */,
 				699B2F931E87B33C00CE3FAD /* NewExpenditureViewController.m in Sources */,
 				6944B6EC1E7E30E500474964 /* HttpService.m in Sources */,
 				6933BFE31E822F0000701ECB /* CategoryDAL.m in Sources */,

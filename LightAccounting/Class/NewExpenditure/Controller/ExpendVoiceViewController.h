@@ -8,13 +8,13 @@
 
 #import "BaseViewController.h"
 #import "ExpendVoiceView.h"
-#import "AccountChooseView.h"
+//#import "AccountChooseView.h"
 #import "NewExpenditureViewController.h"
 #import "ExpendVoiceViewModel.h"
 
-@interface ExpendVoiceViewController : BaseViewController<AccountChooseViewDelegate>{
+@interface ExpendVoiceViewController : BaseViewController{
     
-    AccountChooseView *chooseview;
+//    AccountChooseView *chooseview;
     
 }
 

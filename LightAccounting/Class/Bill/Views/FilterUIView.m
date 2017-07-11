@@ -99,14 +99,14 @@
     [self addSubview:_collectionView];
     
     
-    UIButton *resetbutton = [[UIButton alloc] initWithFrame:CGRectMake(0, ScreenSize.height-40, width/2, 40)];
+    UIButton *resetbutton = [[UIButton alloc] initWithFrame:CGRectMake(1, ScreenSize.height-40, (width-1)/2, 40)];
     resetbutton.backgroundColor = UIColorFromRGB(0xcccccc);
     [resetbutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [resetbutton setTitle:@"重置" forState:UIControlStateNormal];
     [resetbutton addTarget:self action:@selector(revert:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:resetbutton];
     
-    UIButton *savebutton = [[UIButton alloc] initWithFrame:CGRectMake(width/2, ScreenSize.height-40, width/2, 40)];
+    UIButton *savebutton = [[UIButton alloc] initWithFrame:CGRectMake(width/2+1, ScreenSize.height-40, (width-1)/2, 40)];
     savebutton.backgroundColor = get_theme_color;
     [savebutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [savebutton setTitle:@"完成" forState:UIControlStateNormal];
@@ -258,6 +258,24 @@
         NSString *max = [self.maxfield.text isFloat]?self.minfield.text:@"";
         [self.delegate FilterUIViewComfirm:min max:max categories:categoryArray isoutlet:cboutlet.checked isprivate:cbprivate.checked];
     }
+}
+
+-(void)drawRect:(CGRect)rect{
+    
+    [super drawRect:rect];
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(ctx,1);
+
+    [UIColorFromRGB(0xAAAAAA) setStroke];
+    
+    CGPoint aPoints[2];//坐标点
+    aPoints[0] =CGPointMake(0, 0);//坐标1
+    aPoints[1] =CGPointMake(0, rect.size.height);
+
+    CGContextAddLines(ctx, aPoints, 2);//添加线
+    CGContextDrawPath(ctx, kCGPathStroke); //根据坐标绘制路径
+    
 }
 
 @end

@@ -106,19 +106,24 @@
     
     UIImage *image = nil;
     
-    UIGraphicsBeginImageContext(self.frame.size);
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextSetLineWidth(ctx, 2);
-    CGContextSetStrokeColorWithColor(ctx, [get_theme_color CGColor]);
-    CGPoint aPoints[2];//坐标点
-    aPoints[0] =startpoint;//坐标1
-    aPoints[1] =endpoint;//坐标2
-    CGContextAddLines(ctx, aPoints, 2);//添加线
-    CGContextDrawPath(ctx, kCGPathStroke); //根据坐标绘制路径
+    if (movestartpoint.x != CGPointZero.x&&movestartpoint.y!=CGPointZero.y &&arrayPassword.count>1) {
+        
+        UIGraphicsBeginImageContext(self.frame.size);
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        CGContextSetLineWidth(ctx, 2);
+        CGContextSetStrokeColorWithColor(ctx, [get_theme_color CGColor]);
+        CGPoint aPoints[2];//坐标点
+        aPoints[0] =startpoint;//坐标1
+        aPoints[1] =endpoint;//坐标2
+        CGContextAddLines(ctx, aPoints, 2);//添加线
+        CGContextDrawPath(ctx, kCGPathStroke); //根据坐标绘制路径
+        
+        image = UIGraphicsGetImageFromCurrentImageContext();//画图输出
+        UIGraphicsEndImageContext();//结束画线
+    }
     
-    image = UIGraphicsGetImageFromCurrentImageContext();//画图输出
-    UIGraphicsEndImageContext();//结束画线
     return image;
+    
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -195,7 +200,7 @@
 
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
-    if (!(movestartpoint.x == CGPointZero.x&&movestartpoint.y==CGPointZero.y)) {
+    if (movestartpoint.x != CGPointZero.x&&movestartpoint.y!=CGPointZero.y &&arrayPassword.count>1) {
         CGContextRef ctx = UIGraphicsGetCurrentContext();
         CGContextSetLineWidth(ctx, 2);
         CGContextSetStrokeColorWithColor(ctx, [get_theme_color CGColor]);

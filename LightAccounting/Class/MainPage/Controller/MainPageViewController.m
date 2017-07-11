@@ -83,35 +83,10 @@ extern NSDictionary *viewrefreshCache;
     
     //界面赋值
     if ([[[Constants Instance].viewrefreshCache objectForKey:@"mainpage"] isEqual:@YES]) {
-        NSDate *today = [NSDate dateWithZone];
-        long day = [today getDateFormatter:@"dd"];
-        int billday = [self.viewmodel getBillDay];
-        long startyear = [today getDateFormatter:@"yyyy"];
-        long endyear = startyear;
-        long startmonth = [today getDateFormatter:@"MM"];
-        long endmonth = startmonth;
-        if (day>=billday) {
-            if (startmonth==12) {
-                endyear = startyear+1;
-                startmonth = 12;
-                endmonth = 1;
-            }else{
-                endmonth = startmonth+1;
-            }
-        }else{
-            if(startmonth==1){
-                startyear = startyear-1;
-                startmonth = 12;
-                endmonth = 1;
-            }else{
-                startmonth = startmonth - 1;
-            }
-        }
         
-        NSString *startday = [NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",startyear,startmonth,billday];
-        NSString *endday = [NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",endyear,endmonth,billday];
+        NSArray *billRange = [self.viewmodel getBillDateRange:[NSDate dateWithZone]];
         
-        [self.viewmodel initFilters:[startday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"] end:[endday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"] categoryid:nil packageid:nil minexpend:nil maxexpend:nil];
+        [self.viewmodel initFilters:[billRange objectAtIndex:0] end:[billRange objectAtIndex:1] categoryid:nil packageid:nil minexpend:nil maxexpend:nil];
         NSArray *source = [self.viewmodel loadData];
         
         CGFloat totalexpend = [[source valueForKeyPath:@"@sum.groupExpend"] floatValue];

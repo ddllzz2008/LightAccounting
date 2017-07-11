@@ -32,9 +32,6 @@
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     
     [voiceview setNeedsDisplay];
-    
-    chooseview.source = [self.viewmodel getFamilyAccounts];
-    chooseview.selectedValue = [self.viewmodel getDefaultFamily];
 }
 
 -(void)initViewStyle{
@@ -60,22 +57,22 @@
         [strongSelf.navigationController pushViewController:newexpendController animated:YES];
     };
     
-    chooseview = [[AccountChooseView alloc] initWithFrame:CGRectMake(0, 0, 100, 70)];
-    chooseview.oriFrame = CGRectMake(0, 0, 100, 70);
-    chooseview.backgroundColor = [UIColor clearColor];
-    chooseview.textColor=get_theme_color;
-    chooseview.delegate=self;
-    chooseview.containerColor = UIColorFromRGB(0xffffff);
-    chooseview.userInteractionEnabled=YES;
-    
-    [self.view addSubview:chooseview];
-    
-    [chooseview mas_makeConstraints:^(MASConstraintMaker *make) {
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.centerX.equalTo(strongSelf.view);
-        make.top.equalTo(strongSelf.view).with.offset(-20);
-        make.size.mas_equalTo(CGSizeMake(100, 70));
-    }];;
+//    chooseview = [[AccountChooseView alloc] initWithFrame:CGRectMake(0, 0, 100, 70)];
+//    chooseview.oriFrame = CGRectMake(0, 0, 100, 70);
+//    chooseview.backgroundColor = [UIColor clearColor];
+//    chooseview.textColor=get_theme_color;
+//    chooseview.delegate=self;
+//    chooseview.containerColor = UIColorFromRGB(0xffffff);
+//    chooseview.userInteractionEnabled=YES;
+//    
+//    [self.view addSubview:chooseview];
+//    
+//    [chooseview mas_makeConstraints:^(MASConstraintMaker *make) {
+//        __strong __typeof(weakSelf) strongSelf = weakSelf;
+//        make.centerX.equalTo(strongSelf.view);
+//        make.top.equalTo(strongSelf.view).with.offset(-20);
+//        make.size.mas_equalTo(CGSizeMake(100, 70));
+//    }];;
 }
 
 -(void)initWithViewModel{
@@ -83,9 +80,9 @@
     voiceview.viewmodel = self.viewmodel;
 }
 
--(void)AccountChooseView:(id)sender didSelectedChanged:(FamilyPerson *)person{
-    
-    [self.viewmodel setDefaultFamily:person.fid];
-    
-}
+//-(void)AccountChooseView:(id)sender didSelectedChanged:(FamilyPerson *)person{
+//    
+//    [self.viewmodel setDefaultFamily:person.fid];
+//    
+//}
 @end

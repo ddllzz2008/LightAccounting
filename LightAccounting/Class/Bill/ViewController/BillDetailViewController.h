@@ -6,16 +6,30 @@
 //  Copyright © 2017年 ddllzz. All rights reserved.
 //
 
+#import "UITableView+EmptyPhoto.h"
 #import "BaseViewController.h"
 #import "BillDateChooseView.h"
-#import "BillDetailTableCell.h"
+#import "BillChartView.h"
+#import "BillTableCell.h"
 #import "BillDetailSectionCell.h"
+#import "BillDetailTableCell.h"
+#import "TouchTableView.h"
+#import "FilterUIView.h"
 #import "BillViewModel.h"
+#import "AlertController.h"
+#import "BusExpenditure.h"
 
-@interface BillDetailViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>{
+@interface BillDetailViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,BillDateChooseDelegate,FilterUIViewDelegate>{
     
     BillDateChooseView *choosedateview;
-    UILabel *totalmoney;
+    
+    UIView *viewright;
+    
+    UILabel *detailmoney;
+    UITableView *righttableview;
+    
+    UIWindow *chooseWindow;
+    FilterUIView *filterview;
     
 }
 

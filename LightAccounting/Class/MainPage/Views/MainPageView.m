@@ -362,6 +362,7 @@
 -(void)navdetail:(id)sender{
     
     BillDetailViewController *billdetailcontroller = [[BillDetailViewController alloc] init];
+    billdetailcontroller.currentDate = [NSDate dateWithZone];
     [[self viewController].navigationController pushViewController:billdetailcontroller animated:YES];
     
 }

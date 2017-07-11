@@ -81,5 +81,11 @@
  @param date <#date description#>
  */
 -(void)loadBill:(NSDate *)date;
+/**
+ 获取详细账单
+ 
+ @param date 当前日期
+ */
+- (void)loadDetailBill:(NSDate *)date;
 
 @end
