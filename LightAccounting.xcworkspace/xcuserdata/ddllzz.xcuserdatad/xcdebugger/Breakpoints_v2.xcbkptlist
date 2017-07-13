@@ -33,13 +33,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LightAccounting/Class/NewExpenditure/Controller/NewExpenditureViewController.m"
-            timestampString = "521392570.283143"
+            filePath = "LightAccounting/Class/NewExpenditure/Views/NewStep1View.m"
+            timestampString = "521628098.886705"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "-initWithViewModel"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
+            landmarkName = "-layoutSubviews"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -50,12 +50,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LightAccounting/Class/NewExpenditure/Views/NewStep1View.m"
-            timestampString = "521392647.567243"
+            timestampString = "521628102.230646"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "540"
-            endingLineNumber = "540"
-            landmarkName = "-setViewmodel:"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
+            landmarkName = "-didUpdateBMKUserLocation:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -66,12 +66,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LightAccounting/Class/NewExpenditure/Views/NewStep1View.m"
-            timestampString = "521392809.811146"
+            timestampString = "521628133.974605"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424"
-            landmarkName = "-gotoLocationTap:"
+            startingLineNumber = "389"
+            endingLineNumber = "389"
+            landmarkName = "-onGetReverseGeoCodeResult:result:errorCode:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -517,7 +517,7 @@
     picker.date = self.viewmodel.model.createtime;
 //    picker.minDate = [[[NSDate date] dateForLastYear] objectAtIndex:0];
 //    picker.maxDate = [[[NSDate date] dateForNextYear] objectAtIndex:1];
-    
+    picker.delegate = nil;
     if([picker delegate]==nil){
         [picker setDelegate:self];
     }

@@ -317,6 +317,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[AlertController sharedInstance] closeMessage];
                 [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
+                [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"billpage"];
                 [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
                 [self hiddenAction:nil];
             });

@@ -37,6 +37,7 @@ static const float kContentHeight = 180.0f;
         [picker addTarget:self action:@selector(changeDate:) forControlEvents:UIControlEventValueChanged];
         NSLocale *locale = [[NSLocale alloc]initWithLocaleIdentifier:@"zh-Hans"];
         picker.locale = locale;
+        picker.timeZone=[NSTimeZone systemTimeZone];
         [backgroundView setBackgroundColor:[UIColor whiteColor]];
         [backgroundView addSubview:picker];
         
@@ -100,7 +101,10 @@ static const float kContentHeight = 180.0f;
 -(void)confirm{
     
     if (self.delegate) {
-        selectedDate = [picker date];
+        NSTimeZone *timeZone=[NSTimeZone systemTimeZone];
+        NSInteger seconds=[timeZone secondsFromGMTForDate:picker.date];
+        selectedDate=[picker.date dateByAddingTimeInterval:seconds];
+//        selectedDate = [picker date];
         [self.delegate DLDatePickerView:self.tag didSelectDate:selectedDate];
     }
     [self close];
