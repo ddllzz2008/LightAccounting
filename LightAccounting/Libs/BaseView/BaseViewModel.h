@@ -45,6 +45,12 @@
  @return 起始日期
  */
 -(NSArray<NSDate *> *)getBillDateRange:(NSDate *)currentDate;
+/**
+ 将当前日期转换为实际账单日期
+ 
+ @return 转换后的日期
+ */
+- (NSDate *)getCurrentDate;
 
 /**
  封装基于GCD的线程操作

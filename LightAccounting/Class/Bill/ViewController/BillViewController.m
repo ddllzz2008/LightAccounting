@@ -41,7 +41,7 @@
     choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 60)];
     choosedateview.delegate=self;
     choosedateview.mode=BillDateChooseModeYearMonth;
-    choosedateview.currentDate = [NSDate dateWithZone];
+//    choosedateview.currentDate = [NSDate dateWithZone];
     [self.view addSubview:choosedateview];
     
     /*--------------左边容器-------------------*/
@@ -589,6 +589,9 @@
  封装加载数据得方法
  */
 - (void)loadData{
+    
+    choosedateview.currentDate = [self.viewmodel getCurrentDate];
+    
     [[AlertController sharedInstance] showMessage:@"获取账单中"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         

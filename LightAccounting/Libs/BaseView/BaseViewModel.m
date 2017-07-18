@@ -92,6 +92,7 @@ static NSString *familycachestring = @"familycachestring";
         long startmonth = [currentDate getDateFormatter:@"MM"];
         long endmonth = startmonth;
         if (day>=billday) {
+            //当前月账单
             if (startmonth==12) {
                 endyear = startyear+1;
                 startmonth = 12;
@@ -110,13 +111,35 @@ static NSString *familycachestring = @"familycachestring";
         }
         
         NSString *startday = [NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",startyear,startmonth,billday];
-        NSString *endday = [NSString stringWithFormat:@"%ld-%ld-%d 23:59:59",endyear,endmonth,billday];
+        NSString *endday = [NSString stringWithFormat:@"%ld-%ld-%d 23:59:59",endyear,endmonth,billday-1];
         
         return [NSArray arrayWithObjects:[startday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"],[endday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"], nil];
         
     }else{
         return [currentDate dateForCurrentMonth];
     }
+}
+
+/**
+ 将当前日期转换为实际账单日期
+
+ @return 转换后的日期
+ */
+- (NSDate *)getCurrentDate{
+    
+    NSDate *date = [NSDate dateWithZone];
+    
+    AppConfigurationModel *config = [[AppConfigurationDAL Instance] getAppConfiguration];
+    if (config!=nil) {
+        int billday = config.BILLDATE;
+        if ([date day]>=billday) {
+            //当月账单周期
+        }else{
+            //上月账单周期
+            date = [[NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",[date year],[date month]-1,billday+1] convertDateFromString:@"yyyy-MM-dd HH:mm:ss"];
+        }
+    }
+    return date;
 }
 
 /**

@@ -50,10 +50,10 @@ static ExpenditureDAL *instance = nil;
     }
     
     if (start!=nil) {
-        sql = [sql stringByAppendingFormat:@" AND A.CREATETIME >= '%@' ",[start formatWithCode:dateformat_08]];
+        sql = [sql stringByAppendingFormat:@" AND A.CREATETIME >= '%@' ",[start formatWithCode:dateformat_03]];
     }
     if(end!=nil){
-        sql = [sql stringByAppendingFormat:@" AND A.CREATETIME <= '%@' ",[end formatWithCode:dateformat_09]];
+        sql = [sql stringByAppendingFormat:@" AND A.CREATETIME <= '%@' ",[end formatWithCode:dateformat_03]];
     }
     if(![CommonFunc isBlankString:categoryid]){
         sql = [sql stringByAppendingFormat:@" AND C.CID='%@' ",categoryid];
@@ -106,10 +106,10 @@ static ExpenditureDAL *instance = nil;
     }
     
     if (start!=nil) {
-        sql = [sql stringByAppendingFormat:@" AND A.CREATETIME >= '%@' ",[start formatWithCode:dateformat_08]];
+        sql = [sql stringByAppendingFormat:@" AND A.CREATETIME >= '%@' ",[start formatWithCode:dateformat_03]];
     }
     if(end!=nil){
-        sql = [sql stringByAppendingFormat:@" AND A.CREATETIME <= '%@' ",[end formatWithCode:dateformat_09]];
+        sql = [sql stringByAppendingFormat:@" AND A.CREATETIME <= '%@' ",[end formatWithCode:dateformat_03]];
     }
     if (outlet) {
 //        sql = [sql stringByAppendingString:@" AND (A.OUTBUDGET==1 OR A.OUTBUDGET==-1 ) "];
