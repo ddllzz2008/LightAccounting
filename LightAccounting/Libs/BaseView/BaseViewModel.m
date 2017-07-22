@@ -87,33 +87,45 @@ static NSString *familycachestring = @"familycachestring";
     if (config!=nil) {
         long day = [currentDate getDateFormatter:@"dd"];
         int billday = config.BILLDATE;
-        long startyear = [currentDate getDateFormatter:@"yyyy"];
-        long endyear = startyear;
-        long startmonth = [currentDate getDateFormatter:@"MM"];
-        long endmonth = startmonth;
-        if (day>=billday) {
-            //当前月账单
-            if (startmonth==12) {
-                endyear = startyear+1;
-                startmonth = 12;
-                endmonth = 1;
-            }else{
-                endmonth = startmonth+1;
-            }
+        
+        if (billday==1) {
+            
+            return [currentDate dateForCurrentMonth];
+            
         }else{
-            if(startmonth==1){
-                startyear = startyear-1;
-                startmonth = 12;
-                endmonth = 1;
+            
+            long startyear = [currentDate getDateFormatter:@"yyyy"];
+            long endyear = startyear;
+            long startmonth = [currentDate getDateFormatter:@"MM"];
+            long endmonth = startmonth;
+            if (day>=billday) {
+                //当前月账单
+                if (startmonth==12) {
+                    endyear = startyear+1;
+                    startmonth = 12;
+                    endmonth = 1;
+                }else{
+                    endmonth = startmonth+1;
+                }
             }else{
-                startmonth = startmonth - 1;
+                if(startmonth==1){
+                    startyear = startyear-1;
+                    startmonth = 12;
+                    endmonth = 1;
+                }else{
+                    startmonth = startmonth - 1;
+                }
             }
+            
+            NSString *startday = @"";
+            NSString *endday = @"";
+            
+            startday = [NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",startyear,startmonth,billday];
+            endday = [NSString stringWithFormat:@"%ld-%ld-%d 23:59:59",endyear,endmonth,billday-1];
+            
+            return [NSArray arrayWithObjects:[startday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"],[endday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"], nil];
+            
         }
-        
-        NSString *startday = [NSString stringWithFormat:@"%ld-%ld-%d 00:00:00",startyear,startmonth,billday];
-        NSString *endday = [NSString stringWithFormat:@"%ld-%ld-%d 23:59:59",endyear,endmonth,billday-1];
-        
-        return [NSArray arrayWithObjects:[startday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"],[endday convertDateFromString:@"yyyy-MM-dd HH:mm:ss"], nil];
         
     }else{
         return [currentDate dateForCurrentMonth];
