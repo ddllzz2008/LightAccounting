@@ -31,7 +31,7 @@
 
 -(void)initLayout{
     
-    float width = ScreenSize.width * 2 / 3;
+    float width = ScreenSize.width;
     
     UILabel *spendtitle = [[UILabel alloc] initWithFrame:CGRectMake(5, 15, width -10, 20)];
     [spendtitle setStyle:fontsize_13 color:UIColorFromRGB(0xcccccc)];

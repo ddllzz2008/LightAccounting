@@ -21,6 +21,8 @@
 
 @interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,BillDateChooseDelegate,FilterUIViewDelegate,TouchTableViewDelegate>{
     
+    NSDate *currentDate;
+    
     BillDateChooseView *choosedateview;
     
     BillChartView *chartview;

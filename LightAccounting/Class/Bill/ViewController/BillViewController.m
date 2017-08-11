@@ -41,7 +41,7 @@
     choosedateview = [[BillDateChooseView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 60)];
     choosedateview.delegate=self;
     choosedateview.mode=BillDateChooseModeYearMonth;
-//    choosedateview.currentDate = [NSDate dateWithZone];
+    choosedateview.currentDate = [NSDate dateWithZone];
     [self.view addSubview:choosedateview];
     
     /*--------------左边容器-------------------*/
@@ -400,7 +400,7 @@
     [rootview addGestureRecognizer:hiddenTap];
     [chooseWindow addSubview:rootview];
     
-    filterview = [[FilterUIView alloc] initWithFrame:CGRectMake(ScreenSize.width/3, 0, ScreenSize.width*2/3, ScreenSize.height)];
+    filterview = [[FilterUIView alloc] initWithFrame:CGRectMake(ScreenSize.width, 0, ScreenSize.width, ScreenSize.height)];
     filterview.delegate=self;
     filterview.categorySource = [self.viewmodel loadCategory];
     
@@ -414,6 +414,12 @@
     
     [self addTextFieldResponser:filterview.minfield];
     [self addTextFieldResponser:filterview.maxfield];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.2 animations:^{
+            filterview.frame = CGRectMake(0, 0, ScreenSize.width, ScreenSize.height);
+        }];
+    });
     
 }
 
@@ -590,7 +596,7 @@
  */
 - (void)loadData{
     
-    choosedateview.currentDate = [self.viewmodel getCurrentDate];
+//    choosedateview.currentDate = [self.viewmodel getCurrentDate];
     
     [[AlertController sharedInstance] showMessage:@"获取账单中"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -664,7 +670,7 @@
  */
 -(void)BillDateChoose:(id)sender prebuttonPressed:(NSDate *)date{
     
-    [self.viewmodel setFilter:0 min:@"" max:@"" cids:nil outlet:NO private:NO];
+    [self.viewmodel setFilter:segmentControl.selectedSegmentIndex min:@"" max:@"" cids:nil outlet:NO private:NO];
     
     [self loadData];
 }
@@ -677,7 +683,7 @@
  */
 -(void)BillDateChoose:(id)sender nextbuttonPressed:(NSDate *)date{
     
-    [self.viewmodel setFilter:0 min:@"" max:@"" cids:nil outlet:NO private:NO];
+    [self.viewmodel setFilter:segmentControl.selectedSegmentIndex min:@"" max:@"" cids:nil outlet:NO private:NO];
     
     [self loadData];
 }

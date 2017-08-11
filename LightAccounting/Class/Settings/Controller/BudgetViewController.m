@@ -53,22 +53,22 @@
         make.left.equalTo(strongSelf).with.offset(15);
         make.width.mas_equalTo(ScreenSize.width - 30);
         make.centerX.equalTo(strongSelf);
-        make.bottom.equalTo(strongSelf.mas_bottom).with.offset(-50);
+        make.bottom.equalTo(strongSelf.mas_bottom).with.offset(-20);
         make.top.equalTo(choosedateview.mas_bottom).with.offset(15);
     }];
     
-    UIButton *resetBilldate = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 40)];
-    [resetBilldate setTitle:@"更改账单日" forState:UIControlStateNormal];
-    [resetBilldate setBackgroundColor:get_theme_color];
-    [resetBilldate addTarget:self action:@selector(resetAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:resetBilldate];
-    
-    [resetBilldate mas_makeConstraints:^(MASConstraintMaker *make) {
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.size.mas_equalTo(CGSizeMake(ScreenSize.width, 40));
-        make.left.equalTo(strongSelf);
-        make.bottom.equalTo(strongSelf);
-    }];
+//    UIButton *resetBilldate = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 40)];
+//    [resetBilldate setTitle:@"更改账单日" forState:UIControlStateNormal];
+//    [resetBilldate setBackgroundColor:get_theme_color];
+//    [resetBilldate addTarget:self action:@selector(resetAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:resetBilldate];
+//    
+//    [resetBilldate mas_makeConstraints:^(MASConstraintMaker *make) {
+//        __strong __typeof(weakSelf) strongSelf = weakSelf;
+//        make.size.mas_equalTo(CGSizeMake(ScreenSize.width, 40));
+//        make.left.equalTo(strongSelf);
+//        make.bottom.equalTo(strongSelf);
+//    }];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
