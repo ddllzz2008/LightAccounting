@@ -569,6 +569,45 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		6916029A1F419E7A00DD5B4E /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				6916029B1F419E7A00DD5B4E /* Controller */,
+				6916029C1F419E7A00DD5B4E /* Models */,
+				6916029D1F419E7A00DD5B4E /* View */,
+				6916029E1F419E7A00DD5B4E /* ViewModel */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		6916029B1F419E7A00DD5B4E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6916029C1F419E7A00DD5B4E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6916029D1F419E7A00DD5B4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6916029E1F419E7A00DD5B4E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		692398571E6FA39500A86BAD /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,15 +795,16 @@
 		6944B6541E7E30E500474964 /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				694DAC8F1EA7AF8400B5FFD6 /* Settings */,
-				690E8D0E1E9CC97C004DC684 /* Bill */,
-				69DC03E61E703866000C72AE /* MyZone */,
-				692398571E6FA39500A86BAD /* Category */,
-				699B2F891E87B06E00CE3FAD /* NewExpenditure */,
 				6944B6551E7E30E500474964 /* Login */,
-				6944B65F1E7E30E500474964 /* MainPage */,
-				6944B66F1E7E30E500474964 /* ModifyPwd */,
 				6944B6701E7E30E500474964 /* TabPage */,
+				6944B65F1E7E30E500474964 /* MainPage */,
+				690E8D0E1E9CC97C004DC684 /* Bill */,
+				699B2F891E87B06E00CE3FAD /* NewExpenditure */,
+				6916029A1F419E7A00DD5B4E /* Charts */,
+				69DC03E61E703866000C72AE /* MyZone */,
+				694DAC8F1EA7AF8400B5FFD6 /* Settings */,
+				692398571E6FA39500A86BAD /* Category */,
+				6944B66F1E7E30E500474964 /* ModifyPwd */,
 			);
 			path = Class;
 			sourceTree = "<group>";
