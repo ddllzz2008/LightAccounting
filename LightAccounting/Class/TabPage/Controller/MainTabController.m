@@ -26,7 +26,7 @@
         self.viewControllers = [NSArray arrayWithObjects:[self addViewController:@"支出" image:[UIImage imageNamed:@"tabbaritem1"] viewcontroller:[[MainPageViewController alloc] init]],
                                 [self addViewController:@"账单" image:[UIImage imageNamed:@"tabbaritem3"] viewcontroller:[[BillViewController alloc] init]],
                                 [self addViewController:@"" image:nil viewcontroller:[[ExpendVoiceViewController alloc] init]],
-                                [self addViewController:@"报表" image:[UIImage imageNamed:@"tabbaritem2"] viewcontroller:[[MainPageViewController alloc] init]],
+                                [self addViewController:@"报表" image:[UIImage imageNamed:@"tabbaritem2"] viewcontroller:[[MainChartViewController alloc] init]],
                                 [self addViewController:@"设置" image:[UIImage imageNamed:@"tabbaritem4"] viewcontroller:[[MyZoneViewController alloc] init]],
                                 nil];
         

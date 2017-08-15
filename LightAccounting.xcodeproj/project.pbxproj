@@ -86,7 +86,6 @@
 		6944B6FD1E7E32A400474964 /* insertdata.sql in Resources */ = {isa = PBXBuildFile; fileRef = 6944B6FA1E7E32A400474964 /* insertdata.sql */; };
 		6944B7001E7E335300474964 /* AppDelegate+RootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944B6FF1E7E335300474964 /* AppDelegate+RootController.m */; };
 		6944B7031E7E5FA700474964 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6944B7021E7E5FA700474964 /* MainPageViewController.m */; };
-		6944B7071E7E646500474964 /* MainUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6944B7061E7E646500474964 /* MainUI.storyboard */; };
 		6944B7091E7E72E400474964 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6944B7081E7E72E400474964 /* CoreLocation.framework */; };
 		6944B70B1E7E72EC00474964 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6944B70A1E7E72EC00474964 /* QuartzCore.framework */; };
 		6944B70D1E7E72F300474964 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6944B70C1E7E72F300474964 /* OpenGLES.framework */; };
@@ -125,6 +124,11 @@
 		696B542E1EF031CA00B0173D /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696B542D1EF031CA00B0173D /* AddressBook.framework */; };
 		69734BE51EF7B33300ABD566 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 69734BE41EF7B33300ABD566 /* Constants.m */; };
 		6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6974FC591EA51C63008F4495 /* BillTableCell.m */; };
+		697CA3D51F429B2600309161 /* MainChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697CA3D41F429B2600309161 /* MainChartViewController.m */; };
+		697CA3D71F429E9000309161 /* ChartsMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 697CA3D61F429E9000309161 /* ChartsMainView.xib */; };
+		697CA3DA1F42D58B00309161 /* ChartsMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 697CA3D91F42D58B00309161 /* ChartsMainView.m */; };
+		697CA3DD1F42E51900309161 /* BillDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 697CA3DC1F42E51900309161 /* BillDetailView.m */; };
+		697CA3DF1F42E53200309161 /* BillDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 697CA3DE1F42E53200309161 /* BillDetailView.xib */; };
 		698F357A1EEEA62600D3BED8 /* ExpendVoiceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F35791EEEA62600D3BED8 /* ExpendVoiceViewModel.m */; };
 		698F642E1EB0D595001BEB18 /* UIColor+ExtMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F642D1EB0D595001BEB18 /* UIColor+ExtMethod.m */; };
 		698F64311EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F64301EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m */; };
@@ -344,7 +348,6 @@
 		6944B6FF1E7E335300474964 /* AppDelegate+RootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+RootController.m"; sourceTree = "<group>"; };
 		6944B7011E7E5FA700474964 /* MainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
 		6944B7021E7E5FA700474964 /* MainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
-		6944B7061E7E646500474964 /* MainUI.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainUI.storyboard; sourceTree = "<group>"; };
 		6944B7081E7E72E400474964 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6944B70A1E7E72EC00474964 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6944B70C1E7E72F300474964 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -398,6 +401,14 @@
 		6974FC581EA51C63008F4495 /* BillTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillTableCell.h; sourceTree = "<group>"; };
 		6974FC591EA51C63008F4495 /* BillTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillTableCell.m; sourceTree = "<group>"; };
 		697A4E051EE1B85C0059106C /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		697CA3D31F429B2600309161 /* MainChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainChartViewController.h; sourceTree = "<group>"; };
+		697CA3D41F429B2600309161 /* MainChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainChartViewController.m; sourceTree = "<group>"; };
+		697CA3D61F429E9000309161 /* ChartsMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChartsMainView.xib; sourceTree = "<group>"; };
+		697CA3D81F42D58B00309161 /* ChartsMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartsMainView.h; sourceTree = "<group>"; };
+		697CA3D91F42D58B00309161 /* ChartsMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartsMainView.m; sourceTree = "<group>"; };
+		697CA3DB1F42E51900309161 /* BillDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailView.h; sourceTree = "<group>"; };
+		697CA3DC1F42E51900309161 /* BillDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailView.m; sourceTree = "<group>"; };
+		697CA3DE1F42E53200309161 /* BillDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BillDetailView.xib; sourceTree = "<group>"; };
 		698F35781EEEA62600D3BED8 /* ExpendVoiceViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpendVoiceViewModel.h; sourceTree = "<group>"; };
 		698F35791EEEA62600D3BED8 /* ExpendVoiceViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendVoiceViewModel.m; sourceTree = "<group>"; };
 		698F642C1EB0D595001BEB18 /* UIColor+ExtMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ExtMethod.h"; sourceTree = "<group>"; };
@@ -565,6 +576,9 @@
 				69F277E41EA8AA510016FF6E /* BillDetailSectionCell.m */,
 				6942C3B51F04F10300BF1BAA /* FilterUIView.h */,
 				6942C3B61F04F10300BF1BAA /* FilterUIView.m */,
+				697CA3DB1F42E51900309161 /* BillDetailView.h */,
+				697CA3DC1F42E51900309161 /* BillDetailView.m */,
+				697CA3DE1F42E53200309161 /* BillDetailView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -583,6 +597,8 @@
 		6916029B1F419E7A00DD5B4E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				697CA3D31F429B2600309161 /* MainChartViewController.h */,
+				697CA3D41F429B2600309161 /* MainChartViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -597,6 +613,9 @@
 		6916029D1F419E7A00DD5B4E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				697CA3D61F429E9000309161 /* ChartsMainView.xib */,
+				697CA3D81F42D58B00309161 /* ChartsMainView.h */,
+				697CA3D91F42D58B00309161 /* ChartsMainView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -760,7 +779,6 @@
 				6944B6331E7E2CF200474964 /* Assets.xcassets */,
 				6944B6351E7E2CF200474964 /* LaunchScreen.storyboard */,
 				6944B6271E7E2CF200474964 /* Supporting Files */,
-				6944B7061E7E646500474964 /* MainUI.storyboard */,
 			);
 			path = LightAccounting;
 			sourceTree = "<group>";
@@ -1531,16 +1549,17 @@
 				69D089401F0B79CC000FD94E /* cb_glossy_off@2x.png in Resources */,
 				69D0893E1F0B79CC000FD94E /* cb_dark_on@2x.png in Resources */,
 				69D089461F0B79CC000FD94E /* cb_green_on@2x.png in Resources */,
+				697CA3DF1F42E53200309161 /* BillDetailView.xib in Resources */,
 				6944B6FC1E7E32A400474964 /* initdatabasesql.sql in Resources */,
 				69D089421F0B79CC000FD94E /* cb_glossy_on@2x.png in Resources */,
 				69D089391F0B79CC000FD94E /* cb_box_on.png in Resources */,
+				697CA3D71F429E9000309161 /* ChartsMainView.xib in Resources */,
 				6944B6371E7E2CF200474964 /* LaunchScreen.storyboard in Resources */,
 				6933BFF01E825CE200701ECB /* configinfo.plist in Resources */,
 				6944B6411E7E2D7500474964 /* Localizable.strings in Resources */,
 				69D0893F1F0B79CC000FD94E /* cb_glossy_off.png in Resources */,
 				6944B7271E7E73A700474964 /* mapapi.bundle in Resources */,
 				69D089381F0B79CC000FD94E /* cb_box_off@2x.png in Resources */,
-				6944B7071E7E646500474964 /* MainUI.storyboard in Resources */,
 				69D0893A1F0B79CC000FD94E /* cb_box_on@2x.png in Resources */,
 				69D089431F0B79CC000FD94E /* cb_green_off.png in Resources */,
 				6944B6FD1E7E32A400474964 /* insertdata.sql in Resources */,
@@ -1634,6 +1653,7 @@
 				6944B6D81E7E30E500474964 /* BaseViewController.m in Sources */,
 				6944B72A1E7E76F900474964 /* MainPageView.m in Sources */,
 				692AE0571EF11A2D00BC29CC /* BusBudgetModel.m in Sources */,
+				697CA3DA1F42D58B00309161 /* ChartsMainView.m in Sources */,
 				69B770141F151E9D00443D27 /* ISRDataHelper.m in Sources */,
 				6944B6D51E7E30E500474964 /* LeftSubMenuController.m in Sources */,
 				69734BE51EF7B33300ABD566 /* Constants.m in Sources */,
@@ -1667,6 +1687,7 @@
 				6944B6F11E7E30E500474964 /* UIScrollView+UITouch.m in Sources */,
 				69F277E51EA8AA510016FF6E /* BillDetailSectionCell.m in Sources */,
 				6944B6D61E7E30E500474964 /* MainTabController.m in Sources */,
+				697CA3D51F429B2600309161 /* MainChartViewController.m in Sources */,
 				69596CB61EB0454100973E7F /* CategoryTableCell.m in Sources */,
 				6944B6D91E7E30E500474964 /* BaseViewModel.m in Sources */,
 				694815C81EE104A000DDADF2 /* MapChooseViewController.m in Sources */,
@@ -1687,6 +1708,7 @@
 				69DC03ED1E70387F000C72AE /* MyZoneViewController.m in Sources */,
 				6944B6DB1E7E30E500474964 /* NSString+ExtMethod.m in Sources */,
 				6944B6E41E7E30E500474964 /* BorderView.m in Sources */,
+				697CA3DD1F42E51900309161 /* BillDetailView.m in Sources */,
 				69A5301B1EE53FDB00C22EDB /* NewExpendModel.m in Sources */,
 				698F357A1EEEA62600D3BED8 /* ExpendVoiceViewModel.m in Sources */,
 				69A42EEB1EF28B4A007F4419 /* MyZoneViewModel.m in Sources */,

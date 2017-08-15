@@ -10,6 +10,7 @@
 #import "ExpendVoiceViewController.h"
 #import "MyZoneViewController.h"
 #import "BillViewController.h"
+#import "MainChartViewController.h"
 
 @interface MainTabController : UITabBarController<UITabBarControllerDelegate>
 

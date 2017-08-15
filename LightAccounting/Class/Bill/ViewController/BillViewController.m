@@ -381,6 +381,20 @@
     return 50;
 }
 
+/**
+ 查看详细
+
+ @param tableView 当前tableview
+ @param indexPath 选择的索引行号
+ */
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([tableView isEqual:righttableview]) {
+        
+        BusExpenditure *model = [[self.viewmodel.rightsource objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
+        
+    }
+}
+
 #pragma mark---跳转事件
 
 /**
