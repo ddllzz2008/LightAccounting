@@ -30,11 +30,25 @@
 
 -(void)initControls{
     
-    ChartsMainView *chartview = [[ChartsMainView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, ScreenSize.height -self.navigationController.navigationBar.frame.size.height)];
+    chartview = [[ChartsMainView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, ScreenSize.height -self.navigationController.navigationBar.frame.size.height)];
     
     [self.view addSubview:chartview];
     
 }
+
+//-(void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//    if (compareSystemVersion(8.0)) {
+//        [chartview setScrollViewContentSize];
+//    }
+//}
+//
+//-(void)viewDidLayoutSubviews{
+//    [super viewDidLayoutSubviews];
+////    if (compareSystemVersion(8.0)==NO) {
+//        [chartview setScrollViewContentSize];
+////    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -10,6 +10,10 @@
 #import "BaseViewController.h"
 #import "ChartsMainView.h"
 
-@interface MainChartViewController : BaseViewController
+@interface MainChartViewController : BaseViewController{
+    
+    ChartsMainView *chartview;
+    
+}
 
 @end

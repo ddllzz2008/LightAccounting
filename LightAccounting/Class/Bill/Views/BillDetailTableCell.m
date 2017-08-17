@@ -25,6 +25,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     self.backgroundColor = [UIColor clearColor];
     self.contentView.backgroundColor = [UIColor clearColor];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     if (self) {
         
         __weak __typeof(self.contentView) weakself = self.contentView;

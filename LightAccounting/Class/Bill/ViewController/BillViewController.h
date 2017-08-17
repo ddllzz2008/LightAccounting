@@ -16,10 +16,11 @@
 #import "TouchTableView.h"
 #import "FilterUIView.h"
 #import "BillViewModel.h"
+#import "BillDetailView.h"
 #import "AlertController.h"
 #import "BusExpenditure.h"
 
-@interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,BillDateChooseDelegate,FilterUIViewDelegate,TouchTableViewDelegate>{
+@interface BillViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,BillDateChooseDelegate,FilterUIViewDelegate,TouchTableViewDelegate,BillDetailViewDelegate,CAAnimationDelegate>{
     
     NSDate *currentDate;
     
@@ -41,6 +42,7 @@
     
     UIWindow *chooseWindow;
     FilterUIView *filterview;
+    BillDetailView *detailview;
     
     //最后滑动的方向
     int lastdirection;

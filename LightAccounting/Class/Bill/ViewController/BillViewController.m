@@ -163,7 +163,7 @@
     righttableview.touchDelegate=self;
     righttableview.layer.cornerRadius = 10;
     righttableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    righttableview.allowsSelection = NO;
+    righttableview.allowsSelection = YES;
     righttableview.showsVerticalScrollIndicator = NO;
     [righttableview registerClass:[BillDetailTableCell class] forCellReuseIdentifier:@"billdetailtablecell"];
     [viewright addSubview:righttableview];
@@ -257,118 +257,6 @@
     }
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if ([tableView isEqual:righttableview]) {
-        return YES;
-    }else{
-        return NO;
-    }
-    
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return @"删除";
-    
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if ([tableView isEqual:righttableview]) {
-        
-        if (editingStyle == UITableViewCellEditingStyleDelete) {
-            
-            BOOL hresult = NO;
-            NSString *billid = @"";
-            int billtype = 0;
-            
-            @try {
-                
-                NSMutableArray *array = [self.viewmodel.rightsource objectAtIndex:indexPath.section];
-                
-                BusExpenditure *model = [array objectAtIndex:indexPath.item];
-                
-                billid = model.EID;
-                billtype = model.TYPE;
-                
-                if (array.count<=1) {
-                    [array removeObjectAtIndex:indexPath.item];
-                    [self.viewmodel.rightsource removeObjectAtIndex:indexPath.section];
-                }else{
-                    [array removeObjectAtIndex:indexPath.item];
-                }
-                
-                [tableView beginUpdates];
-                
-                NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:indexPath.section];
-                
-                if (array.count<=0) {
-                    [tableView deleteSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-                    if (indexPath.section==0) {
-                        @try {
-                            [tableView reloadSections:[[NSIndexSet alloc] initWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
-                        } @catch (NSException *exception) {
-                            
-                        } @finally {
-                            
-                        }
-                        
-                    }
-                }else{
-                    [tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
-                }
-                
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                
-                [tableView endUpdates];
-                
-                hresult = YES;
-                
-            } @catch (NSException *exception) {
-                
-                [[AlertController sharedInstance] showMessageAutoClose:@"操作异常"];
-                
-            } @finally {
-                
-                if (hresult) {
-                    
-                    [self.viewmodel runThreadAction:@"删除中" successtitle:@"删除成功" errortitle:@"删除失败" threadaction:^BOOL{
-                        BOOL deleteresult = [self.viewmodel deleteBill:billid type:billtype];
-                        return deleteresult;
-                    } mainuiaction:^(BOOL result) {
-                        if (result) {
-                            
-                            [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
-                            
-                            [totalmoney setText:self.viewmodel.currentType==0?[[self.viewmodel.totalExpend transferMoney] stringByReplacingOccurrencesOfString:@"-" withString:@""]:[self.viewmodel.totalIncome transferMoney]];
-                            [totalmoney setText:[NSString stringWithFormat:@"￥%@",totalmoney.text]];
-                            [detailmoney setText:[NSString stringWithFormat:@"收入：%@ ／ 支出：%@",[self.viewmodel.totalIncome transferMoney],[[self.viewmodel.totalExpend transferMoney] stringByReplacingOccurrencesOfString:@"-" withString:@""]]];
-                            
-                            [lefttableview reloadData];
-                        }
-                    }];
-                    
-                    
-                    
-                    
-                }
-                
-            }
-
-        }
-        
-        
-    }
-    
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return UITableViewCellEditingStyleDelete;
-    
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if ([tableView isEqual:lefttableview]) {
         return 0;
@@ -391,6 +279,32 @@
     if ([tableView isEqual:righttableview]) {
         
         BusExpenditure *model = [[self.viewmodel.rightsource objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
+        
+        chooseWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [chooseWindow setBackgroundColor:[UIColor clearColor]];
+        chooseWindow.alpha=1.0f;
+        chooseWindow.windowLevel = UIWindowLevelAlert;
+        chooseWindow.hidden=NO;
+        
+        UIView *rootview = [[UIView alloc] initWithFrame:chooseWindow.frame];
+        rootview.backgroundColor=[UIColor grayColor];
+        rootview.alpha=0.4f;
+        UITapGestureRecognizer *hiddenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenAction:)];
+        [rootview addGestureRecognizer:hiddenTap];
+        [chooseWindow addSubview:rootview];
+        
+        detailview = [[BillDetailView alloc] initWithFrameAndSection:CGRectMake(ScreenSize.width, 50, ScreenSize.width-40, ScreenSize.height-100) section:indexPath.section item:indexPath.item];
+        detailview.delegate=self;
+        detailview.source = model;
+        
+        [chooseWindow addSubview:detailview];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.2 animations:^{
+                detailview.frame = CGRectMake(20, 50, ScreenSize.width-40, ScreenSize.height-100);
+            }];
+        });
+        
         
     }
 }
@@ -443,7 +357,7 @@
         [self hiddenKeyBoard];
     }else{
         if (filterview!=nil) {
-            filterview.delegate=self;
+            filterview.delegate=nil;
             [filterview removeFromSuperview];
             filterview = nil;
         }
@@ -679,8 +593,6 @@
 /**
  上月
  
- @param sender <#sender description#>
- @param date <#date description#>
  */
 -(void)BillDateChoose:(id)sender prebuttonPressed:(NSDate *)date{
     
@@ -692,14 +604,143 @@
 /**
  下月
  
- @param sender <#sender description#>
- @param date <#date description#>
  */
 -(void)BillDateChoose:(id)sender nextbuttonPressed:(NSDate *)date{
     
     [self.viewmodel setFilter:segmentControl.selectedSegmentIndex min:@"" max:@"" cids:nil outlet:NO private:NO];
     
     [self loadData];
+}
+
+/**
+ 关闭详细窗口
+
+ @param closeWithAnimation 是否动画关闭
+ */
+-(void)billdetailview:(BOOL)closeWithAnimation{
+    
+    if (closeWithAnimation) {
+        CABasicAnimation *theAnimation;
+        theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        theAnimation.duration=0.3;
+        theAnimation.delegate=self;
+        theAnimation.fillMode=kCAFillModeForwards;
+        theAnimation.removedOnCompletion = NO;
+        theAnimation.fromValue = [NSNumber numberWithFloat:1];
+        theAnimation.toValue = [NSNumber numberWithFloat:0];
+        [detailview.layer addAnimation:theAnimation forKey:@"animateTransform"];
+    }
+    
+}
+
+/**
+ 删除账单
+
+ @param section 头号
+ @param item 行号
+ */
+-(void)billdetailview:(NSInteger)section item:(NSInteger)item{
+    BOOL hresult = NO;
+    NSString *billid = @"";
+    int billtype = 0;
+    
+    @try {
+        
+        NSMutableArray *array = [self.viewmodel.rightsource objectAtIndex:section];
+        
+        BusExpenditure *model = [array objectAtIndex:item];
+        
+        billid = model.EID;
+        billtype = model.TYPE;
+        
+        if (array.count<=1) {
+            [array removeObjectAtIndex:item];
+            [self.viewmodel.rightsource removeObjectAtIndex:section];
+        }else{
+            [array removeObjectAtIndex:item];
+        }
+        
+        [righttableview beginUpdates];
+        
+        NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndex:section];
+        
+        if (array.count<=0) {
+            [righttableview deleteSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+            if (section==0) {
+                @try {
+                    [righttableview reloadSections:[[NSIndexSet alloc] initWithIndex:1] withRowAnimation:UITableViewRowAnimationFade];
+                } @catch (NSException *exception) {
+                    
+                } @finally {
+                    
+                }
+                
+            }
+        }else{
+            [righttableview reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+        }
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:item inSection:section];
+        
+        [righttableview deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [righttableview endUpdates];
+        
+        hresult = YES;
+        
+    } @catch (NSException *exception) {
+        
+        [[AlertController sharedInstance] showMessageAutoClose:@"操作异常"];
+        
+    } @finally {
+        
+        if (hresult) {
+            
+            [self.viewmodel runThreadAction:@"删除中" successtitle:@"删除成功" errortitle:@"删除失败" threadaction:^BOOL{
+                BOOL deleteresult = [self.viewmodel deleteBill:billid type:billtype];
+                return deleteresult;
+            } mainuiaction:^(BOOL result) {
+                if (result) {
+                    
+                    [self billdetailview:YES];
+                    
+                    [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
+                    
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [UIView animateWithDuration:0.2 animations:^{
+                            [totalmoney setText:self.viewmodel.currentType==0?[[self.viewmodel.totalExpend transferMoney] stringByReplacingOccurrencesOfString:@"-" withString:@""]:[self.viewmodel.totalIncome transferMoney]];
+                            [totalmoney setText:[NSString stringWithFormat:@"￥%@",totalmoney.text]];
+                            [detailmoney setText:[NSString stringWithFormat:@"收入：%@ ／ 支出：%@",[self.viewmodel.totalIncome transferMoney],[[self.viewmodel.totalExpend transferMoney] stringByReplacingOccurrencesOfString:@"-" withString:@""]]];
+                            
+                            [lefttableview reloadData];
+                        }];
+                    });
+                    
+                }
+            }];
+            
+        }
+        
+    }
+}
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    
+    if (flag) {
+        if (detailview!=nil) {
+            detailview.delegate=nil;
+            [detailview removeFromSuperview];
+            filterview = nil;
+        }
+        
+        if(chooseWindow!=nil){
+            
+            chooseWindow.hidden=YES;
+            chooseWindow=nil;
+        }
+    }
+    
 }
 
 @end
