@@ -12,7 +12,6 @@
 /*!
  *  @brief 选择行
  *
- *  @param index 列索引
  *  @param obj   所选对象
  *
  *  @since 1.0
