@@ -143,6 +143,60 @@
 		69B41BC91EC061E900D4583B /* PlanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B41BC81EC061E900D4583B /* PlanTableViewCell.m */; };
 		69B770131F151E9D00443D27 /* IATConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B770101F151E9D00443D27 /* IATConfig.m */; };
 		69B770141F151E9D00443D27 /* ISRDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B770121F151E9D00443D27 /* ISRDataHelper.m */; };
+		69CE11E01F464FEC00E54665 /* vml-radial-gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11A41F464FEC00E54665 /* vml-radial-gradient.png */; };
+		69CE11E11F464FEC00E54665 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11A71F464FEC00E54665 /* close.png */; };
+		69CE11E21F464FEC00E54665 /* closeX.png in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11A81F464FEC00E54665 /* closeX.png */; };
+		69CE11E31F464FEC00E54665 /* rounded-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11AA1F464FEC00E54665 /* rounded-white.png */; };
+		69CE11E41F464FEC00E54665 /* resize.gif in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11AB1F464FEC00E54665 /* resize.gif */; };
+		69CE11E51F464FEC00E54665 /* zoomout.cur in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11AC1F464FEC00E54665 /* zoomout.cur */; };
+		69CE11E61F464FEC00E54665 /* meteogram-symbols-30px.png in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11AD1F464FEC00E54665 /* meteogram-symbols-30px.png */; };
+		69CE11E71F464FEC00E54665 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11AE1F464FEC00E54665 /* search.png */; };
+		69CE11E81F464FEC00E54665 /* skies.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11AF1F464FEC00E54665 /* skies.jpg */; };
+		69CE11E91F464FEC00E54665 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11B01F464FEC00E54665 /* snow.png */; };
+		69CE11EA1F464FEC00E54665 /* sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11B11F464FEC00E54665 /* sun.png */; };
+		69CE11EB1F464FEC00E54665 /* standalone-framework.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11B41F464FEC00E54665 /* standalone-framework.js */; };
+		69CE11EC1F464FEC00E54665 /* standalone-framework.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11B51F464FEC00E54665 /* standalone-framework.src.js */; };
+		69CE11ED1F464FEC00E54665 /* highcharts-3d.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11B61F464FEC00E54665 /* highcharts-3d.js */; };
+		69CE11EE1F464FEC00E54665 /* highcharts-3d.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11B71F464FEC00E54665 /* highcharts-3d.src.js */; };
+		69CE11EF1F464FEC00E54665 /* highcharts-more.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11B81F464FEC00E54665 /* highcharts-more.js */; };
+		69CE11F01F464FEC00E54665 /* highcharts-more.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11B91F464FEC00E54665 /* highcharts-more.src.js */; };
+		69CE11F11F464FEC00E54665 /* highcharts.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11BA1F464FEC00E54665 /* highcharts.js */; };
+		69CE11F21F464FEC00E54665 /* highcharts.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11BB1F464FEC00E54665 /* highcharts.src.js */; };
+		69CE11F31F464FEC00E54665 /* jquery-1.8.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11BC1F464FEC00E54665 /* jquery-1.8.3.min.js */; };
+		69CE11F41F464FEC00E54665 /* boost.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11BE1F464FEC00E54665 /* boost.js */; };
+		69CE11F51F464FEC00E54665 /* boost.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11BF1F464FEC00E54665 /* boost.src.js */; };
+		69CE11F61F464FEC00E54665 /* broken-axis.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11C01F464FEC00E54665 /* broken-axis.js */; };
+		69CE11F71F464FEC00E54665 /* broken-axis.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11C11F464FEC00E54665 /* broken-axis.src.js */; };
+		69CE11F81F464FEC00E54665 /* canvas-tools.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11C21F464FEC00E54665 /* canvas-tools.js */; };
+		69CE11F91F464FEC00E54665 /* canvas-tools.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11C31F464FEC00E54665 /* canvas-tools.src.js */; };
+		69CE11FA1F464FEC00E54665 /* data.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11C41F464FEC00E54665 /* data.js */; };
+		69CE11FB1F464FEC00E54665 /* data.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11C51F464FEC00E54665 /* data.src.js */; };
+		69CE11FC1F464FEC00E54665 /* drilldown.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11C61F464FEC00E54665 /* drilldown.js */; };
+		69CE11FD1F464FEC00E54665 /* drilldown.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11C71F464FEC00E54665 /* drilldown.src.js */; };
+		69CE11FE1F464FEC00E54665 /* exporting.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11C81F464FEC00E54665 /* exporting.js */; };
+		69CE11FF1F464FEC00E54665 /* exporting.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11C91F464FEC00E54665 /* exporting.src.js */; };
+		69CE12001F464FEC00E54665 /* funnel.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11CA1F464FEC00E54665 /* funnel.js */; };
+		69CE12011F464FEC00E54665 /* funnel.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11CB1F464FEC00E54665 /* funnel.src.js */; };
+		69CE12021F464FEC00E54665 /* heatmap.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11CC1F464FEC00E54665 /* heatmap.js */; };
+		69CE12031F464FEC00E54665 /* heatmap.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11CD1F464FEC00E54665 /* heatmap.src.js */; };
+		69CE12041F464FEC00E54665 /* no-data-to-display.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11CE1F464FEC00E54665 /* no-data-to-display.js */; };
+		69CE12051F464FEC00E54665 /* no-data-to-display.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11CF1F464FEC00E54665 /* no-data-to-display.src.js */; };
+		69CE12061F464FEC00E54665 /* offline-exporting.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11D01F464FEC00E54665 /* offline-exporting.js */; };
+		69CE12071F464FEC00E54665 /* offline-exporting.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11D11F464FEC00E54665 /* offline-exporting.src.js */; };
+		69CE12081F464FEC00E54665 /* solid-gauge.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11D21F464FEC00E54665 /* solid-gauge.js */; };
+		69CE12091F464FEC00E54665 /* solid-gauge.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11D31F464FEC00E54665 /* solid-gauge.src.js */; };
+		69CE120A1F464FEC00E54665 /* treemap.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11D41F464FEC00E54665 /* treemap.js */; };
+		69CE120B1F464FEC00E54665 /* treemap.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11D51F464FEC00E54665 /* treemap.src.js */; };
+		69CE120C1F464FEC00E54665 /* dark-blue.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11D71F464FEC00E54665 /* dark-blue.js */; };
+		69CE120D1F464FEC00E54665 /* dark-green.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11D81F464FEC00E54665 /* dark-green.js */; };
+		69CE120E1F464FEC00E54665 /* dark-unica.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11D91F464FEC00E54665 /* dark-unica.js */; };
+		69CE120F1F464FEC00E54665 /* gray.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11DA1F464FEC00E54665 /* gray.js */; };
+		69CE12101F464FEC00E54665 /* grid-light.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11DB1F464FEC00E54665 /* grid-light.js */; };
+		69CE12111F464FEC00E54665 /* grid.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11DC1F464FEC00E54665 /* grid.js */; };
+		69CE12121F464FEC00E54665 /* sand-signika.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11DD1F464FEC00E54665 /* sand-signika.js */; };
+		69CE12131F464FEC00E54665 /* skies.js in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11DE1F464FEC00E54665 /* skies.js */; };
+		69CE12141F464FEC00E54665 /* PieChart.html in Resources */ = {isa = PBXBuildFile; fileRef = 69CE11DF1F464FEC00E54665 /* PieChart.html */; };
+		69CE12171F46536C00E54665 /* ChartViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CE12161F46536C00E54665 /* ChartViewModel.m */; };
 		69D089371F0B79CC000FD94E /* cb_box_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 69D0891D1F0B79CC000FD94E /* cb_box_off.png */; };
 		69D089381F0B79CC000FD94E /* cb_box_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69D0891E1F0B79CC000FD94E /* cb_box_off@2x.png */; };
 		69D089391F0B79CC000FD94E /* cb_box_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 69D0891F1F0B79CC000FD94E /* cb_box_on.png */; };
@@ -437,6 +491,61 @@
 		69B770101F151E9D00443D27 /* IATConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IATConfig.m; sourceTree = "<group>"; };
 		69B770111F151E9D00443D27 /* ISRDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISRDataHelper.h; sourceTree = "<group>"; };
 		69B770121F151E9D00443D27 /* ISRDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISRDataHelper.m; sourceTree = "<group>"; };
+		69CE11A41F464FEC00E54665 /* vml-radial-gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vml-radial-gradient.png"; sourceTree = "<group>"; };
+		69CE11A71F464FEC00E54665 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		69CE11A81F464FEC00E54665 /* closeX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeX.png; sourceTree = "<group>"; };
+		69CE11AA1F464FEC00E54665 /* rounded-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rounded-white.png"; sourceTree = "<group>"; };
+		69CE11AB1F464FEC00E54665 /* resize.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = resize.gif; sourceTree = "<group>"; };
+		69CE11AC1F464FEC00E54665 /* zoomout.cur */ = {isa = PBXFileReference; lastKnownFileType = file; path = zoomout.cur; sourceTree = "<group>"; };
+		69CE11AD1F464FEC00E54665 /* meteogram-symbols-30px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "meteogram-symbols-30px.png"; sourceTree = "<group>"; };
+		69CE11AE1F464FEC00E54665 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		69CE11AF1F464FEC00E54665 /* skies.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skies.jpg; sourceTree = "<group>"; };
+		69CE11B01F464FEC00E54665 /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
+		69CE11B11F464FEC00E54665 /* sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sun.png; sourceTree = "<group>"; };
+		69CE11B41F464FEC00E54665 /* standalone-framework.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "standalone-framework.js"; sourceTree = "<group>"; };
+		69CE11B51F464FEC00E54665 /* standalone-framework.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "standalone-framework.src.js"; sourceTree = "<group>"; };
+		69CE11B61F464FEC00E54665 /* highcharts-3d.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "highcharts-3d.js"; sourceTree = "<group>"; };
+		69CE11B71F464FEC00E54665 /* highcharts-3d.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "highcharts-3d.src.js"; sourceTree = "<group>"; };
+		69CE11B81F464FEC00E54665 /* highcharts-more.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "highcharts-more.js"; sourceTree = "<group>"; };
+		69CE11B91F464FEC00E54665 /* highcharts-more.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "highcharts-more.src.js"; sourceTree = "<group>"; };
+		69CE11BA1F464FEC00E54665 /* highcharts.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = highcharts.js; sourceTree = "<group>"; };
+		69CE11BB1F464FEC00E54665 /* highcharts.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = highcharts.src.js; sourceTree = "<group>"; };
+		69CE11BC1F464FEC00E54665 /* jquery-1.8.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "jquery-1.8.3.min.js"; sourceTree = "<group>"; };
+		69CE11BE1F464FEC00E54665 /* boost.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = boost.js; sourceTree = "<group>"; };
+		69CE11BF1F464FEC00E54665 /* boost.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = boost.src.js; sourceTree = "<group>"; };
+		69CE11C01F464FEC00E54665 /* broken-axis.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "broken-axis.js"; sourceTree = "<group>"; };
+		69CE11C11F464FEC00E54665 /* broken-axis.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "broken-axis.src.js"; sourceTree = "<group>"; };
+		69CE11C21F464FEC00E54665 /* canvas-tools.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "canvas-tools.js"; sourceTree = "<group>"; };
+		69CE11C31F464FEC00E54665 /* canvas-tools.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "canvas-tools.src.js"; sourceTree = "<group>"; };
+		69CE11C41F464FEC00E54665 /* data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = data.js; sourceTree = "<group>"; };
+		69CE11C51F464FEC00E54665 /* data.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = data.src.js; sourceTree = "<group>"; };
+		69CE11C61F464FEC00E54665 /* drilldown.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = drilldown.js; sourceTree = "<group>"; };
+		69CE11C71F464FEC00E54665 /* drilldown.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = drilldown.src.js; sourceTree = "<group>"; };
+		69CE11C81F464FEC00E54665 /* exporting.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = exporting.js; sourceTree = "<group>"; };
+		69CE11C91F464FEC00E54665 /* exporting.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = exporting.src.js; sourceTree = "<group>"; };
+		69CE11CA1F464FEC00E54665 /* funnel.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = funnel.js; sourceTree = "<group>"; };
+		69CE11CB1F464FEC00E54665 /* funnel.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = funnel.src.js; sourceTree = "<group>"; };
+		69CE11CC1F464FEC00E54665 /* heatmap.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = heatmap.js; sourceTree = "<group>"; };
+		69CE11CD1F464FEC00E54665 /* heatmap.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = heatmap.src.js; sourceTree = "<group>"; };
+		69CE11CE1F464FEC00E54665 /* no-data-to-display.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "no-data-to-display.js"; sourceTree = "<group>"; };
+		69CE11CF1F464FEC00E54665 /* no-data-to-display.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "no-data-to-display.src.js"; sourceTree = "<group>"; };
+		69CE11D01F464FEC00E54665 /* offline-exporting.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "offline-exporting.js"; sourceTree = "<group>"; };
+		69CE11D11F464FEC00E54665 /* offline-exporting.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "offline-exporting.src.js"; sourceTree = "<group>"; };
+		69CE11D21F464FEC00E54665 /* solid-gauge.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "solid-gauge.js"; sourceTree = "<group>"; };
+		69CE11D31F464FEC00E54665 /* solid-gauge.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "solid-gauge.src.js"; sourceTree = "<group>"; };
+		69CE11D41F464FEC00E54665 /* treemap.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = treemap.js; sourceTree = "<group>"; };
+		69CE11D51F464FEC00E54665 /* treemap.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = treemap.src.js; sourceTree = "<group>"; };
+		69CE11D71F464FEC00E54665 /* dark-blue.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "dark-blue.js"; sourceTree = "<group>"; };
+		69CE11D81F464FEC00E54665 /* dark-green.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "dark-green.js"; sourceTree = "<group>"; };
+		69CE11D91F464FEC00E54665 /* dark-unica.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "dark-unica.js"; sourceTree = "<group>"; };
+		69CE11DA1F464FEC00E54665 /* gray.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = gray.js; sourceTree = "<group>"; };
+		69CE11DB1F464FEC00E54665 /* grid-light.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "grid-light.js"; sourceTree = "<group>"; };
+		69CE11DC1F464FEC00E54665 /* grid.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = grid.js; sourceTree = "<group>"; };
+		69CE11DD1F464FEC00E54665 /* sand-signika.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "sand-signika.js"; sourceTree = "<group>"; };
+		69CE11DE1F464FEC00E54665 /* skies.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = skies.js; sourceTree = "<group>"; };
+		69CE11DF1F464FEC00E54665 /* PieChart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PieChart.html; sourceTree = "<group>"; };
+		69CE12151F46536C00E54665 /* ChartViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChartViewModel.h; path = LightAccounting/resource/charthtml/ChartViewModel.h; sourceTree = SOURCE_ROOT; };
+		69CE12161F46536C00E54665 /* ChartViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChartViewModel.m; path = LightAccounting/resource/charthtml/ChartViewModel.m; sourceTree = SOURCE_ROOT; };
 		69D0891D1F0B79CC000FD94E /* cb_box_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cb_box_off.png; sourceTree = "<group>"; };
 		69D0891E1F0B79CC000FD94E /* cb_box_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cb_box_off@2x.png"; sourceTree = "<group>"; };
 		69D0891F1F0B79CC000FD94E /* cb_box_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cb_box_on.png; sourceTree = "<group>"; };
@@ -623,6 +732,8 @@
 		6916029E1F419E7A00DD5B4E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				69CE12151F46536C00E54665 /* ChartViewModel.h */,
+				69CE12161F46536C00E54665 /* ChartViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -786,6 +897,7 @@
 		6944B6271E7E2CF200474964 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				69CE11A21F464FEC00E54665 /* charthtml */,
 				6944B6381E7E2CF200474964 /* Info.plist */,
 				6944B7261E7E73A700474964 /* mapapi.bundle */,
 				6944B6F81E7E32A400474964 /* alterdatabasesql.sql */,
@@ -1325,6 +1437,131 @@
 			name = sr;
 			sourceTree = "<group>";
 		};
+		69CE11A21F464FEC00E54665 /* charthtml */ = {
+			isa = PBXGroup;
+			children = (
+				69CE11A31F464FEC00E54665 /* gfx */,
+				69CE11A51F464FEC00E54665 /* graphics */,
+				69CE11B21F464FEC00E54665 /* js */,
+				69CE11DF1F464FEC00E54665 /* PieChart.html */,
+			);
+			name = charthtml;
+			path = resource/charthtml;
+			sourceTree = "<group>";
+		};
+		69CE11A31F464FEC00E54665 /* gfx */ = {
+			isa = PBXGroup;
+			children = (
+				69CE11A41F464FEC00E54665 /* vml-radial-gradient.png */,
+			);
+			path = gfx;
+			sourceTree = "<group>";
+		};
+		69CE11A51F464FEC00E54665 /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+				69CE11A61F464FEC00E54665 /* highslide */,
+				69CE11AD1F464FEC00E54665 /* meteogram-symbols-30px.png */,
+				69CE11AE1F464FEC00E54665 /* search.png */,
+				69CE11AF1F464FEC00E54665 /* skies.jpg */,
+				69CE11B01F464FEC00E54665 /* snow.png */,
+				69CE11B11F464FEC00E54665 /* sun.png */,
+			);
+			path = graphics;
+			sourceTree = "<group>";
+		};
+		69CE11A61F464FEC00E54665 /* highslide */ = {
+			isa = PBXGroup;
+			children = (
+				69CE11A71F464FEC00E54665 /* close.png */,
+				69CE11A81F464FEC00E54665 /* closeX.png */,
+				69CE11A91F464FEC00E54665 /* outlines */,
+				69CE11AB1F464FEC00E54665 /* resize.gif */,
+				69CE11AC1F464FEC00E54665 /* zoomout.cur */,
+			);
+			path = highslide;
+			sourceTree = "<group>";
+		};
+		69CE11A91F464FEC00E54665 /* outlines */ = {
+			isa = PBXGroup;
+			children = (
+				69CE11AA1F464FEC00E54665 /* rounded-white.png */,
+			);
+			path = outlines;
+			sourceTree = "<group>";
+		};
+		69CE11B21F464FEC00E54665 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				69CE11B31F464FEC00E54665 /* adapters */,
+				69CE11B61F464FEC00E54665 /* highcharts-3d.js */,
+				69CE11B71F464FEC00E54665 /* highcharts-3d.src.js */,
+				69CE11B81F464FEC00E54665 /* highcharts-more.js */,
+				69CE11B91F464FEC00E54665 /* highcharts-more.src.js */,
+				69CE11BA1F464FEC00E54665 /* highcharts.js */,
+				69CE11BB1F464FEC00E54665 /* highcharts.src.js */,
+				69CE11BC1F464FEC00E54665 /* jquery-1.8.3.min.js */,
+				69CE11BD1F464FEC00E54665 /* modules */,
+				69CE11D61F464FEC00E54665 /* themes */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		69CE11B31F464FEC00E54665 /* adapters */ = {
+			isa = PBXGroup;
+			children = (
+				69CE11B41F464FEC00E54665 /* standalone-framework.js */,
+				69CE11B51F464FEC00E54665 /* standalone-framework.src.js */,
+			);
+			path = adapters;
+			sourceTree = "<group>";
+		};
+		69CE11BD1F464FEC00E54665 /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				69CE11BE1F464FEC00E54665 /* boost.js */,
+				69CE11BF1F464FEC00E54665 /* boost.src.js */,
+				69CE11C01F464FEC00E54665 /* broken-axis.js */,
+				69CE11C11F464FEC00E54665 /* broken-axis.src.js */,
+				69CE11C21F464FEC00E54665 /* canvas-tools.js */,
+				69CE11C31F464FEC00E54665 /* canvas-tools.src.js */,
+				69CE11C41F464FEC00E54665 /* data.js */,
+				69CE11C51F464FEC00E54665 /* data.src.js */,
+				69CE11C61F464FEC00E54665 /* drilldown.js */,
+				69CE11C71F464FEC00E54665 /* drilldown.src.js */,
+				69CE11C81F464FEC00E54665 /* exporting.js */,
+				69CE11C91F464FEC00E54665 /* exporting.src.js */,
+				69CE11CA1F464FEC00E54665 /* funnel.js */,
+				69CE11CB1F464FEC00E54665 /* funnel.src.js */,
+				69CE11CC1F464FEC00E54665 /* heatmap.js */,
+				69CE11CD1F464FEC00E54665 /* heatmap.src.js */,
+				69CE11CE1F464FEC00E54665 /* no-data-to-display.js */,
+				69CE11CF1F464FEC00E54665 /* no-data-to-display.src.js */,
+				69CE11D01F464FEC00E54665 /* offline-exporting.js */,
+				69CE11D11F464FEC00E54665 /* offline-exporting.src.js */,
+				69CE11D21F464FEC00E54665 /* solid-gauge.js */,
+				69CE11D31F464FEC00E54665 /* solid-gauge.src.js */,
+				69CE11D41F464FEC00E54665 /* treemap.js */,
+				69CE11D51F464FEC00E54665 /* treemap.src.js */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
+		69CE11D61F464FEC00E54665 /* themes */ = {
+			isa = PBXGroup;
+			children = (
+				69CE11D71F464FEC00E54665 /* dark-blue.js */,
+				69CE11D81F464FEC00E54665 /* dark-green.js */,
+				69CE11D91F464FEC00E54665 /* dark-unica.js */,
+				69CE11DA1F464FEC00E54665 /* gray.js */,
+				69CE11DB1F464FEC00E54665 /* grid-light.js */,
+				69CE11DC1F464FEC00E54665 /* grid.js */,
+				69CE11DD1F464FEC00E54665 /* sand-signika.js */,
+				69CE11DE1F464FEC00E54665 /* skies.js */,
+			);
+			path = themes;
+			sourceTree = "<group>";
+		};
 		69D0891B1F0B79CC000FD94E /* SSCheckBoxView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1546,37 +1783,90 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69CE11E41F464FEC00E54665 /* resize.gif in Resources */,
+				69CE12071F464FEC00E54665 /* offline-exporting.src.js in Resources */,
 				69D089401F0B79CC000FD94E /* cb_glossy_off@2x.png in Resources */,
+				69CE11F31F464FEC00E54665 /* jquery-1.8.3.min.js in Resources */,
+				69CE120D1F464FEC00E54665 /* dark-green.js in Resources */,
+				69CE11EE1F464FEC00E54665 /* highcharts-3d.src.js in Resources */,
 				69D0893E1F0B79CC000FD94E /* cb_dark_on@2x.png in Resources */,
 				69D089461F0B79CC000FD94E /* cb_green_on@2x.png in Resources */,
 				697CA3DF1F42E53200309161 /* BillDetailView.xib in Resources */,
 				6944B6FC1E7E32A400474964 /* initdatabasesql.sql in Resources */,
 				69D089421F0B79CC000FD94E /* cb_glossy_on@2x.png in Resources */,
+				69CE11F11F464FEC00E54665 /* highcharts.js in Resources */,
+				69CE12141F464FEC00E54665 /* PieChart.html in Resources */,
+				69CE120A1F464FEC00E54665 /* treemap.js in Resources */,
+				69CE11FA1F464FEC00E54665 /* data.js in Resources */,
 				69D089391F0B79CC000FD94E /* cb_box_on.png in Resources */,
 				697CA3D71F429E9000309161 /* ChartsMainView.xib in Resources */,
 				6944B6371E7E2CF200474964 /* LaunchScreen.storyboard in Resources */,
+				69CE11FF1F464FEC00E54665 /* exporting.src.js in Resources */,
 				6933BFF01E825CE200701ECB /* configinfo.plist in Resources */,
+				69CE11F01F464FEC00E54665 /* highcharts-more.src.js in Resources */,
 				6944B6411E7E2D7500474964 /* Localizable.strings in Resources */,
+				69CE12121F464FEC00E54665 /* sand-signika.js in Resources */,
 				69D0893F1F0B79CC000FD94E /* cb_glossy_off.png in Resources */,
 				6944B7271E7E73A700474964 /* mapapi.bundle in Resources */,
 				69D089381F0B79CC000FD94E /* cb_box_off@2x.png in Resources */,
+				69CE11E01F464FEC00E54665 /* vml-radial-gradient.png in Resources */,
+				69CE11F81F464FEC00E54665 /* canvas-tools.js in Resources */,
+				69CE11FC1F464FEC00E54665 /* drilldown.js in Resources */,
 				69D0893A1F0B79CC000FD94E /* cb_box_on@2x.png in Resources */,
+				69CE11E51F464FEC00E54665 /* zoomout.cur in Resources */,
+				69CE11FE1F464FEC00E54665 /* exporting.js in Resources */,
+				69CE12021F464FEC00E54665 /* heatmap.js in Resources */,
 				69D089431F0B79CC000FD94E /* cb_green_off.png in Resources */,
+				69CE12001F464FEC00E54665 /* funnel.js in Resources */,
 				6944B6FD1E7E32A400474964 /* insertdata.sql in Resources */,
 				69D089471F0B79CC000FD94E /* cb_mono_off.png in Resources */,
+				69CE11F51F464FEC00E54665 /* boost.src.js in Resources */,
+				69CE12011F464FEC00E54665 /* funnel.src.js in Resources */,
 				69D089441F0B79CC000FD94E /* cb_green_off@2x.png in Resources */,
+				69CE11EF1F464FEC00E54665 /* highcharts-more.js in Resources */,
+				69CE12111F464FEC00E54665 /* grid.js in Resources */,
+				69CE120C1F464FEC00E54665 /* dark-blue.js in Resources */,
 				69D089481F0B79CC000FD94E /* cb_mono_off@2x.png in Resources */,
+				69CE12031F464FEC00E54665 /* heatmap.src.js in Resources */,
 				6944B6341E7E2CF200474964 /* Assets.xcassets in Resources */,
+				69CE11FD1F464FEC00E54665 /* drilldown.src.js in Resources */,
 				69D089371F0B79CC000FD94E /* cb_box_off.png in Resources */,
 				6944B6FB1E7E32A400474964 /* alterdatabasesql.sql in Resources */,
+				69CE11F61F464FEC00E54665 /* broken-axis.js in Resources */,
 				6944B6F71E7E30FD00474964 /* DLZControlsResource.bundle in Resources */,
+				69CE12091F464FEC00E54665 /* solid-gauge.src.js in Resources */,
 				69D0893B1F0B79CC000FD94E /* cb_dark_off.png in Resources */,
+				69CE11EC1F464FEC00E54665 /* standalone-framework.src.js in Resources */,
+				69CE12101F464FEC00E54665 /* grid-light.js in Resources */,
 				69D0893C1F0B79CC000FD94E /* cb_dark_off@2x.png in Resources */,
+				69CE11E11F464FEC00E54665 /* close.png in Resources */,
+				69CE120E1F464FEC00E54665 /* dark-unica.js in Resources */,
+				69CE11E31F464FEC00E54665 /* rounded-white.png in Resources */,
+				69CE12061F464FEC00E54665 /* offline-exporting.js in Resources */,
 				69D0894A1F0B79CC000FD94E /* cb_mono_on@2x.png in Resources */,
 				69D089491F0B79CC000FD94E /* cb_mono_on.png in Resources */,
 				69D089451F0B79CC000FD94E /* cb_green_on.png in Resources */,
+				69CE11E71F464FEC00E54665 /* search.png in Resources */,
+				69CE11EB1F464FEC00E54665 /* standalone-framework.js in Resources */,
+				69CE12051F464FEC00E54665 /* no-data-to-display.src.js in Resources */,
+				69CE11ED1F464FEC00E54665 /* highcharts-3d.js in Resources */,
+				69CE11E21F464FEC00E54665 /* closeX.png in Resources */,
+				69CE11F91F464FEC00E54665 /* canvas-tools.src.js in Resources */,
+				69CE11EA1F464FEC00E54665 /* sun.png in Resources */,
+				69CE120B1F464FEC00E54665 /* treemap.src.js in Resources */,
 				69D0893D1F0B79CC000FD94E /* cb_dark_on.png in Resources */,
+				69CE11F21F464FEC00E54665 /* highcharts.src.js in Resources */,
+				69CE11E91F464FEC00E54665 /* snow.png in Resources */,
+				69CE11FB1F464FEC00E54665 /* data.src.js in Resources */,
+				69CE120F1F464FEC00E54665 /* gray.js in Resources */,
+				69CE11E61F464FEC00E54665 /* meteogram-symbols-30px.png in Resources */,
+				69CE12081F464FEC00E54665 /* solid-gauge.js in Resources */,
 				69D089411F0B79CC000FD94E /* cb_glossy_on.png in Resources */,
+				69CE12131F464FEC00E54665 /* skies.js in Resources */,
+				69CE11F41F464FEC00E54665 /* boost.js in Resources */,
+				69CE11F71F464FEC00E54665 /* broken-axis.src.js in Resources */,
+				69CE11E81F464FEC00E54665 /* skies.jpg in Resources */,
+				69CE12041F464FEC00E54665 /* no-data-to-display.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1656,6 +1946,7 @@
 				697CA3DA1F42D58B00309161 /* ChartsMainView.m in Sources */,
 				69B770141F151E9D00443D27 /* ISRDataHelper.m in Sources */,
 				6944B6D51E7E30E500474964 /* LeftSubMenuController.m in Sources */,
+				69CE12171F46536C00E54665 /* ChartViewModel.m in Sources */,
 				69734BE51EF7B33300ABD566 /* Constants.m in Sources */,
 				6944B6EF1E7E30E500474964 /* UILabel+extmethod.m in Sources */,
 				6944B6D41E7E30E500474964 /* LeftMenuController.m in Sources */,

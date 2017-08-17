@@ -258,7 +258,7 @@
     [rootview addGestureRecognizer:hiddenTap];
     [chooseWindow addSubview:rootview];
     
-    filterview = [[FilterUIView alloc] initWithFrame:CGRectMake(ScreenSize.width/3, 0, ScreenSize.width*2/3, ScreenSize.height)];
+    filterview = [[FilterUIView alloc] initWithFrame:CGRectMake(ScreenSize.width, 0, ScreenSize.width, ScreenSize.height)];
     filterview.delegate=self;
     filterview.categorySource = [self.viewmodel loadCategory];
     
@@ -272,6 +272,12 @@
     
     [self addTextFieldResponser:filterview.minfield];
     [self addTextFieldResponser:filterview.maxfield];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.2 animations:^{
+            filterview.frame = CGRectMake(0, 0, ScreenSize.width, ScreenSize.height);
+        }];
+    });
     
 }
 
