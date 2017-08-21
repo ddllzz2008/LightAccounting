@@ -1,14 +1,57 @@
 //
-//  PlanView.m
+//  DLFullDatePicker.m
 //  LightAccounting
 //
-//  Created by ddllzz on 2017/4/28.
+//  Created by ddllzz on 2017/8/21.
 //  Copyright © 2017年 ddllzz. All rights reserved.
 //
 
-#import "PlanView.h"
+#import "DLFullDatePicker.h"
 
-@implementation PlanView
+static const CGFloat headerHeight = 55.0f;
+
+@implementation DateButton
+
+-(instancetype)initWithFrame:(CGRect)frame{
+    if (self==[super initWithFrame:frame]) {
+        self.backgroundColor=UIColorFromRGB(0xFFFFFF);
+        _isSelected = NO;
+    }
+    return self;
+}
+
+-(id)init{
+    if (self==[super init]) {
+        self.backgroundColor=UIColorFromRGB(0xFFFFFF);
+        _isSelected = NO;
+    }
+    return self;
+}
+
+-(void)setIsSelected:(BOOL)isSelected{
+    
+    _isSelected = isSelected;
+    
+    [self setNeedsDisplay];
+    
+}
+
+-(void)drawRect:(CGRect)rect{
+    [super drawRect:rect];
+    
+    if (_isSelected) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        /*写文字*/
+        CGContextSetFillColorWithColor(context,[UIColor whiteColor].CGColor);
+        //    CGContextSetRGBFillColor (context,  166, 209, 87, 1.0);//设置填充颜色
+        CGContextFillRect(context,CGRectMake(0, rect.size.height-10, rect.size.width, 10));//填充框
+    }
+    
+}
+
+@end
+
+@implementation DLFullDatePicker
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self==[super initWithFrame:frame]) {
@@ -32,11 +75,19 @@
     
     __weak typeof(self) weakSelf = self;
     
-    labelMonth = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 30)];
+    labelMonth = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
     [labelMonth setStyle:fontsize_16 color:UIColorFromRGB(0xffffff)];
     labelMonth.textAlignment=NSTextAlignmentCenter;
     [labelMonth setText:@"2017年2月"];
     [self addSubview:labelMonth];
+    
+    [labelMonth mas_makeConstraints:^(MASConstraintMaker *make) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
+        make.width.equalTo(strongSelf);
+        make.left.equalTo(strongSelf);
+        make.top.equalTo(strongSelf);
+        make.height.equalTo(@40);
+    }];
     
     UIImageView *leftimage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
     [leftimage setImage:[UIImage imageNamed:@"icon_left"]];
@@ -67,13 +118,6 @@
     }];
     
     float widthpercent = 1.0f/7.0f;
-    
-    [labelMonth mas_makeConstraints:^(MASConstraintMaker *make) {
-        __strong __typeof(weakSelf) strongSelf = weakSelf;
-        make.width.equalTo(strongSelf);
-        make.left.equalTo(strongSelf);
-        make.height.equalTo(@40);
-    }];
     
     labelsunday = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, 30)];
     [labelsunday setStyle:fontsize_14 color:UIColorFromRGB(0xBBBBBB)];
@@ -186,6 +230,14 @@
     [self setNeedsLayout];
 }
 
+-(void)setSelectedDate:(NSDate *)selectedDate{
+    _currentDate = selectedDate;
+    _selectedDate = selectedDate;
+    [labelMonth setText:[selectedDate formatWithCode:@"yyyy年MM月"]];
+    
+    [self setNeedsLayout];
+}
+
 -(void)layoutSubviews{
     
     [super layoutSubviews];
@@ -210,7 +262,8 @@
     
     __weak __typeof(calanerView) weakself = calanerView;
     
-    UIColor *normalColor = UIColorFromRGB(0xDEDEDE);
+//    UIColor *normalColor = UIColorFromRGB(0xDEDEDE);
+    UIColor *normalColor = get_theme_color;
     UIColor *selectedColor = get_theme_color;
     
     NSArray *monthrange = [_currentDate dateForCurrentMonth];
@@ -228,11 +281,17 @@
                     btnday.layer.cornerRadius = 15;
                     btnday.layer.masksToBounds=YES;
                     NSString *daystring = (today==col&&year == [_currentDate year]&&month==[_currentDate month])?@"今":[NSString stringWithFormat:@"%ld",col - weekday + 1];
-                    if ([daystring isEqualToString:@"今"]) {
+//                    if ([daystring isEqualToString:@"今"]) {
+//                        btnday.isSelected=YES;
+//                        selectedButton = btnday;
+//                    }
+                    btnday.tag=(row*7+(col)-weekday+1);
+                    
+                    if (btnday.tag==[_selectedDate day]&&[_currentDate year]==[_selectedDate year]&&[_currentDate month]==[_selectedDate month]) {
                         btnday.isSelected=YES;
                         selectedButton = btnday;
                     }
-                    btnday.tag=(row*7+(col)-weekday+1);
+                    
                     [btnday setTitle:daystring forState:UIControlStateNormal];
                     [btnday setBackgroundColor:normalColor];
                     
@@ -264,11 +323,17 @@
                     btnday.layer.cornerRadius = 15;
                     btnday.layer.masksToBounds=YES;
                     NSString *daystring = (today==(row*7+(col)-weekday+1)&&year == [_currentDate year]&&month==[_currentDate month])?@"今":[NSString stringWithFormat:@"%ld",row*7+(col)-weekday+1];
-                    if ([daystring isEqualToString:@"今"]) {
+//                    if ([daystring isEqualToString:@"今"]) {
+//                        btnday.isSelected=YES;
+//                        selectedButton = btnday;
+//                    }
+                    btnday.tag=(row*7+(col)-weekday+1);
+                    
+                    if (btnday.tag==[_selectedDate day]&&[_currentDate year]==[_selectedDate year]&&[_currentDate month]==[_selectedDate month]) {
                         btnday.isSelected=YES;
                         selectedButton = btnday;
                     }
-                    btnday.tag=(row*7+(col)-weekday+1);
+                    
                     [btnday setTitle:daystring forState:UIControlStateNormal];
                     
                     if (col%2==0) {
@@ -296,25 +361,53 @@
     
     if (maxrow==4) {
         calanerView.frame = CGRectMake(0, 70, self.frame.size.width, 210);
-//        [self mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.height.mas_equalTo(@280);
-//        }];
-        self.frame = CGRectMake(0, 0, ScreenSize.width, 280);
+        //        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+        //            make.height.mas_equalTo(@280);
+        //        }];
+//        self.frame = CGRectMake(0, 0, ScreenSize.width, 280);
+        [self setBounds:CGRectMake(0, 0, self.frame.size.width, 280+35)];
         self.initHeight = 280;
         if (self.layoutchanged) {
             self.layoutchanged(280);
         }
     }else{
         calanerView.frame = CGRectMake(0, 70, self.frame.size.width, 250);
-//        [self mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.height.mas_equalTo(@320);
-//        }];
-        self.frame = CGRectMake(0, 0, ScreenSize.width, 320);
+        //        [self mas_updateConstraints:^(MASConstraintMaker *make) {
+        //            make.height.mas_equalTo(@320);
+        //        }];
+//        self.frame = CGRectMake(0, 0, ScreenSize.width, 320);
+        [self setBounds:CGRectMake(0, 0, self.frame.size.width, 320+35)];
         self.initHeight = 320;
         if (self.layoutchanged) {
             self.layoutchanged(320);
         }
     }
+    
+    if (closebutton==nil) {
+        closebutton = [[UIButton alloc] initWithFrame:CGRectMake(0, self.initHeight, self.frame.size.width/2, 35)];
+        [closebutton setBackgroundColor:UIColorFromRGB(0x999999)];
+        [closebutton setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateNormal];
+        [closebutton setTitle:@"关闭" forState:UIControlStateNormal];
+        [closebutton.titleLabel setFont:fontsize_14];
+        [closebutton addTarget:self action:@selector(closePicker:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:closebutton];
+    }
+    
+    [closebutton setFrame:CGRectMake(0, self.initHeight, self.frame.size.width/2, 35)];
+    
+    if(comfirmbutton==nil){
+        comfirmbutton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2, self.initHeight, self.frame.size.width/2, 35)];
+        [comfirmbutton setBackgroundColor:get_theme_color];
+        [comfirmbutton setTitleColor:UIColorFromRGB(0xffffff) forState:UIControlStateNormal];
+        [comfirmbutton setTitle:@"确定" forState:UIControlStateNormal];
+        [comfirmbutton.titleLabel setFont:fontsize_14];
+        [comfirmbutton addTarget:self action:@selector(comfirmChoose:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:comfirmbutton];
+        
+        [self setBounds:CGRectMake(0, 0, self.frame.size.width, self.initHeight+35)];
+    }
+    
+    [comfirmbutton setFrame:CGRectMake(self.frame.size.width/2, self.initHeight, self.frame.size.width/2, 35)];
     
 }
 
@@ -333,31 +426,36 @@
     
 }
 
+-(void)closePicker:(UIButton *)sender{
+    
+    [self removeFromSuperview];
+    chooseWindow.hidden = YES;
+    chooseWindow = nil;
+    
+}
+
+-(void)comfirmChoose:(UIButton *)sender{
+    
+    if (self.didSelected) {
+        self.didSelected(_selectedDate);
+    }
+    
+    [self closePicker:nil];
+    
+}
+
 #pragma mark---选中事件
 -(void)selectedDateChanged:(DateButton *)sender{
     
-    if (selectedButton!=nil && selectedButton!=sender) {
-        selectedButton.isSelected=NO;
-        sender.isSelected=YES;
-        selectedButton=sender;
+    NSString *date = [NSString stringWithFormat:@"%@-%@-%@ 00:00:00",[[NSString stringWithFormat:@"%ld",[_currentDate year]] padLeftWithChar:2 charstring:@"0"],[[NSString stringWithFormat:@"%ld",[_currentDate month]] padLeftWithChar:2 charstring:@"0"],[[NSString stringWithFormat:@"%ld",sender.tag] padLeftWithChar:2 charstring:@"0"]];
+    _selectedDate = [date convertDateFromString:@"yyyy-MM-dd HH:mm:ss"];
+    
+    if (selectedButton!=nil) {
+        [selectedButton setIsSelected:NO];
     }
     
-}
-
--(void)hiddenDate{
-    
-    if (!calanerView.hidden) {
-        calanerView.hidden=YES;
-    }
-    
-}
-
--(void)showDate{
-    
-    if(calanerView.hidden){
-        calanerView.hidden=NO;
-    }
-    
+    selectedButton = sender;
+    [selectedButton setIsSelected:YES];
 }
 
 -(void)drawRect:(CGRect)rect{
@@ -366,6 +464,46 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [get_theme_color CGColor]);
     CGContextFillRect(context,CGRectMake(0, 0, rect.size.width, 40));//填充框
+
+}
+
+#pragma mark---日期控件交互事件
+-(void)showDatePicker:(void(^)(NSDate *))selectedCallback{
+    chooseWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [chooseWindow setBackgroundColor:[UIColor clearColor]];
+    chooseWindow.alpha=1.0f;
+    chooseWindow.windowLevel = UIWindowLevelAlert;
+    chooseWindow.hidden=NO;
+    
+    UIView *rootview = [[UIView alloc] initWithFrame:chooseWindow.frame];
+    rootview.backgroundColor=[UIColor grayColor];
+    rootview.alpha=0.4f;
+    [chooseWindow addSubview:rootview];
+    
+    self.didSelected = ^(NSDate *selecteddate) {
+        if (selectedCallback!=nil) {
+            selectedCallback(selecteddate);
+        }
+    };
+    self.hidden = YES;
+    [chooseWindow addSubview:self];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        self.hidden=NO;
+        
+        CABasicAnimation *theAnimation;
+        theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        theAnimation.duration=0.3;
+        //            theAnimation.delegate=self;
+        theAnimation.fillMode=kCAFillModeForwards;
+        theAnimation.removedOnCompletion = NO;
+        theAnimation.fromValue = [NSNumber numberWithFloat:0];
+        theAnimation.toValue = [NSNumber numberWithFloat:1];
+        [self.layer addAnimation:theAnimation forKey:@"animateTransform"];
+        
+    });
+    
 }
 
 @end

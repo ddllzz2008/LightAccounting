@@ -35,7 +35,10 @@
 -(void)initControls{
     
     chartview = [[ChartsMainView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, ScreenSize.height -self.navigationController.navigationBar.frame.size.height)];
-    
+    chartview.webview_chart1.delegate=self;
+    chartview.didChanged = ^(NSInteger chartindex) {
+        [self loadData];
+    };
     [self.view addSubview:chartview];
     
 }
@@ -45,8 +48,44 @@
     [self.viewmodel setFilter:0 min:@"" max:@"" cids:nil outlet:NO private:NO];
 }
 
+-(void)loadAppearData{
+    
+    //界面赋值
+    if ([[[Constants Instance].viewrefreshCache objectForKey:@"chartpage"] isEqual:@YES]) {
+        
+        [chartview loadData];
+        
+        [self loadData];
+        
+        [[Constants Instance].viewrefreshCache setValue:@NO forKey:@"chartpage"];
+        
+    }
+    
+}
+
+-(void)loadData{
+    
+    [[AlertController sharedInstance] showMessage:@"获取数据中"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        [self.viewmodel loadExpendByCategory:[chartview.chart1Range objectAtIndex:0] enddate:[chartview.chart1Range objectAtIndex:1]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [chartview.webview_chart1 reload];
+            
+            [[AlertController sharedInstance] closeMessage];
+        });
+        
+    });
+    
+}
+
+
+
 #pragma mark---筛选
 -(void)navigateDetail{
+    
     chooseWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [chooseWindow setBackgroundColor:[UIColor clearColor]];
     chooseWindow.alpha=1.0f;
@@ -81,6 +120,41 @@
         }];
     });
     
+}
+
+#pragma mark---协议回调
+-(void)FilterUIViewComfirm:(NSString *)min max:(NSString *)max categories:(NSArray<NSString *> *)categories isoutlet:(BOOL)isoutlet isprivate:(BOOL)isprivate{
+    
+//    [self.viewmodel setFilter:segmentControl.selectedSegmentIndex min:min max:max cids:categories outlet:isoutlet private:isprivate];
+//    [[AlertController sharedInstance] showMessage:@"获取账单中"];
+//    
+//    [self loadData];
+//    
+//    [self hiddenAction:nil];
+    
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+    NSString *result = @"";
+    
+    if (self.viewmodel.chart1source!=nil&&self.viewmodel.chart1source.count>0) {
+        
+        for (NSDictionary *dic in self.viewmodel.chart1source) {
+            
+            result = [result stringByAppendingFormat:@"['%@',%.1f],",[dic objectForKey:@"name"],fabs([[dic objectForKey:@"evalue"] floatValue])];
+        }
+        
+        result = [result substringToIndex:([result length]-1)];// 去掉最后一个","
+        
+    }else{
+        
+    }
+    
+    NSString *str = [NSString stringWithFormat:@"[{type:'pie',name:'各分类对比',data:[%@]}]",result];
+    
+    NSString *jsCode = [NSString stringWithFormat:@"setPitData('%@',\"%@\")",@"各分类对比",str];
+    [webView stringByEvaluatingJavaScriptFromString:jsCode];
 }
 
 /**

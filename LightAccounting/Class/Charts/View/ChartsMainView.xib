@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -97,7 +97,7 @@
                         <constraint firstItem="7VU-xS-QRj" firstAttribute="centerY" secondItem="nhV-dO-SV2" secondAttribute="centerY" id="eQh-kC-nqE"/>
                     </constraints>
                 </scrollView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="56g-tS-2gw">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56g-tS-2gw">
                     <rect key="frame" x="0.0" y="50" width="375" height="617"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8MR-tA-jiq">
@@ -106,13 +106,60 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AvA-gZ-sCJ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                     <subviews>
-                                        <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mZ9-bB-e47">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZ9-bB-e47">
+                                            <rect key="frame" x="0.0" y="30" width="375" height="587"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </webView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_calender" translatesAutoresizingMaskIntoConstraints="NO" id="AdA-mG-U99">
+                                            <rect key="frame" x="10" y="0.0" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="DOE-WO-UBi"/>
+                                                <constraint firstAttribute="width" constant="30" id="w6O-VM-3hH"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017年09月01日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5BD-HQ-Dbb">
+                                            <rect key="frame" x="40" y="0.0" width="128" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="AL2-v8-eLB"/>
+                                                <constraint firstAttribute="width" constant="128" id="LCY-CK-8bI"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.73725490196078436" green="0.73725490196078436" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_calender" translatesAutoresizingMaskIntoConstraints="NO" id="QT2-wE-CUd">
+                                            <rect key="frame" x="335" y="0.0" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="9Ly-yw-vK8"/>
+                                                <constraint firstAttribute="width" constant="30" id="Yqf-yz-cXQ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017年09月01日" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0C-Rj-sbq">
+                                            <rect key="frame" x="207" y="0.0" width="128" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="128" id="HzS-aM-KEA"/>
+                                                <constraint firstAttribute="height" constant="35" id="gf9-df-I3K"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.73725490199999999" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="QT2-wE-CUd" secondAttribute="trailing" constant="10" id="1Jd-rW-z7B"/>
+                                        <constraint firstItem="QT2-wE-CUd" firstAttribute="leading" secondItem="v0C-Rj-sbq" secondAttribute="trailing" id="32l-TM-93A"/>
+                                        <constraint firstItem="mZ9-bB-e47" firstAttribute="top" secondItem="AvA-gZ-sCJ" secondAttribute="top" constant="30" id="5Sh-qf-SAX"/>
+                                        <constraint firstItem="AdA-mG-U99" firstAttribute="top" secondItem="AvA-gZ-sCJ" secondAttribute="top" id="9FV-Z8-r12"/>
+                                        <constraint firstAttribute="trailing" secondItem="mZ9-bB-e47" secondAttribute="trailing" id="B4B-KP-f4e"/>
+                                        <constraint firstItem="5BD-HQ-Dbb" firstAttribute="leading" secondItem="AdA-mG-U99" secondAttribute="trailing" id="HlQ-mD-0eg"/>
+                                        <constraint firstItem="AdA-mG-U99" firstAttribute="leading" secondItem="AvA-gZ-sCJ" secondAttribute="leading" constant="10" id="Lrk-fR-pT5"/>
+                                        <constraint firstItem="5BD-HQ-Dbb" firstAttribute="top" secondItem="AvA-gZ-sCJ" secondAttribute="top" id="Z9b-Ds-RAI"/>
+                                        <constraint firstItem="QT2-wE-CUd" firstAttribute="top" secondItem="AvA-gZ-sCJ" secondAttribute="top" id="by8-HR-XNA"/>
+                                        <constraint firstItem="mZ9-bB-e47" firstAttribute="leading" secondItem="AvA-gZ-sCJ" secondAttribute="leading" id="ey1-UN-6G7"/>
+                                        <constraint firstItem="v0C-Rj-sbq" firstAttribute="top" secondItem="AvA-gZ-sCJ" secondAttribute="top" id="w0M-I9-e84"/>
+                                        <constraint firstAttribute="bottom" secondItem="mZ9-bB-e47" secondAttribute="bottom" id="y2t-En-WuS"/>
+                                    </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pj0-RJ-3xm">
                                     <rect key="frame" x="375" y="0.0" width="375" height="617"/>
@@ -178,15 +225,23 @@
             </constraints>
             <connections>
                 <outlet property="contentscrollview" destination="56g-tS-2gw" id="O39-qU-4dc"/>
+                <outlet property="image_chart1end" destination="QT2-wE-CUd" id="RCu-kW-hnu"/>
+                <outlet property="image_chart1start" destination="AdA-mG-U99" id="J1m-dI-meD"/>
                 <outlet property="label_category" destination="Hb3-L5-CSP" id="pDc-j5-sTY"/>
+                <outlet property="label_chart1end" destination="v0C-Rj-sbq" id="WKC-Mj-ym6"/>
+                <outlet property="label_chart1start" destination="5BD-HQ-Dbb" id="LS2-EC-vC5"/>
                 <outlet property="label_contanier" destination="7VU-xS-QRj" id="0a4-6P-2Jb"/>
                 <outlet property="label_generate" destination="tmF-Fd-Ky2" id="gpV-mD-oyg"/>
                 <outlet property="label_map" destination="SW2-5W-MPg" id="ibG-SH-S0z"/>
                 <outlet property="label_month" destination="PkT-Ul-ZeB" id="SkC-ES-ROI"/>
                 <outlet property="label_outrange" destination="lTa-gP-czR" id="8TO-6m-xNp"/>
                 <outlet property="topscrollview" destination="nhV-dO-SV2" id="Wn3-w9-FUu"/>
+                <outlet property="webview_chart1" destination="mZ9-bB-e47" id="yt1-DQ-m90"/>
             </connections>
             <point key="canvasLocation" x="32.5" y="99.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_calender" width="36" height="36"/>
+    </resources>
 </document>

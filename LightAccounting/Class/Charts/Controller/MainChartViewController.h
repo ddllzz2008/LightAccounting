@@ -12,11 +12,12 @@
 #import "FilterUIView.h"
 #import "ChartViewModel.h"
 
-@interface MainChartViewController : BaseViewController<FilterUIViewDelegate>{
+@interface MainChartViewController : BaseViewController<FilterUIViewDelegate,UIWebViewDelegate>{
     
     ChartsMainView *chartview;
     
     UIWindow *chooseWindow;
+    UIWindow *chooseWindow1;
     FilterUIView *filterview;
     
 }

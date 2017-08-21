@@ -8,6 +8,8 @@
 
 #import "BaseViewModel.h"
 #import "CategoryDAL.h"
+#import "ExpenditureDAL.h"
+#import "BusExpenditure.h"
 
 @interface ChartViewModel : BaseViewModel{
     
@@ -26,6 +28,9 @@
 - (NSArray<NSString *> *)categories;
 - (BOOL)isoutlet;
 - (BOOL)isprivate;
+
+@property (nonatomic,strong) NSMutableArray *chart1source;
+
 /**
  设置筛选条件
  
@@ -41,5 +46,13 @@
  @return 类别集合
  */
 -(NSMutableArray *)loadCategory;
+
+/**
+ 获取账单汇总
+ 
+ @param startdate 开始日期
+ @param enddate 结束日期
+ */
+-(void)loadExpendByCategory:(NSDate *)startdate enddate:(NSDate *)enddate;
 
 @end

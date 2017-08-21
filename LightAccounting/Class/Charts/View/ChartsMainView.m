@@ -9,9 +9,9 @@
 #import "ChartsMainView.h"
 
 //页签宽度
-static const float tabwidth = 95.0f;
-//间距
-static const float margin = 12.0f;
+//static const float tabwidth = 95.0f;
+////间距
+//static const float margin = 12.0f;
 
 @interface ChartsMainView(){
     
@@ -39,7 +39,10 @@ static const float margin = 12.0f;
     
     [super awakeFromNib];
     
-    [self.label_category setTextColor:get_theme_color];
+    [self.topscrollview setBackgroundColor:get_theme_color];
+    [self.label_contanier setBackgroundColor:get_theme_color];
+    
+    [self.label_category setTextColor:UIColorFromRGB(0xffffff)];
     self.label_category.tag=1;
     [self.label_outrange setTextColor:UIColorFromRGB(0x333333)];
     self.label_outrange.tag=2;
@@ -61,6 +64,23 @@ static const float margin = 12.0f;
     [self addTabAction:self.label_generate];
     
     self.contentscrollview.delegate=self;
+    
+//    self.webview_chart1.scrollView.scrollEnabled=NO;
+    
+    [self.image_chart1start setBounds:CGRectMake(0, 0, 30, 30)];
+    [self.image_chart1end setBounds:CGRectMake(0, 0, 30, 30)];
+    
+    self.chart1Range = [[[NSDate dateWithZone] dateForCurrentMonth] mutableCopy];
+    
+    [self.label_chart1start setText:[[self.chart1Range objectAtIndex:0] formatWithCode:@"yyyy年MM月dd日"]];
+    self.label_chart1start.userInteractionEnabled=YES;
+    UITapGestureRecognizer *chart1start_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseDate:)];
+    [self.label_chart1start addGestureRecognizer:chart1start_tap];
+    
+    [self.label_chart1end setText:[[self.chart1Range objectAtIndex:1] formatWithCode:@"yyyy年MM月dd日"]];
+    self.label_chart1end.userInteractionEnabled=YES;
+    UITapGestureRecognizer *chart1end_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseDate:)];
+    [self.label_chart1end addGestureRecognizer:chart1end_tap];
 }
 
 -(void)addTabAction:(UILabel *)label{
@@ -68,6 +88,33 @@ static const float margin = 12.0f;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabChanged:)];
     label.userInteractionEnabled=YES;
     [label addGestureRecognizer:tap];
+    
+}
+
+-(void)chooseDate:(UITapGestureRecognizer *)sender{
+    
+    UILabel *label = (UILabel *)sender.view;
+    
+    DLFullDatePicker *picker = [[DLFullDatePicker alloc] initWithFrame:CGRectMake(20, 60, ScreenSize.width-40, 400)];
+    picker.selectedDate = [label.text convertDateFromString:@"yyyy年MM月dd日"];
+    [picker showDatePicker:^(NSDate *result) {
+        
+        if ([label isEqual:self.label_chart1start]) {
+
+            [self.chart1Range replaceObjectAtIndex:0 withObject:result];
+            
+        }else if([label isEqual:self.label_chart1end]){
+            
+            [self.chart1Range replaceObjectAtIndex:1 withObject:result];
+            
+        }
+        
+        if (self.didChanged) {
+            self.didChanged(0);
+        }
+        
+        [label setText:[result formatWithCode:@"yyyy年MM月dd日"]];
+    }];
     
 }
 
@@ -83,7 +130,7 @@ static const float margin = 12.0f;
     }
     
     UILabel *label = (UILabel *)sender.view;
-    [label setTextColor:get_theme_color];
+    [label setTextColor:UIColorFromRGB(0xffffff)];
     currentLabel = label;
     if(currentPage!=label.tag){
         
@@ -127,6 +174,13 @@ static const float margin = 12.0f;
     }
     
     [self.topscrollview setContentOffset:CGPointMake(x, 0) animated:YES];
+}
+
+-(void)loadData{
+    NSString *chart1path = [[NSBundle mainBundle] pathForResource:@"PieChart" ofType:@"html"];
+    NSURL *chart1url = [NSURL fileURLWithPath:chart1path];
+    NSURLRequest *chart1request = [NSURLRequest requestWithURL:chart1url];
+    [self.webview_chart1 loadRequest:chart1request];
 }
 
 

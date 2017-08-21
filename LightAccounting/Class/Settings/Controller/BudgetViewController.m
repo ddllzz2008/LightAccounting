@@ -318,6 +318,7 @@
                 [[AlertController sharedInstance] closeMessage];
                 [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
                 [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"billpage"];
+                [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"chartpage"];
                 [[AlertController sharedInstance] showMessageAutoClose:@"保存成功"];
                 [self hiddenAction:nil];
             });
