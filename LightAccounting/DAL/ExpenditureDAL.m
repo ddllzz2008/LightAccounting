@@ -127,7 +127,7 @@ static ExpenditureDAL *instance = nil;
             cids = [cids stringByAppendingFormat:@"'%@',",str];
         }
         cids = [cids substringToIndex:([cids length]-1)];
-        sql = [sql stringByAppendingFormat:@" AND C.CID IN (%@)",cids];
+        sql = [sql stringByAppendingFormat:@" AND A.CID IN (%@)",cids];
     }
     if(![CommonFunc isBlankString:minspend]){
         sql = [sql stringByAppendingFormat:@" AND A.EVALUE>%f ",[minspend doubleValue]];

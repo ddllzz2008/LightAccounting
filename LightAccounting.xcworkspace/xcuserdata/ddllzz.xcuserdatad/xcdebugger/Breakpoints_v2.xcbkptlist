@@ -33,13 +33,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LightAccounting/Class/Charts/View/ChartsMainView.m"
-            timestampString = "525004256.691215"
+            filePath = "LightAccounting/Class/Bill/ViewController/BillDetailViewController.m"
+            timestampString = "525063556.037161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "-chooseDate:"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -49,13 +49,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LightAccounting/Class/Charts/View/ChartsMainView.m"
-            timestampString = "525004265.306742"
+            filePath = "LightAccounting/Class/Bill/ViewController/BillDetailViewController.h"
+            timestampString = "525063902.316945"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "-chooseDate:"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "@interface BillDetailViewController"
+            landmarkType = "2">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LightAccounting/Class/NewExpenditure/Controller/NewExpenditureViewController.m"
+            timestampString = "525078250.679788"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -65,13 +81,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LightAccounting/Class/Charts/Controller/MainChartViewController.m"
-            timestampString = "525004287.795395"
+            filePath = "LightAccounting/Class/NewExpenditure/Views/NewStep1View.m"
+            timestampString = "525078403.623737"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "-loadData"
+            startingLineNumber = "557"
+            endingLineNumber = "557"
+            landmarkName = "-setViewmodel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -10,6 +10,7 @@
 #import "BaseViewController.h"
 #import "BillDateChooseView.h"
 #import "BillChartView.h"
+#import "BillDetailView.h"
 #import "BillTableCell.h"
 #import "BillDetailSectionCell.h"
 #import "BillDetailTableCell.h"
@@ -19,7 +20,7 @@
 #import "AlertController.h"
 #import "BusExpenditure.h"
 
-@interface BillDetailViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource,BillDateChooseDelegate,FilterUIViewDelegate>{
+@interface BillDetailPageController : BaseViewController<UITableViewDelegate,UITableViewDataSource,BillDateChooseDelegate,FilterUIViewDelegate,BillDetailViewDelegate,CAAnimationDelegate>{
     
     BillDateChooseView *choosedateview;
     
@@ -30,6 +31,7 @@
     
     UIWindow *chooseWindow;
     FilterUIView *filterview;
+    BillDetailView *detailview;
     
 }
 

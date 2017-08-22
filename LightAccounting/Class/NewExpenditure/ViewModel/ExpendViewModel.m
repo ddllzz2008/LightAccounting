@@ -21,12 +21,12 @@
     if (self.model.eid==nil || [CommonFunc isBlankString:self.model.eid]) {
         self.model.eid = [CommonFunc NewGUID];
     }
-    if (self.model.cid==nil || [CommonFunc isBlankString:self.model.cid]) {
-        errorstring = @"请选择收入类别";
-    }else if(self.model.evalue==nil || (!([self.model.evalue isInt]) && !([self.model.evalue isFloat]))){
+    if(self.model.evalue==nil || (!([self.model.evalue isInt]) && !([self.model.evalue isFloat]))){
         errorstring = @"请输入有效金额";
     }else if(self.model.createtime==nil){
         errorstring = @"请选择记账时间";
+    }else if (self.model.cid==nil || [CommonFunc isBlankString:self.model.cid]) {
+        errorstring = @"请选择收入类别";
     }
     return errorstring;
 }
@@ -41,12 +41,12 @@
     if (self.model.eid==nil || [CommonFunc isBlankString:self.model.eid]) {
         self.model.eid = [CommonFunc NewGUID];
     }
-    if (self.model.cid==nil || [CommonFunc isBlankString:self.model.cid]) {
-        errorstring = @"请选择支出类别";
-    }else if(self.model.evalue==nil || (!([self.model.evalue isInt]) && !([self.model.evalue isFloat]))){
+    if(self.model.evalue==nil || (!([self.model.evalue isInt]) && !([self.model.evalue isFloat]))){
         errorstring = @"请输入有效金额";
     }else if(self.model.createtime==nil){
         errorstring = @"请选择记账时间";
+    }else if (self.model.cid==nil || [CommonFunc isBlankString:self.model.cid]) {
+        errorstring = @"请选择支出类别";
     }
     return errorstring;
 }

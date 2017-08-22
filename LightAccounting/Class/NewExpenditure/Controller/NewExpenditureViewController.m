@@ -39,13 +39,13 @@ extern NSDictionary *viewrefreshCache;
     
     self.viewmodel = [[ExpendViewModel alloc] init];
     
+    step1view.viewmodel = self.viewmodel;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     
     [self initTextFieldArray:step1view.inputmoney,step1view.labelremark,nil];
-    
-    step1view.viewmodel = self.viewmodel;
     
     [super viewWillAppear:animated];
     
@@ -121,6 +121,8 @@ extern NSDictionary *viewrefreshCache;
                         [[AlertController sharedInstance] showMessageAutoClose:@"记账成功"];
                         [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
                         [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"billpage"];
+                        [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"settingpage"];
+                        [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"chartpage"];
                         [self.navigationController popViewControllerAnimated:YES];
                     });
                 }else{

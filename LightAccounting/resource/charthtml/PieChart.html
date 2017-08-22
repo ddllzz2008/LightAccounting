@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
         <script type="text/javascript" src="highcharts.js"></script>
+        <script type="text/javascript" src="customEvents.js"></script>
         <script>
             
             function setPitData(title,dataseries){
@@ -22,7 +23,7 @@
                                            tooltip: {
                                            formatter: function() {
                                            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 1) +'% ('+
-                                           Highcharts.numberFormat(this.y, 0, ',') +' 元)';
+                                           Highcharts.numberFormat(this.y, 0, ',') +' 元)<br/><a>双击查看详细</a>';
                                            }
                                            },
                                            plotOptions: {
@@ -32,12 +33,29 @@
                                            dataLabels: {
                                            enabled: false
                                            },
-                                           showInLegend: true
-                                           }
+                                           showInLegend: true,
+                                           
+                                           },
+                                           series: {
+                                               cursor: 'pointer',
+                                               events: {
+                                                   dblclick: function (e) {
+                                                    showdetail();
+                                                   }
+                                               }
+                                            }
                                            },
                                            series: sourceSeries
                                            });
             };
+        
+        function showdetail(){
+            window.location.href="js-call://navigate/1";
+        };
+        
+        //window.onload=function(){
+            //setPitData('123',"[{type: 'pie',name: '浏览器访问量占比',data: [['Opera',6.2],['其他',0.7]]}]");
+        //}
         
     </script>
         

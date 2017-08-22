@@ -131,7 +131,7 @@
         NSArray *source = [[ExpenditureDAL Instance] getAccountDetail:[monthrange objectAtIndex:0] end:[monthrange objectAtIndex:1] categoryid:categories minspend:minvalue maxspend:maxvalue outlet:isoutlet isprivate:isprivate];
         
         if (source!=nil&&source.count>0) {
-            totalArray = [MTLJSONAdapter modelsOfClass:[BusExpenditure class] fromJSONArray:source error:nil];
+            totalArray = [[MTLJSONAdapter modelsOfClass:[BusExpenditure class] fromJSONArray:source error:nil] mutableCopy];
             
             //日期分组
             NSArray *datearray = [totalArray valueForKey:@"CREATETIME"];

@@ -95,7 +95,13 @@
     
     UILabel *label = (UILabel *)sender.view;
     
-    DLFullDatePicker *picker = [[DLFullDatePicker alloc] initWithFrame:CGRectMake(20, 60, ScreenSize.width-40, 400)];
+    float maxheight = 600;
+    
+    if (ScreenSize.height - 120 < 600) {
+        maxheight = ScreenSize.height - 120;
+    }
+    
+    DLFullDatePicker *picker = [[DLFullDatePicker alloc] initWithFrame:CGRectMake(20, 60, ScreenSize.width-40, maxheight)];
     picker.selectedDate = [label.text convertDateFromString:@"yyyy年MM月dd日"];
     [picker showDatePicker:^(NSDate *result) {
         

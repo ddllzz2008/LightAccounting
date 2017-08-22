@@ -135,6 +135,9 @@
 		698F357A1EEEA62600D3BED8 /* ExpendVoiceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F35791EEEA62600D3BED8 /* ExpendVoiceViewModel.m */; };
 		698F642E1EB0D595001BEB18 /* UIColor+ExtMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F642D1EB0D595001BEB18 /* UIColor+ExtMethod.m */; };
 		698F64311EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 698F64301EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m */; };
+		6995B4E31F4BD7BD00A0C307 /* BillDetailPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6995B4E21F4BD7BD00A0C307 /* BillDetailPageController.m */; };
+		6995B4E51F4C1B3A00A0C307 /* customEvents.js in Resources */ = {isa = PBXBuildFile; fileRef = 6995B4E41F4C1B3A00A0C307 /* customEvents.js */; };
+		6995B4E81F4C2F2B00A0C307 /* ChartDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6995B4E71F4C2F2B00A0C307 /* ChartDetailViewController.m */; };
 		699B2F901E87B0F400CE3FAD /* NewStep1View.m in Sources */ = {isa = PBXBuildFile; fileRef = 699B2F8F1E87B0F400CE3FAD /* NewStep1View.m */; };
 		699B2F931E87B33C00CE3FAD /* NewExpenditureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699B2F921E87B33C00CE3FAD /* NewExpenditureViewController.m */; };
 		69A42EE61EF28016007F4419 /* SandboxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A42EE51EF28016007F4419 /* SandboxManager.m */; };
@@ -236,7 +239,6 @@
 		69EA388C1EBED5CD000A7035 /* NewPlanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EA388B1EBED5CD000A7035 /* NewPlanView.m */; };
 		69EEAE5C1E8BABD00025695D /* CategoryChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EEAE5B1E8BABD00025695D /* CategoryChooseView.m */; };
 		69F277DF1EA8A93E0016FF6E /* BillDetailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F277DE1EA8A93E0016FF6E /* BillDetailTableCell.m */; };
-		69F277E21EA8A96F0016FF6E /* BillDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F277E11EA8A96F0016FF6E /* BillDetailViewController.m */; };
 		69F277E51EA8AA510016FF6E /* BillDetailSectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F277E41EA8AA510016FF6E /* BillDetailSectionCell.m */; };
 		69FA0C6C1EFA5AA40085720F /* BillViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FA0C6B1EFA5AA40085720F /* BillViewModel.m */; };
 		69FCE3791ECAEEBE004959CC /* FamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FCE3781ECAEEBE004959CC /* FamilyViewController.m */; };
@@ -475,6 +477,11 @@
 		698F642D1EB0D595001BEB18 /* UIColor+ExtMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ExtMethod.m"; sourceTree = "<group>"; };
 		698F642F1EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		698F64301EB0DA2F001BEB18 /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
+		6995B4E11F4BD7BD00A0C307 /* BillDetailPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailPageController.h; sourceTree = "<group>"; };
+		6995B4E21F4BD7BD00A0C307 /* BillDetailPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailPageController.m; sourceTree = "<group>"; };
+		6995B4E41F4C1B3A00A0C307 /* customEvents.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = customEvents.js; sourceTree = "<group>"; };
+		6995B4E61F4C2F2B00A0C307 /* ChartDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartDetailViewController.h; sourceTree = "<group>"; };
+		6995B4E71F4C2F2B00A0C307 /* ChartDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartDetailViewController.m; sourceTree = "<group>"; };
 		699B2F8E1E87B0F400CE3FAD /* NewStep1View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewStep1View.h; sourceTree = "<group>"; };
 		699B2F8F1E87B0F400CE3FAD /* NewStep1View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewStep1View.m; sourceTree = "<group>"; };
 		699B2F911E87B33C00CE3FAD /* NewExpenditureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewExpenditureViewController.h; sourceTree = "<group>"; };
@@ -605,8 +612,6 @@
 		69EEAE5B1E8BABD00025695D /* CategoryChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryChooseView.m; sourceTree = "<group>"; };
 		69F277DD1EA8A93E0016FF6E /* BillDetailTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailTableCell.h; sourceTree = "<group>"; };
 		69F277DE1EA8A93E0016FF6E /* BillDetailTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailTableCell.m; sourceTree = "<group>"; };
-		69F277E01EA8A96F0016FF6E /* BillDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailViewController.h; sourceTree = "<group>"; };
-		69F277E11EA8A96F0016FF6E /* BillDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailViewController.m; sourceTree = "<group>"; };
 		69F277E31EA8AA510016FF6E /* BillDetailSectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailSectionCell.h; sourceTree = "<group>"; };
 		69F277E41EA8AA510016FF6E /* BillDetailSectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailSectionCell.m; sourceTree = "<group>"; };
 		69FA0C6A1EFA5AA40085720F /* BillViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillViewModel.h; sourceTree = "<group>"; };
@@ -666,8 +671,8 @@
 		690E8D101E9CC97C004DC684 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				69F277E01EA8A96F0016FF6E /* BillDetailViewController.h */,
-				69F277E11EA8A96F0016FF6E /* BillDetailViewController.m */,
+				6995B4E11F4BD7BD00A0C307 /* BillDetailPageController.h */,
+				6995B4E21F4BD7BD00A0C307 /* BillDetailPageController.m */,
 				690E8D131E9CC9EB004DC684 /* BillViewController.h */,
 				690E8D141E9CC9EB004DC684 /* BillViewController.m */,
 			);
@@ -712,6 +717,8 @@
 			children = (
 				697CA3D31F429B2600309161 /* MainChartViewController.h */,
 				697CA3D41F429B2600309161 /* MainChartViewController.m */,
+				6995B4E61F4C2F2B00A0C307 /* ChartDetailViewController.h */,
+				6995B4E71F4C2F2B00A0C307 /* ChartDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1449,6 +1456,7 @@
 				69CE11B21F464FEC00E54665 /* js */,
 				697EC9CE1F4AE0D500A1DB57 /* highcharts.js */,
 				697EC9CF1F4AE0D500A1DB57 /* jquery-1.8.3.min.js */,
+				6995B4E41F4C1B3A00A0C307 /* customEvents.js */,
 				69CE11DF1F464FEC00E54665 /* PieChart.html */,
 			);
 			name = charthtml;
@@ -1845,6 +1853,7 @@
 				69D0893B1F0B79CC000FD94E /* cb_dark_off.png in Resources */,
 				69CE11EC1F464FEC00E54665 /* standalone-framework.src.js in Resources */,
 				69CE12101F464FEC00E54665 /* grid-light.js in Resources */,
+				6995B4E51F4C1B3A00A0C307 /* customEvents.js in Resources */,
 				69D0893C1F0B79CC000FD94E /* cb_dark_off@2x.png in Resources */,
 				69CE11E11F464FEC00E54665 /* close.png in Resources */,
 				69CE120E1F464FEC00E54665 /* dark-unica.js in Resources */,
@@ -2011,16 +2020,17 @@
 				698F357A1EEEA62600D3BED8 /* ExpendVoiceViewModel.m in Sources */,
 				69A42EEB1EF28B4A007F4419 /* MyZoneViewModel.m in Sources */,
 				6944B6EE1E7E30E500474964 /* UIButton+Style.m in Sources */,
+				6995B4E81F4C2F2B00A0C307 /* ChartDetailViewController.m in Sources */,
 				6944B6D71E7E30E500474964 /* BaseTableViewController.m in Sources */,
 				69D5B8FF1E7FDECC00B2EC8B /* PackageCompare.m in Sources */,
 				695082611EB31D880037E547 /* PlanView.m in Sources */,
 				69D5B9011E7FDECC00B2EC8B /* SpendCategory.m in Sources */,
+				6995B4E31F4BD7BD00A0C307 /* BillDetailPageController.m in Sources */,
 				69425FE91E94CE3C00345AC9 /* CategoryViewCell.m in Sources */,
 				69A5301E1EE5422600C22EDB /* ExpendViewModel.m in Sources */,
 				6974FC5A1EA51C63008F4495 /* BillTableCell.m in Sources */,
 				69EEAE5C1E8BABD00025695D /* CategoryChooseView.m in Sources */,
 				69AD79271E81353400379835 /* ExpenditureView.m in Sources */,
-				69F277E21EA8A96F0016FF6E /* BillDetailViewController.m in Sources */,
 				690E8D211E9CD627004DC684 /* BillDateChooseView.m in Sources */,
 				69A530211EE557FE00C22EDB /* AccountChooseView.m in Sources */,
 				6944B6531E7E30D500474964 /* AppDelegate+AppService.m in Sources */,

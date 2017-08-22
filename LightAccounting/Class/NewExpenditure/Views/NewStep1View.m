@@ -128,7 +128,7 @@
     [labeldate setTextColor:UIColorFromRGB(0xA6CE57)];
     [labeldate setLeftPadding:10.0f];
     labeldate.delegate=self;
-    [labeldate setText:@"今天"];
+    [labeldate setText:[[NSDate dateWithZone] formatWithCode:@"yyyy年MM月dd日"]];
     
     [self addSubview:labeldate];
     
@@ -335,7 +335,22 @@
     CGContextFillRect(context,CGRectMake(0, 0, rect.size.width, 90));//填充框
 }
 
+/**
+ 禁止日期，地图，类别输入
+
+ @param textField 输入框
+ @return 禁止输入NO
+ */
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    if ([textField isEqual:labeldate]) {
+        [self chooseDate:nil];
+    }else if([textField isEqual:labelmap]){
+        [self gotoLocationTap:nil];
+    }else if([textField isEqual:labelcategory]){
+        [self showCategory:nil];
+    }
+    
     return NO;
 }
 
@@ -506,23 +521,25 @@
 /**
  选择日期
 
- @param sender <#sender description#>
+ @param sender 发起者
  */
 -(void)chooseDate:(id)sender{
     
     [((BaseViewController *)[self viewController]) hiddenKeyBoard];
     
-    DLDatePickerView *picker = [[DLDatePickerView sharedInstance] initWithFrame:CGRectMake(0, ScreenSize.height-80, ScreenSize.width, 80)];
-    picker.dateMode =UIDatePickerModeDate;
-    picker.date = self.viewmodel.model.createtime;
-//    picker.minDate = [[[NSDate date] dateForLastYear] objectAtIndex:0];
-//    picker.maxDate = [[[NSDate date] dateForNextYear] objectAtIndex:1];
-    picker.delegate = nil;
-    if([picker delegate]==nil){
-        [picker setDelegate:self];
+    float maxheight = 600;
+    
+    if (ScreenSize.height - 120 < 600) {
+        maxheight = ScreenSize.height - 120;
     }
     
-    [picker show];
+    DLFullDatePicker *picker = [[DLFullDatePicker alloc] initWithFrame:CGRectMake(20, 60, ScreenSize.width-40, maxheight)];
+    picker.selectedDate = [labeldate.text convertDateFromString:@"yyyy年MM月dd日"];
+    [picker showDatePicker:^(NSDate *result) {
+        
+        [labeldate setText:[result formatWithCode:@"yyyy年MM月dd日"]];
+        
+    }];
 }
 
 -(void)DLDatePickerView:(NSInteger)tag didSelectDate:(NSDate *)date{

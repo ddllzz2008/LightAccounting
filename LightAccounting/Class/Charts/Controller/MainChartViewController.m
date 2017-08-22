@@ -34,10 +34,14 @@
 
 -(void)initControls{
     
+    __weak typeof(self) weakstrongself = self;
     chartview = [[ChartsMainView alloc] initWithFrame:CGRectMake(0, 0, ScreenSize.width, ScreenSize.height -self.navigationController.navigationBar.frame.size.height)];
     chartview.webview_chart1.delegate=self;
     chartview.didChanged = ^(NSInteger chartindex) {
-        [self loadData];
+        
+        __strong typeof(weakstrongself) strongself = weakstrongself;
+        
+        [strongself loadData];
     };
     [self.view addSubview:chartview];
     
@@ -125,22 +129,30 @@
 #pragma mark---协议回调
 -(void)FilterUIViewComfirm:(NSString *)min max:(NSString *)max categories:(NSArray<NSString *> *)categories isoutlet:(BOOL)isoutlet isprivate:(BOOL)isprivate{
     
-//    [self.viewmodel setFilter:segmentControl.selectedSegmentIndex min:min max:max cids:categories outlet:isoutlet private:isprivate];
-//    [[AlertController sharedInstance] showMessage:@"获取账单中"];
-//    
-//    [self loadData];
-//    
-//    [self hiddenAction:nil];
+    [self.viewmodel setFilter:0 min:min max:max cids:categories outlet:isoutlet private:isprivate];
+    
+    [self loadData];
+    
+    [self hiddenAction:nil];
     
 }
 
+/**
+ webview加载完绘制数据
+
+ @param webView 当前webview
+ */
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     
     NSString *result = @"";
     
+    CGFloat total = 0;
+    
     if (self.viewmodel.chart1source!=nil&&self.viewmodel.chart1source.count>0) {
         
         for (NSDictionary *dic in self.viewmodel.chart1source) {
+            
+            total += [[dic objectForKey:@"evalue"] floatValue];
             
             result = [result stringByAppendingFormat:@"['%@',%.1f],",[dic objectForKey:@"name"],fabs([[dic objectForKey:@"evalue"] floatValue])];
         }
@@ -151,10 +163,35 @@
         
     }
     
+    NSString *title = (total==0?@"无消费记录":[NSString stringWithFormat:@"共消费%.1f元",fabs(total)]);
+    
     NSString *str = [NSString stringWithFormat:@"[{type:'pie',name:'各分类对比',data:[%@]}]",result];
     
-    NSString *jsCode = [NSString stringWithFormat:@"setPitData('%@',\"%@\")",@"各分类对比",str];
+    NSString *jsCode = [NSString stringWithFormat:@"setPitData('%@',\"%@\")",title,str];
     [webView stringByEvaluatingJavaScriptFromString:jsCode];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    
+    NSLog(@"%@",request.URL.absoluteString);
+    
+    // 拿到网页的请求地址
+    NSString *requestString = request.URL.absoluteString;
+    NSString *protocol = @"js-call://";
+    // 判断网页的请求地址协议是否是我们自定义的那个
+    if ([requestString hasPrefix:protocol]) {
+        NSString *requestContent = [requestString substringFromIndex:[protocol length]];
+        NSArray *vals = [requestContent componentsSeparatedByString:@"/"];
+        if ([vals[0] isEqualToString:@"navigate"]) { //test方法
+            
+        }
+        else {
+            
+        }
+        return NO; // 对于js-call://协议不执行跳转
+    }
+    return YES;
+    
 }
 
 /**

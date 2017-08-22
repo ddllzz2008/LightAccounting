@@ -35,7 +35,7 @@
     self.label_time.text = source.CREATETIME;
     self.label_address.text = [source.BDADDRESS isEqual:@"(null)"]?@"":source.BDADDRESS;;
     self.label_category.text = source.CNAME;
-    self.label_money.text = [NSString stringWithFormat:@"%.1f",source.EVALUE];
+    self.label_money.text = [NSString stringWithFormat:@"%.1f",fabs(source.EVALUE)];
     self.label_note.text = [source.IMARK isEqual:@"(null)"]?@"":source.IMARK;
     
 }
