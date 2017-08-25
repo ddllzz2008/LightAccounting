@@ -8,6 +8,14 @@
 
 #import "ChartViewModel.h"
 
+@interface ChartViewModel()
+
+@property (nonatomic,copy,readwrite) NSString *totalIncome;
+
+@property (nonatomic,copy,readwrite) NSString *totalExpend;
+
+@end
+
 @implementation ChartViewModel
 
 - (NSString *)minvalue{
@@ -118,6 +126,101 @@
     } @finally {
         
     }
+    
+}
+
+/**
+ 获取图表详情数据
+
+ @param startdate 开始时间
+ @param enddate 结束时间
+ */
+- (void)loadChartsDetail:(NSDate *)startdate enddate:(NSDate *)enddate{
+    
+    @try {
+        
+        NSArray *source = [[ExpenditureDAL Instance] getAccountDetail:startdate end:enddate categoryid:categories minspend:minvalue maxspend:maxvalue outlet:isoutlet isprivate:isprivate];
+        
+        if (source!=nil&&source.count>0) {
+            NSArray *totalArray = [[MTLJSONAdapter modelsOfClass:[BusExpenditure class] fromJSONArray:source error:nil] mutableCopy];
+            
+            //日期分组
+            NSArray *datearray = [totalArray valueForKey:@"CREATETIME"];
+            //日期筛选
+            NSSet *dateset = [NSSet setWithArray:datearray];
+            NSArray *sortDesc = @[[[NSSortDescriptor alloc] initWithKey:nil ascending:NO]];
+            NSArray *sortSetArray = [dateset sortedArrayUsingDescriptors:sortDesc];
+            //用于存放类别分组的对象
+            NSMutableArray *dateresultArray = [[NSMutableArray alloc] init];
+            
+            for (NSString *date in sortSetArray){
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CREATETIME == %@",date];
+                NSArray *indexArray = [totalArray filteredArrayUsingPredicate:predicate];
+                // 将查询结果加入到resultArray中
+                [dateresultArray addObject:[indexArray mutableCopy]];
+            }
+            
+            self.chartdetailsource = dateresultArray;
+            
+            //设置总共支出，收入
+            NSPredicate *incomepredicate = [NSPredicate predicateWithFormat:@" TYPE==1 "];
+            NSArray *incomearray = [totalArray filteredArrayUsingPredicate:incomepredicate];
+            self.totalIncome = [[incomearray valueForKeyPath:@"@sum.EVALUE"] stringValue];
+            self.totalIncome = [NSString stringWithFormat:@"%.1f",fabs([self.totalIncome floatValue])];
+            
+            NSPredicate *expendpredicate = [NSPredicate predicateWithFormat:@" TYPE==0 "];
+            NSArray *expendarray = [totalArray filteredArrayUsingPredicate:expendpredicate];
+            self.totalExpend = [[expendarray valueForKeyPath:@"@sum.EVALUE"] stringValue];
+            self.totalExpend = [NSString stringWithFormat:@"%.1f",fabs([self.totalExpend floatValue])];
+            
+        }else{
+            
+            self.chartdetailsource = [[NSMutableArray alloc] init];
+            self.totalIncome = @"0";
+            self.totalExpend = @"0";
+            
+        }
+        
+    } @catch (NSException *exception) {
+        DDLogDebug(@"BillViewModel  Error:%@",exception);
+    } @finally {
+        
+    }
+    
+}
+
+/**
+ 删除账单
+
+ @param bid 账单id
+ @param deletevalue 删除的消费值
+ @param type 账单类型，0：支出，1：收入
+ @return 执行是否成功
+ */
+- (BOOL)deleteBill:(NSString *)bid deletevalue:(CGFloat)deletevalue type:(int)type{
+    
+    BOOL hresult = NO;
+    if (type==0) {
+        //支出
+        hresult = [[ExpenditureDAL Instance] deleteExpenditure:bid];
+    }else{
+        //收入
+        hresult = [[IncomeDAL Instance] deleteIncome:bid];
+    }
+    
+    if (hresult) {
+        
+        [self setCurrentType:self.currentType];
+        
+        if (type==0) {
+            self.totalExpend = [NSString stringWithFormat:@"%.1f",fabs([self.totalExpend floatValue]) - fabs(deletevalue)];
+        }else{
+            self.totalIncome = [NSString stringWithFormat:@"%.1f",fabs([self.totalExpend floatValue]) - fabs(deletevalue)];
+        }
+        
+    }
+    
+    return hresult;
     
 }
 

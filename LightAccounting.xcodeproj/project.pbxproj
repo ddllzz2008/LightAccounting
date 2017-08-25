@@ -235,6 +235,7 @@
 		69D5B9031E7FDECC00B2EC8B /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D5B8FA1E7FDECC00B2EC8B /* TestModel.m */; };
 		69DC03ED1E70387F000C72AE /* MyZoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DC03EC1E70387F000C72AE /* MyZoneViewController.m */; };
 		69DC03F01E705576000C72AE /* TopLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69DC03EF1E705576000C72AE /* TopLineView.m */; };
+		69DF2BDD1F500CEE00F61177 /* Polyline.html in Resources */ = {isa = PBXBuildFile; fileRef = 69DF2BDC1F500CEE00F61177 /* Polyline.html */; };
 		69EA38891EBED4FE000A7035 /* NewPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EA38881EBED4FE000A7035 /* NewPlanViewController.m */; };
 		69EA388C1EBED5CD000A7035 /* NewPlanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EA388B1EBED5CD000A7035 /* NewPlanView.m */; };
 		69EEAE5C1E8BABD00025695D /* CategoryChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EEAE5B1E8BABD00025695D /* CategoryChooseView.m */; };
@@ -604,6 +605,7 @@
 		69DC03EC1E70387F000C72AE /* MyZoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyZoneViewController.m; sourceTree = "<group>"; };
 		69DC03EE1E705576000C72AE /* TopLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopLineView.h; sourceTree = "<group>"; };
 		69DC03EF1E705576000C72AE /* TopLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopLineView.m; sourceTree = "<group>"; };
+		69DF2BDC1F500CEE00F61177 /* Polyline.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Polyline.html; sourceTree = "<group>"; };
 		69EA38871EBED4FE000A7035 /* NewPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPlanViewController.h; sourceTree = "<group>"; };
 		69EA38881EBED4FE000A7035 /* NewPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPlanViewController.m; sourceTree = "<group>"; };
 		69EA388A1EBED5CD000A7035 /* NewPlanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPlanView.h; sourceTree = "<group>"; };
@@ -1457,6 +1459,7 @@
 				697EC9CE1F4AE0D500A1DB57 /* highcharts.js */,
 				697EC9CF1F4AE0D500A1DB57 /* jquery-1.8.3.min.js */,
 				6995B4E41F4C1B3A00A0C307 /* customEvents.js */,
+				69DF2BDC1F500CEE00F61177 /* Polyline.html */,
 				69CE11DF1F464FEC00E54665 /* PieChart.html */,
 			);
 			name = charthtml;
@@ -1841,6 +1844,7 @@
 				697EC9D11F4AE0D500A1DB57 /* jquery-1.8.3.min.js in Resources */,
 				69CE12111F464FEC00E54665 /* grid.js in Resources */,
 				69CE120C1F464FEC00E54665 /* dark-blue.js in Resources */,
+				69DF2BDD1F500CEE00F61177 /* Polyline.html in Resources */,
 				69D089481F0B79CC000FD94E /* cb_mono_off@2x.png in Resources */,
 				69CE12031F464FEC00E54665 /* heatmap.src.js in Resources */,
 				6944B6341E7E2CF200474964 /* Assets.xcassets in Resources */,

@@ -708,6 +708,7 @@
                     [self billdetailview:YES];
                     
                     [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
+                    [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"billpage"];
                     [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"chartpage"];
                     
                     

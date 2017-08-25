@@ -11,6 +11,7 @@
 #import "ChartsMainView.h"
 #import "FilterUIView.h"
 #import "ChartViewModel.h"
+#import "ChartDetailViewController.h"
 
 @interface MainChartViewController : BaseViewController<FilterUIViewDelegate,UIWebViewDelegate>{
     

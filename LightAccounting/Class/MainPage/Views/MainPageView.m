@@ -122,25 +122,102 @@
 -(void)addscrollview{
     if (self.source!=nil&&self.source.count>0) {
         
-        //获取支付类型图标
-//        NSString *path = [[NSBundle mainBundle] pathForResource:@"configinfo" ofType:@"plist"];
-//        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:path];
-//        paytypeDictionry = [dic objectForKey:@"PaytypeIcons"];
+        //计算一个与当天日期最接近的开始
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateDiff" ascending:YES];
+        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:&sortDescriptor count:1];
+        NSArray *temparray = [self.source sortedArrayUsingDescriptors:sortDescriptors];
+        MainGroupModel *model = [temparray objectAtIndex:0];
         
+        long minindex = 0;
+        long maxindex = 0;
         
         if (self.source.count>=5) {
-            for (int i=0; i<5; i++) {
-                [mapsourceArray addObject:[self.source objectAtIndex:i]];
+            
+            if (model.currentIndex+2>=self.source.count) {
+                //到最右边了
+                maxindex = self.source.count-1;
+                minindex = self.source.count-1-4;
+            }else if(model.currentIndex-2<=0){
+                minindex = 0;
+                maxindex = 5;
+            }else{
+                minindex = model.currentIndex - 2;
+                maxindex = model.currentIndex + 2;
+            }
+            
+//            minindex = model.currentIndex - 2 >=0 ? (model.currentIndex - 2): 0;
+//            
+//            maxindex = minindex + 4 >= self.source.count ? (self.source.count - 1): (minindex + 4);
+            
+//            if (model.currentIndex>0) {
+//                
+//                
+//                
+//                //中间位置
+//                if (model.currentIndex>=2) {
+//                    //左边还有两个
+//                    minindex = model.currentIndex - 2;
+//                    maxindex = model.currentIndex + 2;
+//                }else{
+//                    //左边只有1个
+//                    minindex = model.currentIndex - 1;
+//                    maxindex = model.currentIndex + 3;
+//                }
+//            }else{
+//                //左边没有
+//                minindex = 0;
+//                
+//                if (model.currentIndex+5>self.source.count) {
+//                    maxindex = self.source.count;
+//                }else{
+//                    maxindex = model.currentIndex+5;
+//                }
+//                
+//            }
+            
+            sourceindex = model.currentIndex;
+            
+            for (long i=minindex; i<=maxindex; i++) {
+                if (i<self.source.count) {
+                    [mapsourceArray addObject:[self.source objectAtIndex:i]];
+                }
             }
         }else{
-            for (int i=0; i<self.source.count; i++) {
-                [mapsourceArray addObject:[self.source objectAtIndex:i]];
+            
+            minindex = 0;
+            maxindex = self.source.count - 1;
+            
+//            if (model.currentIndex>0) {
+//                //中间位置
+//                if (model.currentIndex>=2) {
+//                    //左边还有两个
+//                    minindex = model.currentIndex - 2;
+//                    maxindex = model.currentIndex + 2;
+//                }else{
+//                    //左边只有1个
+//                    minindex = model.currentIndex - 1;
+//                    maxindex = model.currentIndex + 3;
+//                }
+//            }else{
+//                //左边没有
+//                minindex = 0;
+//                
+//                if (model.currentIndex+5>self.source.count) {
+//                    maxindex = self.source.count;
+//                }else{
+//                    maxindex = model.currentIndex+5;
+//                }
+//                
+//            }
+            
+            sourceindex = model.currentIndex;
+            
+            for (long i=minindex; i<=maxindex; i++) {
+                if (i<self.source.count) {
+                    [mapsourceArray addObject:[self.source objectAtIndex:i]];
+                }
             }
         }
-        
-//        double viewheight = (self.frame.size.height/4) * 3;
-        
-//        double viewspacetop = self.frame.size.height/4;
         
         double viewheight = self.frame.size.height - 100;
         
@@ -153,27 +230,34 @@
             ExpenditureView *view = [[ExpenditureView alloc] init];
             UITapGestureRecognizer *detailtap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navdetail:)];
             [view addGestureRecognizer:detailtap];
-//            view.updatePhotoBlock=^(NSString *eid,NSString *photopath){
-//                
-//                if (self.updatePhotoBlock) {
-//                    self.updatePhotoBlock(eid,photopath);
-//                }
-//                
-//                return YES;
-//            };
+
             [self addSubview:view];
             
-            if (i==0) {
-                
+            MainGroupModel *model = [self.source objectAtIndex:[[mapsourceArray objectAtIndex:i] currentIndex]];
+            
+            if (model.currentIndex==sourceindex) {
+                mapindex = i;
+                //当前正中间的画面
                 [view setFrame:CGRectMake(40, viewspacetop + 30, mapwidth, viewheight-40)];
-                
             }else{
-                
-                [view setFrame:CGRectMake(40 + i*mapwidth + i*10, viewspacetop + 50, mapwidth, viewheight - 80)];
-                
+                if (model.currentIndex<sourceindex) {
+                    long diff = sourceindex - model.currentIndex;
+                    [view setFrame:CGRectMake(0 - ((mapwidth*diff) + (diff-1)*10 - 30), viewspacetop + 50, mapwidth, viewheight - 80)];
+                }else{
+                    long diff = model.currentIndex - sourceindex;
+                    [view setFrame:CGRectMake(40 + diff*mapwidth + diff*10, viewspacetop + 50, mapwidth, viewheight - 80)];
+                }
             }
-            MainGroupModel *model = [self.source objectAtIndex:i];
-//            model.PAYTYPEICON = [paytypeDictionry objectForKey:[NSString stringWithFormat:@"%d",model.PAYTYPE]];
+            
+//            if (i==0) {
+//                
+//                [view setFrame:CGRectMake(40, viewspacetop + 30, mapwidth, viewheight-40)];
+//                
+//            }else{
+//                
+//                [view setFrame:CGRectMake(40 + i*mapwidth + i*10, viewspacetop + 50, mapwidth, viewheight - 80)];
+//                
+//            }
             
             [view setmodel:model];
             
@@ -190,8 +274,8 @@
             [self addGestureRecognizer:swiperight];
         }
         
-        mapindex = 0;
-        sourceindex = 0;
+        
+//        sourceindex = 0;
         
     }else{
         [self nodatalayout];
@@ -212,10 +296,6 @@
 -(void)mapviewmove:(UISwipeGestureRecognizer*)recognizer{
     @try {
         
-//        double viewheight = (self.frame.size.height/4) * 3;
-//        
-//        double viewspacetop = self.frame.size.height/4;
-        
         double viewheight = self.frame.size.height - 100;
         
         double viewspacetop = 100;
@@ -224,7 +304,7 @@
         
         if(recognizer.direction==UISwipeGestureRecognizerDirectionLeft) {
             
-            if(((UIView *)[mapArray objectAtIndex:(mapArray.count-1)]).frame.size.height == viewheight-40){
+            if (sourceindex+1>=self.source.count) {
                 return;
             }
             
@@ -251,23 +331,20 @@
             } completion:^(BOOL finished) {
                 
                 sourceindex++;
-                
                 if(self.source.count>5){
-                    
-//                    DDLogDebug(@"当前对象%@",[self.source objectAtIndex:sourceindex]);
-                    
-                    if(((UIView *)[mapArray objectAtIndex:3]).frame.size.height == viewheight-40){
-                        //表示已经滑到了第4块
-                        if(self.source.count>sourceindex+2){
-                            //删除最前面一块，目的始终保持屏幕上只有5块
-//                            [mapsourceArray removeObjectAtIndex:0];
+                    //第一步判断当前索引是倒数第一个还是最后一个
+                    if (sourceindex ==self.source.count-2 || sourceindex == self.source.count-1) {
+                        //无需做任何事情
+                    }else{
+                        //如果sourceindex>2就开始删除第一个，添加最后一个
+                        if (sourceindex>2) {
+                            //移除第一个
                             //从界面上移除
                             [[mapArray objectAtIndex:0] removeFromSuperview];
                             [mapArray removeObjectAtIndex:0];
                             
                             //取出要添加的对象
                             MainGroupModel *model = [self.source objectAtIndex:sourceindex+2];
-//                            model.PAYTYPEICON = [paytypeDictionry objectForKey:[NSString stringWithFormat:@"%d",model.PAYTYPE]];
                             
                             ExpenditureView *view = [[ExpenditureView alloc] init];
                             [self addSubview:view];
@@ -279,9 +356,6 @@
                             [mapArray addObject:view];
                         }
                     }
-                    
-                }else{
-                    
                 }
                 
             }];
@@ -297,8 +371,7 @@
                 bool current = NO;
                 UIView *view;
                 for(long i=mapArray.count-1;i>=0;i--){
-//                for (UIView *view in mapArray) {
-                    //判断当前view为中间view
+
                     view = [mapArray objectAtIndex:i];
 
                     if(view.bounds.size.height == viewheight-40){
@@ -322,27 +395,29 @@
                 
                 if(self.source.count>5){
                     
-                    if(sourceindex-1>0&&sourceindex+3<self.source.count){
-                        
-                        //删除最前面一块，目的始终保持屏幕上只有5块
-//                        [mapsourceArray removeObjectAtIndex:0];
-                        //从界面上移除
-                        [[mapArray objectAtIndex:(mapArray.count-1)] removeFromSuperview];
-                        [mapArray removeObjectAtIndex:(mapArray.count-1)];
-                        
-                        //取出要添加的对象
-                        MainGroupModel *model = [self.source objectAtIndex:sourceindex-2];
-//                        model.PAYTYPEICON = [paytypeDictionry objectForKey:[NSString stringWithFormat:@"%d",model.PAYTYPE]];
-                        
-                        ExpenditureView *view = [[ExpenditureView alloc] init];
-                        [self addSubview:view];
-                        
-                        [view setFrame:CGRectMake(0-2*mapwidth + 20, viewspacetop + 50, mapwidth, viewheight - 80)];
-                        
-                        [view setmodel:model];
-                        
-                        [mapArray insertObject:view atIndex:0];
-                        
+                    //第一步判断是否为第一个或者第二个
+                    if (sourceindex==0 || sourceindex ==1) {
+                        //无需做任何事情
+                    }else{
+                        if (sourceindex<self.source.count-3) {
+                            //删除最后边一块
+                            //从界面上移除
+                            [[mapArray objectAtIndex:(mapArray.count-1)] removeFromSuperview];
+                            [mapArray removeObjectAtIndex:(mapArray.count-1)];
+                            
+                            //最左边添加一块
+                            //取出要添加的对象
+                            MainGroupModel *model = [self.source objectAtIndex:sourceindex-2];
+                            
+                            ExpenditureView *view = [[ExpenditureView alloc] init];
+                            [self addSubview:view];
+                            
+                            [view setFrame:CGRectMake(0-2*mapwidth + 20, viewspacetop + 50, mapwidth, viewheight - 80)];
+                            
+                            [view setmodel:model];
+                            
+                            [mapArray insertObject:view atIndex:0];
+                        }
                     }
                     
                 }else {

@@ -33,7 +33,7 @@
     
     UISwitch *switchAlert1;
     
-    UISwitch *switchAlert;
+//    UISwitch *switchAlert;
     //地图对象
     BMKLocationService *mapservice;
     BMKGeoCodeSearch *geocodesearch;

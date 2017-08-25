@@ -48,14 +48,21 @@
         NSArray *sortDesc = @[[[NSSortDescriptor alloc] initWithKey:nil ascending:YES]];
         NSArray *sortSetArray = [setindex sortedArrayUsingDescriptors:sortDesc];
         
+        NSInteger cindex = 0;
+        NSDate *today = [NSDate dateWithZone];
         for (NSString *date in sortSetArray) {
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"CREATETIME==%@",date];
             NSArray *sourcearray = [returnArray filteredArrayUsingPredicate:predicate];
             MainGroupModel *groupmodel = [[MainGroupModel alloc] init];
             groupmodel.groupDate =date;
+            NSDate *modeldate = [date convertDateFromString:@"yyyy-MM-dd"];
+            groupmodel.dateDiff = abs([modeldate dateDiff:today]);
+            groupmodel.currentIndex = cindex;
             groupmodel.groupExpend = [[sourcearray valueForKeyPath:@"@sum.EVALUE"] floatValue];
             groupmodel.groupSource = sourcearray;
             [returnsource addObject:groupmodel];
+            
+            cindex++;
         }
         
     }

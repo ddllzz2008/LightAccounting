@@ -270,31 +270,31 @@
             make.height.equalTo(@30);
         }];
         
-        UILabel *labelAlert = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
-        [labelAlert setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
-        labelAlert.textAlignment=NSTextAlignmentLeft;
-        [labelAlert setText:@"额外消费"];
-        [self addSubview:labelAlert];
-        
-        [labelAlert mas_makeConstraints:^(MASConstraintMaker *make) {
-            __strong __typeof(weakSelf) strongSelf = weakSelf;
-            make.left.equalTo(strongSelf).with.offset(15);
-            make.top.equalTo(labelcategory.mas_bottom).with.offset(25);
-            make.size.mas_equalTo(CGSizeMake(80, 30));
-        }];
-        
-        
-        switchAlert = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
-        switchAlert.on=NO;
-        switchAlert.tintColor=UIColorFromRGB(0xcccccc);
-        switchAlert.onTintColor=get_theme_color;
-        [self addSubview:switchAlert];
-        [switchAlert mas_makeConstraints:^(MASConstraintMaker *make) {
-            __strong __typeof(weakSelf) strongSelf = weakSelf;
-            make.size.mas_equalTo(CGSizeMake(60, 30));
-            make.right.equalTo(strongSelf.mas_right).with.offset(-15);
-            make.centerY.equalTo(labelAlert);
-        }];
+//        UILabel *labelAlert = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+//        [labelAlert setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
+//        labelAlert.textAlignment=NSTextAlignmentLeft;
+//        [labelAlert setText:@"额外消费"];
+//        [self addSubview:labelAlert];
+//        
+//        [labelAlert mas_makeConstraints:^(MASConstraintMaker *make) {
+//            __strong __typeof(weakSelf) strongSelf = weakSelf;
+//            make.left.equalTo(strongSelf).with.offset(15);
+//            make.top.equalTo(labelcategory.mas_bottom).with.offset(25);
+//            make.size.mas_equalTo(CGSizeMake(80, 30));
+//        }];
+//        
+//        
+//        switchAlert = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+//        switchAlert.on=NO;
+//        switchAlert.tintColor=UIColorFromRGB(0xcccccc);
+//        switchAlert.onTintColor=get_theme_color;
+//        [self addSubview:switchAlert];
+//        [switchAlert mas_makeConstraints:^(MASConstraintMaker *make) {
+//            __strong __typeof(weakSelf) strongSelf = weakSelf;
+//            make.size.mas_equalTo(CGSizeMake(60, 30));
+//            make.right.equalTo(strongSelf.mas_right).with.offset(-15);
+//            make.centerY.equalTo(labelAlert);
+//        }];
         
         UILabel *labelAlert1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
         [labelAlert1 setStyle:fontsize_16 color:UIColorFromRGB(0xBBBBBB)];
@@ -305,7 +305,7 @@
         [labelAlert1 mas_makeConstraints:^(MASConstraintMaker *make) {
             __strong __typeof(weakSelf) strongSelf = weakSelf;
             make.left.equalTo(strongSelf).with.offset(15);
-            make.top.equalTo(labelAlert.mas_bottom).with.offset(25);
+            make.top.equalTo(labelcategory.mas_bottom).with.offset(25);
             make.size.mas_equalTo(CGSizeMake(80, 30));
         }];
         
@@ -597,9 +597,9 @@
     //添加属性监视KVO
     [self.inputmoney addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.labelremark addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
-    if (switchAlert!=nil) {
-        [switchAlert addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
-    }
+//    if (switchAlert!=nil) {
+//        [switchAlert addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+//    }
     if (switchAlert1!=nil) {
         [switchAlert1 addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     }
@@ -611,9 +611,9 @@
 -(void)removeObserve{
     [self.inputmoney removeTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.labelremark removeTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
-    if (switchAlert!=nil) {
-        [switchAlert removeTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
-    }
+//    if (switchAlert!=nil) {
+//        [switchAlert removeTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+//    }
     if (switchAlert1!=nil) {
         [switchAlert1 removeTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     }
@@ -627,10 +627,10 @@
     }
 }
 -(void)switchChanged:(UISwitch *)sender{
-    if([sender isEqual:switchAlert]){
-        self.viewmodel.model.outbudget = (switchAlert.on==YES?1:0);
-    }else if([sender isEqual:switchAlert1]){
+//    if([sender isEqual:switchAlert]){
+//        self.viewmodel.model.outbudget = (switchAlert.on==YES?1:0);
+//    }else if([sender isEqual:switchAlert1]){
         self.viewmodel.model.isprivate = (switchAlert1.on ==YES?1:0);
-    }
+//    }
 }
 @end

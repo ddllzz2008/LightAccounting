@@ -183,7 +183,13 @@
         NSString *requestContent = [requestString substringFromIndex:[protocol length]];
         NSArray *vals = [requestContent componentsSeparatedByString:@"/"];
         if ([vals[0] isEqualToString:@"navigate"]) { //test方法
-            
+            //跳转到详细
+            ChartDetailViewController *chartdetailController = [[ChartDetailViewController alloc] init];
+            chartdetailController.dateRange = [chartview.chart1Range copy];
+            ChartViewModel *chartviewmodel = [[ChartViewModel alloc] init];
+            [chartviewmodel setFilter:0 min:self.viewmodel.minvalue max:self.viewmodel.maxvalue cids:self.viewmodel.categories outlet:self.viewmodel.isoutlet private:self.viewmodel.isprivate];
+            chartdetailController.viewmodel = chartviewmodel;
+            [self.navigationController pushViewController:chartdetailController animated:YES];
         }
         else {
             

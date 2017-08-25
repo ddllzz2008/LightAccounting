@@ -24,7 +24,7 @@
     
     UICollectionView *_collectionView;
     
-    SSCheckBoxView *cboutlet;
+//    SSCheckBoxView *cboutlet;
     
     SSCheckBoxView *cbprivate;
     

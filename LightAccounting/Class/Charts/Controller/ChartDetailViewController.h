@@ -6,6 +6,7 @@
 //  Copyright © 2017年 ddllzz. All rights reserved.
 //
 #import "UITableView+EmptyPhoto.h"
+#import "NSDate+ExtMethod.h"
 #import "BaseViewController.h"
 #import "BillChartView.h"
 #import "BillDetailView.h"
@@ -37,6 +38,6 @@
 
 @property (nonatomic,strong) NSArray *dateRange;
 
-@property(nonatomic,strong) NSDate *currentDate;
+//@property(nonatomic,strong) NSDate *currentDate;
 
 @end

@@ -16,6 +16,10 @@
 
 @property (nonatomic,strong,readwrite) NSArray *groupSource;
 
+@property (nonatomic,assign,readwrite) NSInteger currentIndex;
+
+@property (nonatomic,assign,readwrite) NSInteger dateDiff;
+
 @end
 
 

@@ -63,13 +63,13 @@
     self.maxfield.backgroundColor = [UIColor whiteColor];
     [betweenview addSubview:self.maxfield];
     
-    cboutlet = [[SSCheckBoxView alloc] initWithFrame:CGRectMake(5, betweenview.frame.size.height+betweenview.frame.origin.y+10, width -10, 30) style:kSSCheckBoxViewStyleMono checked:YES];
-    [cboutlet setText:@"显示额外消费"];
-    [cboutlet.textLabel setStyle:fontsize_13 color:UIColorFromRGB(0x888888)];
-    [cboutlet setStateChangedTarget:self selector:@selector(outletChanged:)];
-    [self addSubview:cboutlet];
+//    cboutlet = [[SSCheckBoxView alloc] initWithFrame:CGRectMake(5, betweenview.frame.size.height+betweenview.frame.origin.y+10, width -10, 30) style:kSSCheckBoxViewStyleMono checked:YES];
+//    [cboutlet setText:@"显示额外消费"];
+//    [cboutlet.textLabel setStyle:fontsize_13 color:UIColorFromRGB(0x888888)];
+//    [cboutlet setStateChangedTarget:self selector:@selector(outletChanged:)];
+//    [self addSubview:cboutlet];
     
-    cbprivate = [[SSCheckBoxView alloc] initWithFrame:CGRectMake(5, cboutlet.frame.size.height+cboutlet.frame.origin.y+10, width -10, 30) style:kSSCheckBoxViewStyleMono checked:YES];
+    cbprivate = [[SSCheckBoxView alloc] initWithFrame:CGRectMake(5, betweenview.frame.size.height+betweenview.frame.origin.y+10, width -10, 30) style:kSSCheckBoxViewStyleMono checked:YES];
     [cbprivate setText:@"显示隐私消费"];
     [cbprivate.textLabel setStyle:fontsize_13 color:UIColorFromRGB(0x888888)];
     [cbprivate setStateChangedTarget:self selector:@selector(privateChanged:)];
@@ -159,7 +159,7 @@
 }
 
 -(void)setOutlet:(BOOL)isoutlet{
-    cboutlet.checked=isoutlet;
+//    cboutlet.checked=isoutlet;
 }
 -(void)setPrivate:(BOOL)isprivate{
     cbprivate.checked=isprivate;
@@ -246,7 +246,7 @@
     [categoryArray removeAllObjects];
     [self.minfield setText:@""];
     [self.maxfield setText:@""];
-    cboutlet.checked=NO;
+//    cboutlet.checked=NO;
     cbprivate.checked=NO;
     if (self.delegate) {
         [self.delegate FilterUIViewComfirm:@"" max:@"" categories:categoryArray isoutlet:NO isprivate:NO];
@@ -256,7 +256,7 @@
     if (self.delegate) {
         NSString *min = [self.minfield.text isFloat]?self.minfield.text:@"";
         NSString *max = [self.maxfield.text isFloat]?self.minfield.text:@"";
-        [self.delegate FilterUIViewComfirm:min max:max categories:categoryArray isoutlet:cboutlet.checked isprivate:cbprivate.checked];
+        [self.delegate FilterUIViewComfirm:min max:max categories:categoryArray isoutlet:NO isprivate:cbprivate.checked];
     }
 }
 

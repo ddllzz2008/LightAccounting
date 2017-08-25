@@ -163,7 +163,31 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pj0-RJ-3xm">
                                     <rect key="frame" x="375" y="0.0" width="375" height="617"/>
+                                    <subviews>
+                                        <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3FW-Sl-GkR">
+                                            <rect key="frame" x="0.0" y="30" width="375" height="587"/>
+                                            <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </webView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017年" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgn-Af-M8f">
+                                            <rect key="frame" x="165" y="8" width="45.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.73725490196078436" green="0.73725490196078436" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="icon_calender" translatesAutoresizingMaskIntoConstraints="NO" id="PUp-oP-79h">
+                                            <rect key="frame" x="129" y="0.0" width="36" height="30"/>
+                                        </imageView>
+                                    </subviews>
                                     <color key="backgroundColor" red="0.22876388164829553" green="1" blue="0.94993296052306275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="kgn-Af-M8f" firstAttribute="centerX" secondItem="Pj0-RJ-3xm" secondAttribute="centerX" id="CKd-xI-T2c"/>
+                                        <constraint firstItem="3FW-Sl-GkR" firstAttribute="leading" secondItem="Pj0-RJ-3xm" secondAttribute="leading" id="CmL-cw-Zav"/>
+                                        <constraint firstItem="kgn-Af-M8f" firstAttribute="top" secondItem="Pj0-RJ-3xm" secondAttribute="top" constant="8" id="K9U-01-sWc"/>
+                                        <constraint firstItem="3FW-Sl-GkR" firstAttribute="top" secondItem="Pj0-RJ-3xm" secondAttribute="top" constant="30" id="OpB-XZ-Yq9"/>
+                                        <constraint firstItem="kgn-Af-M8f" firstAttribute="leading" secondItem="PUp-oP-79h" secondAttribute="trailing" id="bB7-A4-GJ0"/>
+                                        <constraint firstAttribute="trailing" secondItem="3FW-Sl-GkR" secondAttribute="trailing" id="sVZ-Oj-d7M"/>
+                                        <constraint firstAttribute="bottom" secondItem="3FW-Sl-GkR" secondAttribute="bottom" id="wiw-EB-nas"/>
+                                    </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="okl-b2-xMI">
                                     <rect key="frame" x="750" y="0.0" width="375" height="617"/>

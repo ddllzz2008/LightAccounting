@@ -111,11 +111,11 @@ static ExpenditureDAL *instance = nil;
     if(end!=nil){
         sql = [sql stringByAppendingFormat:@" AND A.CREATETIME <= '%@' ",[end formatWithCode:dateformat_03]];
     }
-    if (outlet) {
-//        sql = [sql stringByAppendingString:@" AND (A.OUTBUDGET==1 OR A.OUTBUDGET==-1 ) "];
-    }else{
-        sql = [sql stringByAppendingString:@" AND (A.OUTBUDGET!=1 OR A.OUTBUDGET==-1 ) "];
-    }
+//    if (outlet) {
+////        sql = [sql stringByAppendingString:@" AND (A.OUTBUDGET==1 OR A.OUTBUDGET==-1 ) "];
+//    }else{
+//        sql = [sql stringByAppendingString:@" AND (A.OUTBUDGET!=1 OR A.OUTBUDGET==-1 ) "];
+//    }
     if (isprivate) {
 //        sql = [sql stringByAppendingString:@" AND A.ISPRIVATE==1 "];
     }else{

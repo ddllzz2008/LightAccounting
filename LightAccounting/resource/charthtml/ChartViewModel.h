@@ -9,6 +9,7 @@
 #import "BaseViewModel.h"
 #import "CategoryDAL.h"
 #import "ExpenditureDAL.h"
+#import "IncomeDAL.h"
 #import "BusExpenditure.h"
 
 @interface ChartViewModel : BaseViewModel{
@@ -30,6 +31,12 @@
 - (BOOL)isprivate;
 
 @property (nonatomic,strong) NSMutableArray *chart1source;
+
+@property (nonatomic,strong) NSMutableArray *chartdetailsource;
+
+@property (nonatomic,copy,readonly) NSString *totalIncome;
+
+@property (nonatomic,copy,readonly) NSString *totalExpend;
 
 /**
  设置筛选条件
@@ -54,5 +61,21 @@
  @param enddate 结束日期
  */
 -(void)loadExpendByCategory:(NSDate *)startdate enddate:(NSDate *)enddate;
+/**
+ 获取图表详情数据
+ 
+ @param startdate 开始时间
+ @param enddate 结束时间
+ */
+- (void)loadChartsDetail:(NSDate *)startdate enddate:(NSDate *)enddate;
+/**
+ 删除账单
+ 
+ @param bid 账单id
+ @param deletevalue 删除的消费值
+ @param type 账单类型，0：支出，1：收入
+ @return 执行是否成功
+ */
+- (BOOL)deleteBill:(NSString *)bid deletevalue:(CGFloat)deletevalue type:(int)type;
 
 @end

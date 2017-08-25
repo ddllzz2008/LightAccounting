@@ -13,6 +13,7 @@
 #import "AppConfigurationDAL.h"
 #import "AppConfigurationModel.h"
 #import "NSDate+ExtMethod.h"
+#import "NSString+ExtMethod.h"
 #import "MainExpendModel.h"
 #import "MTLJSONAdapter.h"
 

@@ -95,11 +95,11 @@
 
 #pragma mark----UITable协议（分为汇总tableview和详细tableview）
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.viewmodel.rightsource.count;
+    return self.viewmodel.chartdetailsource.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[self.viewmodel.rightsource objectAtIndex:section] count];
+    return [[self.viewmodel.chartdetailsource objectAtIndex:section] count];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -110,9 +110,9 @@
         [cellsection setIfFirstLine:NO];
     }
     
-    BusExpenditure *model =  [[self.viewmodel.rightsource objectAtIndex:section] objectAtIndex:0];
+    BusExpenditure *model =  [[self.viewmodel.chartdetailsource objectAtIndex:section] objectAtIndex:0];
     
-    NSArray *arr = [self.viewmodel.rightsource objectAtIndex:section];
+    NSArray *arr = [self.viewmodel.chartdetailsource objectAtIndex:section];
     
     float totalvalue = [[arr valueForKeyPath:@"@sum.EVALUE"] floatValue];
     
@@ -127,7 +127,7 @@
     BillDetailTableCell *cell = (BillDetailTableCell *)[tableView dequeueReusableCellWithIdentifier:idetifier forIndexPath:indexPath];
     if (cell) {
         
-        BusExpenditure *model = [[self.viewmodel.rightsource objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
+        BusExpenditure *model = [[self.viewmodel.chartdetailsource objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
         
         [cell setTypeImage:[UIImage imageNamed:[NSString stringWithFormat:@"category_%@",model.CCOLOR]]];
         [cell setTypeName:model.CNAME];
@@ -155,7 +155,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([tableView isEqual:righttableview]) {
         
-        BusExpenditure *model = [[self.viewmodel.rightsource objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
+        BusExpenditure *model = [[self.viewmodel.chartdetailsource objectAtIndex:indexPath.section] objectAtIndex:indexPath.item];
         
         chooseWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         [chooseWindow setBackgroundColor:[UIColor clearColor]];
@@ -257,23 +257,19 @@
     [[AlertController sharedInstance] showMessage:@"获取账单中"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        [self.viewmodel loadExpendByCategory:[self.dateRange objectAtIndex:0] enddate:[self.dateRange objectAtIndex:1]];
+        NSDate *startdate = [self.dateRange objectAtIndex:0];
+        NSDate *enddate = [self.dateRange objectAtIndex:1];
+        choosedateview.text = [NSString stringWithFormat:@"%@ 至 %@",[startdate formatWithCode:@"yyyy年MM月dd日"],[enddate formatWithCode:@"yyyy年MM月dd日"]];
+        
+        [self.viewmodel loadChartsDetail:startdate enddate:enddate];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            [righttableview setsourceCount:self.viewmodel.chart1source.count];
+            [righttableview setsourceCount:self.viewmodel.chartdetailsource.count];
             
             [righttableview reloadData];
             
-            CGFloat total = 0;
-            
-            for (NSDictionary *dic in self.viewmodel.chart1source) {
-                
-                total += [[dic objectForKey:@"evalue"] floatValue];
-                
-            }
-            
-            [detailmoney setText:[NSString stringWithFormat:@"支出总额：%.1f元",total]];
+            [detailmoney setText:[NSString stringWithFormat:@"收入：%@ ／ 支出：%@",[self.viewmodel.totalIncome transferMoney],[[self.viewmodel.totalExpend transferMoney] stringByReplacingOccurrencesOfString:@"-" withString:@""]]];
             
             [[AlertController sharedInstance] closeMessage];
         });
@@ -296,32 +292,6 @@
     
     [self hiddenAction:nil];
     
-}
-
-/**
- 上月
- 
- @param sender <#sender description#>
- @param date <#date description#>
- */
--(void)BillDateChoose:(id)sender prebuttonPressed:(NSDate *)date{
-    
-    [self.viewmodel setFilter:0 min:@"" max:@"" cids:nil outlet:NO private:NO];
-    
-    [self loadData];
-}
-
-/**
- 下月
- 
- @param sender <#sender description#>
- @param date <#date description#>
- */
--(void)BillDateChoose:(id)sender nextbuttonPressed:(NSDate *)date{
-    
-    [self.viewmodel setFilter:0 min:@"" max:@"" cids:nil outlet:NO private:NO];
-    
-    [self loadData];
 }
 
 /**
@@ -355,19 +325,20 @@
     BOOL hresult = NO;
     NSString *billid = @"";
     int billtype = 0;
-    
+    CGFloat deletevalue = 0;
     @try {
         
-        NSMutableArray *array = [self.viewmodel.rightsource objectAtIndex:section];
+        NSMutableArray *array = [self.viewmodel.chartdetailsource objectAtIndex:section];
         
         BusExpenditure *model = [array objectAtIndex:item];
         
         billid = model.EID;
         billtype = model.TYPE;
+        deletevalue = model.EVALUE;
         
         if (array.count<=1) {
             [array removeObjectAtIndex:item];
-            [self.viewmodel.rightsource removeObjectAtIndex:section];
+            [self.viewmodel.chartdetailsource removeObjectAtIndex:section];
         }else{
             [array removeObjectAtIndex:item];
         }
@@ -409,7 +380,7 @@
         if (hresult) {
             
             [self.viewmodel runThreadAction:@"删除中" successtitle:@"删除成功" errortitle:@"删除失败" threadaction:^BOOL{
-                BOOL deleteresult = [self.viewmodel deleteBill:billid type:billtype];
+                BOOL deleteresult = [self.viewmodel deleteBill:billid deletevalue:deletevalue type:billtype];
                 return deleteresult;
             } mainuiaction:^(BOOL result) {
                 if (result) {
@@ -417,6 +388,7 @@
                     [self billdetailview:YES];
                     
                     [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"mainpage"];
+                    [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"billpage"];
                     [[Constants Instance].viewrefreshCache setValue:@YES forKey:@"chartpage"];
                     
                     
